@@ -81,16 +81,16 @@ Clases:
 
 class ClassName
 {
-public:
-	ClassName( void );
-	ClassName( const ClassName & src );
-	~ClassName();
-	ClassName & operator=( const ClassName & src );
-													<== Linea en blanco para separar "temas"
-	std::string	public_var;
-													<== Linea en blanco antes de cambiar de privacidad
-private:
-	std::string _private_var;
+	public:
+		ClassName( void );
+		ClassName( const ClassName & src );
+		~ClassName( void );
+		ClassName & operator=( const ClassName & src );
+														<== Linea en blanco para separar "temas"
+		std::string	public_var;
+														<== Linea en blanco antes de cambiar de privacidad
+	private:
+		std::string _private_var;
 };
 
 -----
