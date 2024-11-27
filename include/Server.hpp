@@ -7,8 +7,8 @@
 class Server
 {
 private:
-	Server( void );
-	Server( const Server & src );
+	Server( void ); // No queremos un Server default constructed
+	Server( const Server & src ); // Tampoco nos interesa copiar un Server
 
 public:
 	~Server();
