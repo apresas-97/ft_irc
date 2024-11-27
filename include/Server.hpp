@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <string>
+#include <list>
 
 #define SERVER_NAME_MAX_LENGTH 63
 
@@ -22,7 +23,10 @@ private:
 	std::string &	_password;
 
 	// Channels ?
+	// std::list<Channel>	_channels;
+
 	// Users ?
+	// std::list<User>	_users;
 
 };
 
