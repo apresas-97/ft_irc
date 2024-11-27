@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string>
 
+#define SERVER_NAME_MAX_LENGTH 63
+
 class Server
 {
 private:
@@ -16,7 +18,11 @@ public:
 	Server & operator=( const Server & src );
 
 private:
+	std::string	_name; // server name, max length of 63 characters
 	std::string &	_password;
+
+	// Channels ?
+	// Users ?
 
 };
 
