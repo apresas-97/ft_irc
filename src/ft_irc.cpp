@@ -1,4 +1,5 @@
 #include "ft_irc.hpp"
+#include "Server.hpp"
 
 /*
 	Recommended IRC server ports:
@@ -23,11 +24,13 @@ std::string	parse_password( const char *cstr_password )
 {
 	std::string password(cstr_password);
 	// Do we need to check anything?
+
+	return password;
 }
 
 int	main( int argc, char **argv ) // Maybe envp?
 {
-	if (argc != 2)
+	if (argc != 3)
 	{
 		std::cerr << "Usage: ./ircserv <port> <password>" << std::endl;
 		return 1;
@@ -44,6 +47,8 @@ int	main( int argc, char **argv ) // Maybe envp?
 		std::cerr << e.what() << " => \"" << argv[1] << "\"" << std::endl;
 	}
 	// Init Server object with port and password, will be references so they must be set on init
-
+	std::cout << "Creating server..." << std::endl;
+	Server	server(port, password);
+	std::cout << "Goodbye!" << std::endl;
 	return 0;
 }

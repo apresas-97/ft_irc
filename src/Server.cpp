@@ -1,85 +1,114 @@
-#include <iostream>
-#include <cstring>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
+#include "Server.hpp"
 
-#define PORT 8080 // Port number to bind
+Server::Server( t_port port, const std::string & password ) : _port(port), _password(password)
+{
+	try
+	{
+		this->initSocket();
+		this->setSocketOptions();
+		this->bindSocket();
+		this->initListen();
+		this->acceptConnection();
+		this->receiveData();
+		this->sendData( "Hello from server!" );
+		this->closeConnection();
+	}
+	catch ( const std::exception & e )
+	{
+		std::cerr << "Error: " << e.what() << std::endl;
+	}
+}
 
-int main() {
-    // 1. Create a socket
-    int server_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (server_fd == -1) {
-        std::cerr << "Socket creation failed." << std::endl;
-        return -1;
-    }
+Server::~Server( void )
+{
+	close(this->_fd); // ? Maybe should be careful to check it has not been already closed
+}
 
-    // 2. Set socket options (optional, for example to reuse the address)
-    int opt = 1;
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) != 0) {
-        std::cerr << "setsockopt failed." << std::endl;
-        close(server_fd);
-        return -1;
-    }
+int	Server::getFd( void ) const
+{
+	return this->_fd;
+}
 
-    // 3. Bind the socket to a specific IP address and port
-    struct sockaddr_in address;
-    memset(&address, 0, sizeof(address));
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY; // Bind to all available interfaces
-    address.sin_port = htons(PORT);
+void	Server::initSocket( void )
+{
+	this->_fd = socket(AF_INET, SOCK_STREAM, 0);
+	if (this->_fd == -1)
+		throw SocketCreationException();
+}
 
-    if (bind(server_fd, (struct sockaddr*)&address, sizeof(address)) < 0) {
-        std::cerr << "Bind failed." << std::endl;
-        close(server_fd);
-        return -1;
-    }
+void	Server::setSocketOptions( void )
+{
+	int	opt = 1;
+	if (setsockopt(this->_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) != 0)
+	{
+		close(this->_fd);
+		throw SetsockoptException();
+	}
+}
 
-    // 4. Listen for incoming connections
-    if (listen(server_fd, 3) < 0) {
-        std::cerr << "Listen failed." << std::endl;
-        close(server_fd);
-        return -1;
-    }
+void	Server::bindSocket( void )
+{
+	struct sockaddr_in	address;
+	memset(&address, 0, sizeof(address));
+	address.sin_family = AF_INET;
+	address.sin_addr.s_addr = INADDR_ANY; // Bind to all available interfaces
+	address.sin_port = htons(this->_port);
 
-    std::cout << "Server is listening on port " << PORT << std::endl;
+	if (bind(this->_fd, (struct sockaddr*)&address, sizeof(address)) < 0)
+	{
+		close(this->_fd);
+		throw BindException();
+	}
+}
 
-    // 5. Accept an incoming connection
-    struct sockaddr_in client_address;
-    socklen_t client_addr_len = sizeof(client_address);
-    int client_fd = accept(server_fd, (struct sockaddr*)&client_address, &client_addr_len);
-    if (client_fd < 0) {
-        std::cerr << "Accept failed." << std::endl;
-        close(server_fd);
-        return -1;
-    }
+void	Server::initListen( void )
+{
+	if (listen(this->_fd, 3) < 0)
+	{
+		close(this->_fd);
+		throw ListenFailedException();
+	}
+}
 
-    std::cout << "Connection established with client: "
-              << inet_ntoa(client_address.sin_addr) << ":"
-              << ntohs(client_address.sin_port) << std::endl;
+void	Server::acceptConnection( void )
+{
+	struct sockaddr_in	client_address;
+	socklen_t	client_address_len = sizeof(client_address);
+	this->_client_fd = accept(this->_fd, (struct sockaddr*)&client_address, &client_address_len);
+	if (this->_client_fd < 0)
+	{
+		close(this->_fd);
+		throw AcceptFailedException();
+	}
 
-    // 6. Receive data from the client
-    char buffer[1024] = {0};
-    int bytes_received = recv(client_fd, buffer, sizeof(buffer), 0);
-    if (bytes_received < 0) {
-        std::cerr << "Recv failed." << std::endl;
-        close(client_fd);
-        close(server_fd);
-        return -1;
-    }
+	std::cout << "Connection established with client: "
+			  << inet_ntoa(client_address.sin_addr) << ":"
+			  << ntohs(client_address.sin_port) << std::endl;
+}
 
-    std::cout << "Received: " << buffer << std::endl;
+void	Server::receiveData( void )
+{
+	char	buffer[BUFFER_SIZE] = {0};
+	int		bytes_received = recv(this->_client_fd, buffer, sizeof(buffer), 0);
+	if (bytes_received < 0)
+	{
+		close(this->_client_fd);
+		close(this->_fd);
+		throw RecvFailedException();
+	}
 
-    // 7. Send data back to the client
-    const char* response = "Hello from server!";
-    send(client_fd, response, strlen(response), 0);
+	std::cout << "Received: " << buffer << std::endl;
+}
 
-    // 8. Close the client socket
-    close(client_fd);
+void	Server::sendData( const std::string & data )
+{
+	// send(this->_client_fd, data.c_str(), data.length(), 0);
+	// I think this is equivalent to this:
+	write(this->_client_fd, data.c_str(), data.length());
+	// write doesn't accept flags, but in this case we are not using any
+}
 
-    // 9. Close the server socket
-    close(server_fd);
-
-    return 0;
+void	Server::closeConnection( void )
+{
+	close(this->_client_fd);
 }

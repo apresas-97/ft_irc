@@ -2,7 +2,7 @@
 #define FT_IRC_HPP
 
 #include <iostream>
-#include <cstdint>
+#include <stdint.h> // C++98 doesn't have <cstdint>
 #include <sstream>
 #include <exception>
 
@@ -58,6 +58,6 @@
 	poll (The subject says we can also use select, kqueue or epoll, among others possibly)
 */
 
-typedef uint_fast16_t	t_port;
+typedef uint16_t	t_port;
 
 #endif // FT_IRC_HPP
