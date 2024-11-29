@@ -3,8 +3,10 @@
 
 #include <iostream>
 #include <stdint.h> // C++98 doesn't have <cstdint>
-#include <sstream>
+#include <cstring>
+#include <sstream> // std::memset
 #include <exception>
+
 
 // C libraries for the functions specified in the subject:
 #include <sys/socket.h>

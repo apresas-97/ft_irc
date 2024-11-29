@@ -49,6 +49,7 @@ int	main( int argc, char **argv ) // Maybe envp?
 	// Init Server object with port and password, will be references so they must be set on init
 	std::cout << "Creating server..." << std::endl;
 	Server	server(port, password);
+	server.start();
 	std::cout << "Goodbye!" << std::endl;
 	return 0;
 }
