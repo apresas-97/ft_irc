@@ -114,7 +114,7 @@ int main( int argc, char *argv[] ) {
 	*/
 	unsigned int	clients = 0;
 	while ( 42 ) {
-		int	pollCount = poll( pollFds, MAX_CLIENTS + 1, TIMEOUT );
+		int	pollCount = poll( pollFds, clients + 1, TIMEOUT );
 		if ( pollCount < 0 ) {
 			std::cerr << "Poll error, errno: " << strerror(errno) << std::endl;
 			break ;
