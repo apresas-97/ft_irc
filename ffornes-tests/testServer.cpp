@@ -106,8 +106,11 @@ int main( int argc, char *argv[] ) {
 	/*
 		Server loop
 			int poll( struct pollfd, nfds_t, int timeout );
-				pollfd:		
-				nfds_t:		
+				pollfd:		All the file descriptors referencing the sockets we want to check for. It must be the server
+							and the clients.	
+				nfds_t:		Specifies the amount of connections it has to look for, clients + 1 since 1 is the server.
+							It's necessary to specify clients instead of MAX_CLIENTS because if you check with MAX_CLIENTS
+							it returns -1. clients represent the actual amount of clients connected to the server.	
 				timeout:	Specifies the number of milliseconds that poll should block waiting for a fd to becomre ready
 
 			Returns the number of elements in pollFds whose revents fields have been set to a non-zero value aka even or error
@@ -121,7 +124,7 @@ int main( int argc, char *argv[] ) {
 		} else if ( pollCount == 0 ) {
 			std::cout << "Poll timed out, no activity" << std::endl;
 			continue;
-		} else
+		}
 
 		/*
 			Check server socket for new client connections
