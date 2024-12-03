@@ -92,7 +92,6 @@ int main( int argc, char *argv[] ) {
 	std::cout << "Server " << serverFd << " is listening on port " << port << std::endl;
 
 	//	Poll file descriptors initialization
-
 	struct pollfd	pollFds[ MAX_CLIENTS + 1 ];
 	pollFds[0].fd = serverFd;
 	pollFds[0].events = POLLIN;
@@ -114,6 +113,13 @@ int main( int argc, char *argv[] ) {
 				timeout:	Specifies the number of milliseconds that poll should block waiting for a fd to becomre ready
 
 			Returns the number of elements in pollFds whose revents fields have been set to a non-zero value aka even or error
+	
+			this unsigned int clients causes issues since if you decrease it when a client is disconnected, it may be possible
+			that poll doesn't check for other clients. Example:
+				[Server] [client1] [client2]	here everything works fine, clients = 2, poll gets all the connections properly
+			However if we disconnect client1...
+				[Server] [       ] [client2]	here we are unable to receive data from client2 since it's in the second position
+			of the pollFds array, this should be handled in some way. 
 	*/
 	unsigned int	clients = 0;
 	while ( 42 ) {
@@ -173,6 +179,7 @@ int main( int argc, char *argv[] ) {
 					std::cout << "Client disconnected: " << pollFds[i].fd << std::endl;
 					close( pollFds[i].fd );
 					pollFds[i].fd = -1;
+					//clients--;	Causes issues
 				} else {
 					buffer[bytesRec] = '\0';
 					std::cout << "Received from client " << pollFds[i].fd << ": " << buffer << std::endl;
