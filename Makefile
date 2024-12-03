@@ -2,11 +2,11 @@ NAME = ircserv
 
 # Files
 SRC_DIR = src
-INCLUDE_DIR = include
+INCLUDE_DIR = inc
 OBJ_DIR = obj
 DEPS_DIR = deps
 
-SRC_FILES =	ft_irc.cpp
+SRC_FILES =	ft_irc.cpp Server.cpp
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 

@@ -2,9 +2,12 @@
 #define FT_IRC_HPP
 
 #include <iostream>
-#include <cstdint>
 #include <sstream>
 #include <exception>
+
+#define	MAX_CLIENTS	1024
+#define	TIMEOUT		5000
+#define	BUFFER_SIZE 1024
 
 // C libraries for the functions specified in the subject:
 #include <sys/socket.h>
@@ -58,6 +61,6 @@
 	poll (The subject says we can also use select, kqueue or epoll, among others possibly)
 */
 
-typedef uint_fast16_t	t_port;
+// typedef uint_fast16_t	t_port;
 
 #endif // FT_IRC_HPP

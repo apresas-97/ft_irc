@@ -4,82 +4,169 @@
 #include <arpa/inet.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
+#include <sstream>
+#include <cerrno>
+#include <exception>
+#include <cstdlib>
+#include <sys/types.h>
+#include <poll.h>
+
+#include "ft_irc.hpp"
+#include "Server.hpp"
 
 #define PORT 8080 // Port number to bind
 
-int main() {
-    // 1. Create a socket
-    int server_fd = socket(AF_INET, SOCK_STREAM, 0);
-    if (server_fd == -1) {
-        std::cerr << "Socket creation failed." << std::endl;
-        return -1;
+Server::Server ( const std::string &port, const std::string &password ) : _port(port), _password(password){
+	parseInput();
+	initServer();
+}
+
+Server::~Server() {
+	if (_serverFd != -1) {
+		close(_serverFd);
+	}
+}
+
+void Server::parseInput ( void ) {
+
+	unsigned int		port;
+	std::string			port_str(this->_port);
+	std::istringstream	iss(this->_port);
+
+	iss >> port;
+	if (this->_port.empty() || iss.fail() || !iss.eof())
+		throw std::invalid_argument("Invalid port input received");
+	if (port < 1024 || port > 65535)
+		throw std::invalid_argument("Port must be between 1024 and 49151");
+	std::string password(this->_password);
+}
+
+void Server::initServer() {
+	createSocket();
+	bindSocket();
+	configureListening();
+	runServerLoop();
+}
+
+void Server::createSocket() {
+	_serverFd = socket(AF_INET, SOCK_STREAM, 0);
+	if (_serverFd < 0) {
+		throw std::runtime_error("Server socket creation failed");
+	}
+}
+
+void Server::bindSocket() {
+	int					port;
+	std::istringstream	iss(this->_port);
+
+	iss >> port;
+	std::cout << port << std::endl;
+    memset(&this->_serverAddress, 0, sizeof(this->_serverAddress));
+    this->_serverAddress.sin_family = AF_INET;
+    this->_serverAddress.sin_addr.s_addr = INADDR_ANY;
+    this->_serverAddress.sin_port = htons(port);
+
+	if (bind(_serverFd, (struct sockaddr *)&this->_serverAddress, sizeof(this->_serverAddress)) < 0) {
+		std::cerr << "Server socket binding failed with error: " << strerror(errno) << std::endl;
+		close(_serverFd);
+		throw std::runtime_error("Server socket binding failed");
+	}
+}
+
+void Server::configureListening() {
+    if (listen(_serverFd, MAX_CLIENTS) < 0) {
+        close(_serverFd);
+        throw std::runtime_error("Listen failed");
     }
+    std::cout << "Server is listening on port " << _port << std::endl;
+}
 
-    // 2. Set socket options (optional, for example to reuse the address)
-    int opt = 1;
-    if (setsockopt(server_fd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt)) != 0) {
-        std::cerr << "setsockopt failed." << std::endl;
-        close(server_fd);
-        return -1;
+void Server::runServerLoop() {
+    struct pollfd pollFds[MAX_CLIENTS + 1];
+    pollFds[0].fd = _serverFd;
+    pollFds[0].events = POLLIN;
+
+    for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
+        pollFds[i].fd = -1;
+        pollFds[i].events = POLLIN;
     }
+	_clients = 0;
+    std::cout << "Server started, waiting for clients..." << std::endl;
 
-    // 3. Bind the socket to a specific IP address and port
-    struct sockaddr_in address;
-    memset(&address, 0, sizeof(address));
-    address.sin_family = AF_INET;
-    address.sin_addr.s_addr = INADDR_ANY; // Bind to all available interfaces
-    address.sin_port = htons(PORT);
+    while (true) {
+        int pollCount = poll(pollFds, _clients + 1, TIMEOUT);
+        if (pollCount < 0) {
+            std::cerr << "Poll error: " << strerror(errno) << std::endl;
+            break;
+        } else if (pollCount == 0) {
+            std::cout << "Poll timed out, no activity" << std::endl;
+            continue;
+        }
 
-    if (bind(server_fd, (struct sockaddr*)&address, sizeof(address)) < 0) {
-        std::cerr << "Bind failed." << std::endl;
-        close(server_fd);
-        return -1;
+        handleNewConnections(pollFds);
+        handleClientData(pollFds);
     }
+}
 
-    // 4. Listen for incoming connections
-    if (listen(server_fd, 3) < 0) {
-        std::cerr << "Listen failed." << std::endl;
-        close(server_fd);
-        return -1;
-    }
+void Server::handleNewConnections(struct pollfd *pollFds) {
+	if (pollFds[0].revents & POLLIN) {
+		struct sockaddr_in clientAddress;
+		socklen_t addressLen = sizeof(clientAddress);
+		int clientFd = accept(_serverFd, (struct sockaddr *)&clientAddress, &addressLen);
 
-    std::cout << "Server is listening on port " << PORT << std::endl;
+		if (clientFd < 0) {
+			std::cerr << "Failed to accept new client" << std::endl;
+			return;
+		}
 
-    // 5. Accept an incoming connection
-    struct sockaddr_in client_address;
-    socklen_t client_addr_len = sizeof(client_address);
-    int client_fd = accept(server_fd, (struct sockaddr*)&client_address, &client_addr_len);
-    if (client_fd < 0) {
-        std::cerr << "Accept failed." << std::endl;
-        close(server_fd);
-        return -1;
-    }
+		bool clientAdded = false;
+		for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
+			if (pollFds[i].fd == -1) {
+				pollFds[i].fd = clientFd;
+				std::cout << "New client connected: " << clientFd << std::endl;
+				clientAdded = true;
+				if (i > _clients)
+					_clients++;
+				break;
+			}
+		}
 
-    std::cout << "Connection established with client: "
-              << inet_ntoa(client_address.sin_addr) << ":"
-              << ntohs(client_address.sin_port) << std::endl;
+		if (!clientAdded) {
+			std::cerr << "Max clients reached, closing connection" << std::endl;
+			close(clientFd);
+		}
+	}
+}
 
-    // 6. Receive data from the client
-    char buffer[1024] = {0};
-    int bytes_received = recv(client_fd, buffer, sizeof(buffer), 0);
-    if (bytes_received < 0) {
-        std::cerr << "Recv failed." << std::endl;
-        close(client_fd);
-        close(server_fd);
-        return -1;
-    }
+void Server::handleClientData(struct pollfd *pollFds) {
+	char buffer[BUFFER_SIZE];
+	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
+		if (pollFds[i].fd == -1)
+			continue;
 
-    std::cout << "Received: " << buffer << std::endl;
+		if (pollFds[i].revents & POLLIN) {
+			int bytesReceived = recv(pollFds[i].fd, buffer, sizeof(buffer) - 1, 0);
+			if (bytesReceived < 0) {
+				std::cerr << "Error receiving data from client " << pollFds[i].fd << std::endl;
+			} else if (bytesReceived == 0) {
+				std::cout << "Client disconnected: " << pollFds[i].fd << std::endl;
+				close(pollFds[i].fd);
+				pollFds[i].fd = -1;
+				if (i == _clients)
+					_clients--;
+			} else {
+				buffer[bytesReceived] = '\0';
+				std::cout << "Received from client " << pollFds[i].fd << ": " << buffer;
+				sendData(pollFds, buffer);
+			}
+		}
+	}
+}
 
-    // 7. Send data back to the client
-    const char* response = "Hello from server!";
-    send(client_fd, response, strlen(response), 0);
-
-    // 8. Close the client socket
-    close(client_fd);
-
-    // 9. Close the server socket
-    close(server_fd);
-
-    return 0;
+void Server::sendData(struct pollfd *pollFds, const char *message) {
+	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
+		if (pollFds[i].fd != -1) {
+			send(pollFds[i].fd, message, strlen(message), 0);
+		}
+	}
 }
