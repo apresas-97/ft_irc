@@ -41,7 +41,6 @@ int main( int argc, char *argv[] ) {
 	/*
 		Bind the socket to a specific IP address and port
 			int bind ( int sockfd, const struct sockaddr*, socklen_t addrlen );
-
 				sockfd:		The file descriptor that references the socket
 				sockaddr*:	The specified address that will be assigned to the socket
 					struct sockaddr {
@@ -53,7 +52,6 @@ int main( int argc, char *argv[] ) {
 		PORT:	Should use ports from the range 6660 - 6669 those are the ports most IRC servers use
 				Port 6697 or 7000 is used if you offer encrypted communication between clients and server
 	*/
-
 	int	port;
 	port = atoi( argv[1] );
 	if ( port < 0 || port > 65535 ) {
@@ -83,7 +81,6 @@ int main( int argc, char *argv[] ) {
 						If a request arrives when the queue is full, the client may receive an error
 
 	*/
-
 	if ( listen(serverFd, MAX_CLIENTS) < 0 ) {
 		std::cerr << "Listen failed." << std::endl;
 		close( serverFd );
@@ -134,7 +131,13 @@ int main( int argc, char *argv[] ) {
 
 		/*
 			Check server socket for new client connections
-				accept( )...
+				int accept( int sockfd, struct sockaddr*, socklen_t );
+					sockfd:		The file descriptor that references the server socket
+					sockaddr*:	The address of the client I'm trying to accept
+					socklen_t:	The size in bytes of the struct sockaddr. It must be initialized by the caller
+
+			On success returns a file descriptor for the accepted socket.
+			On error returns -1 and errno is set, addrlen is left unchanged.
 		*/
 		if ( pollFds[0].revents & POLLIN ) {
 			int	clientFd;
@@ -148,14 +151,15 @@ int main( int argc, char *argv[] ) {
 			}
 
 			bool	clientAdded = false;
-			for ( size_t i = 1; i < MAX_CLIENTS; i++ ) {
+			for ( size_t i = 1; i < MAX_CLIENTS; i++ {
 				if ( pollFds[i].fd == -1 ) {
 					pollFds[i].fd = clientFd;
 					std::cout << "New client connection: " << clientFd << std::endl;
 					clientAdded = true;
-					clients++;
+					if ( i > clients )
+						clients++;
 					break ;
-				}
+				
 			}
 			if ( !clientAdded ) {	// Unable to add new client, max connections reached
 				std::cerr << "Unable to add new client, max number of connections reached" << std::endl;
@@ -164,8 +168,15 @@ int main( int argc, char *argv[] ) {
 		}
 
 		/*
-			Check server socket for data from connected clients
-				recv( )...
+			Check server socket for data received from connected clients
+				size_t recv( int sockfd, void *buf, size_t len, int flags );
+					sockfd:	The fd referencing the socket from which I'm receiving data
+					*buf:	Buffer where data will be saved into
+					len:	The length of the data sent
+					flags:
+
+			On success returns the length of the message, if a message is too long to fit in the buffer, excess
+			bytes may be discarded depending on the type of socket the message is received from.
 		*/
 		char	buffer[BUFFER_SIZE];
 		for	( size_t i = 1; i < MAX_CLIENTS; i++ ) {
@@ -179,7 +190,8 @@ int main( int argc, char *argv[] ) {
 					std::cout << "Client disconnected: " << pollFds[i].fd << std::endl;
 					close( pollFds[i].fd );
 					pollFds[i].fd = -1;
-					//clients--;	Causes issues
+					if ( i == clients )
+						clients--;
 				} else {
 					buffer[bytesRec] = '\0';
 					std::cout << "Received from client " << pollFds[i].fd << ": " << buffer << std::endl;
