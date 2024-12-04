@@ -24,6 +24,7 @@
 // {
 // 	std::string password(cstr_password);
 // 	// Do we need to check anything?
+
 // }
 
 int	main( int argc, char **argv ) // Maybe envp?
