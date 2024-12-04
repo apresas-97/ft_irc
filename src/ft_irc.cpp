@@ -47,6 +47,10 @@ int	main( int argc, char **argv ) // Maybe envp?
 	{
 		std::cerr << e.what() << " => \"" << argv[1] << "\"" << std::endl;
 	}
+	catch ( std::runtime_error & e )
+	{
+		return 1;
+	}
 	// Init Server object with port and password, will be references so they must be set on init
 
 	return 0;
