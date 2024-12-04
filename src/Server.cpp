@@ -60,7 +60,8 @@ void Server::bindSocket() {
 	std::istringstream	iss(this->_port);
 
 	iss >> port;
-	std::cout << port << std::endl;
+	// DEBUG PORT
+	//std::cout << port << std::endl;
     memset(&this->_serverAddress, 0, sizeof(this->_serverAddress));
     this->_serverAddress.sin_family = AF_INET;
     this->_serverAddress.sin_addr.s_addr = INADDR_ANY;
