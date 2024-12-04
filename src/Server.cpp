@@ -77,6 +77,13 @@ void Server::createSocket() {
 	if (_serverFd < 0) {
 		throw std::runtime_error("Server socket creation failed");
 	}
+
+	int opt = 1;
+    if (setsockopt(this->_serverFd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
+        close(this->_serverFd);
+        throw std::runtime_error("Failed to set socket options (SO_REUSEADDR | SO_REUSEPORT)");
+    }
+
 	setNonBlock(_serverFd);
 }
 
@@ -84,12 +91,12 @@ void Server::setNonBlock(int & socketFd) {
 	int	flags = fcntl( socketFd, F_GETFL, 0 );
 	if (flags < 0) {
 		cleanClose();
-		throw std::runtime_error("Error setting socket to non-blocking");
+        throw(std::runtime_error("Failed to set non-blocking mode (O_NONBLOCK) on socket"));
 	}
 	flags |= O_NONBLOCK;
 	if (fcntl(socketFd, F_SETFL, flags) == -1 ) {
 		cleanClose();
-		throw std::runtime_error("Error setting socket to non-blocking");
+        throw(std::runtime_error("Failed to set non-blocking mode (O_NONBLOCK) on socket"));
 	}
 }
 
