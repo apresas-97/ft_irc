@@ -43,7 +43,7 @@
 	inet_addr
 	inet_ntoa
 */
-#include <signal.h>
+#include <csignal>
 /*
 	signal
 	sigaction	

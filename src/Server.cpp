@@ -16,18 +16,40 @@
 
 #define PORT 8080 // Port number to bind
 
-Server::Server ( const std::string &port, const std::string &password ) : _port(port), _password(password){
+Server*	Server::instance = NULL;
+
+void Server::signalHandler(int signal) {
+	if (signal == SIGINT) {
+		if (instance)
+			instance->cleanClose();
+		exit(0);
+	}
+}
+
+void Server::cleanClose() {
+	std::cout << "call clean close" << std::endl;
+	close(_serverFd);
+	for (size_t i = 1; i < MAX_CLIENTS; i++) {
+		if (_pollFds[i].fd == -1)
+			continue;
+		close(_pollFds[i].fd);
+	}
+}
+
+Server::Server(const std::string &port, const std::string &password) : _port(port), _password(password){
+	instance = this;
 	parseInput();
 	initServer();
 }
 
 Server::~Server() {
 	if (_serverFd != -1) {
+		std::cout << "Server destructor called" << std::endl;
 		close(_serverFd);
 	}
 }
 
-void Server::parseInput ( void ) {
+void Server::parseInput() {
 
 	unsigned int		port;
 	std::string			port_str(this->_port);
@@ -42,6 +64,8 @@ void Server::parseInput ( void ) {
 }
 
 void Server::initServer() {
+	if (signal(SIGINT, signalHandler) == SIG_ERR)
+		throw std::runtime_error("Error settig up signal handler");
 	createSocket();
 	bindSocket();
 	configureListening();
@@ -53,6 +77,20 @@ void Server::createSocket() {
 	if (_serverFd < 0) {
 		throw std::runtime_error("Server socket creation failed");
 	}
+	setNonBlock(_serverFd);
+}
+
+void Server::setNonBlock(int & socketFd) {
+	int	flags = fcntl( socketFd, F_GETFL, 0 );
+	if (flags < 0) {
+		cleanClose();
+		throw std::runtime_error("Error setting socket to non-blocking");
+	}
+	flags |= O_NONBLOCK;
+	if (fcntl(socketFd, F_SETFL, flags) == -1 ) {
+		cleanClose();
+		throw std::runtime_error("Error setting socket to non-blocking");
+	}
 }
 
 void Server::bindSocket() {
@@ -60,15 +98,12 @@ void Server::bindSocket() {
 	std::istringstream	iss(this->_port);
 
 	iss >> port;
-	// DEBUG PORT
-	//std::cout << port << std::endl;
     memset(&this->_serverAddress, 0, sizeof(this->_serverAddress));
     this->_serverAddress.sin_family = AF_INET;
     this->_serverAddress.sin_addr.s_addr = INADDR_ANY;
     this->_serverAddress.sin_port = htons(port);
 
 	if (bind(_serverFd, (struct sockaddr *)&this->_serverAddress, sizeof(this->_serverAddress)) < 0) {
-		std::cerr << "Server socket binding failed with error: " << strerror(errno) << std::endl;
 		close(_serverFd);
 		throw std::runtime_error("Server socket binding failed");
 	}
@@ -83,19 +118,18 @@ void Server::configureListening() {
 }
 
 void Server::runServerLoop() {
-    struct pollfd pollFds[MAX_CLIENTS + 1];
-    pollFds[0].fd = _serverFd;
-    pollFds[0].events = POLLIN;
+    _pollFds[0].fd = _serverFd;
+    _pollFds[0].events = POLLIN;
 
     for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
-        pollFds[i].fd = -1;
-        pollFds[i].events = POLLIN;
+        _pollFds[i].fd = -1;
+        _pollFds[i].events = POLLIN;
     }
 	_clients = 0;
     std::cout << "Server started, waiting for clients..." << std::endl;
 
     while (true) {
-        int pollCount = poll(pollFds, _clients + 1, TIMEOUT);
+        int pollCount = poll(_pollFds, _clients + 1, TIMEOUT);
         if (pollCount < 0) {
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
             break;
@@ -104,13 +138,13 @@ void Server::runServerLoop() {
             continue;
         }
 
-        handleNewConnections(pollFds);
-        handleClientData(pollFds);
+        handleNewConnections();
+        handleClientData();
     }
 }
 
-void Server::handleNewConnections(struct pollfd *pollFds) {
-	if (pollFds[0].revents & POLLIN) {
+void Server::handleNewConnections() {
+	if (_pollFds[0].revents & POLLIN) {
 		struct sockaddr_in clientAddress;
 		socklen_t addressLen = sizeof(clientAddress);
 		int clientFd = accept(_serverFd, (struct sockaddr *)&clientAddress, &addressLen);
@@ -122,8 +156,8 @@ void Server::handleNewConnections(struct pollfd *pollFds) {
 
 		bool clientAdded = false;
 		for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
-			if (pollFds[i].fd == -1) {
-				pollFds[i].fd = clientFd;
+			if (_pollFds[i].fd == -1) {
+				_pollFds[i].fd = clientFd;
 				std::cout << "New client connected: " << clientFd << std::endl;
 				clientAdded = true;
 				if (i > _clients)
@@ -139,35 +173,35 @@ void Server::handleNewConnections(struct pollfd *pollFds) {
 	}
 }
 
-void Server::handleClientData(struct pollfd *pollFds) {
+void Server::handleClientData() {
 	char buffer[BUFFER_SIZE];
 	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
-		if (pollFds[i].fd == -1)
+		if (_pollFds[i].fd == -1)
 			continue;
 
-		if (pollFds[i].revents & POLLIN) {
-			int bytesReceived = recv(pollFds[i].fd, buffer, sizeof(buffer) - 1, 0);
+		if (_pollFds[i].revents & POLLIN) {
+			int bytesReceived = recv(_pollFds[i].fd, buffer, sizeof(buffer) - 1, 0);
 			if (bytesReceived < 0) {
-				std::cerr << "Error receiving data from client " << pollFds[i].fd << std::endl;
+				std::cerr << "Error receiving data from client " << _pollFds[i].fd << std::endl;
 			} else if (bytesReceived == 0) {
-				std::cout << "Client disconnected: " << pollFds[i].fd << std::endl;
-				close(pollFds[i].fd);
-				pollFds[i].fd = -1;
+				std::cout << "Client disconnected: " << _pollFds[i].fd << std::endl;
+				close(_pollFds[i].fd);
+				_pollFds[i].fd = -1;
 				if (i == _clients)
 					_clients--;
 			} else {
 				buffer[bytesReceived] = '\0';
-				std::cout << "Received from client " << pollFds[i].fd << ": " << buffer;
-				sendData(pollFds, buffer);
+				std::cout << "Received from client " << _pollFds[i].fd << ": " << buffer;
+				sendData(buffer);
 			}
 		}
 	}
 }
 
-void Server::sendData(struct pollfd *pollFds, const char *message) {
+void Server::sendData(const char *message) {
 	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
-		if (pollFds[i].fd != -1) {
-			send(pollFds[i].fd, message, strlen(message), 0);
+		if (_pollFds[i].fd != -1) {
+			send(_pollFds[i].fd, message, strlen(message), 0);
 		}
 	}
 }

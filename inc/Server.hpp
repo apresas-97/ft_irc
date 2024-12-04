@@ -14,6 +14,9 @@ private:
     int                 _serverFd;
     unsigned int        _clients;
     struct sockaddr_in  _serverAddress;
+	struct pollfd		_pollFds[MAX_CLIENTS + 1];
+
+	static Server		*instance;
 
     void parseInput();
     void initServer();
@@ -22,9 +25,13 @@ private:
     void bindSocket();
     void configureListening();
     void runServerLoop();
-    void handleNewConnections(struct pollfd *pollFds);
-    void handleClientData(struct pollfd *pollFds);
-    void sendData(struct pollfd *pollFds, const char *message);
+    void handleNewConnections(void);
+    void handleClientData(void);
+    void sendData(const char *message);
+	void setNonBlock(int & socketFd);
+	void cleanClose();
+
+	static void signalHandler(int signal);
 
 public:
     Server(const std::string &port, const std::string &password);
