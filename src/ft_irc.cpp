@@ -29,28 +29,21 @@
 
 int	main( int argc, char **argv ) // Maybe envp?
 {
-	if (argc != 3)
-	{
+	if (argc != 3) {
 		std::cerr << "Usage: ./ircserv <port> <password>" << std::endl;
 		return 1;
 	}
 	// std::string password;
 	// t_port port;
-	try
-	{
+	try {
 		// AA: esto podriamos ponerlo en un initServ dentro del constructor, mandando ahi port y password
 		Server	server(argv[1], argv[2]);
 		// server.run();
 		// port = parse_port(argv[1]);
 		// password = parse_password(argv[2]);
 	}
-	catch ( std::invalid_argument & e )
-	{
-		std::cerr << e.what() << " => \"" << argv[1] << "\"" << std::endl;
-	}
-	catch ( std::runtime_error & e )
-	{
-		return 1;
+	catch ( std::exception & e ) {
+		std::cerr << "Error: " << e.what() << std::endl;
 	}
 	// Init Server object with port and password, will be references so they must be set on init
 
