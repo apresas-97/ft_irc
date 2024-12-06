@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <sys/types.h>
 #include <poll.h>
+#include <cstring>
 
 #include "ft_irc.hpp"
 #include "Server.hpp"
@@ -79,7 +80,8 @@ void Server::createSocket() {
 	}
 
 	int opt = 1;
-    if (setsockopt(this->_serverFd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
+//    if (setsockopt(this->_serverFd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
+    if (setsockopt(this->_serverFd, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt))) {
         close(this->_serverFd);
         throw std::runtime_error("Failed to set socket options (SO_REUSEADDR | SO_REUSEPORT)");
     }
@@ -198,8 +200,18 @@ void Server::handleClientData() {
 					_clients--;
 			} else {
 				buffer[bytesReceived] = '\0';
-				std::cout << "Received from client " << _pollFds[i].fd << ": " << buffer;
-				sendData(buffer);
+				std::string message(buffer);
+				size_t pos;
+				while ((pos = message.find('\n')) != std::string::npos) {
+					std::string	fullMsg = message.substr(0, pos);
+					std::cout << "Received from client " << _pollFds[i].fd << ": " << buffer;
+					message.erase(0, pos + 1);
+
+					sendData(buffer);
+				}
+				if (!message.empty()) {
+					std::cout << "Partial message from client " << _pollFds[i].fd << std::endl;
+				}
 			}
 		}
 	}
