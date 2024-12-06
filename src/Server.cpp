@@ -403,7 +403,6 @@ void Server::handleNewConnections( void ) {
 // 	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
 // 		if (_pollFds[i].fd == -1)
 // 			continue;
-
 // 		if (_pollFds[i].revents & POLLIN) {
 // 			int bytesReceived = recv(_pollFds[i].fd, buffer, sizeof(buffer) - 1, 0);
 // 			if (bytesReceived < 0) {
