@@ -4,8 +4,18 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <vector>
+#include <map>
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
+
+typedef struct s_message {
+	std::string prefix;
+	std::string command;
+	std::vector<std::string> params;
+	bool valid;
+	// apresas-: More info might be needed here later
+}				t_message;
 
 #define SERVER_NAME_MAX_LENGTH 63
 
@@ -20,6 +30,10 @@ class Server {
 		struct pollfd		_pollFds[MAX_CLIENTS + 1];
 
 		bool				_running; // apresas-: Maybe
+
+		// apresas-: This is a map of function pointers for command functions
+		// For now it's only an idea, it might be discarded
+		std::map<std::string, void (Server::*)(t_message &)>	_commandMap;
 
 		static Server		*instance;
 
@@ -38,6 +52,12 @@ class Server {
 		void cleanClose( void );
 
 		void parseData( const std::string & message );
+		void runCommand( t_message & message );
+
+		// Commands
+		void	cmdPass( t_message & message );
+		void	cmdNick( t_message & message );
+		void	cmdUser( t_message & message );
 
 		static void signalHandler( int signal );
 

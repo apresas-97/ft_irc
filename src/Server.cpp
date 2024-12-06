@@ -182,9 +182,37 @@ void	Server::getClientData( int i ) {
 			this->_clients--;
 	} else {
 		/* apresas-:
-			We need to check, does recv not null-terminate the buffer?
-			What if we receive exactly BUFFER_SIZE bytes?
-			We would then be overwriting the last byte with a null terminator
+			TO-DO:
+			
+			The data received must be sepparated by CR-LF "\r\n", that's the message delimiter
+			
+			We have to, get all the messages from the received bytes, parsing them, executing them and sending appropriate responses
+
+			Then, we might have incomplete messages at the end of the buffer, so we must store those leftovers in a buffer
+			for that client, so that next time we receive data from that same client, we can append it to their buffer and
+			complete the message and continue.
+
+			Issues:
+				1. This sounds like a pain to implement
+				2. The client might take too long to send the rest of the message, so we should have a time out to discard
+					the client's buffer and start fresh next time we receive data from them
+					-This sounds like a pain to implement too
+			
+			Potential workaround:
+				- We could limit the amount of data we allow a client to send at once, so that we can be sure we can
+					process it all in one go
+				- I mean, this is also a security feature, we wouldn't want that kind of exploit of allowing someone to
+				send us 1TB of data in one go and crash our server
+				- I guess, in a way, this is what we do by default by not handling a client buffer, so we could just handle
+				the given buffer and discard incomplete messages.
+				Example:
+					"PRIVMSG user :Hello\r\nPRIVMSG user2 :Hello2\r\nPRIVMSG user3 :Hello3\r\nPRIVMSG user4 :H"
+				In this cse, in our buffer we were only able to fit the first 3 messages, the remaining "PRIVMSG user4 :H"
+				excedes our BUFFER_SIZE and is not completed with \r\n, it will be ignored and discarded.
+			
+			TO-DO:
+				'\0' characters are not allowed in messages
+				If a message contains a '\0' character, the message will be silently ignored.
 		*/
 		buffer[bytes_received] = '\0';
 		std::cout << "Received from client " << this->_pollFds[i].fd << ": " << buffer;
@@ -193,7 +221,7 @@ void	Server::getClientData( int i ) {
 
 		std::string message(buffer, strlen(buffer) - 1); // apresas-: Maybe just message(buffer); ?
 		std::string response;
-		this->parseData(message);
+		parseData(message);
 
 
 		sendData(buffer);
@@ -201,20 +229,49 @@ void	Server::getClientData( int i ) {
 }
 
 /// apresas-: WIP
-void Server::parseData( const std::string & message )
+void Server::parseData( const std::string & raw_message )
 {
 	/*
 	Format of a valid message:
 
-		[<prefix>] SPACE <command> SPACE <argument> *( SPACE <argument> )
+		[<prefix>] SPACE <command> SPACE [ <argument> *( SPACE <argument> ) ]
 
 		> The prefix is optional and MUST start with a colon ':' to differenciate it from the command
 			It is mostly used for server-server communication, but, users can also use it.
 			However, for users, as far as I know, the prefix will simply be ignored if it doesn't match
 			to the user sending the message.
-			So basically, we can check if the first arg starts with ':', we can skip it
+			HOWEVER
+				The server will actually treat the message when sending it forward to other clients and
+				it will put in place the CORRECT prefix for the user that sent the message.
+				Example:
+					I send:
+						:NONSENSE PRIVMSG #channel :Hello channel!
+					The server will send to other clients:
+						:mynickname!myusername@myhostname PRIVMSG #channel :Hello channel!
+					
+					This is so the receivers of the message know who sent it.
+				
+			SUMMARY: We ignore the user received prefix, but we will still need to put the correct prefix, either now
+			or later. We'll see
+
+		> The command is 1 word and MUST be present.
+			If no command is present, the message will be "silently ignored", meaning no response, no error, no nothing.
+
+		> The parameters are optional, some have and some don't
+		> There can only be AT MOST 15 parameters in a message, any further parameters will be silently ignored
 
 		> If the LAST argument contains SPACES, it must start with a colon ':' to know not to keep splitting
+			Example:
+				PRIVMSG #channel :Hello channel! What's up everyone? This is a text messsage with spaces.
+				The last argument will be:
+				<:Hello channel! What's up everyone? This is a text messsage with spaces.>
+		
+		> Empty messages will be silently ignored
+
+		> All messages will end with a CRLF (Carriage Return, Line Feed) '\r\n'
+			But at this point, that should have already been handled when receiving the message
+
+		> Messages have a max length of 512 bytes, including the CRLF at the end
 
 	EXAMPLE OF A VALID MESSAGE:
 
@@ -226,8 +283,85 @@ void Server::parseData( const std::string & message )
 		Command: PRIVMSG
 		Arguments: <#channel>, <Hello channel!>
 			The last argument contains spaces because it is prefixed by ':'
-
+	
+	ABOUT SPACES:
+		The IRC protocol says each element in a message should be sepparated by 1 SPACE, but from my testing
+		It seems servers accept multiple spaces too and they just treat them as 1
 	*/
+	t_message	message = prepareMessage(raw_message);
+
+	// apresas-: Here we can start parsing the message
+
+	if (!message.valid) {
+		std::cerr << "Invalid message format, message will be silently ignored, no reply will be sent" << std::endl;
+		return; // Need to figure out how to make the program know not to send a reply in this case
+	}
+
+	// message.prefix client.getPrefix(); // apresas-: TO-DO
+
+	runCommand(message);
+
+
+
+}
+
+void	Server::runCommand( t_message & message ) {
+	/* apresas-:
+		Current idea:
+		This will use a std::map<std::string, void (Server::*)(t_message &)>
+		this way we can get the right function to run based on the command
+
+		Still need to think about this
+	*/
+}
+
+
+/*
+	Gets the raw message and orders it into a t_message struct
+*/
+t_message	prepareMessage( std::string raw_message ) {
+	t_message					message;
+	std::string					word;
+	std::istringstream			iss(raw_message);
+	size_t	parameters = 0;
+	message.valid = false;
+
+	if (raw_message.empty()) {
+		std::cerr << "Empty messages should be silently ignored" << std::endl;
+		return message;
+	}
+	if (raw_message.front() == ':') { // Get the prefix, if present
+		iss >> word;
+		message.prefix = word;
+	}
+	if (!(iss >> word)) { // Get the commmand
+		std::cerr << "Invalid message format, missing command" << std::endl; // Must handle this some way
+		return message;
+	}
+	message.command = word;
+	while (iss >> word) { // Get the parameters, if present
+		if (parameters == 15) {
+			std::cerr << "Too many parameters in the message, further parameters will be simply ignored" << std::endl;
+			break;
+		}
+		if (word.front() == ':') {
+			std::string rest;
+			std::getline(iss, rest);
+			word += rest;
+			message.params.push_back(word);
+			parameters++;
+			break;
+		}
+		message.params.push_back(word);
+		parameters++;
+	}
+	if (iss.bad()) {
+		std::cerr << "Error reading from the input stream." << std::endl;
+		// apresas-: Idek what we should do here or how this could happen exactly
+		return message;
+	}
+	message.valid = true;
+	return message;
 }
 
 ///
@@ -262,33 +396,34 @@ void Server::handleNewConnections( void ) {
 	}
 }
 
-void Server::handleClientData( void ) {
-	char buffer[BUFFER_SIZE];
-	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
-		if (_pollFds[i].fd == -1)
-			continue;
+// apresas-: Previous version, now we have getClientData
+// void Server::handleClientData( void ) {
+// 	char buffer[BUFFER_SIZE];
+// 	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
+// 		if (_pollFds[i].fd == -1)
+// 			continue;
 
-		if (_pollFds[i].revents & POLLIN) {
-			int bytesReceived = recv(_pollFds[i].fd, buffer, sizeof(buffer) - 1, 0);
-			if (bytesReceived < 0) {
-				std::cerr << "Error receiving data from client " << _pollFds[i].fd << std::endl;
-			} else if (bytesReceived == 0) {
-				std::cout << "Client disconnected: " << _pollFds[i].fd << std::endl;
-				if (close(_pollFds[i].fd) == -1) {
-					closeFailureLog("_pollFds", i, _pollFds[i].fd);
-					cleanClose();
-				}
-				_pollFds[i].fd = -1;
-				if (i == _clients)
-					_clients--;
-			} else {
-				buffer[bytesReceived] = '\0';
-				std::cout << "Received from client " << _pollFds[i].fd << ": " << buffer;
-				sendData(buffer);
-			}
-		}
-	}
-}
+// 		if (_pollFds[i].revents & POLLIN) {
+// 			int bytesReceived = recv(_pollFds[i].fd, buffer, sizeof(buffer) - 1, 0);
+// 			if (bytesReceived < 0) {
+// 				std::cerr << "Error receiving data from client " << _pollFds[i].fd << std::endl;
+// 			} else if (bytesReceived == 0) {
+// 				std::cout << "Client disconnected: " << _pollFds[i].fd << std::endl;
+// 				if (close(_pollFds[i].fd) == -1) {
+// 					closeFailureLog("_pollFds", i, _pollFds[i].fd);
+// 					cleanClose();
+// 				}
+// 				_pollFds[i].fd = -1;
+// 				if (i == _clients)
+// 					_clients--;
+// 			} else {
+// 				buffer[bytesReceived] = '\0';
+// 				std::cout << "Received from client " << _pollFds[i].fd << ": " << buffer;
+// 				sendData(buffer);
+// 			}
+// 		}
+// 	}
+// }
 
 void Server::sendData(const char *message) {
 	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
