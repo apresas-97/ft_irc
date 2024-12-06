@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <sys/types.h>
 #include <poll.h>
+#include <cstring>
 
 #include "ft_irc.hpp"
 #include "Server.hpp"
