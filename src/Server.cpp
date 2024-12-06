@@ -10,6 +10,7 @@
 #include <cstdlib>
 #include <sys/types.h>
 #include <poll.h>
+#include <cstring>
 
 #include "ft_irc.hpp"
 #include "Server.hpp"
@@ -283,8 +284,18 @@ void Server::handleClientData( void ) {
 					_clients--;
 			} else {
 				buffer[bytesReceived] = '\0';
-				std::cout << "Received from client " << _pollFds[i].fd << ": " << buffer;
-				sendData(buffer);
+				std::string message(buffer);
+				size_t pos;
+				while ((pos = message.find('\n')) != std::string::npos) {
+					std::string	fullMsg = message.substr(0, pos);
+					std::cout << "Received from client " << _pollFds[i].fd << ": " << buffer;
+					message.erase(0, pos + 1);
+
+					sendData(buffer);
+				}
+				if (!message.empty()) {
+					std::cout << "Partial message from client " << _pollFds[i].fd << std::endl;
+				}
 			}
 		}
 	}

@@ -8,15 +8,17 @@
 
 class User
 {
-	public:
-
 	private:
+		bool		validPass;
 		std::string	_name;
+		std::string	message;
+
 		// bool		_is_operator; // False by default
 		/*
 			Los users pueden ser operators o regular users, pero eso en realidad
 			depende del channel, no del user.
 		*/
+	public:
 };
 
 #endif // USER_HPP
