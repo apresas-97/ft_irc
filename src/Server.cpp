@@ -142,11 +142,11 @@ void Server::runServerLoop( void ) {
         _pollFds[i].fd = -1;
         _pollFds[i].events = POLLIN;
     }
-	_clients = 0;
+	_client_count = 0;
     std::cout << "Server started, waiting for clients..." << std::endl;
 
     while (true) {
-        int pollCount = poll(_pollFds, _clients + 1, TIMEOUT);
+        int pollCount = poll(_pollFds, _client_count + 1, TIMEOUT);
         if (pollCount < 0) {
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
             break;
@@ -155,7 +155,7 @@ void Server::runServerLoop( void ) {
             continue;
         }
 		
-		for (size_t i = 0; i < this->_clients; i++) {
+		for (size_t i = 0; i < this->_client_count; i++) {
 			if (this->_pollFds[i].revents & POLLIN) {
 				if (this->_pollFds[i].fd == this->_serverFd)
 					handleNewConnections();
@@ -179,8 +179,8 @@ void	Server::getClientData( int i ) {
 			cleanClose(); // apresas-: We might have to handle some other things here
 		}
 		this->_pollFds[i].fd = -1;
-		if (i == this->_clients) // apresas-: Unsure about this
-			this->_clients--;
+		if (i == this->_client_count) // apresas-: Unsure about this
+			this->_client_count--;
 	} else {
 		/* apresas-:
 			TO-DO:
@@ -415,8 +415,8 @@ void Server::handleNewConnections( void ) {
 // 					cleanClose();
 // 				}
 // 				_pollFds[i].fd = -1;
-// 				if (i == _clients)
-// 					_clients--;
+// 				if (i == _client_count)
+// 					_client_count--;
 // 			} else {
 // 				buffer[bytesReceived] = '\0';
 // 				std::cout << "Received from client " << _pollFds[i].fd << ": " << buffer;
