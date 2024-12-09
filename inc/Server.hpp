@@ -9,6 +9,8 @@
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
 
+#include "Client.hpp"
+
 typedef struct s_message {
 	std::string prefix;
 	std::string command;
@@ -31,11 +33,13 @@ class Server {
 
 		bool				_running; // apresas-: Maybe
 
+		static Server		*instance;
+
 		// apresas-: This is a map of function pointers for command functions
 		// For now it's only an idea, it might be discarded
 		std::map<std::string, void (Server::*)(t_message &)>	_commandMap;
 
-		static Server		*instance;
+		std::map<int, Client>	_clients;
 
 		void parseInput( void );
 		void initServer( void );
