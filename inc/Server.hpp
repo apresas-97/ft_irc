@@ -28,7 +28,7 @@ class Server {
 		std::string			_password;
 		int					_serverFd;
 		unsigned int		_client_count;
-		struct sockaddr_storage	_serverAddress;
+		struct sockaddr_in	_serverAddress;
 		struct pollfd		_pollFds[MAX_CLIENTS + 1];
 
 		bool				_running; // apresas-: Maybe
