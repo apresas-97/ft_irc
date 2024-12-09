@@ -25,6 +25,18 @@
 001:
   name: RPL_WELCOME
   content: :Welcome to the Internet Relay Network <nickname>!<username>@<hostname>
+431:
+  name: ERR_NONICKNAMEGIVEN
+  content: :No nickname given
+432:
+  name: ERR_ERRONEUSNICKNAME
+  content: <nickname> :Erroneous nickname
+433:
+  name: ERR_NICKNAMEINUSE
+  content: <nickname> :Nickname is already in use
 461:
   name: ERR_NEEDMOREPARAMS
   content: <nickname> :Not enough parameters
+464:
+  name: ERR_PASSWDMISMATCH
+  content: :Password incorrect

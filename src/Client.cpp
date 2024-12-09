@@ -48,3 +48,77 @@ std::string Client::getUserIdentifier( void ) const
 
 	return identifier;
 }
+
+bool Client::isAuthorised( void ) const
+{
+	return this->_authorised;
+}
+
+void Client::setAuthorised( bool value )
+{
+	this->_authorised = value;
+}
+
+bool Client::isRegistered( void ) const
+{
+	return this->_registered;
+}
+
+void Client::setRegistered( bool value )
+{
+	this->_registered = value;
+}
+
+bool Client::getMode( char mode ) const
+{
+	switch (mode)
+	{
+		case 'a':
+			return this->_mode.a;
+		case 'i':
+			return this->_mode.i;
+		case 'w':
+			return this->_mode.w;
+		case 'r':
+			return this->_mode.r;
+		case 'o':
+			return this->_mode.o;
+		case 'O':
+			return this->_mode.O;
+		case 's':
+			return this->_mode.s;
+		default:
+			return false;
+	}
+}
+
+void Client::setMode( char mode, bool value )
+{
+	switch (mode)
+	{
+		case 'a':
+			this->_mode.a = value;
+			break;
+		case 'i':
+			this->_mode.i = value;
+			break;
+		case 'w':
+			this->_mode.w = value;
+			break;
+		case 'r':
+			this->_mode.r = value;
+			break;
+		case 'o':
+			this->_mode.o = value;
+			break;
+		case 'O':
+			this->_mode.O = value;
+			break;
+		case 's':
+			this->_mode.s = value;
+			break;
+		default:
+			break;
+	}
+}
+

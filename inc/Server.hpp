@@ -9,13 +9,32 @@
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
 
+#include "irc_ctype.hpp"
 #include "Client.hpp"
+
+// NUERIC REPLY MACROS, later we could have them in some other file for clarity
+#define RPL_WELCOME 1
+#define ERR_NONICKNAMEGIVEN 431
+#define ERR_ERRONEUSNICKNAME 432
+#define ERR_NICKNAMEINUSE 433
+#define ERR_UNAVAILRESOURCE 437
+#define ERR_NEEDMOREPARAMS 461
+#define ERR_ALREADYREGISTRED 462
+#define ERR_PASSWDMISMATCH 464
+#define ERR_RESTRICTED 484
+
+// Limits
+#define MAX_CLIENT_NICKNAME_LENGTH 9
+#define MAX_CLIENT_USERNAME_LENGTH 32
+#define MAX_CLIENT_REALNAME_LENGTH 100
 
 typedef struct s_message {
 	std::string prefix;
 	std::string command;
 	std::vector<std::string> params;
 	bool valid;
+	int sender_client_fd; // fd of the client that sent the message
+	int target_client_fd; // fd of the client that is the target of the message
 	// apresas-: More info might be needed here later
 }				t_message;
 
@@ -40,7 +59,10 @@ class Server {
 		std::map<std::string, void (Server::*)(t_message &)>	_commandMap;
 
 		std::map<int, Client>	_clients;
+		std::map<std::string, int> _clients_fd_map; // To get the fd of a client by its nickname (not implemented)
 		int	_current_client_fd; // apresas-: Added this, maybe provisionally, for the client that is currently relevant
+
+		std::vector<std::string>	_taken_nicknames;
 
 		void parseInput( void );
 		void initServer( void );
@@ -57,13 +79,15 @@ class Server {
 		void setNonBlock( int & socketFd );
 		void cleanClose( void );
 
-		void parseData( const std::string & message );
+		bool findClient
+
+		void parseData( const std::string & message, int client_fd );
 		void runCommand( t_message & message );
 
 		// Commands
-		void	cmdPass( t_message & message );
-		void	cmdNick( t_message & message );
-		void	cmdUser( t_message & message );
+		int	cmdPass( t_message & message );
+		int	cmdNick( t_message & message );
+		int	cmdUser( t_message & message );
 
 		static void signalHandler( int signal );
 
@@ -141,5 +165,7 @@ class Server {
 			}
 		};
 };
+
+
 
 #endif // SERVER_HPP

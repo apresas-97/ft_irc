@@ -17,44 +17,50 @@ The optional password can and MUST be set before any attempt to register
 the connection is made. This requires that user send a PASS command before
 sending the NICK/USER combination.
 */
-void	Server::cmdPass( t_message & message ) {
-	if (message.params.size() < 1) {
-		// Send ERR_NEEDMOREPARAMS
-		return;
-	}
-
-	if (message.params[0] == this->_password) {
-		// Authorize the client who sent this message
-	} else {
-		// Send ERR_PASSWDMISMATCH
-		return;
-	}
+int	Server::cmdPass( t_message & message ) {
+	if (message.params.size() < 1)
+		return ERR_NEEDMOREPARAMS;
+	if (message.params[0] == this->_password)
+		this->_clients[message.sender_client_fd].setAuthorised(true);
+	else
+		return ERR_PASSWDMISMATCH;
 }
 
+#include <algorithm> // for std::find
 /*
 Command: NICK
 Parameters: <nickname>
 NICK command is used to give user a nickname or change the existing one.
 */
-void	Server::cmdNick( t_message & message ) {
-	if (message.params.size() < 1) {
-		// Send ERR_NONICKNAMEGIVEN
-		return;
-	}
-	/*
-	Must check:
-		if the nickname is already in use
-			ERR_NICKNAMEINUSE
-		if the nickname is valid
-			ERR_ERRONEUSNICKNAME
-		if there is a nickname collision (maybe)
-			ERR_NICKCOLLISION
-		if ?
-			ERR_RESTRICTED
-		if ?
-			ERR_UNAVAILABLERESOURCE
+int	Server::cmdNick( t_message & message ) {
+	Client & client = this->_clients[message.sender_client_fd];
 
-	*/
+	if (client.isAuthorised() == false)
+		return ERR_RESTRICTED;
+	if (client.isRegistered() == false)
+		return ERR_RESTRICTED;
+	if (client.getMode('r') == true)
+		return ERR_RESTRICTED;
+
+	if (message.params.size() < 1) {
+		return ERR_NONICKNAMEGIVEN;
+	}
+
+	std::string nickname = message.params[0];
+	if (irc_isValidNickname(nickname) == false) {
+		return ERR_ERRONEUSNICKNAME;
+	}
+
+	// apresas-: Check for nickname collision ? Idk how to do this yet
+	// This triggers ERR_NICKCOLLISION
+
+	// apresas-: Check if the nickname cannot be chosen because of the nick delay mechanism
+	// I don't even know if we'll implement that yet
+	// If the name is not available, return ERR_UNAVAILRESOURCE
+
+	std::vector<std::string>::iterator it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), nickname);
+	if (it != this->_taken_nicknames.end())
+		return ERR_NICKNAMEINUSE;
 }
 
 #include <sstream>
@@ -66,13 +72,21 @@ USER command is used at the beginning of connection to specify the identity of t
 are irrelevant.
 <realname> may contain space characters.
 */
-void	Server::cmdUser( t_message & message ) {
-	if (message.params.size() < 4) {
-		// Send ERR_NEEDMOREPARAMS
-		return;
-	}
-	std::string username = message.params[0];
-	std::string realname = message.params[3];
+int	Server::cmdUser( t_message & message ) {
+	if (message.params.size() < 4)
+		return ERR_NEEDMOREPARAMS;
+	Client & client = this->_clients[message.sender_client_fd];
+	if (client.isRegistered() == true)
+		return ERR_ALREADYREGISTRED;
+
+	// apresas-: TO-DO: Check that the username and realname are not too long
+	// But if they are, I don't know how to handle it yet because the protocol doesn't
+	// specify what to do in that case
+	// It doesn't really even specify a limit for username or realname length
+	// But we should set some reasonable limit or we could be vulnerable to
+	// all sort of buffer overflow attacks, etc.
+	client.setUsername(message.params[0]);
+	client.setRealname(message.params[3]);
 
 	std::istringstream iss(message.params[1]);
 	int mode_bitmask = 0;
@@ -81,15 +95,13 @@ void	Server::cmdUser( t_message & message ) {
 	if (iss.fail())
 		mode_bitmask = 0; // default to 0 since it's not specified in the IRC protocol
 	if (mode_bitmask & (1 << 2))
-		// Set user's +i
-		// client->setMode(true, 'i');
-		// client->setMode("+i");
+		client.setMode('i', true);
 	else
-		// Set user's -i
-		// client->setMode(false, 'i');
-		// client->setMode("-i");
+		client.setMode('i', false);
 	if (mode_bitmask & (1 << 3))
-		// Set user's +w
+		client.setMode('w', true);
 	else
-		// Set user's -w
+		client.setMode('w', false);
+
+	client.setRegistered(true);
 }

@@ -222,7 +222,7 @@ void	Server::getClientData( int i ) {
 
 		std::string message(buffer, strlen(buffer) - 1); // apresas-: Maybe just message(buffer); ?
 		std::string response;
-		parseData(message);
+		parseData(message, this->_pollFds[i].fd);
 
 
 		sendData(buffer);
@@ -230,7 +230,7 @@ void	Server::getClientData( int i ) {
 }
 
 /// apresas-: WIP
-void Server::parseData( const std::string & raw_message )
+void Server::parseData( const std::string & raw_message, int client_fd )
 {
 	/*
 	Format of a valid message:
@@ -290,6 +290,7 @@ void Server::parseData( const std::string & raw_message )
 		It seems servers accept multiple spaces too and they just treat them as 1
 	*/
 	t_message	message = prepareMessage(raw_message);
+	message.sender_client_fd = client_fd;
 
 	// apresas-: Here we can start parsing the message
 
@@ -299,11 +300,9 @@ void Server::parseData( const std::string & raw_message )
 	}
 
 	// apresas-: Added this, maybe later there should be a better way of doing this
-	message.prefix = this->_clients[this->_current_client_fd].getPrefix();
+	message.prefix = this->_clients[client_fd].getPrefix(); // This is actually only necessary when the message must be sent to a client, we could do it later and only if necessary
 
 	runCommand(message);
-
-
 }
 
 void	Server::runCommand( t_message & message ) {
@@ -314,8 +313,16 @@ void	Server::runCommand( t_message & message ) {
 
 		Still need to think about this
 	*/
+	// For now:
+	if (message.command == "PASS")
+		this->cmdPass(message);
+	else if (message.command == "NICK")
+		this->cmdNick(message);
+	else if (message.command == "USER")
+		this->cmdUser(message);
+	else
+		std::cerr << "Command not recognized, message will be silently ignored" << std::endl;
 }
-
 
 /*
 	Gets the raw message and orders it into a t_message struct
