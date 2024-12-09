@@ -79,8 +79,6 @@ class Server {
 		void setNonBlock( int & socketFd );
 		void cleanClose( void );
 
-		bool findClient
-
 		void parseData( const std::string & message, int client_fd );
 		void runCommand( t_message & message );
 
