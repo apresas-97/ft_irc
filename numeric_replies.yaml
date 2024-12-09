@@ -1,0 +1,26 @@
+#
+# This file contains the numeric replies that the server can send to the client.
+# The format is as follows:
+# <numeric>:
+#   name: <name>
+#   content: <content>
+#
+# The content should be parsed by the function which creates the reply message using
+# some keywords that are replaced by the actual values. Current keywords are:
+#
+# <nickname>: The nickname of the relevant user.
+#  Something like this->_clients[i].nickname, or whatever we use
+# <username>: The username of the relevant user.
+# <hostname>: The hostname of the relevant user.
+# <realname>: The realname of the relevant user.
+# 
+# <channel>: The name of the relevant channel.
+#
+# <command>: The command from the message that caused the reply.
+#
+001:
+  name: RPL_WELCOME
+  content: :Welcome to the Internet Relay Network <nickname>!<username>@<hostname>
+461:
+  name: ERR_NEEDMOREPARAMS
+  content: <nickname> :Not enough parameters
