@@ -56,3 +56,40 @@ void	Server::cmdNick( t_message & message ) {
 
 	*/
 }
+
+#include <sstream>
+/*
+Command: USER
+Parameters: <username> <mode> <unused> <realname>
+USER command is used at the beginning of connection to specify the identity of the user.
+<mode> should be numeric, and it's a bitmask for modes 'w'(bit 2) and 'i'(bit 3). The rest of bits
+are irrelevant.
+<realname> may contain space characters.
+*/
+void	Server::cmdUser( t_message & message ) {
+	if (message.params.size() < 4) {
+		// Send ERR_NEEDMOREPARAMS
+		return;
+	}
+	std::string username = message.params[0];
+	std::string realname = message.params[3];
+
+	std::istringstream iss(message.params[1]);
+	int mode_bitmask = 0;
+
+	iss >> mode_bitmask;
+	if (iss.fail())
+		mode_bitmask = 0; // default to 0 since it's not specified in the IRC protocol
+	if (mode_bitmask & (1 << 2))
+		// Set user's +i
+		// client->setMode(true, 'i');
+		// client->setMode("+i");
+	else
+		// Set user's -i
+		// client->setMode(false, 'i');
+		// client->setMode("-i");
+	if (mode_bitmask & (1 << 3))
+		// Set user's +w
+	else
+		// Set user's -w
+}
