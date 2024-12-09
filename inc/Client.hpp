@@ -36,6 +36,9 @@ class Client
 		const std::string &	getHostname( void ) const;
 		const std::string &	getRealname( void ) const;
 
+		std::string	getPrefix( void ) const;
+		std::string	getUserIdentifier( void ) const;
+
 	private:
 
 		std::string	_nickname;

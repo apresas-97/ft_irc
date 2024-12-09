@@ -27,3 +27,24 @@ const std::string & Client::getRealname( void ) const
 {
 	return this->_realname;
 }
+
+std::string Client::getPrefix( void ) const
+{
+	std::string	prefix;
+
+	prefix = ":" + this->getUserIdentifier();
+	return prefix;
+}
+
+std::string Client::getUserIdentifier( void ) const
+{
+	std::string	identifier;
+
+	identifier += this->getNickname();
+	identifier += "!";
+	identifier += this->getUsername();
+	identifier += "@";
+	identifier += this->getHostname();
+
+	return identifier;
+}
