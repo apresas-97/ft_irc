@@ -40,6 +40,7 @@ class Server {
 		std::map<std::string, void (Server::*)(t_message &)>	_commandMap;
 
 		std::map<int, Client>	_clients;
+		int	_current_client_fd; // apresas-: Added this, maybe provisionally, for the client that is currently relevant
 
 		void parseInput( void );
 		void initServer( void );

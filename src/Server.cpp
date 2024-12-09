@@ -19,7 +19,7 @@
 
 Server*	Server::instance = NULL;
 
-Server::Server( const std::string & port, const std::string & password ) : _port(port), _password(password){
+Server::Server( const std::string & port, const std::string & password ) : _port(port), _password(password) {
 	instance = this;
 	parseInput();
 	initServer();
@@ -298,10 +298,10 @@ void Server::parseData( const std::string & raw_message )
 		return; // Need to figure out how to make the program know not to send a reply in this case
 	}
 
-	// message.prefix client.getPrefix(); // apresas-: TO-DO
+	// apresas-: Added this, maybe later there should be a better way of doing this
+	message.prefix = this->_clients[this->_current_client_fd].getPrefix();
 
 	runCommand(message);
-
 
 
 }
