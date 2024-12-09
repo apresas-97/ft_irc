@@ -367,35 +367,69 @@ t_message	prepareMessage( std::string raw_message ) {
 
 ///
 
-void Server::handleNewConnections( void ) {
-	// apresas-: Maybe we need the sockaddr_storage struct instead, for IPv6 compatibility
-	struct sockaddr_in clientAddress;
-	socklen_t addressLen = sizeof(clientAddress);
-	int clientFd = accept(_serverFd, (struct sockaddr *)&clientAddress, &addressLen);
+// apresas-: Old version, now we have newClient
+// void Server::handleNewConnections( void ) {
+// 	// apresas-: Maybe we need the sockaddr_storage struct instead, for IPv6 compatibility
+// 	struct sockaddr_in clientAddress;
+// 	socklen_t addressLen = sizeof(clientAddress);
+// 	int clientFd = accept(_serverFd, (struct sockaddr *)&clientAddress, &addressLen);
+// 	if (clientFd < 0) {
+// 		std::cerr << "Failed to accept new client" << std::endl;
+// 		return;
+// 	}
+// 	bool clientAdded = false;
+// 	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
+// 		if (_pollFds[i].fd == -1) {
+// 			_pollFds[i].fd = clientFd;
+// 			std::cout << "New client connected: " << clientFd << std::endl;
+// 			clientAdded = true;
+// 			if (i > _clients)
+// 				_clients++;
+// 			break;
+// 		}
+// 	}
+// 	if (!clientAdded) {
+// 		std::cerr << "Max clients reached, closing connection" << std::endl;
+// 		if (close(clientFd) == -1) {
+// 			closeFailureLog("clientFd", clientFd);
+// 			cleanClose();
+// 		}
+// 	}
+// }
+
+// apresas-: Posible nueva forma de añadir Clients
+void Server::newClient( void ) {
+	struct sockaddr_storage	clientAddress;
+	socklen_t	addressLen = sizeof(clientAddress);
+	int	clientFd = accept(_serverFd, (struct sockaddr *)&clientAddress, &addressLen);
 	if (clientFd < 0) {
 		std::cerr << "Failed to accept new client" << std::endl;
 		return;
 	}
 
-	bool clientAdded = false;
-	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
-		if (_pollFds[i].fd == -1) {
-			_pollFds[i].fd = clientFd;
-			std::cout << "New client connected: " << clientFd << std::endl;
-			clientAdded = true;
-			if (i > _clients)
-				_clients++;
-			break;
-		}
-	}
-
-	if (!clientAdded) {
+	// Verify if we can add the client
+	if (this->_client_count == MAX_CLIENTS ) { // apresas-: Maybe do this???
 		std::cerr << "Max clients reached, closing connection" << std::endl;
 		if (close(clientFd) == -1) {
 			closeFailureLog("clientFd", clientFd);
 			cleanClose();
 		}
+		return;
 	}
+
+	// Add the client's fd and events to the pollfd array
+	this->_pollFds[this->_client_count].fd = clientFd;
+	this->_pollFds[this->_client_count].events = POLLIN;
+	// Add the client to the _clients map using its fd as the key
+	// I wrote 3 methods because I'm not sure if they will really work as intended or compile with std=c++98
+	// method 1:
+	// std::pair<int, Client>	new_client(clientFd, Client(clientFd, clientAddress));
+	// this->_clients.insert(new_client);
+	// method 2:
+	// this->_clients.insert(std::make_pair(clientFd, Client(clientFd, clientAddress)));
+	// method 3:
+	this->_clients.insert(std::pair<int, Client>(clientFd, Client(clientFd, clientAddress)));
+	this->_client_count++;
 }
 
 // apresas-: Previous version, now we have getClientData

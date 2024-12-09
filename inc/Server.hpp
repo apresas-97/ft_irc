@@ -49,6 +49,7 @@ class Server {
 		void configureListening( void );
 		void runServerLoop( void );
 		void handleNewConnections( void );
+		void newClient( void );
 		void handleClientData( void );
 		void getClientData( int i ); // apresas-: New idea
 		void sendData( const char *message );
