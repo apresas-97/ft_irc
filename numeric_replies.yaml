@@ -18,6 +18,10 @@
 #
 # <command>: The command from the message that caused the reply.
 #
+# Numeric Replies that are pending to be added: (remove from this list once added to this file)
+#
+#
+#
 001:
   name: RPL_WELCOME
   content: :Welcome to the Internet Relay Network <nickname>!<username>@<hostname>
