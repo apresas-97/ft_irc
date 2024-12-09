@@ -368,6 +368,7 @@ t_message	prepareMessage( std::string raw_message ) {
 ///
 
 void Server::handleNewConnections( void ) {
+	// apresas-: Maybe we need the sockaddr_storage struct instead, for IPv6 compatibility
 	struct sockaddr_in clientAddress;
 	socklen_t addressLen = sizeof(clientAddress);
 	int clientFd = accept(_serverFd, (struct sockaddr *)&clientAddress, &addressLen);
