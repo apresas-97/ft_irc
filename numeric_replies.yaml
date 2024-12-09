@@ -34,9 +34,18 @@
 433:
   name: ERR_NICKNAMEINUSE
   content: <nickname> :Nickname is already in use
+437:
+  name: ERR_UNAVAILRESOURCE
+  content: <nickname>/<channel> :Nick/channel is temporarily unavailable
 461:
   name: ERR_NEEDMOREPARAMS
   content: <nickname> :Not enough parameters
+462:
+  name: ERR_ALREADYREGISTRED
+  content: :Unauthorized command (already registered)
 464:
   name: ERR_PASSWDMISMATCH
   content: :Password incorrect
+484:
+  name: ERR_RESTRICTED
+  content: :Your connection is restricted!
