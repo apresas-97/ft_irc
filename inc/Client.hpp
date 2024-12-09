@@ -20,7 +20,7 @@ typedef struct s_mode
 class Client
 {
 	public:
-		Client( int fd, struct sockaddr_in address );
+		Client( int fd, struct sockaddr_storage address );
 		~Client( void );
 
 		void	sendData( const char * message );
@@ -33,7 +33,6 @@ class Client
 
 	private:
 
-		// struct sockaddr_in	_address; // apresas-: Does the client need this?
 		struct sockaddr_storage _address; // apresas-: Does the client need this?
 
 		bool	_registered; // Has the client properly registered as a user? (NICK and USER commands)
