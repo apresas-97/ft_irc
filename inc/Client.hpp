@@ -31,7 +31,17 @@ class Client
 		void	setMode( const std::string & mode );
 		void	setMode( void ); // default mode values
 
+		const std::string &	getNickname( void ) const;
+		const std::string &	getUsername( void ) const;
+		const std::string &	getHostname( void ) const;
+		const std::string &	getRealname( void ) const;
+
 	private:
+
+		std::string	_nickname;
+		std::string	_username;
+		std::string	_hostname;
+		std::string	_realname;
 
 		struct sockaddr_storage _address; // apresas-: Does the client need this?
 
