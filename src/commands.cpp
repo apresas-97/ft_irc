@@ -22,8 +22,7 @@ int	Server::cmdPass( t_message & message ) {
 		return ERR_NEEDMOREPARAMS;
 	if (message.params[0] == this->_password)
 		this->_clients[message.sender_client_fd].setAuthorised(true);
-	else
-		return ERR_PASSWDMISMATCH;
+	return ERR_PASSWDMISMATCH;
 }
 
 #include <algorithm> // for std::find
@@ -61,6 +60,7 @@ int	Server::cmdNick( t_message & message ) {
 	std::vector<std::string>::iterator it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), nickname);
 	if (it != this->_taken_nicknames.end())
 		return ERR_NICKNAMEINUSE;
+	return 0;
 }
 
 #include <sstream>
@@ -104,4 +104,5 @@ int	Server::cmdUser( t_message & message ) {
 		client.setMode('w', false);
 
 	client.setRegistered(true);
+	return 0;
 }

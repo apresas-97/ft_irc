@@ -60,7 +60,6 @@ std::string Client::getPrefix( void ) const
 	return prefix;
 }
 
-<<<<<<< HEAD
 std::string Client::getUserIdentifier( void ) const {
 	std::string	identifier;
 

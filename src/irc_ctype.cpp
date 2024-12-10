@@ -11,11 +11,13 @@ bool	irc_isspecial( char c ) {
 bool	irc_isupper( char c ) {
 	if (c >= 'A' && c <= ']')
 		return true;
+	return false;
 }
 
 bool	irc_islower( char c ) {
 	if (c >= 'a' && c <= '}')
 		return true;
+	return false;
 }
 
 bool	irc_isValidNickname( const std::string & nickname ) {

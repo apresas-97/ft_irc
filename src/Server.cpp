@@ -158,9 +158,9 @@ void Server::runServerLoop( void ) {
 		for (size_t i = 0; i < this->_clientCount; i++) {
 			if (this->_pollFds[i].revents & POLLIN) {
 				if (this->_pollFds[i].fd == this->_serverFd)
-					handleNewConnections();
+					newClient();
 				else
-					handleClientData();
+					getClientData( i );
 			}
 		}
     }
@@ -183,7 +183,7 @@ void	Server::getClientData( int i ) {
 			this->_clientCount--;
 	} else {
 		/* apresas-:
-			TO-DO:
+			TO-DO: BRUH MOMENT
 			
 			The data received must be sepparated by CR-LF "\r\n", that's the message delimiter
 			
@@ -402,7 +402,7 @@ void Server::newClient( void ) {
 	// method 2:
 	// this->_clients.insert(std::make_pair(clientFd, Client(clientFd, clientAddress)));
 	// method 3:
-	this->_clients.insert(std::pair<int, Client>(clientFd, Client(clientFd, clientAddress)));
+	this->_clients.insert(std::pair<int, Client>(clientFd, Client(clientFd)));
 	this->_clientCount++;
 }
 

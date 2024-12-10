@@ -9,6 +9,7 @@
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
 
+#include "ft_irc.hpp"
 #include "irc_ctype.hpp"
 #include "Client.hpp"
 
@@ -81,9 +82,7 @@ class Server {
 		void bindSocket( void );
 		void configureListening( void );
 		void runServerLoop( void );
-		void handleNewConnections( void );
 		void newClient( void );
-		void handleClientData( void );
 		void getClientData( int i ); // apresas-: New idea
 		void sendData( const char *message );
 		void setNonBlock( int & socketFd );
@@ -103,7 +102,7 @@ class Server {
 
 	public:
 		Server( const std::string & port, const std::string & password );
-		~Server();
+		~Server( void );
 
 	private:
 		// apresas-: I leave this here for now
