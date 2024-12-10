@@ -179,7 +179,7 @@ void	Server::getClientData( int i ) {
 			cleanClose(); // apresas-: We might have to handle some other things here
 		}
 		this->_pollFds[i].fd = -1;
-		if (i == this->_clients) // apresas-: Unsure about this
+		if (static_cast<size_t>(i) == this->_clients) // apresas-: Unsure about this
 			this->_clients--;
 	} else {
 		/* apresas-:
@@ -229,6 +229,7 @@ void Server::parseData( const std::string & message )
 			The last argument contains spaces because it is prefixed by ':'
 
 	*/
+	(void)message;
 }
 
 ///
