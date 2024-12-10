@@ -179,8 +179,8 @@ void	Server::getClientData( int i ) {
 			cleanClose(); // apresas-: We might have to handle some other things here
 		}
 		this->_pollFds[i].fd = -1;
-		if (i == this->_client_count) // apresas-: Unsure about this
-			this->_client_count--;
+		if (static_cast<size_t>(i) == this->_clients) // apresas-: Unsure about this
+			this->_clients--;
 	} else {
 		/* apresas-:
 			TO-DO:

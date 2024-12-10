@@ -132,6 +132,7 @@ class Server {
 				virtual const char * what() const throw() {
 					return message.c_str();
 				}
+				virtual ~InvalidArgument() throw() {}
 			private:
 				std::string message;
 		};
@@ -141,6 +142,7 @@ class Server {
 			virtual const char * what() const throw() {
 				return message.c_str();
 			}
+			virtual ~SetsockoptException() throw() {}
 			private:
 				std::string message;
 		};
