@@ -4,15 +4,17 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <set>
+#include <map>
 
-#include "User.hpp"
+#include "Client.hpp"
 
-class User;
+class Client;
 
 typedef struct s_channel_user
 {
-	User &	user;
-	bool	is_operator;
+	Client &	user;
+	bool		is_operator;
 }				t_channel_user;	
 
 class Channel
@@ -23,45 +25,53 @@ class Channel
 		Channel & operator=( const Channel & src );
 
 	public:
-		Channel( const std::string & name );
-		~Channel();
+		Channel(const std::string& name);
+		~Channel( void );
 
-		void	addUser( User & user );
-		void	addUser( User & user, bool is_operator );
-		void	kickUser( const std::string & user_name );
+		// User management
+		void addUser(Client& user, bool is_operator);
+		void kickUser(const std::string& user_name);
+		Client* seekUser(const std::string& user_name);
+		bool isUserInChannel(const std::string& user_name);
+		std::set<std::string> getUsers() const;
+		std::set<std::string> getOperators() const;
+		void clearUsers();
 
-		void	toggleInviteOnly( void );
+		// Role management
+		void setOperatorStatus(const std::string& user_name, bool is_operator);
 
-		void	toggleUserLimit( void );
-		void	setUserLimit( size_t limit );
+		// Channel modes
+		void setMode(char mode, bool state);
+		bool getMode(char mode) const;
 
-		std::string	getTopic( void ) const;
-		void		setTopic( const std::string & topic );
+		// Topic and password
+		std::string getTopic() const;
+		void setTopic(const std::string& topic);
+		void setPassword(const std::string& password);
+		bool validatePassword(const std::string& password) const;
 
-		void	setPassword( const std::string & password );
+		// Invitations
+		void sendInvite(const std::string& user_name);
+		bool isUserInvited(const std::string& user_name);
 
-		void	promoteUser( const std::string & user_name ); // Turn user to operator
-		void	demoteUser( const std::string & user_name ); // Turn operator to user
-		void	toggleUserOperator( const std::string & user_name ); // Toggle operator status
-
-		void	sendInvite( const std::string & user_name );
-
-		User	seekUser( const std::string & user_name );
-		// t_channel_user	seekUser( const std::string & user_name ); // Alternative
+		// User limit
+		void setUserLimit(size_t limit);
 
 	private:
-		std::list<User>	_users;
-		// std::list<t_channel_user>	_users; // Alternative
 
-		bool	_invite_only;
-		bool	_has_user_limit;
+		std::string						_name;
+		std::string						_topic;
+		std::string						_password;
+		std::set<char>					_modes;	// Modes (i, t, k, o, l)
 
-		size_t	_user_limit;
-		size_t	_user_count;
+		std::map<std::string, Client*>	_users;
+		std::set<std::string>			_invitedUsers;
+		std::set<std::string>			_operators;
+		size_t							_userLimit;
+		size_t							_userCount;
 
-		std::string	_password;
-		std::string	_topic;
-
+		// bool							_inviteOnly;
+		bool							_hasUserLimit;
 };
 
 #endif // CHANNEL_HPP
