@@ -30,15 +30,15 @@ class Channel
 
 		// User management
 		void addUser(Client& user, bool is_operator);
-		void kickUser(const std::string& user_name);
-		Client* seekUser(const std::string& user_name);
-		bool isUserInChannel(const std::string& user_name);
+		void kickUser(const std::string& userName);
+		Client* seekUser(const std::string& userName);
+		bool isUserInChannel(const std::string& userName);
 		std::set<std::string> getUsers() const;
 		std::set<std::string> getOperators() const;
 		void clearUsers();
 
 		// Role management
-		void setOperatorStatus(const std::string& user_name, bool is_operator);
+		void setOperatorStatus(const std::string& userName, bool is_operator);
 
 		// Channel modes
 		void setMode(char mode, bool state);
@@ -51,8 +51,8 @@ class Channel
 		bool validatePassword(const std::string& password) const;
 
 		// Invitations
-		void sendInvite(const std::string& user_name);
-		bool isUserInvited(const std::string& user_name);
+		void sendInvite(const std::string& userName);
+		bool isUserInvited(const std::string& userName);
 
 		// User limit
 		void setUserLimit(size_t limit);
@@ -74,4 +74,4 @@ class Channel
 		bool							_hasUserLimit;
 };
 
-#endif // CHANNEL_HPP
+#endif
