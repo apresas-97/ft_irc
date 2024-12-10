@@ -1,30 +1,54 @@
 #include "Client.hpp"
 
-Client::Client( int fd, struct sockaddr_storage address ) : _registered(false), _authorised(false) {
-	this->_address = address;
+Client::Client( void ) {}
+
+// Client::Client( int fd, struct sockaddr_storage address ) : _registered(false), _authorised(false) {
+// 	this->_address = address;
+// }
+
+Client::Client( int socket ) : _registered(false), _authorised(false) {
+	this->_socket = socket;
 }
 
-Client::~Client( void ) {
-	// ?
+Client::~Client( void ) {}
+
+void Client::setSocket( const int & socket ) {
+	this->_socket = socket;
 }
 
-const std::string & Client::getNickname( void ) const
-{
+void Client::setNickname( const std::string & nickname ) {
+	this->_nickname = nickname;
+}
+
+void Client::setUsername( const std::string & username ) {
+	this->_username = username;
+}
+
+void Client::setHostname( const std::string & hostname ) {
+	this->_hostname = hostname;
+}
+
+void Client::setRealname( const std::string & realname ) {
+	this->_realname = realname;
+}
+
+const int & Client::getSocket( void ) const {
+	return this->_socket;
+}
+
+const std::string & Client::getNickname( void ) const {
 	return this->_nickname;
 }
 
-const std::string & Client::getUsername( void ) const
-{
+const std::string & Client::getUsername( void ) const {
 	return this->_username;
 }
 
-const std::string & Client::getHostname( void ) const
-{
+const std::string & Client::getHostname( void ) const {
 	return this->_hostname;
 }
 
-const std::string & Client::getRealname( void ) const
-{
+const std::string & Client::getRealname( void ) const {
 	return this->_realname;
 }
 
@@ -36,8 +60,8 @@ std::string Client::getPrefix( void ) const
 	return prefix;
 }
 
-std::string Client::getUserIdentifier( void ) const
-{
+<<<<<<< HEAD
+std::string Client::getUserIdentifier( void ) const {
 	std::string	identifier;
 
 	identifier += this->getNickname();
@@ -49,28 +73,23 @@ std::string Client::getUserIdentifier( void ) const
 	return identifier;
 }
 
-bool Client::isAuthorised( void ) const
-{
+bool Client::isAuthorised( void ) const {
 	return this->_authorised;
 }
 
-void Client::setAuthorised( bool value )
-{
+void Client::setAuthorised( bool value ) {
 	this->_authorised = value;
 }
 
-bool Client::isRegistered( void ) const
-{
+bool Client::isRegistered( void ) const {
 	return this->_registered;
 }
 
-void Client::setRegistered( bool value )
-{
+void Client::setRegistered( bool value ) {
 	this->_registered = value;
 }
 
-bool Client::getMode( char mode ) const
-{
+bool Client::getMode( char mode ) const {
 	switch (mode)
 	{
 		case 'a':
@@ -92,8 +111,7 @@ bool Client::getMode( char mode ) const
 	}
 }
 
-void Client::setMode( char mode, bool value )
-{
+void Client::setMode( char mode, bool value ) {
 	switch (mode)
 	{
 		case 'a':

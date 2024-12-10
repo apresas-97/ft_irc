@@ -6,7 +6,7 @@ INCLUDE_DIR = inc
 OBJ_DIR = obj
 DEPS_DIR = deps
 
-SRC_FILES =	ft_irc.cpp Server.cpp
+SRC_FILES =	ft_irc.cpp Client.cpp
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 
@@ -19,7 +19,7 @@ HDRS =
 
 # Compiler + flags
 CC = c++
-WFLAGS = -Wall -Wextra -Werror
+WFLAGS = -Wall -Wextra -Werror -pedantic
 CPPSTD = -std=c++98
 CFLAGS = $(WFLAGS) $(CPPSTD) -g
 DFLAGS = -MD -MF
