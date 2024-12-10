@@ -142,11 +142,11 @@ void Server::runServerLoop( void ) {
         _pollFds[i].fd = -1;
         _pollFds[i].events = POLLIN;
     }
-	_client_count = 0;
+	_clientCount = 0;
     std::cout << "Server started, waiting for clients..." << std::endl;
 
     while (true) {
-        int pollCount = poll(_pollFds, _client_count + 1, TIMEOUT);
+        int pollCount = poll(_pollFds, _clientCount + 1, TIMEOUT);
         if (pollCount < 0) {
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
             break;
@@ -155,7 +155,7 @@ void Server::runServerLoop( void ) {
             continue;
         }
 		
-		for (size_t i = 0; i < this->_client_count; i++) {
+		for (size_t i = 0; i < this->_clientCount; i++) {
 			if (this->_pollFds[i].revents & POLLIN) {
 				if (this->_pollFds[i].fd == this->_serverFd)
 					handleNewConnections();
@@ -179,8 +179,8 @@ void	Server::getClientData( int i ) {
 			cleanClose(); // apresas-: We might have to handle some other things here
 		}
 		this->_pollFds[i].fd = -1;
-		if (static_cast<size_t>(i) == this->_clients) // apresas-: Unsure about this
-			this->_clients--;
+		if (static_cast<size_t>(i) == this->_clientCount) // apresas-: Unsure about this
+			this->_clientCount--;
 	} else {
 		/* apresas-:
 			TO-DO:
@@ -230,7 +230,7 @@ void	Server::getClientData( int i ) {
 }
 
 /// apresas-: WIP
-void Server::parseData( const std::string & raw_message, int client_fd )
+void Server::parseData( const std::string & rawMessage, int client_fd )
 {
 	/*
 	Format of a valid message:
@@ -289,7 +289,7 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 		The IRC protocol says each element in a message should be sepparated by 1 SPACE, but from my testing
 		It seems servers accept multiple spaces too and they just treat them as 1
 	*/
-	t_message	message = prepareMessage(raw_message);
+	t_message	message = prepareMessage(rawMessage);
 	message.sender_client_fd = client_fd;
 
 	// apresas-: Here we can start parsing the message
@@ -327,18 +327,18 @@ void	Server::runCommand( t_message & message ) {
 /*
 	Gets the raw message and orders it into a t_message struct
 */
-t_message	prepareMessage( std::string raw_message ) {
+t_message	Server::prepareMessage( std::string rawMessage ) {
 	t_message					message;
 	std::string					word;
-	std::istringstream			iss(raw_message);
+	std::istringstream			iss(rawMessage);
 	size_t	parameters = 0;
 	message.valid = false;
 
-	if (raw_message.empty()) {
+	if (rawMessage.empty()) {
 		std::cerr << "Empty messages should be silently ignored" << std::endl;
 		return message;
 	}
-	if (raw_message.front() == ':') { // Get the prefix, if present
+	if (*(rawMessage.begin()) == ':') { // Get the prefix, if present
 		iss >> word;
 		message.prefix = word;
 	}
@@ -352,7 +352,7 @@ t_message	prepareMessage( std::string raw_message ) {
 			std::cerr << "Too many parameters in the message, further parameters will be simply ignored" << std::endl;
 			break;
 		}
-		if (word.front() == ':') {
+		if (*(word.begin()) == ':') {
 			std::string rest;
 			std::getline(iss, rest);
 			word += rest;
@@ -382,7 +382,7 @@ void Server::newClient( void ) {
 	}
 
 	// Verify if we can add the client
-	if (this->_client_count == MAX_CLIENTS ) { // apresas-: Maybe do this???
+	if (this->_clientCount == MAX_CLIENTS ) { // apresas-: Maybe do this???
 		std::cerr << "Max clients reached, closing connection" << std::endl;
 		if (close(clientFd) == -1) {
 			closeFailureLog("clientFd", clientFd);
@@ -392,8 +392,8 @@ void Server::newClient( void ) {
 	}
 
 	// Add the client's fd and events to the pollfd array
-	this->_pollFds[this->_client_count].fd = clientFd;
-	this->_pollFds[this->_client_count].events = POLLIN;
+	this->_pollFds[this->_clientCount].fd = clientFd;
+	this->_pollFds[this->_clientCount].events = POLLIN;
 	// Add the client to the _clients map using its fd as the key
 	// I wrote 3 methods because I'm not sure if they will really work as intended or compile with std=c++98
 	// method 1:
@@ -403,7 +403,7 @@ void Server::newClient( void ) {
 	// this->_clients.insert(std::make_pair(clientFd, Client(clientFd, clientAddress)));
 	// method 3:
 	this->_clients.insert(std::pair<int, Client>(clientFd, Client(clientFd, clientAddress)));
-	this->_client_count++;
+	this->_clientCount++;
 }
 
 void Server::sendData(const char *message) {
