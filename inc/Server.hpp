@@ -56,7 +56,7 @@ class Server {
 		std::string			_port;
 		std::string			_password;
 		int					_serverFd;
-		unsigned int		_client_count;
+		unsigned int		_clientCount;
 		struct sockaddr_in	_serverAddress;
 		struct pollfd		_pollFds[MAX_CLIENTS + 1];
 
@@ -96,6 +96,8 @@ class Server {
 		int	cmdPass( t_message & message );
 		int	cmdNick( t_message & message );
 		int	cmdUser( t_message & message );
+
+		t_message	prepareMessage( std::string rawMessage );
 
 		static void signalHandler( int signal );
 
