@@ -38,6 +38,16 @@ typedef struct s_message {
 	// apresas-: More info might be needed here later
 }				t_message;
 
+// apresas-: Maybe
+typedef struct s_reply {
+	std::string prefix;
+	int number;
+	std::string message;
+	int sender_client_fd; // To set the prefix if needed
+	int target_client_fd; // To know who to send the reply to
+	// apresas-: More info might be needed here later
+}				t_reply;
+
 #define SERVER_NAME_MAX_LENGTH 63
 
 class Server {
