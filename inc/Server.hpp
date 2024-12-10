@@ -87,53 +87,53 @@ class Server {
 		// 	private:
 		// 		std::string message;
 		// };
-		class InvalidArgument : public std::exception {
-			public:
-				InvalidArgument( const char * str, const char * arg ) : message(std::string(str) + " => \"" + std::string(arg) + "\"")  {}
-				InvalidArgument( const char * str, const std::string & arg ) : message(std::string(str) + " => \"" + arg + "\"")  {}
-				virtual const char * what() const throw() {
-					return message.c_str();
-				}
-			private:
-				std::string message;
-		};
-		class SetsockoptException : public std::exception {
-			public:
-				SetsockoptException( const char * str ) : message("setsockopt failed to set (" + std::string(str) + ") socket options.") {}
-			virtual const char * what() const throw() {
-				return message.c_str();
-			}
-			private:
-				std::string message;
-		};
-		class BindException : public std::exception
-		{
-			virtual const char * what() const throw()
-			{
-				return "Server socket bind failed.";
-			}
-		};
-		class ListenFailedException : public std::exception
-		{
-			virtual const char * what() const throw()
-			{
-				return "Listen failed.";
-			}
-		};
-		class AcceptFailedException : public std::exception
-		{
-			virtual const char * what() const throw()
-			{
-				return "Accept failed.";
-			}
-		};
-		class RecvFailedException : public std::exception
-		{
-			virtual const char * what() const throw()
-			{
-				return "Recv failed.";
-			}
-		};
+		// class InvalidArgument : public std::exception {
+		// 	public:
+		// 		InvalidArgument( const char * str, const char * arg ) : message(std::string(str) + " => \"" + std::string(arg) + "\"")  {}
+		// 		InvalidArgument( const char * str, const std::string & arg ) : message(std::string(str) + " => \"" + arg + "\"")  {}
+		// 		virtual const char * what() const throw() {
+		// 			return message.c_str();
+		// 		}
+		// 	private:
+		// 		std::string message;
+		// };
+		// class SetsockoptException : public std::exception {
+		// 	public:
+		// 		SetsockoptException( const char * str ) : message("setsockopt failed to set (" + std::string(str) + ") socket options.") {}
+		// 	virtual const char * what() const throw() {
+		// 		return message.c_str();
+		// 	}
+		// 	private:
+		// 		std::string message;
+		// };
+		// class BindException : public std::exception
+		// {
+		// 	virtual const char * what() const throw()
+		// 	{
+		// 		return "Server socket bind failed.";
+		// 	}
+		// };
+		// class ListenFailedException : public std::exception
+		// {
+		// 	virtual const char * what() const throw()
+		// 	{
+		// 		return "Listen failed.";
+		// 	}
+		// };
+		// class AcceptFailedException : public std::exception
+		// {
+		// 	virtual const char * what() const throw()
+		// 	{
+		// 		return "Accept failed.";
+		// 	}
+		// };
+		// class RecvFailedException : public std::exception
+		// {
+		// 	virtual const char * what() const throw()
+		// 	{
+		// 		return "Recv failed.";
+		// 	}
+		// };
 };
 
 #endif // SERVER_HPP
