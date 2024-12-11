@@ -154,8 +154,7 @@ void Server::runServerLoop( void ) {
         	std::cout << "Poll timed out, no activity" << std::endl;
             continue;
         }
-		
-		for (size_t i = 0; i < this->_clientCount; i++) {
+		for (size_t i = 0; i < this->_clientCount + 1; i++) {
 			if (this->_pollFds[i].revents & POLLIN) {
 				if (this->_pollFds[i].fd == this->_serverFd)
 					newClient();
@@ -223,7 +222,6 @@ void	Server::getClientData( int i ) {
 		std::string message(buffer, strlen(buffer) - 1); // apresas-: Maybe just message(buffer); ?
 		std::string response;
 		parseData(message, this->_pollFds[i].fd);
-
 
 		sendData(buffer);
 	}
