@@ -1,5 +1,2 @@
 To run the server file as it is, compile using: g++ -o server server.cpp
 												./server
-[ CHANGED ]
-Now, that functionality is part of the Server object, you can use make
-to compile normally

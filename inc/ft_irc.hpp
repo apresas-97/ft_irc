@@ -2,11 +2,12 @@
 #define FT_IRC_HPP
 
 #include <iostream>
-#include <stdint.h> // C++98 doesn't have <cstdint>
-#include <cstring>
-#include <sstream> // std::memset
+#include <sstream>
 #include <exception>
 
+#define	MAX_CLIENTS	1024
+#define	TIMEOUT		5000
+#define	BUFFER_SIZE 1024
 
 // C libraries for the functions specified in the subject:
 #include <sys/socket.h>
@@ -42,7 +43,7 @@
 	inet_addr
 	inet_ntoa
 */
-#include <signal.h>
+#include <csignal>
 /*
 	signal
 	sigaction	
@@ -60,6 +61,6 @@
 	poll (The subject says we can also use select, kqueue or epoll, among others possibly)
 */
 
-typedef uint16_t	t_port;
+// typedef uint_fast16_t	t_port;
 
 #endif // FT_IRC_HPP

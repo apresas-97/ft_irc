@@ -5,25 +5,7 @@
 #include <string>
 #include <list>
 
-#include "Client.hpp"
-
-/*
-	Channels are created implicitly when a user joins it,
-	they are destroyed when the last user leaves it.
-*/
-
-#define CHANNEL_NAME_MAX_LENGTH 200
-// Channel names can be up to 200 characters long
-// They must start with a '#' or '&' character
-// They can't contain spaces or commas or "control G" characters (idk what that last one is yet)
-
-/*
-Whoever creates the channel is automatically an operator
-*/
-
-/*
-Channel operators are distinguished by the '@' symbol before their nickname
-*/
+#include "User.hpp"
 
 class User;
 
