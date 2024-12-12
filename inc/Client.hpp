@@ -6,6 +6,10 @@
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
 
+#include "Channel.hpp"
+
+class Channel;
+
 typedef struct s_mode
 {
 	bool	a; // AWAY 
@@ -20,7 +24,9 @@ typedef struct s_mode
 class Client
 {
 	public:
-		Client( int fd, struct sockaddr_storage address );
+		Client( void );
+		Client( int socket );
+		// Client( int fd, struct sockaddr_storage address );
 		~Client( void );
 
 		void	sendData( const char * message );
@@ -30,11 +36,13 @@ class Client
 		const std::string &	getUsername( void ) const;
 		const std::string &	getHostname( void ) const;
 		const std::string &	getRealname( void ) const;
+		const int & getSocket( void ) const;
 
 		void setNickname( const std::string & nickname );
 		void setUsername( const std::string & username );
 		void setHostname( const std::string & hostname );
 		void setRealname( const std::string & realname );
+		void setSocket( const int & socket );
 
 		std::string	getPrefix( void ) const;
 		std::string	getUserIdentifier( void ) const;
@@ -42,8 +50,8 @@ class Client
 		bool	isAuthorised( void ) const;
 		void	setAuthorised( bool value );
 
-		void	setRegistered( bool value );
 		bool	isRegistered( void ) const;
+		void	setRegistered( bool value );
 
 		bool	getMode( char mode ) const;
 		void	setMode( char mode, bool value );
@@ -57,11 +65,14 @@ class Client
 
 		t_mode _mode;
 
-		struct sockaddr_storage _address; // apresas-: Does the client need this?
+		int		_socket;
+		// struct sockaddr_storage _address; // apresas-: Does the client need this?
+
+		std::map<std::string, Channel*>	_channels;
 
 		bool	_authorised; // Has the client provided the correct password? (PASS command)
 		bool	_registered; // Has the client properly registered as a user? (NICK and USER commands)
 
 };
-
 #endif // CLIENT_HPP
+

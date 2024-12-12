@@ -99,7 +99,8 @@ void Server::createSocket( void ) {
 	setNonBlock(_serverFd);
 }
 
-void Server::setNonBlock(int & socketFd) {
+void Server::setNonBlock(int & socketFd) 
+{
 	int	flags = fcntl( socketFd, F_GETFL, 0 );
 	if (flags < 0) {
 		cleanClose();
@@ -112,7 +113,8 @@ void Server::setNonBlock(int & socketFd) {
 	}
 }
 
-void Server::bindSocket( void ) {
+void Server::bindSocket( void ) 
+{
 	uint16_t			port;
 	std::istringstream	iss(this->_port);
 
@@ -122,14 +124,16 @@ void Server::bindSocket( void ) {
     this->_server_address.sin_addr.s_addr = INADDR_ANY;
     this->_server_address.sin_port = htons(port);
 
-	if (bind(this->_serverFd, (struct sockaddr *)&this->_server_address, sizeof(this->_server_address)) < 0) {
+	if (bind(this->_serverFd, (struct sockaddr *)&this->_server_address, sizeof(this->_server_address)) < 0) 
+	{
 		if (close(this->_serverFd) == -1)
 			closeFailureLog("serverFd", this->_serverFd);
 		throw std::runtime_error("Server socket bind failed");
 	}
 }
 
-void Server::configureListening( void ) {
+void Server::configureListening( void ) 
+{
     if (listen(this->_serverFd, MAX_CLIENTS) < 0) {
         if (close(this->_serverFd) == -1)
 			closeFailureLog("serverFd", this->_serverFd);
@@ -150,7 +154,7 @@ void Server::runServerLoop( void ) {
     std::cout << "Server started, waiting for clients..." << std::endl;
 
     while (true) {
-        int pollCount = poll(_pollFds, _client_count + 1, TIMEOUT);
+        int pollCount = poll(_poll_fds, _client_count + 1, TIMEOUT);
         if (pollCount < 0) {
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
             break;
@@ -158,13 +162,12 @@ void Server::runServerLoop( void ) {
         	std::cout << "Poll timed out, no activity" << std::endl;
             continue;
         }
-		
-		for (size_t i = 0; i < this->_client_count; i++) {
+		for (size_t i = 0; i < this->_client_count + 1; i++) {
 			if (this->_pollFds[i].revents & POLLIN) {
 				if (this->_pollFds[i].fd == this->_serverFd)
-					handleNewConnections();
+					newClient();
 				else
-					handleClientData();
+					getClientData( i );
 			}
 		}
     }
@@ -227,7 +230,6 @@ void	Server::getClientData( int i ) {
 		std::string message(buffer, strlen(buffer) - 1); // apresas-: Maybe just message(buffer); ?
 		std::string response;
 		parseData(message, this->_pollFds[i].fd);
-
 
 		sendData(buffer);
 	}
@@ -293,6 +295,7 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 		The IRC protocol says each element in a message should be sepparated by 1 SPACE, but from my testing
 		It seems servers accept multiple spaces too and they just treat them as 1
 	*/
+
 	this->_current_client = &this->_clients[client_fd];
 	t_message	message = prepareMessage(raw_message);
 	message.sender_client_fd = client_fd;
@@ -330,18 +333,17 @@ std::vector<t_message>	Server::runCommand( t_message & message ) {
 /*
 	Gets the raw message and orders it into a t_message struct
 */
-t_message	prepareMessage( std::string raw_message ) {
+t_message	Server::prepareMessage( std::string raw_message ) {
 	t_message					message;
 	std::string					word;
 	std::istringstream			iss(raw_message);
 	size_t	parameters = 0;
-	// message.valid = false;
 
 	if (raw_message.empty()) {
 		std::cerr << "Empty messages should be silently ignored" << std::endl;
 		return message;
 	}
-	if (raw_message.front() == ':') { // Get the prefix, if present
+	if (raw_message[0] == ':') { // Get the prefix, if present
 		iss >> word;
 		message.prefix = word;
 	}
@@ -355,7 +357,8 @@ t_message	prepareMessage( std::string raw_message ) {
 			std::cerr << "Too many parameters in the message, further parameters will be simply ignored" << std::endl;
 			break;
 		}
-		if (word.front() == ':') {
+		if (word[0] == ':') 
+		{
 			std::string rest;
 			std::getline(iss, rest);
 			word += rest;
@@ -371,7 +374,6 @@ t_message	prepareMessage( std::string raw_message ) {
 		// apresas-: Idek what we should do here or how this could happen exactly
 		return message;
 	}
-	// message.valid = true;
 	return message;
 }
 
@@ -405,7 +407,7 @@ void Server::newClient( void ) {
 	// method 2:
 	// this->_clients.insert(std::make_pair(clientFd, Client(clientFd, clientAddress)));
 	// method 3:
-	this->_clients.insert(std::pair<int, Client>(clientFd, Client(clientFd, clientAddress)));
+	this->_clients.insert(std::pair<int, Client>(clientFd, Client(clientFd)));
 	this->_client_count++;
 }
 
@@ -548,3 +550,4 @@ Channel * Server::findChannel( const std::string & name ) {
 		return (NULL);
 	return &it->second;
 }
+

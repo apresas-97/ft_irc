@@ -117,7 +117,6 @@ std::vector<t_message>	Server::cmdUser( t_message & message ) {
 		replies.push_back(createReply(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_STR));
 		return replies;
 	}
-
 	// apresas-: TO-DO: Check that the username and realname are not too long
 	// But if they are, I don't know how to handle it yet because the protocol doesn't
 	// specify what to do in that case

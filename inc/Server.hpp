@@ -9,6 +9,7 @@
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
 
+#include "ft_irc.hpp"
 #include "irc_ctype.hpp"
 #include "Client.hpp"
 #include "Channel.hpp"
@@ -30,10 +31,9 @@ typedef struct s_message {
 	std::string command;
 	std::vector<std::string> params;
 	int sender_client_fd; // fd of the client that sent the message
-	// int target_client_fd; // fd of the client that is the target of the message
+	int target_client_fd; // fd of the client that is the target of the message
 	// apresas-: More info might be needed here later
 }				t_message;
-
 
 class Server {
 	private:
@@ -41,9 +41,10 @@ class Server {
 		std::string			_port;
 		std::string			_password;
 		int					_serverFd;
+		
 		unsigned int		_client_count;
 		struct sockaddr_in	_server_address;
-		struct pollfd		_pollFds[MAX_CLIENTS + 1];
+		struct pollfd		_poll_fds[MAX_CLIENTS + 1];
 
 		std::string			_name;
 		size_t				_version_major;
@@ -89,9 +90,7 @@ class Server {
 		void bindSocket( void );
 		void configureListening( void );
 		void runServerLoop( void );
-		void handleNewConnections( void );
 		void newClient( void );
-		void handleClientData( void );
 		void getClientData( int i ); // apresas-: New idea
 		void sendData( const char *message );
 		void setNonBlock( int & socketFd );
@@ -113,12 +112,13 @@ class Server {
 		std::vector<t_message> cmdUser( t_message & message );
 		std::vector<t_message> cmdMode( t_message & message );
 
+		t_message	prepareMessage( std::string rawMessage );
+
 		static void signalHandler( int signal );
 
 	public:
 		Server( const std::string & port, const std::string & password );
-		~Server();
-
+		~Server( void );
 	private:
 		// apresas-: I leave this here for now
 		void closeFailureLog( const std::string & fd_name, int fd ) {
@@ -148,6 +148,7 @@ class Server {
 				virtual const char * what() const throw() {
 					return message.c_str();
 				}
+				virtual ~InvalidArgument() throw() {}
 			private:
 				std::string message;
 		};
@@ -157,6 +158,7 @@ class Server {
 			virtual const char * what() const throw() {
 				return message.c_str();
 			}
+			virtual ~SetsockoptException() throw() {}
 			private:
 				std::string message;
 		};
@@ -190,6 +192,5 @@ class Server {
 		};
 };
 
-
-
 #endif // SERVER_HPP
+

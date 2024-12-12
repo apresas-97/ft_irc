@@ -4,15 +4,17 @@
 #include <iostream>
 #include <string>
 #include <list>
+#include <set>
+#include <map>
 
-#include "User.hpp"
+#include "Client.hpp"
 
-class User;
+class Client;
 
 typedef struct s_channel_user
 {
-	User &	user;
-	bool	is_operator;
+	Client &	user;
+	bool		is_operator;
 }				t_channel_user;	
 
 class Channel
@@ -24,11 +26,10 @@ class Channel
 
 	public:
 		Channel( const std::string & name );
-		~Channel();
+		~Channel( void );
 
-		void	addUser( User & user );
-		void	addUser( User & user, bool is_operator );
-		void	kickUser( const std::string & user_name );
+		void	addUser( Client & user, bool is_operator );
+		void	kickUser( const std::string & );
 
 		void	toggleInviteOnly( void );
 
@@ -39,29 +40,43 @@ class Channel
 		void		setTopic( const std::string & topic );
 
 		void	setPassword( const std::string & password );
-
+		bool	validatePassword( const std::string & password ) const;
+		
 		void	promoteUser( const std::string & user_name ); // Turn user to operator
 		void	demoteUser( const std::string & user_name ); // Turn operator to user
 		void	toggleUserOperator( const std::string & user_name ); // Toggle operator status
 
 		void	sendInvite( const std::string & user_name );
+		bool	isUserInvited( const std::string & user_name );
 
-		User	seekUser( const std::string & user_name );
+		Client* seekUser( const std::string & );
 		// t_channel_user	seekUser( const std::string & user_name ); // Alternative
 
+		bool isUserInChannel( const std::string & userName );
+		std::set<std::string> getUsers() const;
+		std::set<std::string> getOperators() const;
+		void clearUsers();
+
+		void setOperatorStatus(const std::string & userName, bool is_operator);
+
+		bool getMode( char mode ) const;
+		void setMode( char mode, bool state );
+
 	private:
-		std::list<User>	_users;
-		// std::list<t_channel_user>	_users; // Alternative
+		std::string						_name;
+		std::string						_topic;
+		std::string						_password;
+		std::set<char>					_modes;	// Modes (i, t, k, o, l)
 
-		bool	_invite_only;
-		bool	_has_user_limit;
+		std::map<std::string, Client*>	_users;
+		std::set<std::string>			_invited_users;
+		std::set<std::string>			_operators;
+		size_t							_user_limit;
+		size_t							_user_count;
 
-		size_t	_user_limit;
-		size_t	_user_count;
-
-		std::string	_password;
-		std::string	_topic;
+		// bool							_invite_only;
+		bool							_has_user_limit;
 
 };
+#endif
 
-#endif // CHANNEL_HPP

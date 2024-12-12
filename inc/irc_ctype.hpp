@@ -10,4 +10,5 @@ bool	irc_islower( char c );
 
 bool	irc_isValidNickname( const std::string & nickname );
 
-#endif IRC_CTYPE_HPP
+#endif //IRC_CTYPE_HPP
+
