@@ -6,7 +6,13 @@ INCLUDE_DIR = inc
 OBJ_DIR = obj
 DEPS_DIR = deps
 
-SRC_FILES =	ft_irc.cpp Server.cpp Client.cpp Channel.cpp commands.cpp irc_ctype.cpp
+SRC_FILES =	ft_irc.cpp \
+			Server.cpp \
+			Client.cpp \
+			Channel.cpp \
+			commands.cpp \
+			irc_ctype.cpp \
+			numeric_replies.cpp
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 
