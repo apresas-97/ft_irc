@@ -23,7 +23,8 @@ std::vector<std::string> nicks_in_channel = { "aaespino", "apresas", "ffornes", 
 std::string server_name = "irc_server";
 std::string client_nickname = "apresas";
 
-typedef struct s_message {
+typedef struct s_message 
+{
 	std::string prefix;
 	std::string command;
 	std::vector<std::string> params;
@@ -93,13 +94,15 @@ typedef struct s_modes
 	}
 }				t_modes;
 
-std::string formatNumber( int number ) {
+std::string formatNumber( int number ) 
+{
 	std::ostringstream	oss;
 	oss << std::setw(3) << std::setfill('0') << number;
 	return oss.str();
 }
 
-std::string getTimestamp( void ) {
+std::string getTimestamp( void ) 
+{
 	std::string timestamp = "@time=";
 	std::time_t t = std::time(0);
 	std::tm *now = std::localtime(&t);
@@ -116,7 +119,8 @@ std::string getTimestamp( void ) {
 	return timestamp;
 }
 
-t_message	reply( int number, std::string message, std::vector<std::string> params ) {
+t_message	reply( int number, std::string message, std::vector<std::string> params ) 
+{
 	t_message	reply;
 	reply.command = formatNumber(number);
 	reply.prefix = ":" + server_name;
@@ -124,8 +128,10 @@ t_message	reply( int number, std::string message, std::vector<std::string> param
 
 	size_t start = param.find('<');
 	size_t end = param.find('>');
-	for (size_t i = 0; i < params.size(); ++i) {
-		if (start != std::string::npos && end != std::string::npos) {
+	for (size_t i = 0; i < params.size(); ++i) 
+	{
+		if (start != std::string::npos && end != std::string::npos) 
+		{
 			param.replace(start, end - start + 1, params[i]);
 		}
 		start = param.find('<');
@@ -136,7 +142,8 @@ t_message	reply( int number, std::string message, std::vector<std::string> param
 	return reply;
 }
 
-t_message	reply( t_message & message, std::string corrected_param, std::string nickname ) {
+t_message	reply( t_message & message, std::string corrected_param, std::string nickname ) 
+{
 	t_message	reply;
 	reply.prefix = ":" + nickname;
 	reply.command = message.command;
@@ -165,11 +172,13 @@ std::string get_mode_string( t_modes & modes )
 	return mode_string;
 }
 
-bool isUserInServer( std::string nickname ) {
+bool isUserInServer( std::string nickname ) 
+{
 	return std::find(nicks_in_channel.begin(), nicks_in_channel.end(), nickname) != nicks_in_channel.end();
 }
 
-std::vector<t_message> cmdChanMode( t_message & message, t_modes modes ) {
+std::vector<t_message> cmdChanMode( t_message & message, t_modes modes ) 
+{
 	std::vector<t_message> replies;
 
 	std::cout << "Channel mode part, not implemented yet" << std::endl;
@@ -177,8 +186,10 @@ std::vector<t_message> cmdChanMode( t_message & message, t_modes modes ) {
 	// Note that there is a maximum limit of 3 changes per command for modes that require parameters
 	// Unsure what this is saying exactly
 
-	if (message.params.size() == 1) {
-		if (message.params[0][0] == '+') {
+	if (message.params.size() == 1) 
+	{
+		if (message.params[0][0] == '+') 
+		{
 			replies.push_back(reply(ERR_NOCHANMODES, ERR_NOCHANMODES_STR, { message.params[0] }));
 			return replies;
 		}
@@ -210,21 +221,27 @@ std::vector<t_message> cmdChanMode( t_message & message, t_modes modes ) {
 	bool first_operator = true;
 	bool unknown_flag_set = false;
 	std::string param = message.params[1];
-	for (size_t i = 0; i < param.size(); ++i) {
-		if (param[i] == '+') {
+	for (size_t i = 0; i < param.size(); ++i) 
+	{
+		if (param[i] == '+') 
+		{
 			if (operation == false || first_operator == true)
 				insert_operator = true;
 			operation = true;
 			first_operator = false;
-		} else if (param[i] == '-') {
+		} else if (param[i] == '-') 
+		{
 			if (operation == true)
 				insert_operator = true;
 			operation = false;
 			first_operator = false;
-		} else {
+		} else 
+		{
 			char mode = param[i];
-			if (std::string(USER_MODES).find(mode) == std::string::npos) {
-				if (unknown_flag_set == false) {
+			if (std::string(USER_MODES).find(mode) == std::string::npos) 
+			{
+				if (unknown_flag_set == false) 
+				{
 					replies.push_back(reply(ERR_UMODEUNKNOWNFLAG, ERR_UMODEUNKNOWNFLAG_STR, {}));
 					unknown_flag_set = true;
 				}
@@ -232,7 +249,8 @@ std::vector<t_message> cmdChanMode( t_message & message, t_modes modes ) {
 			}
 			bool has_mode = modes.getMode(mode);
 			std::cout << "has mode " << mode << " ? " << has_mode << std::endl;
-			if ((operation == true && has_mode == false) || (operation == false && has_mode == true)) {
+			if ((operation == true && has_mode == false) || (operation == false && has_mode == true)) 
+			{
 				if (operation == true && (mode == 'o' || mode == 'O'))
 					continue;
 				if (operation == false && mode == 'r')
@@ -241,7 +259,8 @@ std::vector<t_message> cmdChanMode( t_message & message, t_modes modes ) {
 					continue;
 				modes.setMode(mode, operation);
 				has_effect = true;
-				if (insert_operator == true) {
+				if (insert_operator == true) 
+				{
 					valid_modes.push_back((operation ? '+' : '-') );
 					insert_operator = false;
 				}
@@ -250,13 +269,17 @@ std::vector<t_message> cmdChanMode( t_message & message, t_modes modes ) {
 		}
 	}
 	bool implicit_plus = false;
-	if (!valid_modes.empty()) {
-		for (size_t i = 0; i < valid_modes.size(); ++i) {
-			if (i == 0 && valid_modes[i] != '+' && valid_modes[i] != '-') {
+	if (!valid_modes.empty()) 
+	{
+		for (size_t i = 0; i < valid_modes.size(); ++i) 
+		{
+			if (i == 0 && valid_modes[i] != '+' && valid_modes[i] != '-') 
+			{
 				correct_param += '+';
 				implicit_plus = true;
 			}
-			if (valid_modes[i] == '+' && implicit_plus == true) {
+			if (valid_modes[i] == '+' && implicit_plus == true) 
+			{
 				implicit_plus = false;
 				continue;
 			}
@@ -271,14 +294,17 @@ std::vector<t_message> cmdChanMode( t_message & message, t_modes modes ) {
 	return replies;
 }
 
-std::vector<t_message> cmdMode( t_message & message, t_modes modes ) {
+std::vector<t_message> cmdMode( t_message & message, t_modes modes ) 
+{
 	std::vector<t_message>	replies;
-	if (message.params.size() < 1) {
+	if (message.params.size() < 1) 
+	{
 		replies.push_back(reply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, { client_nickname }));
 		return replies;
 	}
 
-	if (client_nickname != message.params[0]) {
+	if (client_nickname != message.params[0]) 
+	{
 		if (isUserInServer(message.params[0]) == true)
 			replies.push_back(reply(ERR_USERSDONTMATCH, ERR_USERSDONTMATCH_STR, {}));
 		else if (std::find(channels.begin(), channels.end(), message.params[0]) != channels.end()) 
@@ -288,9 +314,8 @@ std::vector<t_message> cmdMode( t_message & message, t_modes modes ) {
 		return replies;
 	}
 
-	if (message.params.size() == 1) {
+	if (message.params.size() == 1)
 		replies.push_back(reply(RPL_UMODEIS, RPL_UMODEIS_STR, { get_mode_string(modes) }));
-	}
 
 	std::vector<char> valid_modes;
 	std::string correct_param;
@@ -300,21 +325,27 @@ std::vector<t_message> cmdMode( t_message & message, t_modes modes ) {
 	bool first_operator = true;
 	bool unknown_flag_set = false;
 	std::string param = message.params[1];
-	for (size_t i = 0; i < param.size(); ++i) {
-		if (param[i] == '+') {
+	for (size_t i = 0; i < param.size(); ++i) 
+	{
+		if (param[i] == '+') 
+		{
 			if (operation == false || first_operator == true)
 				insert_operator = true;
 			operation = true;
 			first_operator = false;
-		} else if (param[i] == '-') {
+		} else if (param[i] == '-') 
+		{
 			if (operation == true)
 				insert_operator = true;
 			operation = false;
 			first_operator = false;
-		} else {
+		} else 
+		{
 			char mode = param[i];
-			if (std::string(USER_MODES).find(mode) == std::string::npos) {
-				if (unknown_flag_set == false) {
+			if (std::string(USER_MODES).find(mode) == std::string::npos) 
+			{
+				if (unknown_flag_set == false) 
+				{
 					replies.push_back(reply(ERR_UMODEUNKNOWNFLAG, ERR_UMODEUNKNOWNFLAG_STR, {}));
 					unknown_flag_set = true;
 				}
@@ -322,7 +353,8 @@ std::vector<t_message> cmdMode( t_message & message, t_modes modes ) {
 			}
 			bool has_mode = modes.getMode(mode);
 			std::cout << "has mode " << mode << " ? " << has_mode << std::endl;
-			if ((operation == true && has_mode == false) || (operation == false && has_mode == true)) {
+			if ((operation == true && has_mode == false) || (operation == false && has_mode == true)) 
+			{
 				if (operation == true && (mode == 'o' || mode == 'O'))
 					continue;
 				if (operation == false && mode == 'r')
@@ -331,7 +363,8 @@ std::vector<t_message> cmdMode( t_message & message, t_modes modes ) {
 					continue;
 				modes.setMode(mode, operation);
 				has_effect = true;
-				if (insert_operator == true) {
+				if (insert_operator == true) 
+				{
 					valid_modes.push_back((operation ? '+' : '-') );
 					insert_operator = false;
 				}
@@ -341,12 +374,15 @@ std::vector<t_message> cmdMode( t_message & message, t_modes modes ) {
 	}
 	bool implicit_plus = false;
 	if (!valid_modes.empty()) {
-		for (size_t i = 0; i < valid_modes.size(); ++i) {
-			if (i == 0 && valid_modes[i] != '+' && valid_modes[i] != '-') {
+		for (size_t i = 0; i < valid_modes.size(); ++i) 
+		{
+			if (i == 0 && valid_modes[i] != '+' && valid_modes[i] != '-') 
+			{
 				correct_param += '+';
 				implicit_plus = true;
 			}
-			if (valid_modes[i] == '+' && implicit_plus == true) {
+			if (valid_modes[i] == '+' && implicit_plus == true) 
+			{
 				implicit_plus = false;
 				continue;
 			}
@@ -406,22 +442,27 @@ std::vector<t_message> cmdMode( t_message & message, t_modes modes ) {
 // 	return response;
 // }
 
-void assert_replies( std::vector<t_message> replies, int number, int expected_number, std::string expected_prefix, std::string expected_message, std::vector<std::string> expected_params ) {
+void assert_replies( std::vector<t_message> replies, int number, int expected_number, std::string expected_prefix, std::string expected_message, std::vector<std::string> expected_params ) 
+{
 	assert(replies.size() == static_cast<size_t>(number));
 	assert(replies[0].prefix == expected_prefix);
 	assert(replies[0].command == formatNumber(expected_number));
 	assert(replies[0].params[0] == expected_message);
-	for (size_t i = 0; i < expected_params.size(); ++i) {
+	for (size_t i = 0; i < expected_params.size(); ++i) 
+	{
 		assert(replies[0].params[i] == expected_params[i]);
 	}
 }
 
-void print_replies( std::vector<t_message> replies ) {
+void print_replies( std::vector<t_message> replies ) 
+{
 	std::ostringstream ss;
 
-	for (size_t i = 0; i < replies.size(); ++i) {
+	for (size_t i = 0; i < replies.size(); ++i) 
+	{
 		ss << ">> " << replies[i].prefix << " " << replies[i].command << " ";
-		for (size_t j = 0; j < replies[i].params.size(); ++j) {
+		for (size_t j = 0; j < replies[i].params.size(); ++j) 
+		{
 			ss << replies[i].params[j] << " ";
 		}
 		ss << std::endl;
@@ -430,13 +471,15 @@ void print_replies( std::vector<t_message> replies ) {
 	}
 }
 
-void print_message( t_message & message ) {
+void print_message( t_message & message ) 
+{
 	std::ostringstream ss;
 	ss << "<< ";
 	if (!message.prefix.empty())
 		ss << message.prefix << " ";
 	ss << message.command << " ";
-	for (size_t i = 0; i < message.params.size(); ++i) {
+	for (size_t i = 0; i < message.params.size(); ++i) 
+	{
 		ss << message.params[i];
 		if (i < message.params.size() - 1)
 			ss << " ";
@@ -445,12 +488,14 @@ void print_message( t_message & message ) {
 	std::cout << ss.str();
 }
 
-void clear_data( std::vector<t_message> & replies, t_message & message ) {
+void clear_data( std::vector<t_message> & replies, t_message & message ) 
+{
 	replies.clear();
 	message.params.clear();
 }
 
-void testCmdMode() {
+void testCmdMode() 
+{
 	t_modes modes;
 	modes.a = false;
 	modes.i = false;
@@ -596,7 +641,8 @@ void testCmdMode() {
 	std::cout << "All tests passed!" << std::endl;
 }
 
-int main() {
+int main() 
+{
 	testCmdMode();
 	return 0;
 }
