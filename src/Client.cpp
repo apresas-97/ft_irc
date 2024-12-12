@@ -2,7 +2,8 @@
 
 Client::Client( void ) {}
 
-// Client::Client( int fd, struct sockaddr_storage address ) : _registered(false), _authorised(false) {
+// Client::Client( int fd, struct sockaddr_storage address ) : _registered(false), _authorised(false)
+// {
 // 	this->_address = address;
 // }
 

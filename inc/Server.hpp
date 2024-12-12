@@ -143,7 +143,8 @@ class Server
 		// 		CloseException( const char * fd_name, int fd ) : message("failed to close file descriptor: " + std::string(fd_name) + " (" + std::to_string(fd) + ")") {}
 		// 		CloseException( const char * fd_name ) : message("failed to close file descriptor: " + std::string(fd_name)) {}
 		// 		CloseException( int fd ) : message("failed to close file descriptor: " + std::to_string(fd)) {}
-		// 		virtual const char * what() const throw() {
+		// 		virtual const char * what() const throw()
+		// 		{
 		// 			return message.c_str();
 		// 		}
 		// 	private:
@@ -154,7 +155,8 @@ class Server
 			public:
 				InvalidArgument( const char * str, const char * arg ) : message(std::string(str) + " => \"" + std::string(arg) + "\"")  {}
 				InvalidArgument( const char * str, const std::string & arg ) : message(std::string(str) + " => \"" + arg + "\"")  {}
-				virtual const char * what() const throw() {
+				virtual const char * what() const throw()
+				{
 					return message.c_str();
 				}
 				virtual ~InvalidArgument() throw() {}

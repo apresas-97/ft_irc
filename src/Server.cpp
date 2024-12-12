@@ -112,12 +112,14 @@ void Server::createSocket( void )
 void Server::setNonBlock(int & socketFd) 
 {
 	int	flags = fcntl( socketFd, F_GETFL, 0 );
-	if (flags < 0) {
+	if (flags < 0)
+	{
 		cleanClose();
 		throw std::runtime_error("fcntl failed to get socket flags");
 	}
 	flags |= O_NONBLOCK;
-	if (fcntl(socketFd, F_SETFL, flags) == -1 ) {
+	if (fcntl(socketFd, F_SETFL, flags) == -1 )
+	{
 		cleanClose();
 		throw std::runtime_error("fcntl failed to set socket flags");
 	}
@@ -166,18 +168,23 @@ void Server::runServerLoop( void )
 	_client_count = 0;
     std::cout << "Server started, waiting for clients..." << std::endl;
 
-    while (true) {
+    while (true)
+	{
         int pollCount = poll(_poll_fds, _client_count + 1, TIMEOUT);
-        if (pollCount < 0) {
+        if (pollCount < 0)
+		{
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
             break;
-        } else if (pollCount == 0) {
+        }
+		else if (pollCount == 0)
+		{
         	std::cout << "Poll timed out, no activity" << std::endl;
             continue;
         }
 		for (size_t i = 0; i < this->_client_count + 1; i++) 
 		{
-			if (this->_poll_fds[i].revents & POLLIN) {
+			if (this->_poll_fds[i].revents & POLLIN)
+			{
 				if (this->_poll_fds[i].fd == this->_serverFd)
 					newClient();
 				else
@@ -195,7 +202,8 @@ void	Server::getClientData( int i )
 	if (bytes_received < 0) 
 	{
 		std::cerr << "Error receiving data from client " << this->_poll_fds[i].fd << std::endl;
-	} else if (bytes_received == 0) 
+	}
+	else if (bytes_received == 0) 
 	{
 		std::cout << "Client disconnected: " << this->_poll_fds[i].fd << std::endl;
 		if (close(this->_poll_fds[i].fd) == -1) 
@@ -420,7 +428,8 @@ void Server::newClient( void )
 	if (this->_client_count == MAX_CLIENTS ) 
 	{ // apresas-: Maybe do this???
 		std::cerr << "Max clients reached, closing connection" << std::endl;
-		if (close(clientFd) == -1) {
+		if (close(clientFd) == -1)
+		{
 			closeFailureLog("clientFd", clientFd);
 			cleanClose();
 		}

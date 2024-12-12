@@ -78,5 +78,5 @@ class Channel
 		bool							_has_user_limit;
 
 };
-#endif
 
+#endif // CHANNEL_HPP

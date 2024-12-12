@@ -208,13 +208,15 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 				insert_operator = true;
 			operation = true;
 			first_operator = false;
-		} else if (param[i] == '-') 
+		}
+		else if (param[i] == '-') 
 		{
 			if (operation == true)
 				insert_operator = true;
 			operation = false;
 			first_operator = false;
-		} else 
+		}
+		else 
 		{
 			char mode = param[i];
 			if (std::string(USER_MODES).find(mode) == std::string::npos) 

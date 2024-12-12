@@ -74,5 +74,6 @@ class Client
 		bool	_registered; // Has the client properly registered as a user? (NICK and USER commands)
 
 };
+
 #endif // CLIENT_HPP
 

@@ -16,18 +16,21 @@ Channel::~Channel(void) {}
 // User management
 void Channel::addUser(Client& user, bool is_operator) 
 {
-    if (this->_user_limit != 0 && this->_users.size() >= this->_user_limit) {
+    if (this->_user_limit != 0 && this->_users.size() >= this->_user_limit)
+    {
         throw std::runtime_error("Channel is full");
     }
     this->_users[user.getNickname()] = &user;
-    if (is_operator) {
+    if (is_operator)
+    {
         _operators.insert(user.getNickname());
     }
 }
 
 void Channel::kickUser(const std::string& userName) 
 {
-    if (_users.erase(userName) == 0) {
+    if (_users.erase(userName) == 0)
+    {
         throw std::runtime_error("User not found in channel");
     }
     _operators.erase(userName);
@@ -35,7 +38,8 @@ void Channel::kickUser(const std::string& userName)
 
 Client* Channel::seekUser(const std::string& userName) 
 {
-    if (_users.count(userName)) {
+    if (_users.count(userName))
+    {
         return _users[userName];
     }
     return NULL;
@@ -66,7 +70,8 @@ std::set<std::string> Channel::getOperators() const
     return operatorList;
 }
 
-void Channel::clearUsers() {
+void Channel::clearUsers()
+{
     _users.clear();
     _operators.clear();
 }
