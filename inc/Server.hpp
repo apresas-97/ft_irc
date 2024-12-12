@@ -23,6 +23,9 @@
 
 #define SERVER_NAME_MAX_LENGTH 63
 
+#define	TIMEOUT		5000
+#define	BUFFER_SIZE 1024
+
 #define USER_MODES "aiwroOs"
 #define CHANNEL_MODES "itkol"
 

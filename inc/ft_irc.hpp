@@ -5,10 +5,6 @@
 #include <sstream>
 #include <exception>
 
-#define	MAX_CLIENTS	1024
-#define	TIMEOUT		5000
-#define	BUFFER_SIZE 1024
-
 // C libraries for the functions specified in the subject:
 #include <sys/socket.h>
 /*

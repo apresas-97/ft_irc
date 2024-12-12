@@ -1,9 +1,8 @@
 #include "Channel.hpp"
 
-Channel::Channel(void) {
-}
+Channel::Channel(void) {}
 
-Channel::Channel(const std::string& name) : _name(name), _userLimit(0) {
+Channel::Channel(const std::string& name) : _name(name), _user_limit(0) {
     _modes.insert('i');
     _modes.insert('t');
     _modes.insert('k');
@@ -16,7 +15,7 @@ Channel::~Channel(void) {
 
 // User management
 void Channel::addUser(Client& user, bool is_operator) {
-    if (this->_userLimit != 0 && this->_users.size() >= this->_userLimit) {
+    if (this->_user_limit != 0 && this->_users.size() >= this->_user_limit) {
         throw std::runtime_error("Channel is full");
     }
     this->_users[user.getNickname()] = &user;
@@ -105,14 +104,14 @@ bool Channel::validatePassword(const std::string& password) const {
 
 // Invitations
 void Channel::sendInvite(const std::string& userName) {
-    _invitedUsers.insert(userName);
+    _invited_users.insert(userName);
 }
 
 bool Channel::isUserInvited(const std::string& userName) {
-    return _invitedUsers.find(userName) != _invitedUsers.end();
+    return _invited_users.find(userName) != _invited_users.end();
 }
 
 // User limit
 void Channel::setUserLimit(size_t limit) {
-    this->_userLimit = limit;
+    this->_user_limit = limit;
 }

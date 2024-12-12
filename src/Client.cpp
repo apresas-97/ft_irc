@@ -6,7 +6,7 @@ Client::Client( void ) {}
 // 	this->_address = address;
 // }
 
-Client::Client( int socket ) : _registered(false), _authorised(false) {
+Client::Client( int socket ) : _authorised(false),  _registered(false) {
 	this->_socket = socket;
 }
 

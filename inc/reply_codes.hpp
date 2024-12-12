@@ -53,3 +53,4 @@
 #define ERR_USERSDONTMATCH_STR ":Cannot change mode for other users"
 
 #endif // REPLY_CODES_HPP
+

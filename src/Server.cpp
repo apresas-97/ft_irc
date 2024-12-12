@@ -55,10 +55,10 @@ void Server::cleanClose( void ) {
 	if (close(_serverFd) == -1)
 		closeFailureLog("serverFd", this->_serverFd);
 	for (size_t i = 1; i < MAX_CLIENTS; i++) {
-		if (_pollFds[i].fd == -1)
+		if (_poll_fds[i].fd == -1)
 			continue;
-		if (close(_pollFds[i].fd) == -1)
-			closeFailureLog("_pollFds", i, this->_serverFd);
+		if (close(_poll_fds[i].fd) == -1)
+			closeFailureLog("_poll_fds", i, this->_serverFd);
 	}
 }
 
@@ -143,12 +143,12 @@ void Server::configureListening( void )
 }
 
 void Server::runServerLoop( void ) {
-    _pollFds[0].fd = _serverFd;
-    _pollFds[0].events = POLLIN;
+    _poll_fds[0].fd = _serverFd;
+    _poll_fds[0].events = POLLIN;
 
     for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
-        _pollFds[i].fd = -1;
-        _pollFds[i].events = POLLIN;
+        _poll_fds[i].fd = -1;
+        _poll_fds[i].events = POLLIN;
     }
 	_client_count = 0;
     std::cout << "Server started, waiting for clients..." << std::endl;
@@ -163,8 +163,8 @@ void Server::runServerLoop( void ) {
             continue;
         }
 		for (size_t i = 0; i < this->_client_count + 1; i++) {
-			if (this->_pollFds[i].revents & POLLIN) {
-				if (this->_pollFds[i].fd == this->_serverFd)
+			if (this->_poll_fds[i].revents & POLLIN) {
+				if (this->_poll_fds[i].fd == this->_serverFd)
 					newClient();
 				else
 					getClientData( i );
@@ -176,17 +176,17 @@ void Server::runServerLoop( void ) {
 // apresas-: New idea
 void	Server::getClientData( int i ) {
 	char	buffer[BUFFER_SIZE];
-	int		bytes_received = recv(this->_pollFds[i].fd, buffer, sizeof(buffer) - 1, 0);
+	int		bytes_received = recv(this->_poll_fds[i].fd, buffer, sizeof(buffer) - 1, 0);
 	if (bytes_received < 0) {
-		std::cerr << "Error receiving data from client " << this->_pollFds[i].fd << std::endl;
+		std::cerr << "Error receiving data from client " << this->_poll_fds[i].fd << std::endl;
 	} else if (bytes_received == 0) {
-		std::cout << "Client disconnected: " << this->_pollFds[i].fd << std::endl;
-		if (close(this->_pollFds[i].fd) == -1) {
-			closeFailureLog("_pollFds", i, this->_pollFds[i].fd);
+		std::cout << "Client disconnected: " << this->_poll_fds[i].fd << std::endl;
+		if (close(this->_poll_fds[i].fd) == -1) {
+			closeFailureLog("_poll_fds", i, this->_poll_fds[i].fd);
 			cleanClose(); // apresas-: We might have to handle some other things here
 		}
-		this->_pollFds[i].fd = -1;
-		if (i == this->_client_count) // apresas-: Unsure about this
+		this->_poll_fds[i].fd = -1;
+		if (static_cast<size_t>(i) == this->_client_count) // apresas-: Unsure about this
 			this->_client_count--;
 	} else {
 		/* apresas-:
@@ -223,13 +223,13 @@ void	Server::getClientData( int i ) {
 				If a message contains a '\0' character, the message will be silently ignored.
 		*/
 		buffer[bytes_received] = '\0';
-		std::cout << "Received from client " << this->_pollFds[i].fd << ": " << buffer;
+		std::cout << "Received from client " << this->_poll_fds[i].fd << ": " << buffer;
 
 		// apresas-: Here is where we have to parse the received data and prepare the response
 
 		std::string message(buffer, strlen(buffer) - 1); // apresas-: Maybe just message(buffer); ?
 		std::string response;
-		parseData(message, this->_pollFds[i].fd);
+		parseData(message, this->_poll_fds[i].fd);
 
 		sendData(buffer);
 	}
@@ -397,8 +397,8 @@ void Server::newClient( void ) {
 	}
 
 	// Add the client's fd and events to the pollfd array
-	this->_pollFds[this->_client_count].fd = clientFd;
-	this->_pollFds[this->_client_count].events = POLLIN;
+	this->_poll_fds[this->_client_count].fd = clientFd;
+	this->_poll_fds[this->_client_count].events = POLLIN;
 	// Add the client to the _clients map using its fd as the key
 	// I wrote 3 methods because I'm not sure if they will really work as intended or compile with std=c++98
 	// method 1:
@@ -413,8 +413,8 @@ void Server::newClient( void ) {
 
 void Server::sendData(const char *message) {
 	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
-		if (_pollFds[i].fd != -1) {
-			send(_pollFds[i].fd, message, strlen(message), 0);
+		if (_poll_fds[i].fd != -1) {
+			send(_poll_fds[i].fd, message, strlen(message), 0);
 		}
 	}
 }
