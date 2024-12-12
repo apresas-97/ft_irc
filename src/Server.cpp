@@ -46,12 +46,7 @@ void Server::signalHandler( int signal )
 	{
 		if (instance)
 			instance->cleanClose();
-		exit(0);
-		/* apresas-:
-			Should we use exit here?
-			Also, should it be exit(0) ? (EXIT_SUCCESS)
-			Or exit(EXIT_FAILURE) ? (1)
-		*/
+		exit(EXIT_SUCCESS);
 	}
 }
 
@@ -72,7 +67,6 @@ void Server::cleanClose( void )
 void Server::parseInput( void ) 
 {
 	unsigned int		port;
-	std::string			port_str(this->_port);
 	std::istringstream	iss(this->_port);
 
 	iss >> port;
@@ -103,7 +97,7 @@ void Server::createSocket( void )
 	{
 		if (close(this->_serverFd) == -1)
 			closeFailureLog("serverFd", this->_serverFd);
-		throw SetsockoptException("SO_REUSEADDR | SO_REUSEPORT");
+		throw std::runtime_error("setsockopt failed to set ( SO_REUSEADDR | SO_REUSEPORT ) socket options");
 	}
 
 	setNonBlock(_serverFd);

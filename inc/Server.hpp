@@ -136,20 +136,6 @@ class Server
 			std::cerr << "Error: Failed to close file descriptor: " << fd_name << "[" << i << "]" << " (" << fd << ")" << std::endl;
 		}
 
-		// apresas-: I leave this here for now, currently UNUSED
-		// class CloseException : public std::exception 
-		// {
-		// 	public:
-		// 		CloseException( const char * fd_name, int fd ) : message("failed to close file descriptor: " + std::string(fd_name) + " (" + std::to_string(fd) + ")") {}
-		// 		CloseException( const char * fd_name ) : message("failed to close file descriptor: " + std::string(fd_name)) {}
-		// 		CloseException( int fd ) : message("failed to close file descriptor: " + std::to_string(fd)) {}
-		// 		virtual const char * what() const throw()
-		// 		{
-		// 			return message.c_str();
-		// 		}
-		// 	private:
-		// 		std::string message;
-		// };
 		class InvalidArgument : public std::exception 
 		{
 			public:
@@ -162,46 +148,6 @@ class Server
 				virtual ~InvalidArgument() throw() {}
 			private:
 				std::string message;
-		};
-		class SetsockoptException : public std::exception
-		{
-			public:
-				SetsockoptException( const char * str ) : message("setsockopt failed to set (" + std::string(str) + ") socket options.") {}
-			virtual const char * what() const throw() 
-			{
-				return message.c_str();
-			}
-			virtual ~SetsockoptException() throw() {}
-			private:
-				std::string message;
-		};
-		class BindException : public std::exception
-		{
-			virtual const char * what() const throw()
-			{
-				return "Server socket bind failed.";
-			}
-		};
-		class ListenFailedException : public std::exception
-		{
-			virtual const char * what() const throw()
-			{
-				return "Listen failed.";
-			}
-		};
-		class AcceptFailedException : public std::exception
-		{
-			virtual const char * what() const throw()
-			{
-				return "Accept failed.";
-			}
-		};
-		class RecvFailedException : public std::exception
-		{
-			virtual const char * what() const throw()
-			{
-				return "Recv failed.";
-			}
 		};
 };
 

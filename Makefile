@@ -6,7 +6,7 @@ INCLUDE_DIR = inc
 OBJ_DIR = obj
 DEPS_DIR = deps
 
-SRC_FILES =	ft_irc.cpp \
+SRC_FILES =	main.cpp \
 			Server.cpp \
 			Client.cpp \
 			Channel.cpp \
