@@ -29,7 +29,8 @@
 #define USER_MODES "aiwroOs"
 #define CHANNEL_MODES "itkol"
 
-typedef struct s_message {
+typedef struct s_message 
+{
 	std::string prefix;
 	std::string command;
 	std::vector<std::string> params;
@@ -38,7 +39,8 @@ typedef struct s_message {
 	// apresas-: More info might be needed here later
 }				t_message;
 
-class Server {
+class Server 
+{
 	private:
 		// uint16_t			_port; // apresas-: in case we need it as a number
 		std::string			_port;
@@ -124,16 +126,19 @@ class Server {
 		~Server( void );
 	private:
 		// apresas-: I leave this here for now
-		void closeFailureLog( const std::string & fd_name, int fd ) {
+		void closeFailureLog( const std::string & fd_name, int fd ) 
+		{
 			std::cerr << "Error: Failed to close file descriptor: " << fd_name << " (" << fd << ")" << std::endl;
 		}
 		// apresas-: For pollFd[i]
-		void closeFailureLog( const std::string & fd_name, int i, int fd ) {
+		void closeFailureLog( const std::string & fd_name, int i, int fd ) 
+		{
 			std::cerr << "Error: Failed to close file descriptor: " << fd_name << "[" << i << "]" << " (" << fd << ")" << std::endl;
 		}
 
 		// apresas-: I leave this here for now, currently UNUSED
-		// class CloseException : public std::exception {
+		// class CloseException : public std::exception 
+		// {
 		// 	public:
 		// 		CloseException( const char * fd_name, int fd ) : message("failed to close file descriptor: " + std::string(fd_name) + " (" + std::to_string(fd) + ")") {}
 		// 		CloseException( const char * fd_name ) : message("failed to close file descriptor: " + std::string(fd_name)) {}
@@ -144,7 +149,8 @@ class Server {
 		// 	private:
 		// 		std::string message;
 		// };
-		class InvalidArgument : public std::exception {
+		class InvalidArgument : public std::exception 
+		{
 			public:
 				InvalidArgument( const char * str, const char * arg ) : message(std::string(str) + " => \"" + std::string(arg) + "\"")  {}
 				InvalidArgument( const char * str, const std::string & arg ) : message(std::string(str) + " => \"" + arg + "\"")  {}
@@ -155,10 +161,12 @@ class Server {
 			private:
 				std::string message;
 		};
-		class SetsockoptException : public std::exception {
+		class SetsockoptException : public std::exception
+		{
 			public:
 				SetsockoptException( const char * str ) : message("setsockopt failed to set (" + std::string(str) + ") socket options.") {}
-			virtual const char * what() const throw() {
+			virtual const char * what() const throw() 
+			{
 				return message.c_str();
 			}
 			virtual ~SetsockoptException() throw() {}

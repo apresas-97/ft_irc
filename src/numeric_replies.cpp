@@ -2,14 +2,16 @@
 #include <iomanip>
 
 /* returns a numeric reply number in its string format with 3 width and padding 0 */
-std::string formatNumber( int number ) {
+std::string formatNumber( int number ) 
+{
 	std::ostringstream	oss;
 	oss << std::setw(3) << std::setfill('0') << number;
 	return oss.str();
 }
 
 // Currently unused
-std::string getTimestamp( void ) {
+std::string getTimestamp( void ) 
+{
 	std::string timestamp = "@time=";
 	std::time_t t = std::time(0);
 	std::tm *now = std::localtime(&t);
@@ -27,7 +29,8 @@ std::string getTimestamp( void ) {
 }
 
 // For replies that have no specific parameters like <channel>, <nickname>, etc.
-t_message Server::createReply( int number, const std::string message ) {
+t_message Server::createReply( int number, const std::string message ) 
+{
 	t_message reply;
 	// reply.timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
@@ -40,7 +43,8 @@ t_message Server::createReply( int number, const std::string message ) {
 For replies that have 1 parameter
 param will replace the placeholder in the message
 */
-t_message Server::createReply( int number, const std::string message, const std::string & param ) {
+t_message Server::createReply( int number, const std::string message, const std::string & param ) 
+{
 	t_message reply;
 	// std::string timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
@@ -50,9 +54,8 @@ t_message Server::createReply( int number, const std::string message, const std:
 	// Replace the <placeholder> in the message with the param
 	size_t start = msg.find('<');
 	size_t end = msg.find('>');
-	if (start != std::string::npos && end != std::string::npos) {
+	if (start != std::string::npos && end != std::string::npos) 
 		msg.replace(start, end - start + 1, param);
-	}
 	reply.params.push_back(msg);
 	return reply;
 }
@@ -61,7 +64,8 @@ t_message Server::createReply( int number, const std::string message, const std:
 For replies that require multiple parameters
 Each member of the param vector will replace a placeholder in the message in order from left to right
 */
-t_message Server::createReply( int number, const std::string message, const std::vector<std::string> & params ) {
+t_message Server::createReply( int number, const std::string message, const std::vector<std::string> & params ) 
+{
 	t_message reply;
 	// std::string timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
@@ -71,10 +75,10 @@ t_message Server::createReply( int number, const std::string message, const std:
 	// Replace the <placeholders> in the message with the param, in order of appearance
 	size_t start = msg.find('<');
 	size_t end = msg.find('>');
-	for (size_t i = 0; i < params.size(); i++) {
-		if (start != std::string::npos && end != std::string::npos) {
+	for (size_t i = 0; i < params.size(); i++) 
+	{
+		if (start != std::string::npos && end != std::string::npos) 
 			msg.replace(start, end - start + 1, params[i]);
-		}
 		start = msg.find('<');
 		end = msg.find('>');
 	}
@@ -83,7 +87,8 @@ t_message Server::createReply( int number, const std::string message, const std:
 }
 
 // Provisional, this is the createReply for acknowledge messages to be sent back to the sender
-t_message Server::createReply( t_message & message, std::string corrected_param, std::string nickname ) {
+t_message Server::createReply( t_message & message, std::string corrected_param, std::string nickname ) 
+{
 	t_message	reply;
 	reply.prefix = ":" + nickname;
 	reply.command = message.command;

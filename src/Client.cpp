@@ -6,7 +6,8 @@ Client::Client( void ) {}
 // 	this->_address = address;
 // }
 
-Client::Client( int socket ) : _authorised(false),  _registered(false) {
+Client::Client( int socket ) : _authorised(false),  _registered(false) 
+{
 	this->_socket = socket;
 }
 
@@ -33,7 +34,8 @@ const std::string & Client::getRealname( void ) const
 	return this->_realname;
 }
 
-const int & Client::getSocket( void ) const {
+const int & Client::getSocket( void ) const 
+{
 	return this->_socket;
 }
 
@@ -58,7 +60,8 @@ void Client::setRealname( const std::string & realname )
 	this->_realname = realname;
 }
 
-void Client::setSocket( const int & socket ) {
+void Client::setSocket( const int & socket ) 
+{
 	this->_socket = socket;
 }
 

@@ -21,7 +21,8 @@
 
 Server*	Server::instance = NULL;
 
-Server::Server( const std::string & port, const std::string & password ) : _port(port), _password(password) {
+Server::Server( const std::string & port, const std::string & password ) : _port(port), _password(password) 
+{
 	instance = this;
 	setVersion(1, 0);
 	setStartTime();
@@ -29,16 +30,20 @@ Server::Server( const std::string & port, const std::string & password ) : _port
 	initServer();
 }
 
-Server::~Server( void ) {
-	if (_serverFd != -1) {
+Server::~Server( void ) 
+{
+	if (_serverFd != -1) 
+	{
 		std::cout << "Server destructor called" << std::endl;
 		if (close(_serverFd) == -1)
 			closeFailureLog("serverFd", this->_serverFd);
 	}
 }
 
-void Server::signalHandler( int signal ) {
-	if (signal == SIGINT) {
+void Server::signalHandler( int signal ) 
+{
+	if (signal == SIGINT) 
+	{
 		if (instance)
 			instance->cleanClose();
 		exit(0);
@@ -50,11 +55,13 @@ void Server::signalHandler( int signal ) {
 	}
 }
 
-void Server::cleanClose( void ) {
+void Server::cleanClose( void ) 
+{
 	std::cout << "call clean close" << std::endl;
 	if (close(_serverFd) == -1)
 		closeFailureLog("serverFd", this->_serverFd);
-	for (size_t i = 1; i < MAX_CLIENTS; i++) {
+	for (size_t i = 1; i < MAX_CLIENTS; i++) 
+	{
 		if (_poll_fds[i].fd == -1)
 			continue;
 		if (close(_poll_fds[i].fd) == -1)
@@ -62,8 +69,8 @@ void Server::cleanClose( void ) {
 	}
 }
 
-void Server::parseInput( void ) {
-
+void Server::parseInput( void ) 
+{
 	unsigned int		port;
 	std::string			port_str(this->_port);
 	std::istringstream	iss(this->_port);
@@ -75,7 +82,8 @@ void Server::parseInput( void ) {
 		throw InvalidArgument("Port must be between 1024 and 49151", this->_port);
 }
 
-void Server::initServer( void ) {
+void Server::initServer( void ) 
+{
 	if (signal(SIGINT, signalHandler) == SIG_ERR)
 		throw std::runtime_error("Failed to set up signal handler");
 	createSocket();
@@ -84,13 +92,15 @@ void Server::initServer( void ) {
 	runServerLoop();
 }
 
-void Server::createSocket( void ) {
+void Server::createSocket( void ) 
+{
 	this->_serverFd = socket(AF_INET, SOCK_STREAM, 0);
 	if (this->_serverFd < 0)
 		throw std::runtime_error("Server socket creation failed");
 
 	int opt = 1;
-	if (setsockopt(this->_serverFd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) {
+	if (setsockopt(this->_serverFd, SOL_SOCKET, SO_REUSEADDR | SO_REUSEPORT, &opt, sizeof(opt))) 
+	{
 		if (close(this->_serverFd) == -1)
 			closeFailureLog("serverFd", this->_serverFd);
 		throw SetsockoptException("SO_REUSEADDR | SO_REUSEPORT");
@@ -134,7 +144,8 @@ void Server::bindSocket( void )
 
 void Server::configureListening( void ) 
 {
-    if (listen(this->_serverFd, MAX_CLIENTS) < 0) {
+    if (listen(this->_serverFd, MAX_CLIENTS) < 0) 
+	{
         if (close(this->_serverFd) == -1)
 			closeFailureLog("serverFd", this->_serverFd);
 		throw std::runtime_error("Listen failed");
@@ -142,11 +153,13 @@ void Server::configureListening( void )
     std::cout << "Server is listening on port " << _port << std::endl;
 }
 
-void Server::runServerLoop( void ) {
+void Server::runServerLoop( void ) 
+{
     _poll_fds[0].fd = _serverFd;
     _poll_fds[0].events = POLLIN;
 
-    for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
+    for (size_t i = 1; i < MAX_CLIENTS + 1; i++) 
+	{
         _poll_fds[i].fd = -1;
         _poll_fds[i].events = POLLIN;
     }
@@ -162,7 +175,8 @@ void Server::runServerLoop( void ) {
         	std::cout << "Poll timed out, no activity" << std::endl;
             continue;
         }
-		for (size_t i = 0; i < this->_client_count + 1; i++) {
+		for (size_t i = 0; i < this->_client_count + 1; i++) 
+		{
 			if (this->_poll_fds[i].revents & POLLIN) {
 				if (this->_poll_fds[i].fd == this->_serverFd)
 					newClient();
@@ -174,21 +188,26 @@ void Server::runServerLoop( void ) {
 }
 
 // apresas-: New idea
-void	Server::getClientData( int i ) {
+void	Server::getClientData( int i ) 
+{
 	char	buffer[BUFFER_SIZE];
 	int		bytes_received = recv(this->_poll_fds[i].fd, buffer, sizeof(buffer) - 1, 0);
-	if (bytes_received < 0) {
+	if (bytes_received < 0) 
+	{
 		std::cerr << "Error receiving data from client " << this->_poll_fds[i].fd << std::endl;
-	} else if (bytes_received == 0) {
+	} else if (bytes_received == 0) 
+	{
 		std::cout << "Client disconnected: " << this->_poll_fds[i].fd << std::endl;
-		if (close(this->_poll_fds[i].fd) == -1) {
+		if (close(this->_poll_fds[i].fd) == -1) 
+		{
 			closeFailureLog("_poll_fds", i, this->_poll_fds[i].fd);
 			cleanClose(); // apresas-: We might have to handle some other things here
 		}
 		this->_poll_fds[i].fd = -1;
 		if (static_cast<size_t>(i) == this->_client_count) // apresas-: Unsure about this
 			this->_client_count--;
-	} else {
+	} else 
+	{
 		/* apresas-:
 			TO-DO:
 			
@@ -300,7 +319,8 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 	t_message	message = prepareMessage(raw_message);
 	message.sender_client_fd = client_fd;
 
-	if (message.command.empty()) {
+	if (message.command.empty()) 
+	{
 		std::cerr << "Empty command received, message will be silently ignored" << std::endl;
 		return ;
 	}
@@ -315,7 +335,8 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 apresas-: WIP, I will at some point make a map of function pointers with their names as keys to avoid the
 if-else chain
 */
-std::vector<t_message>	Server::runCommand( t_message & message ) {
+std::vector<t_message>	Server::runCommand( t_message & message ) 
+{
 	std::vector<t_message> replies;
 	if (message.command == "PASS")
 		return this->cmdPass(message);
@@ -333,27 +354,33 @@ std::vector<t_message>	Server::runCommand( t_message & message ) {
 /*
 	Gets the raw message and orders it into a t_message struct
 */
-t_message	Server::prepareMessage( std::string raw_message ) {
+t_message	Server::prepareMessage( std::string raw_message ) 
+{
 	t_message					message;
 	std::string					word;
 	std::istringstream			iss(raw_message);
 	size_t	parameters = 0;
 
-	if (raw_message.empty()) {
+	if (raw_message.empty()) 
+	{
 		std::cerr << "Empty messages should be silently ignored" << std::endl;
 		return message;
 	}
-	if (raw_message[0] == ':') { // Get the prefix, if present
+	if (raw_message[0] == ':') 
+	{ // Get the prefix, if present
 		iss >> word;
 		message.prefix = word;
 	}
-	if (!(iss >> word)) { // Get the commmand
+	if (!(iss >> word)) 
+	{ // Get the commmand
 		std::cerr << "Invalid message format, missing command" << std::endl; // Must handle this some way
 		return message;
 	}
 	message.command = word;
-	while (iss >> word) { // Get the parameters, if present
-		if (parameters == 15) {
+	while (iss >> word) 
+	{ // Get the parameters, if present
+		if (parameters == 15) 
+		{
 			std::cerr << "Too many parameters in the message, further parameters will be simply ignored" << std::endl;
 			break;
 		}
@@ -369,7 +396,8 @@ t_message	Server::prepareMessage( std::string raw_message ) {
 		message.params.push_back(word);
 		parameters++;
 	}
-	if (iss.bad()) {
+	if (iss.bad()) 
+	{
 		std::cerr << "Error reading from the input stream." << std::endl;
 		// apresas-: Idek what we should do here or how this could happen exactly
 		return message;
@@ -377,17 +405,20 @@ t_message	Server::prepareMessage( std::string raw_message ) {
 	return message;
 }
 
-void Server::newClient( void ) {
+void Server::newClient( void ) 
+{
 	struct sockaddr_storage	clientAddress;
 	socklen_t	addressLen = sizeof(clientAddress);
 	int	clientFd = accept(_serverFd, (struct sockaddr *)&clientAddress, &addressLen);
-	if (clientFd < 0) {
+	if (clientFd < 0) 
+	{
 		std::cerr << "Failed to accept new client" << std::endl;
 		return;
 	}
 
 	// Verify if we can add the client
-	if (this->_client_count == MAX_CLIENTS ) { // apresas-: Maybe do this???
+	if (this->_client_count == MAX_CLIENTS ) 
+	{ // apresas-: Maybe do this???
 		std::cerr << "Max clients reached, closing connection" << std::endl;
 		if (close(clientFd) == -1) {
 			closeFailureLog("clientFd", clientFd);
@@ -411,24 +442,26 @@ void Server::newClient( void ) {
 	this->_client_count++;
 }
 
-void Server::sendData(const char *message) {
-	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) {
-		if (_poll_fds[i].fd != -1) {
+void Server::sendData(const char *message) 
+{
+	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) 
+		if (_poll_fds[i].fd != -1) 
 			send(_poll_fds[i].fd, message, strlen(message), 0);
-		}
-	}
 }
 
-std::string Server::getName( void ) const {
+std::string Server::getName( void ) const 
+{
 	return this->_name;
 }
 
-void Server::setVersion( size_t major, size_t minor ) {
+void Server::setVersion( size_t major, size_t minor ) 
+{
 	this->_version_major = major;
 	this->_version_minor = minor;
 }
 
-std::string Server::getVersion( void ) const {
+std::string Server::getVersion( void ) const 
+{
 	std::ostringstream oss;
 
 	oss << this->_version_major;
@@ -438,12 +471,14 @@ std::string Server::getVersion( void ) const {
 	return version;
 }
 
-void Server::setStartTime( void ) {
+void Server::setStartTime( void ) 
+{
 	this->_start_time = std::time(0);
 	std::tm *now = std::localtime(&this->_start_time);
 
 	std::ostringstream oss;
-	switch (now->tm_wday) {
+	switch (now->tm_wday) 
+	{
 		case 0:
 			oss << "Sun, ";
 			break;
@@ -466,7 +501,8 @@ void Server::setStartTime( void ) {
 			oss << "Sat, ";
 			break;
 	}
-	switch (now->tm_mon) {
+	switch (now->tm_mon) 
+	{
 		case 0:
 			oss << "Jan ";
 			break;
@@ -512,39 +548,45 @@ void Server::setStartTime( void ) {
 	this->_start_time_str = oss.str();
 }
 
-std::string Server::getStartTimeStr( void ) {
+std::string Server::getStartTimeStr( void ) 
+{
 	return this->_start_time_str;
 }
 
-bool Server::isUserInServer( const std::string & nickname ) {
+bool Server::isUserInServer( const std::string & nickname ) 
+{
 	Client * client = findClient(nickname);
 	if (client)
 		return true;
 	return false;
 }
 
-Client * Server::findClient( int fd ) {
+Client * Server::findClient( int fd ) 
+{
 	std::map<int, Client>::iterator it = this->_clients.find(fd);
 	if (it == this->_clients.end())
 		return (NULL); // apresas-: Maybe? I'd rather use references but I'm not sure how to handle this rn
 	return &it->second;
 }
 
-Client * Server::findClient( const std::string & nickname ) {
+Client * Server::findClient( const std::string & nickname ) 
+{
 	std::map<std::string, int>::iterator it = this->_clients_fd_map.find(nickname);
 	if (it == this->_clients_fd_map.end())
 		return (NULL);
 	return findClient(it->second);
 }
 
-bool Server::isChannelInServer( const std::string & name ) {
+bool Server::isChannelInServer( const std::string & name ) 
+{
 	Channel * channel = findChannel(name);
 	if (channel)
 		return true;
 	return false;
 }
 
-Channel * Server::findChannel( const std::string & name ) {
+Channel * Server::findChannel( const std::string & name ) 
+{
 	std::map<std::string, Channel>::iterator it = this->_channels.find(name);
 	if (it == this->_channels.end())
 		return (NULL);
