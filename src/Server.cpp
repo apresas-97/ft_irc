@@ -188,7 +188,6 @@ void Server::runServerLoop( void )
     }
 }
 
-// apresas-: New idea
 void	Server::getClientData( int i ) 
 {
 	char	buffer[BUFFER_SIZE];
@@ -197,21 +196,21 @@ void	Server::getClientData( int i )
 	{
 		std::cerr << "Error receiving data from client " << this->_poll_fds[i].fd << std::endl;
 	}
-	else if (bytes_received == 0) 
+	else if (bytes_received == 0)
 	{
 		std::cout << "Client disconnected: " << this->_poll_fds[i].fd << std::endl;
 		if (close(this->_poll_fds[i].fd) == -1) 
 		{
 			closeFailureLog("_poll_fds", i, this->_poll_fds[i].fd);
-			cleanClose(); // apresas-: We might have to handle some other things here
+			cleanClose();
 		}
 		this->_poll_fds[i].fd = -1;
-		if (static_cast<size_t>(i) == this->_client_count) // apresas-: Unsure about this
-			this->_client_count--;
-	} else 
+		this->_client_count--;
+	}
+	else 
 	{
 		/* apresas-:
-			TO-DO:
+			TODO:
 			
 			The data received must be sepparated by CR-LF "\r\n", that's the message delimiter
 			
@@ -239,11 +238,11 @@ void	Server::getClientData( int i )
 				In this cse, in our buffer we were only able to fit the first 3 messages, the remaining "PRIVMSG user4 :H"
 				excedes our BUFFER_SIZE and is not completed with \r\n, it will be ignored and discarded.
 			
-			TO-DO:
+			TODO:
 				'\0' characters are not allowed in messages
 				If a message contains a '\0' character, the message will be silently ignored.
 		*/
-		buffer[bytes_received] = '\0';
+		buffer[bytes_received] = '\0'; // Maybe this overwrites the last character received from recv, but I'm not sure
 		std::cout << "Received from client " << this->_poll_fds[i].fd << ": " << buffer;
 
 		// apresas-: Here is where we have to parse the received data and prepare the response
@@ -358,10 +357,10 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 */
 t_message	Server::prepareMessage( std::string raw_message ) 
 {
-	t_message					message;
-	std::string					word;
-	std::istringstream			iss(raw_message);
-	size_t	parameters = 0;
+	t_message message;
+	std::string word;
+	std::istringstream iss(raw_message);
+	size_t parameters = 0;
 
 	if (raw_message.empty()) 
 	{
@@ -420,7 +419,7 @@ void Server::newClient( void )
 
 	// Verify if we can add the client
 	if (this->_client_count == MAX_CLIENTS ) 
-	{ // apresas-: Maybe do this???
+	{
 		std::cerr << "Max clients reached, closing connection" << std::endl;
 		if (close(clientFd) == -1)
 		{
@@ -431,8 +430,16 @@ void Server::newClient( void )
 	}
 
 	// Add the client's fd and events to the pollfd array
-	this->_poll_fds[this->_client_count].fd = clientFd;
-	this->_poll_fds[this->_client_count].events = POLLIN;
+	for (size_t i = 1; i < MAX_CLIENTS + 1; i++)
+	{
+		if (this->_poll_fds[i].fd == -1) 
+		{
+			this->_poll_fds[i].fd = clientFd;
+			// this->_poll_fds[i].events = POLLIN;
+			break;
+		}
+	}
+
 	// Add the client to the _clients map using its fd as the key
 	// I wrote 3 methods because I'm not sure if they will really work as intended or compile with std=c++98
 	// method 1:
@@ -543,7 +550,7 @@ void Server::setStartTime( void )
 			oss << "Dec ";
 			break;
 	}
-	oss << std::setw(2) << std::setfill('0') << now->tm_mday << " at ";
+	oss << std::setw(2) << std::setfill('0') << now->tm_mday << "at ";
 	oss << std::setw(2) << std::setfill('0') << now->tm_hour + 1 << ":";
 	oss << std::setw(2) << std::setfill('0') << now->tm_min << ":";
 	oss << std::setw(2) << std::setfill('0') << now->tm_sec << " UTC";

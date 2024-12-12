@@ -147,7 +147,7 @@ t_message	reply( t_message & message, std::string corrected_param, std::string n
 	t_message	reply;
 	reply.prefix = ":" + nickname;
 	reply.command = message.command;
-	std::string param = corrected_param; // TO-DO: Figure out the ":" part
+	std::string param = corrected_param; // TODO: Figure out the ":" part
 	reply.params.push_back(param);
 	return reply;
 }
@@ -193,7 +193,7 @@ std::vector<t_message> cmdChanMode( t_message & message, t_modes modes )
 			replies.push_back(reply(ERR_NOCHANMODES, ERR_NOCHANMODES_STR, { message.params[0] }));
 			return replies;
 		}
-		replies.push_back(reply(RPL_CHANNELMODEIS, RPL_CHANNELMODEIS_STR, { message.params[0], get_mode_string(modes), /*get_mode_params_string(modes)*/ })); // TO-DO
+		replies.push_back(reply(RPL_CHANNELMODEIS, RPL_CHANNELMODEIS_STR, { message.params[0], get_mode_string(modes), /*get_mode_params_string(modes)*/ })); // TODO
 		return replies;
 	}
 
@@ -747,7 +747,7 @@ It is REQUIRED that the servers are able to change channel modes so that
 // 		switch (modes[i]) {
 // 			case 'a':
 // 				// A user cannot toggle the away mode with MODES, only with AWAY
-// 				// Should this be handled in some way? TO-DO
+// 				// Should this be handled in some way? TODO
 // 				break;
 // 			case 'i':
 // 				client.setMode('i', operation);

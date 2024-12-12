@@ -35,7 +35,7 @@ t_message Server::createReply( int number, const std::string message )
 	// reply.timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
 	reply.command = formatNumber(number);
-	reply.params.push_back(":" + message);
+	reply.params.push_back(message);
 	return reply;
 }
 
@@ -92,7 +92,7 @@ t_message Server::createReply( t_message & message, std::string corrected_param,
 	t_message	reply;
 	reply.prefix = ":" + nickname;
 	reply.command = message.command;
-	std::string param = corrected_param; // TO-DO: Figure out the ":" part
+	std::string param = corrected_param; // TODO: Figure out the ":" part
 	reply.params.push_back(param);
 	return reply;
 }

@@ -22,7 +22,7 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 	Client & client = *this->_current_client;
 	std::vector<t_message> replies;
 
-	if (message.params.size() < 1) 
+	if (message.params.size() < 1)
 	{
 		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client.getNickname()));
 		return replies;
@@ -88,7 +88,7 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	// I think it's removed after a certain amount of time, but I'm not sure
 
 	/*
-	apresas-: TO-DO: Send a message to all channels the user is in that the nickname has changed
+	apresas-: TODO: Send a message to all channels the user is in that the nickname has changed
 	The message should be something like:
 	:oldnickname NICK newnickname
 	It should be broadcasted to all users in the same channels as the user
@@ -130,7 +130,7 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 		replies.push_back(createReply(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_STR));
 		return replies;
 	}
-	// apresas-: TO-DO: Check that the username and realname are not too long
+	// apresas-: TODO: Check that the username and realname are not too long
 	// But if they are, I don't know how to handle it yet because the protocol doesn't
 	// specify what to do in that case
 	// It doesn't really even specify a limit for username or realname length
@@ -141,14 +141,14 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 
 	client.setRegistered(true);
 
-	// TO-DO:
+	// TODO:
 	// Prepare the welcome message reply
 	replies.push_back(createReply(RPL_WELCOME, RPL_WELCOME_STR, client.getUserIdentifier()));
 	std::vector<std::string> yourhost_params;
 	yourhost_params.push_back(this->getName());
 	yourhost_params.push_back(this->getVersion());
 	replies.push_back(createReply(RPL_YOURHOST, RPL_YOURHOST_STR, yourhost_params));
-	replies.push_back(createReply(RPL_CREATED, RPL_CREATED_STR, this->getStartTimeStr())); // TO-DO: Get the creation date from somewhere
+	replies.push_back(createReply(RPL_CREATED, RPL_CREATED_STR, this->getStartTimeStr()));
 	std::vector<std::string> myinfo_params;
 	myinfo_params.push_back(this->getName());
 	myinfo_params.push_back(this->getVersion());
@@ -176,9 +176,9 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 
 	if (client.getNickname() != message.params[0]) 
 	{
-		if (isUserInServer(message.params[0]) == true) // TO-DO
+		if (isUserInServer(message.params[0]) == true) // TODO
 			replies.push_back(createReply(ERR_USERSDONTMATCH, ERR_USERSDONTMATCH_STR));
-		else if (isChannelInServer(message.params[0] == true))// TO-DO
+		else if (isChannelInServer(message.params[0] == true))// TODO
 			return cmdChanMode(message);
 		else
 			replies.push_back(createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, message.params[0]));
@@ -187,7 +187,7 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 
 	if (message.params.size() == 1) 
 	{
-		replies.push_back(createReply(RPL_UMODEIS, RPL_UMODEIS_STR, get_mode_string(modes))); // TO-DO
+		replies.push_back(createReply(RPL_UMODEIS, RPL_UMODEIS_STR, client.getModeString())); // TODO
 		return replies;
 	}
 
@@ -228,7 +228,7 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 				}
 				continue;
 			}
-			bool has_mode = client.hasMode(mode, /*channel_name?*/); // TO-DO
+			bool has_mode = client.hasMode(mode, /*channel_name?*/); // TODO
 			if ((operation == true && has_mode == false) || (operation == false && has_mode == true)) 
 			{
 				if (operation == true && (mode == 'o' || mode == 'O'))
@@ -237,7 +237,7 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 					continue;
 				if (mode == 'a')
 					continue;
-				client.setMode(mode, operation, /*channel_name?*/); // TO-DO
+				client.setMode(mode, operation, /*channel_name?*/); // TODO
 				has_effect = true;
 				if (insert_operator == true) 
 				{

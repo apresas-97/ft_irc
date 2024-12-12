@@ -96,7 +96,7 @@ class Server
 		void configureListening( void );
 		void runServerLoop( void );
 		void newClient( void );
-		void getClientData( int i ); // apresas-: New idea
+		void getClientData( int i );
 		void sendData( const char *message );
 		void setNonBlock( int & socketFd );
 		void cleanClose( void );
