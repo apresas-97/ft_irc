@@ -72,7 +72,6 @@ void Server::cleanClose( void )
 void Server::parseInput( void ) 
 {
 	unsigned int		port;
-	std::string			port_str(this->_port);
 	std::istringstream	iss(this->_port);
 
 	iss >> port;
