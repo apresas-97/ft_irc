@@ -97,7 +97,7 @@ void Server::createSocket( void )
 	{
 		if (close(this->_serverFd) == -1)
 			closeFailureLog("serverFd", this->_serverFd);
-		throw SetsockoptException("SO_REUSEADDR | SO_REUSEPORT");
+		throw std::runtime_error("setsockopt failed to set ( SO_REUSEADDR | SO_REUSEPORT ) socket options");
 	}
 
 	setNonBlock(_serverFd);
