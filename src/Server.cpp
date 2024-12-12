@@ -46,12 +46,7 @@ void Server::signalHandler( int signal )
 	{
 		if (instance)
 			instance->cleanClose();
-		exit(0);
-		/* apresas-:
-			Should we use exit here?
-			Also, should it be exit(0) ? (EXIT_SUCCESS)
-			Or exit(EXIT_FAILURE) ? (1)
-		*/
+		exit(EXIT_SUCCESS);
 	}
 }
 
