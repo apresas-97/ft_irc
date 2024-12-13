@@ -2,8 +2,7 @@
 	// TODO::	define port range in Server.cpp	parseInput()
 
 	// TODO::	Server.cpp	getClientData	...		buffer handling, message handling...
-	//				Chech that there's no null in the message
-	//				Check null at the end of the message
+	//				checks for NULL and CRLF have been implemented... CRLF is still work in progress
 
 	// TODO::	Server.cpp	parseData	...		parse data received from the client
 	//				Everything....
