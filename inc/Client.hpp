@@ -6,6 +6,7 @@
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
 
+#include "defines.hpp"
 #include "Channel.hpp"
 
 class Channel;
