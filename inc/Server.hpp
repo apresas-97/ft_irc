@@ -116,6 +116,7 @@ class Server
 		std::vector<t_message> cmdNick( t_message & message );
 		std::vector<t_message> cmdUser( t_message & message );
 		std::vector<t_message> cmdMode( t_message & message );
+		std::vector<t_message> cmdChanMode( t_message & message, t_mode modes ); 
 
 		t_message	prepareMessage( std::string rawMessage );
 
