@@ -13,8 +13,8 @@ std::string formatNumber( int number )
 std::string getTimestamp( void ) 
 {
 	std::string timestamp = "@time=";
-	std::time_t t = std::time(0);
-	std::tm *now = std::localtime(&t);
+	time_t t = time(0);
+	tm *now = localtime(&t);
 
 	std::ostringstream	oss;
 	oss << (now->tm_year + 1900) << '-'
