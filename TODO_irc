@@ -32,4 +32,4 @@
 
 
 	// TODO::	commands.cpp	cmdChanMode() ... do the whole function. it's not defined
-	//				theres an early version in mode_test in the root repository
+	//				Function exists at the bottom of commands.cpp
