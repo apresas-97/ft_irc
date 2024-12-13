@@ -160,3 +160,34 @@ void Client::setMode( char mode, bool value )
 	}
 }
 
+bool Client::hasMode( char mode ) const
+{	
+	switch (mode)
+	{
+		case 'a':
+			return this->_mode.a;
+			break;
+		case 'i':
+			return this->_mode.i;
+			break;
+		case 'w':
+			return this->_mode.w;
+			break;
+		case 'r':
+			return this->_mode.r;
+			break;
+		case 'o':
+			return this->_mode.o;
+			break;
+		case 'O':
+			return this->_mode.O;
+			break;
+		case 's':
+			return this->_mode.s;
+			break;
+		default:
+			return false; // ffornes- should we give error message here?
+			break;
+	}
+}
+
