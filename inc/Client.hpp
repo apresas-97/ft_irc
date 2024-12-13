@@ -54,6 +54,7 @@ class Client
 		void	setRegistered( bool value );
 
 		bool	getMode( char mode ) const;
+		t_mode	getModes( void ) const;
 		void	setMode( char mode, bool value );
 
 		bool	hasMode( char mode ) const;

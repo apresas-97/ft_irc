@@ -130,6 +130,11 @@ bool Client::getMode( char mode ) const
 	}
 }
 
+t_mode	Client::getModes( void ) const 
+{
+	return this->_mode;
+}
+
 void Client::setMode( char mode, bool value )
 {
 	switch (mode)
