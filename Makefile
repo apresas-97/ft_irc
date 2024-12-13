@@ -8,6 +8,8 @@ DEPS_DIR = deps
 
 SRC_FILES =	main.cpp \
 			Server.cpp \
+			Server_init.cpp \
+			Server_loop.cpp \
 			Client.cpp \
 			Channel.cpp \
 			commands.cpp \
