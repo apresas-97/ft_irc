@@ -1,8 +1,6 @@
 
 	// TODO::	define port range in Server.cpp	parseInput()
 
-	// TODO::	cambiar poll_fds, en lugar de tener un array de pollfds cambiarlo a un container stl con el contenido <struct pollfd>
-
 	// TODO::	Server.cpp	getClientData	...		buffer handling, message handling...
 	//				Chech that there's no null in the message
 	//				Check null at the end of the message

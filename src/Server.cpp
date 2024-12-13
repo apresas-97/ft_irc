@@ -52,15 +52,15 @@ void Server::signalHandler( int signal )
 
 void Server::cleanClose( void ) 
 {
-	std::cout << "call clean close" << std::endl;
-	if (close(_serverFd) == -1)
-		closeFailureLog("serverFd", this->_serverFd);
-	for (size_t i = 1; i < MAX_CLIENTS; i++) 
+	for (size_t i = 0; i < _poll_fds.size(); i++) 
 	{
-		if (_poll_fds[i].fd == -1)
-			continue;
-		if (close(_poll_fds[i].fd) == -1)
-			closeFailureLog("_poll_fds", i, this->_serverFd);
+		if (!close(_poll_fds[i].fd)) 
+		{
+			if (_poll_fds[i] != this->_serverFd)
+				closeFailureLog("_poll_fds", _poll_fds[i].fd, this->_serverFd);
+			else
+				closeFailureLog("serverFd", this->_serverFd);
+		}
 	}
 }
 
@@ -151,20 +151,17 @@ void Server::configureListening( void )
 
 void Server::runServerLoop( void ) 
 {
-    _poll_fds[0].fd = _serverFd;
-    _poll_fds[0].events = POLLIN;
+	struct pollfd	server;
 
-    for (size_t i = 1; i < MAX_CLIENTS + 1; i++) 
-	{
-        _poll_fds[i].fd = -1;
-        _poll_fds[i].events = POLLIN;
-    }
-	_client_count = 0;
+	server.fd = _serverFd;
+	server.events = POLLIN;
+	_poll_fds.push_back(server);
+
     std::cout << "Server started, waiting for clients..." << std::endl;
 
     while (true)
 	{
-        int pollCount = poll(_poll_fds, _client_count + 1, TIMEOUT);
+        int pollCount = poll(_poll_fds, _poll_fds.size(), TIMEOUT);
         if (pollCount < 0)
 		{
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
@@ -175,14 +172,14 @@ void Server::runServerLoop( void )
         	std::cout << "Poll timed out, no activity" << std::endl;
             continue;
         }
-		for (size_t i = 0; i < this->_client_count + 1; i++) 
+		for (size_t i = 0; i < _poll_fds.size(); i++) 
 		{
 			if (this->_poll_fds[i].revents & POLLIN)
 			{
 				if (this->_poll_fds[i].fd == this->_serverFd)
 					newClient();
 				else
-					getClientData( i );
+					getClientData(i);
 			}
 		}
     }
@@ -204,8 +201,9 @@ void	Server::getClientData( int i )
 			closeFailureLog("_poll_fds", i, this->_poll_fds[i].fd);
 			cleanClose();
 		}
-		this->_poll_fds[i].fd = -1;
-		this->_client_count--;
+		std::vector::iterator it = _poll_fds.begin();
+		std::advance(it, i);
+		_poll_fds.erase(it);
 	}
 	else 
 	{
@@ -430,15 +428,11 @@ void Server::newClient( void )
 	}
 
 	// Add the client's fd and events to the pollfd array
-	for (size_t i = 1; i < MAX_CLIENTS + 1; i++)
-	{
-		if (this->_poll_fds[i].fd == -1) 
-		{
-			this->_poll_fds[i].fd = clientFd;
-			// this->_poll_fds[i].events = POLLIN;
-			break;
-		}
-	}
+	struct pollfd	tmp;
+
+	tmp.fd = clientFd;
+	tmp.events = POLLIN;
+	_poll_fds.push_back(tmp);
 
 	// Add the client to the _clients map using its fd as the key
 	// I wrote 3 methods because I'm not sure if they will really work as intended or compile with std=c++98
@@ -454,7 +448,7 @@ void Server::newClient( void )
 
 void Server::sendData(const char *message) 
 {
-	for (size_t i = 1; i < MAX_CLIENTS + 1; i++) 
+	for (size_t i = 1; i < _poll_fds.size(); i++) 
 		if (_poll_fds[i].fd != -1) 
 			send(_poll_fds[i].fd, message, strlen(message), 0);
 }

@@ -49,7 +49,7 @@ class Server
 		
 		unsigned int		_client_count;
 		struct sockaddr_in	_server_address;
-		struct pollfd		_poll_fds[MAX_CLIENTS + 1];
+		std::vector<struct pollfd>	_poll_fds;
 
 		std::string			_name;
 		size_t				_version_major;
