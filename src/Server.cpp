@@ -205,7 +205,7 @@ void	Server::getClientData( int i )
 {
 	char	buffer[BUFFER_SIZE] = {0};
 	memset(buffer, 0, BUFFER_SIZE);
-	int		bytes_received = read(this->_poll_fds[i].fd, buffer, BUFFER_SIZE);
+	int		bytes_received = read(this->_poll_fds[i].fd, buffer, BUFFER_SIZE - 1);
 //	int		bytes_received = recv(this->_poll_fds[i].fd, buffer, sizeof(buffer) - 1, 0);
 	if (bytes_received < 0) 
 	{
