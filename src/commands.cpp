@@ -271,7 +271,7 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 	return replies;
 }
 
-std::vector<t_message> cmdChanMode( t_message & message, t_mode modes ) 
+std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes ) 
 {
 	std::vector<t_message> replies;
 /*
