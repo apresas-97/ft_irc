@@ -37,7 +37,7 @@ void Server::runServerLoop( void )
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
             break;
         }
-		else if (pollCount == 0)
+		else if (pollCount == 0) // ffornes- Can remove this entire condition block....
 		{
         	std::cout << "Poll timed out, no activity" << std::endl;
             continue;
@@ -59,7 +59,7 @@ void Server::newClient( void )
 {
 	struct sockaddr_storage	clientAddress;
 	socklen_t	addressLen = sizeof(clientAddress);
-	int	clientFd = accept(_serverFd, (struct sockaddr *)&clientAddress, &addressLen);
+	int	clientFd = accept(_serverFd, (struct sockaddr *)&clientAddress, &addressLen); // ffornes- other ircs set 2nd 3rd args as NULL ???
 	if (clientFd < 0) 
 	{
 		std::cerr << "Failed to accept new client" << std::endl;
@@ -83,16 +83,8 @@ void Server::newClient( void )
 
 	tmp.fd = clientFd;
 	tmp.events = POLLIN;
+	tmp.revents = 0;
 	_poll_fds.push_back(tmp);
-
-	// Add the client to the _clients map using its fd as the key
-	// I wrote 3 methods because I'm not sure if they will really work as intended or compile with std=c++98
-	// method 1:
-	// std::pair<int, Client>	new_client(clientFd, Client(clientFd, clientAddress));
-	// this->_clients.insert(new_client);
-	// method 2:
-	// this->_clients.insert(std::make_pair(clientFd, Client(clientFd, clientAddress)));
-	// method 3:
 	this->_clients.insert(std::pair<int, Client>(clientFd, Client(clientFd)));
 	this->_client_count++;
 }
@@ -103,6 +95,7 @@ void	Server::getClientData( int i )
 	memset(buffer, 0, BUFFER_SIZE);
 	int		bytes_received = read(this->_poll_fds[i].fd, buffer, BUFFER_SIZE - 1);
 //	int		bytes_received = recv(this->_poll_fds[i].fd, buffer, sizeof(buffer) - 1, 0);
+
 	if (bytes_received < 0) 
 	{
 		std::cerr << "Error receiving data from client " << this->_poll_fds[i].fd << std::endl;
@@ -121,6 +114,37 @@ void	Server::getClientData( int i )
 	}
 	else 
 	{
+		// Check if there's any NULL characters in the buffer... if there are, ignore the message...
+		if (hasNULL(buffer, bytes_received))
+			return ; // ffornes- maybe not a simple return here?
+	
+		buffer[bytes_received] = '\0'; // Maybe this overwrites the last character received from recv, but I'm not sure
+									   // ffornes- it's necessary in order to check for CRLF, no null == no end??
+
+		Client * client = findClient(_poll_fds[i].fd);
+		// Check for CRLF
+		if (hasCRLF(buffer))
+		{
+			std::cout << "Found CRLF" << std::endl;
+			client->addToBuffer(buffer); // Check if returned true
+			std::string	client_buffer = client->getBuffer();
+			std::string message(client_buffer, client_buffer.size() - 1); // apresas-: Maybe just message(buffer); ?
+			std::string response;
+			parseData(message, this->_poll_fds[i].fd);
+			sendData(buffer);
+			client->cleanBuffer();
+			std::cout << "Received from client " << this->_poll_fds[i].fd << ": " << buffer;
+		}
+		else
+		{
+			std::cout << "No CRLF found..." << std::endl;
+			client->addToBuffer(buffer); // Check if returned true
+			std::cout << "Has been saved successfully?" << std::endl;
+		}
+//		delete client; // SHould we handle the client in a different way? If I delete it explodes LMAO
+
+		// apresas-: Here is where we have to parse the received data and prepare the response
+
 		/* apresas-:
 			TODO:
 			
@@ -154,32 +178,6 @@ void	Server::getClientData( int i )
 				'\0' characters are not allowed in messages
 				If a message contains a '\0' character, the message will be silently ignored.
 		*/
-
-		// Check if there's any NULL characters in the buffer... if there are, ignore the message...
-		if (hasNULL(buffer, bytes_received))
-			return ; // ffornes- maybe not a simple return here?
-	
-		buffer[bytes_received] = '\0'; // Maybe this overwrites the last character received from recv, but I'm not sure
-									   // ffornes- it's necessary in order to check for CRLF, no null == no end??
-		// Check for CRLF
-		if (hasCRLF(buffer))
-		{
-			std::cout << "Found CRLF" << std::endl;
-		}
-		else
-		{
-			std::cout << "No CRLF found..." << std::endl;
-		}
-
-		std::cout << "Received from client " << this->_poll_fds[i].fd << ": " << buffer;
-
-		// apresas-: Here is where we have to parse the received data and prepare the response
-
-		std::string message(buffer, strlen(buffer) - 1); // apresas-: Maybe just message(buffer); ?
-		std::string response;
-		parseData(message, this->_poll_fds[i].fd);
-
-		sendData(buffer);
 	}
 }
 
