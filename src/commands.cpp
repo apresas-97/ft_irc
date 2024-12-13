@@ -228,7 +228,7 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 				}
 				continue;
 			}
-			bool has_mode = client.hasMode(mode, /*channel_name?*/); // TODO
+			bool has_mode = client.hasMode(mode); // ffornes- removed call with channel as second argument since modes are universal?
 			if ((operation == true && has_mode == false) || (operation == false && has_mode == true)) 
 			{
 				if (operation == true && (mode == 'o' || mode == 'O'))
@@ -237,7 +237,7 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 					continue;
 				if (mode == 'a')
 					continue;
-				client.setMode(mode, operation, /*channel_name?*/); // TODO
+				client.setMode(mode, operation); // ffornes- same as comment above
 				has_effect = true;
 				if (insert_operator == true) 
 				{
