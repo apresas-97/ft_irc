@@ -77,6 +77,7 @@ class Client
 		bool	_authorised; // Has the client provided the correct password? (PASS command)
 		bool	_registered; // Has the client properly registered as a user? (NICK and USER commands)
 
+		char *	_buffer[BUFFER_SIZE];
 };
 
 #endif // CLIENT_HPP
