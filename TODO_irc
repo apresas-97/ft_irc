@@ -33,6 +33,3 @@
 
 	// TODO::	commands.cpp	cmdChanMode() ... do the whole function. it's not defined
 	//				theres an early version in mode_test in the root repository
-
-	// TODO::	Client.hpp	Client.cpp	getModeString( ... ) ...
-	//				this function must return a string containing all the modes from the user...

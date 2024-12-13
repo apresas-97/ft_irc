@@ -161,7 +161,7 @@ void Client::setMode( char mode, bool value )
 }
 
 bool Client::hasMode( char mode ) const
-{	
+{
 	switch (mode)
 	{
 		case 'a':
@@ -189,5 +189,27 @@ bool Client::hasMode( char mode ) const
 			return false; // ffornes- should we give error message here?
 			break;
 	}
+}
+
+const std::string Client::getModeString( void ) const
+{
+	std::string	str("+");
+
+	if (this->hasMode('a'))
+		str += "a";
+	if (this->hasMode('i'))
+		str += "i";
+	if (this->hasMode('w'))
+		str += "w";
+	if (this->hasMode('r'))
+		str += "r";
+	if (this->hasMode('o'))
+		str += "o";
+	if (this->hasMode('O'))
+		str += "O";
+	if (this->hasMode('s'))
+		str += "s";
+
+	return str;
 }
 

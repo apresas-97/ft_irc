@@ -57,6 +57,7 @@ class Client
 		void	setMode( char mode, bool value );
 
 		bool	hasMode( char mode ) const;
+		const std::string getModeString( void ) const ;
 
 	private:
 
