@@ -61,6 +61,10 @@ class Client
 		bool	hasMode( char mode ) const;
 		const std::string getModeString( void ) const ;
 
+		bool	addToBuffer( char * content );
+		void	cleanBuffer( void );
+		std::string getBuffer( void ) const;
+
 	private:
 
 		std::string	_nickname;
@@ -78,7 +82,7 @@ class Client
 		bool	_authorised; // Has the client provided the correct password? (PASS command)
 		bool	_registered; // Has the client properly registered as a user? (NICK and USER commands)
 
-		char *	_buffer[BUFFER_SIZE];
+		char 	_buffer[BUFFER_SIZE];
 };
 
 #endif // CLIENT_HPP

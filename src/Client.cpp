@@ -1,6 +1,9 @@
 #include "Client.hpp"
+#include <cstring>
 
-Client::Client( void ) {}
+Client::Client( void ) {
+	memset(_buffer, 0, BUFFER_SIZE);
+}
 
 // Client::Client( int fd, struct sockaddr_storage address ) : _registered(false), _authorised(false)
 // {
@@ -218,3 +221,30 @@ const std::string Client::getModeString( void ) const
 	return str;
 }
 
+bool	Client::addToBuffer( char * content ) 
+{
+    int i = 0;
+
+    while (_buffer[i] != '\0' && i < BUFFER_SIZE - 1)
+        i++;
+
+    int j = 0;
+    while (content[j] != '\0' && i < BUFFER_SIZE - 1) {
+        _buffer[i] = content[j];
+        i++;
+        j++;
+    }
+    _buffer[i] = '\0';
+	return true; // ffornes- maybe should return false if the buffer is filled and there's no more space?
+	// should we silently ignore the message in that case?? 
+}
+
+void	Client::cleanBuffer( void )
+{
+	memset(_buffer, 0, BUFFER_SIZE);
+}
+
+std::string Client::getBuffer( void ) const
+{
+	return _buffer;
+}
