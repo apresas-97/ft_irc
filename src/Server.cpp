@@ -56,7 +56,7 @@ void Server::cleanClose( void )
 	{
 		if (!close(_poll_fds[i].fd)) 
 		{
-			if (_poll_fds[i] != this->_serverFd)
+			if (_poll_fds[i].fd != this->_serverFd)
 				closeFailureLog("_poll_fds", _poll_fds[i].fd, this->_serverFd);
 			else
 				closeFailureLog("serverFd", this->_serverFd);
@@ -161,7 +161,7 @@ void Server::runServerLoop( void )
 
     while (true)
 	{
-        int pollCount = poll(_poll_fds, _poll_fds.size(), TIMEOUT);
+        int pollCount = poll(this->_poll_fds.data(), _poll_fds.size(), TIMEOUT);
         if (pollCount < 0)
 		{
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
@@ -201,7 +201,7 @@ void	Server::getClientData( int i )
 			closeFailureLog("_poll_fds", i, this->_poll_fds[i].fd);
 			cleanClose();
 		}
-		std::vector::iterator it = _poll_fds.begin();
+		std::vector<struct pollfd>::iterator it = _poll_fds.begin();
 		std::advance(it, i);
 		_poll_fds.erase(it);
 	}
