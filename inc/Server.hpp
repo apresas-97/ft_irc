@@ -106,6 +106,8 @@ class Server
 
 		std::string	getName( void ) const;
 
+		bool	hasCRLF( const std::string ) const;
+
 		t_message createReply( int number, const std::string message );
 		t_message createReply( int number, const std::string message, const std::string & param );
 		t_message createReply( int number, const std::string message, const std::vector<std::string> & param );

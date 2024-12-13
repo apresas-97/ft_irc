@@ -35,7 +35,7 @@ Server::~Server( void )
 	if (_serverFd != -1) 
 	{
 		std::cout << "Server destructor called" << std::endl;
-		if (close(_serverFd) == -1)
+		if (_poll_fds.size() > 0 && close(_serverFd) == -1)
 			closeFailureLog("serverFd", this->_serverFd);
 	}
 }
@@ -52,16 +52,17 @@ void Server::signalHandler( int signal )
 
 void Server::cleanClose( void ) 
 {
-	for (size_t i = 0; i < _poll_fds.size(); i++) 
+	for (std::vector<struct pollfd>::iterator it = _poll_fds.begin(); it != _poll_fds.end(); ++it)
 	{
-		if (!close(_poll_fds[i].fd)) 
+		if (close((*it).fd) == -1)
 		{
-			if (_poll_fds[i].fd != this->_serverFd)
-				closeFailureLog("_poll_fds", _poll_fds[i].fd, this->_serverFd);
-			else
+			if ((*it).fd != this->_serverFd)
+				closeFailureLog("_poll_fds", (*it).fd, this->_serverFd);
+			else if ((*it).fd == this->_serverFd)
 				closeFailureLog("serverFd", this->_serverFd);
 		}
 	}
+	_poll_fds.erase(_poll_fds.begin(), _poll_fds.end());
 }
 
 void Server::parseInput( void ) 
@@ -185,6 +186,13 @@ void Server::runServerLoop( void )
     }
 }
 
+bool	Server::hasCRLF( const std::string str ) const
+{
+	if (str.size() > 1)
+		return str[str.size() - 2] == '\r' && str[str.size() - 1] == '\n';
+	return false;
+}
+
 void	Server::getClientData( int i ) 
 {
 	char	buffer[BUFFER_SIZE];
@@ -207,6 +215,15 @@ void	Server::getClientData( int i )
 	}
 	else 
 	{
+		// Check for CRLF
+		if (hasCRLF(buffer))
+		{
+			std::cout << "Found CRLF" << std::endl;
+		}
+		else
+		{
+			std::cout << "No CRLF found..." << std::endl;
+		}
 		/* apresas-:
 			TODO:
 			
