@@ -186,6 +186,14 @@ void Server::runServerLoop( void )
     }
 }
 
+bool	Server::hasNULL( const char * buffer, int bytes_received ) const
+{
+	for (int i = 0; i < bytes_received; i++)
+		if (buffer[i] == '\0')
+			return true;
+	return false;
+}
+
 bool	Server::hasCRLF( const std::string str ) const
 {
 	if (str.size() > 1)
@@ -195,8 +203,10 @@ bool	Server::hasCRLF( const std::string str ) const
 
 void	Server::getClientData( int i ) 
 {
-	char	buffer[BUFFER_SIZE];
-	int		bytes_received = recv(this->_poll_fds[i].fd, buffer, sizeof(buffer) - 1, 0);
+	char	buffer[BUFFER_SIZE] = {0};
+	memset(buffer, 0, BUFFER_SIZE);
+	int		bytes_received = read(this->_poll_fds[i].fd, buffer, BUFFER_SIZE);
+//	int		bytes_received = recv(this->_poll_fds[i].fd, buffer, sizeof(buffer) - 1, 0);
 	if (bytes_received < 0) 
 	{
 		std::cerr << "Error receiving data from client " << this->_poll_fds[i].fd << std::endl;
@@ -215,15 +225,6 @@ void	Server::getClientData( int i )
 	}
 	else 
 	{
-		// Check for CRLF
-		if (hasCRLF(buffer))
-		{
-			std::cout << "Found CRLF" << std::endl;
-		}
-		else
-		{
-			std::cout << "No CRLF found..." << std::endl;
-		}
 		/* apresas-:
 			TODO:
 			
@@ -257,7 +258,23 @@ void	Server::getClientData( int i )
 				'\0' characters are not allowed in messages
 				If a message contains a '\0' character, the message will be silently ignored.
 		*/
+
+		// Check if there's any NULL characters in the buffer... if there are, ignore the message...
+		if (hasNULL(buffer, bytes_received))
+			return ; // ffornes- maybe not a simple return here?
+	
 		buffer[bytes_received] = '\0'; // Maybe this overwrites the last character received from recv, but I'm not sure
+									   // ffornes- it's necessary in order to check for CRLF, no null == no end??
+		// Check for CRLF
+		if (hasCRLF(buffer))
+		{
+			std::cout << "Found CRLF" << std::endl;
+		}
+		else
+		{
+			std::cout << "No CRLF found..." << std::endl;
+		}
+
 		std::cout << "Received from client " << this->_poll_fds[i].fd << ": " << buffer;
 
 		// apresas-: Here is where we have to parse the received data and prepare the response

@@ -106,6 +106,7 @@ class Server
 
 		std::string	getName( void ) const;
 
+		bool	hasNULL( const char * buffer, int bytes_received ) const;
 		bool	hasCRLF( const std::string ) const;
 
 		t_message createReply( int number, const std::string message );
