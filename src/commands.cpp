@@ -449,3 +449,29 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	replies.push_back(quit_broadcast);
 	return replies;
 }
+
+/*
+	Command: JOIN
+	Parameters: ( <channel> *( "," <channel> ) [ <key> *( "," <key> ) ] ) / "0"
+
+	The JOIN command is used by a user to request to start listening to the specific channel.
+
+	//// This part I don't understand:
+	Servers must be able to parse arguments in the form of a list of target, but SHOULD NOT
+	use lists when sending JOIN messages to clients.
+	//// End of part ////
+
+	If a JOIN is succesful, the user receives a JOIN message as confirmation and it is then
+	sent the channel's topic using RPL_TOPIC and the list of users who are in the channel
+	using RPL_NAMREPLY, which must include the user in question.
+
+	JOIN accepts a special argument "0", which is a special request to leave all channels
+	the user is currently a member of.
+	The server will process this message as if the user had sent a PART command for each
+	channel he is a member of.
+*/
+std::vector<t_message>	Server::cmdJoin( t_message & message )
+{
+	std::vector<t_message> replies;
+	Client & client = *this->_current_client;
+}
