@@ -114,41 +114,26 @@ void	Server::getClientData( int i )
 	}
 	else 
 	{
-		// Check if there's any NULL characters in the buffer... if there are, ignore the message...
+		// Check if there's any NULL characters in the buffer... if there are, the message should be silently ignored
 		if (hasNULL(buffer, bytes_received))
 			return ; // ffornes- maybe not a simple return here?
 	
 		buffer[bytes_received] = '\0'; // Maybe this overwrites the last character received from recv, but I'm not sure
 									   // ffornes- it's necessary in order to check for CRLF, no null == no end??
 
-		Client * client = findClient(_poll_fds[i].fd);
-		// Check for CRLF
-		if (hasCRLF(buffer))
-		{
-			std::cout << "Found CRLF" << std::endl;
-			client->addToBuffer(buffer); // Check if returned true
-			std::string	client_buffer = client->getBuffer();
-			std::string message(client_buffer, client_buffer.size() - 1); // apresas-: Maybe just message(buffer); ?
-			std::string response;
-			parseData(message, this->_poll_fds[i].fd);
-			sendData(buffer);
-			client->cleanBuffer();
-			std::cout << "Received from client " << this->_poll_fds[i].fd << ": " << buffer;
-		}
-		else
-		{
-			std::cout << "No CRLF found..." << std::endl;
-			client->addToBuffer(buffer); // Check if returned true
-			std::cout << "Has been saved successfully?" << std::endl;
-		}
+		// ffornes- We were supposed to look for CRLF but every test I did I wasn't able to find them in any message
+		Client * client = findClient(_poll_fds[i].fd); // ffornes- maybe do it without a pointer?
+		client->addToBuffer(buffer); // Check if returned true
+		std::string	client_buffer = client->getBuffer();
+		std::string message(client_buffer, client_buffer.size() - 1); // apresas-: Maybe just message(buffer); ?
+		std::string response;
+		parseData(message, this->_poll_fds[i].fd);
+		sendData(buffer);
+		client->cleanBuffer();
 //		delete client; // SHould we handle the client in a different way? If I delete it explodes LMAO
-
-		// apresas-: Here is where we have to parse the received data and prepare the response
 
 		/* apresas-:
 			TODO:
-			
-			The data received must be sepparated by CR-LF "\r\n", that's the message delimiter
 			
 			We have to, get all the messages from the received bytes, parsing them, executing them and sending appropriate responses
 
@@ -174,74 +159,14 @@ void	Server::getClientData( int i )
 				In this cse, in our buffer we were only able to fit the first 3 messages, the remaining "PRIVMSG user4 :H"
 				excedes our BUFFER_SIZE and is not completed with \r\n, it will be ignored and discarded.
 			
-			TODO:
-				'\0' characters are not allowed in messages
-				If a message contains a '\0' character, the message will be silently ignored.
 		*/
 	}
 }
 
 /// apresas-: WIP
+// ffornes-:	What's the point of this function? It barely does anything else besides calling prepareMessage
 void Server::parseData( const std::string & raw_message, int client_fd )
 {
-	/*
-	Format of a valid message:
-
-		[<prefix>] SPACE <command> SPACE [ <argument> *( SPACE <argument> ) ]
-
-		> The prefix is optional and MUST start with a colon ':' to differenciate it from the command
-			It is mostly used for server-server communication, but, users can also use it.
-			However, for users, as far as I know, the prefix will simply be ignored if it doesn't match
-			to the user sending the message.
-			HOWEVER
-				The server will actually treat the message when sending it forward to other clients and
-				it will put in place the CORRECT prefix for the user that sent the message.
-				Example:
-					I send:
-						:NONSENSE PRIVMSG #channel :Hello channel!
-					The server will send to other clients:
-						:mynickname!myusername@myhostname PRIVMSG #channel :Hello channel!
-					
-					This is so the receivers of the message know who sent it.
-				
-			SUMMARY: We ignore the user received prefix, but we will still need to put the correct prefix, either now
-			or later. We'll see
-
-		> The command is 1 word and MUST be present.
-			If no command is present, the message will be "silently ignored", meaning no response, no error, no nothing.
-
-		> The parameters are optional, some have and some don't
-		> There can only be AT MOST 15 parameters in a message, any further parameters will be silently ignored
-
-		> If the LAST argument contains SPACES, it must start with a colon ':' to know not to keep splitting
-			Example:
-				PRIVMSG #channel :Hello channel! What's up everyone? This is a text messsage with spaces.
-				The last argument will be:
-				<:Hello channel! What's up everyone? This is a text messsage with spaces.>
-		
-		> Empty messages will be silently ignored
-
-		> All messages will end with a CRLF (Carriage Return, Line Feed) '\r\n'
-			But at this point, that should have already been handled when receiving the message
-
-		> Messages have a max length of 512 bytes, including the CRLF at the end
-
-	EXAMPLE OF A VALID MESSAGE:
-
-		misco!~apresas-@whatever.com PRIVMSG #channel :Hello channel!
-
-		This translates to:
-
-		Prefix: misco!~apresas-@whatever.com (Can be ignored)
-		Command: PRIVMSG
-		Arguments: <#channel>, <Hello channel!>
-			The last argument contains spaces because it is prefixed by ':'
-	
-	ABOUT SPACES:
-		The IRC protocol says each element in a message should be sepparated by 1 SPACE, but from my testing
-		It seems servers accept multiple spaces too and they just treat them as 1
-	*/
-
 	this->_current_client = &this->_clients[client_fd];
 	t_message	message = prepareMessage(raw_message);
 	message.sender_client_fd = client_fd;
@@ -256,26 +181,6 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 	// apresas-: At this point, the replies should be ready to be processed back to raw data and sent back to the client
 	// For now this will only work for commands that will be returned to the sender
 	// Stil need to implement putting the fd of the target of the message in the t_message struct
-}
-
-/*
-apresas-: WIP, I will at some point make a map of function pointers with their names as keys to avoid the
-if-else chain
-*/
-std::vector<t_message>	Server::runCommand( t_message & message ) 
-{
-	std::vector<t_message> replies;
-	if (message.command == "PASS")
-		return this->cmdPass(message);
-	else if (message.command == "NICK")
-		return this->cmdNick(message);
-	else if (message.command == "USER")
-		return this->cmdUser(message);
-	else if (message.command == "MODE")
-		return this->cmdMode(message);
-	else
-		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
-	return replies;
 }
 
 /*
@@ -330,6 +235,26 @@ t_message	Server::prepareMessage( std::string raw_message )
 		return message;
 	}
 	return message;
+}
+
+/*
+apresas-: WIP, I will at some point make a map of function pointers with their names as keys to avoid the
+if-else chain
+*/
+std::vector<t_message>	Server::runCommand( t_message & message ) 
+{
+	std::vector<t_message> replies;
+	if (message.command == "PASS")
+		return this->cmdPass(message);
+	else if (message.command == "NICK")
+		return this->cmdNick(message);
+	else if (message.command == "USER")
+		return this->cmdUser(message);
+	else if (message.command == "MODE")
+		return this->cmdMode(message);
+	else
+		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
+	return replies;
 }
 
 bool	Server::hasNULL( const char * buffer, int bytes_received ) const
