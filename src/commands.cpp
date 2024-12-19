@@ -474,4 +474,9 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 {
 	std::vector<t_message> replies;
 	Client & client = *this->_current_client;
+	// TODO ... ?
+	(void)message;
+	(void)client;
+	return replies;
 }
+
