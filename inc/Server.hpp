@@ -115,6 +115,9 @@ class Server
 
 		static void signalHandler( int signal );
 
+		// DEBUG
+		void	printTmessage( t_message message ) const;
+
 	public:
 		Server( const std::string & port, const std::string & password );
 		~Server( void );
