@@ -184,7 +184,7 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 		std::cerr << "Empty command received, message will be silently ignored" << std::endl;
 		return ;
 	}
-	std::vector<t_message> replies = runCommand(message);
+	std::vector<t_message> replies = runCommand(message, client_fd);
 
 	// apresas-: At this point, the replies should be ready to be processed back to raw data and sent back to the client
 	// For now this will only work for commands that will be returned to the sender
@@ -255,7 +255,7 @@ static void	stringToUpper( std::string & str, std::string src )
 apresas-: WIP, I will at some point make a map of function pointers with their names as keys to avoid the
 if-else chain
 */
-std::vector<t_message>	Server::runCommand( t_message & message ) 
+std::vector<t_message>	Server::runCommand( t_message & message, int fd ) 
 {
 	std::vector<t_message> replies;
 	std::string	command;
@@ -273,7 +273,7 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	else if (command == "/JOIN")
 		return this->cmdJoin(message);
 	else if (command == "/QUIT")
-		return this->cmdQuit(message);
+		return this->cmdQuit(message, fd);
 	else
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
 	return replies;
