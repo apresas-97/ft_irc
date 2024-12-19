@@ -260,10 +260,13 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::vector<t_message> replies;
 	std::string	command;
 	stringToUpper(command, message.command);
+	Client *	client = findClient(message.sender_client_fd);
 
 	std::cout << "COMMAND in runCommand: " << command << std::endl;
 	if (command == "/PASS")
 		return this->cmdPass(message);
+	else if (!client->isAuthorised())
+		removeClient(message.sender_client_fd);
 	else if (command == "/NICK")
 		return this->cmdNick(message);
 	else if (command == "/USER")
