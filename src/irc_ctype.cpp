@@ -56,7 +56,13 @@ bool	irc_isSpecial( char c )
 // uppercase = A-Z || "[]\~"
 bool	irc_isUpper( char c ) 
 {
-	return (c >= 'A' && c <= ']' || c == '~');
+	return ((c >= 'A' && c <= ']') || c == '~');
+}
+
+// TODO: This function should probably be part of the Channel class
+bool	irc_isChanPrefix( char c )
+{
+	return (c == '#' || c == '&' || c == '+');
 }
 
 // lowercase = a-z || "{}|^"
@@ -100,12 +106,6 @@ bool	isChannelNameValid( const std::string & channel_name )
 	return true;
 }
 
-// TODO: This function should probably be part of the Channel class
-bool	irc_isChanPrefix( char c )
-{
-	return (c == '#' || c == '&' || c == '+');
-}
-
 // TODO: This function should probably be part of the Client class
 bool	irc_isValidNickname( const std::string & nickname ) 
 {
@@ -115,7 +115,8 @@ bool	irc_isValidNickname( const std::string & nickname )
 		return false;
 	for (size_t i = 1; i < nickname.size(); i++) 
 	{
-		if (!irc_isLetter(nickname[i]) && !irc_isDigit(nickname[i]) && !irc_isspecial(nickname[i]) && nickname[i] != '-')
+		// If this returns false it must attempt to change the nickname anyway but ignoring all the chars past this one
+		if (!irc_isLetter(nickname[i]) && !irc_isDigit(nickname[i]) && nickname[i] != '_' && nickname[i] != '-') // ffornes- Removed isspecial from here since irssi don't accept them
 			return false;
 	}
 	return true;
