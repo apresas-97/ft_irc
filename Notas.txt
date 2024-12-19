@@ -1,3 +1,20 @@
+Un usuario puede estar en muchos canales a la vez sin embargo la informacion que se muestra por pantalla es 
+del canal en el que se encuentra en ese momento. La informacion de otros canales se muestra al cambiar de
+canal, por tanto desde el primer momento que entra en un canal se guarda de alguna manera todo el chat
+para imprimirlo en cuanto cambia de canal...
+
+
+
+
+
+
+
+
+
+
+
+
+
 Tenemos que ponernos de acuerdo en el syntax que usamos
 
 Mi opinion, seguir esta pauta de ejemplo:

@@ -405,7 +405,7 @@ std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes )
 	The server acknowledges this by sending an ERROR message to the client.
 	This command has no numeric replies.
 */
-std::vector<t_message> Server::cmdQuit( t_message & message, int fd )
+std::vector<t_message> Server::cmdQuit( t_message & message )
 {
 	std::cout << "QUIT command called..." << std::endl;
 	/*
@@ -459,7 +459,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message, int fd )
 	// Test...
 	for (size_t i = 0; i < _poll_fds.size(); i++)
 	{
-		if (_poll_fds[i].fd == fd)
+		if (_poll_fds[i].fd == message.sender_client_fd)
 		{
 			close(_poll_fds[i].fd);
 			// Remove from _poll_fds .	std::vector<struct pollfd>()
