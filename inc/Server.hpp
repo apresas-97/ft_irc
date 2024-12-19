@@ -108,6 +108,8 @@ class Server
 		std::vector<t_message> cmdUser( t_message & message );
 		std::vector<t_message> cmdMode( t_message & message );
 		std::vector<t_message> cmdChanMode( t_message & message, t_mode modes ); 
+		std::vector<t_message> cmdQuit( t_message & message );
+		std::vector<t_message> cmdJoin( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
 
