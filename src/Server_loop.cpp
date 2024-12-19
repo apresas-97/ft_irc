@@ -122,14 +122,20 @@ void	Server::getClientData( int i )
 									   // ffornes- it's necessary in order to check for CRLF, no null == no end??
 
 		// ffornes- We were supposed to look for CRLF but every test I did I wasn't able to find them in any message
-		Client * client = findClient(_poll_fds[i].fd); // ffornes- maybe do it without a pointer?
-		client->addToBuffer(buffer); // Check if returned true
-		std::string	client_buffer = client->getBuffer();
-		std::string message(client_buffer, client_buffer.size() - 1); // apresas-: Maybe just message(buffer); ?
-		std::string response;
+
+//		Client * client = findClient(_poll_fds[i].fd); // ffornes- maybe do it without a pointer?
+
+		std::string message(buffer);
+
+//		client->addToBuffer(buffer); // Check if returned true
+//		std::string	client_buffer = client->getBuffer();
+//		std::string message(client_buffer, client_buffer.size() - 1); // apresas-: Maybe just message(buffer); ?
+//		std::string response;
+
 		parseData(message, this->_poll_fds[i].fd);
 		sendData(buffer);
-		client->cleanBuffer();
+//		client->cleanBuffer();
+
 //		delete client; // SHould we handle the client in a different way? If I delete it explodes LMAO
 
 		/* apresas-:
@@ -167,6 +173,8 @@ void	Server::getClientData( int i )
 // ffornes-:	What's the point of this function? It barely does anything else besides calling prepareMessage
 void Server::parseData( const std::string & raw_message, int client_fd )
 {
+	std::cout << "MESSAGE RECEIVED: " << raw_message;
+
 	this->_current_client = &this->_clients[client_fd];
 	t_message	message = prepareMessage(raw_message);
 	message.sender_client_fd = client_fd;
@@ -237,6 +245,12 @@ t_message	Server::prepareMessage( std::string raw_message )
 	return message;
 }
 
+static void	stringToUpper( std::string & str, std::string src )
+{
+	for (std::string::iterator it = src.begin(); it != src.end(); it++)
+		str += toupper(*it);
+}
+
 /*
 apresas-: WIP, I will at some point make a map of function pointers with their names as keys to avoid the
 if-else chain
@@ -244,14 +258,22 @@ if-else chain
 std::vector<t_message>	Server::runCommand( t_message & message ) 
 {
 	std::vector<t_message> replies;
-	if (message.command == "PASS")
+	std::string	command;
+	stringToUpper(command, message.command);
+
+	std::cout << "COMMAND in runCommand: " << command << std::endl;
+	if (command == "/PASS")
 		return this->cmdPass(message);
-	else if (message.command == "NICK")
+	else if (command == "/NICK")
 		return this->cmdNick(message);
-	else if (message.command == "USER")
+	else if (command == "/USER")
 		return this->cmdUser(message);
-	else if (message.command == "MODE")
+	else if (command == "/MODE")
 		return this->cmdMode(message);
+	else if (command == "/JOIN")
+		return this->cmdJoin(message);
+	else if (command == "/QUIT")
+		return this->cmdQuit(message);
 	else
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
 	return replies;
@@ -272,3 +294,12 @@ bool	Server::hasCRLF( const std::string str ) const
 	return false;
 }
 
+void	Server::printTmessage( t_message message ) const 
+{
+	std::cout << "Prefix [" << message.prefix << "]" << std::endl;
+	std::cout << "Command [" << message.command << "]" << std::endl;
+	std::cout << "Params ";
+	for (size_t i = 0; i < message.params.size(); i++)
+		std::cout << "[" << message.params[i] << "] ";
+	std::cout << std::endl;
+}
