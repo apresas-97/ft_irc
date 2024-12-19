@@ -457,13 +457,11 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	replies.push_back(error_acknowledgement);
 	replies.push_back(quit_broadcast);
 	// Test...
-	for (size_t i = 0; i < _poll_fds.size(); i++)
+	for (std::vector<struct pollfd>::iterator it = _poll_fds.begin(); it != _poll_fds.end(); ++it)
 	{
-		if (_poll_fds[i].fd == message.sender_client_fd)
+		if ((*it).fd == message.sender_client_fd)
 		{
-			close(_poll_fds[i].fd);
-			// Remove from _poll_fds .	std::vector<struct pollfd>()
-			// Remove from _clients ... std::map<int, Client>()
+			removeClient(message.sender_client_fd, it);
 			break ;
 		}
 	}
