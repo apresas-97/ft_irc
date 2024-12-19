@@ -89,8 +89,8 @@ class Server
 		void setNonBlock( int & socketFd );
 		void cleanClose( void );
 
-		void parseData( const std::string & message, int client_fd );
-		std::vector<t_message> runCommand( t_message & message );
+		void parseData( const std::string & message, int fd );
+		std::vector<t_message> runCommand( t_message & message, int fd );
 
 		std::string	getName( void ) const;
 
@@ -108,7 +108,7 @@ class Server
 		std::vector<t_message> cmdUser( t_message & message );
 		std::vector<t_message> cmdMode( t_message & message );
 		std::vector<t_message> cmdChanMode( t_message & message, t_mode modes ); 
-		std::vector<t_message> cmdQuit( t_message & message );
+		std::vector<t_message> cmdQuit( t_message & message, int fd );
 		std::vector<t_message> cmdJoin( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
