@@ -28,8 +28,11 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client.getNickname()));
 		return replies;
 	}
-	if (message.params[0] == this->_password)
+	if (message.params[0] == this->_password) 
+	{
+		std::cout << "Password correct... client is authorised" << std::endl;
 		client.setAuthorised(true);
+	}
 	else
 		replies.push_back(createReply(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_STR));
 	return replies;
@@ -402,7 +405,7 @@ std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes )
 	The server acknowledges this by sending an ERROR message to the client.
 	This command has no numeric replies.
 */
-std::vector<t_message> Server::cmdQuit( t_message & message )
+std::vector<t_message> Server::cmdQuit( t_message & message, int fd )
 {
 	std::cout << "QUIT command called..." << std::endl;
 	/*
@@ -453,6 +456,17 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 
 	replies.push_back(error_acknowledgement);
 	replies.push_back(quit_broadcast);
+	// Test...
+	for (size_t i = 0; i < _poll_fds.size(); i++)
+	{
+		if (_poll_fds[i].fd == fd)
+		{
+			close(_poll_fds[i].fd);
+			// Remove from _poll_fds .	std::vector<struct pollfd>()
+			// Remove from _clients ... std::map<int, Client>()
+			break ;
+		}
+	}
 	return replies;
 }
 
