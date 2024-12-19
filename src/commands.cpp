@@ -19,6 +19,7 @@ sending the NICK/USER combination.
 */
 std::vector<t_message> Server::cmdPass( t_message & message )
 {
+	std::cout << "PASS command called..." << std::endl;
 	Client & client = *this->_current_client;
 	std::vector<t_message> replies;
 
@@ -42,6 +43,7 @@ NICK command is used to give user a nickname or change the existing one.
 */
 std::vector<t_message> Server::cmdNick( t_message & message ) 
 {
+	std::cout << "NICK command called..." << std::endl;
 	Client & client = *this->_current_client;
 	std::vector<t_message> replies;
 
@@ -112,6 +114,7 @@ Apparently, nowadays, the <mode> parameter is ignored completely by most servers
 */
 std::vector<t_message>	Server::cmdUser( t_message & message ) 
 {
+	std::cout << "USER command called..." << std::endl;
 	std::vector<t_message> replies;
 	if (message.params.size() < 4) 
 	{
@@ -166,6 +169,7 @@ This doesn't work yet, but it's pretty close I think
 */
 std::vector<t_message> Server::cmdMode( t_message & message ) 
 {
+	std::cout << "MODE command called..." << std::endl;
 	std::vector<t_message>	replies;
 	Client & client = *this->_current_client;
 	if (message.params.size() < 1) 
@@ -273,6 +277,7 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 
 std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes ) 
 {
+	std::cout << "CHANMODE command called..." << std::endl;
 	std::vector<t_message> replies;
 /*
 	std::cout << "Channel mode part, not implemented yet" << std::endl;
@@ -399,6 +404,7 @@ std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes )
 */
 std::vector<t_message> Server::cmdQuit( t_message & message )
 {
+	std::cout << "QUIT command called..." << std::endl;
 	/*
 	I tested this command on a few servers and the one that seems to more
 	closely follow the RFC docs is DALnet:
@@ -472,6 +478,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 */
 std::vector<t_message>	Server::cmdJoin( t_message & message )
 {
+	std::cout << "JOIN command called..." << std::endl;
 	std::vector<t_message> replies;
 	Client & client = *this->_current_client;
 	// TODO ... ?
