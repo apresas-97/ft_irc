@@ -88,7 +88,7 @@ class Server
 		void sendData( const char *message );
 		void setNonBlock( int & socketFd );
 		void cleanClose( void );
-		void removeClient( int fd, std::vector<struct pollfd>::iterator it);
+		void removeClient( int fd );
 
 		void parseData( const std::string & message, int client_fd );
 		std::vector<t_message> runCommand( t_message & message );

@@ -65,7 +65,7 @@ void Server::cleanClose( void )
 	_poll_fds.erase(_poll_fds.begin(), _poll_fds.end());
 }
 
-void Server::removeClient( int fd, std::vector<struct pollfd>::iterator it)
+void Server::removeClient( int fd )
 {
 	if (close(fd) == -1) // error handling...
 		closeFailureLog("_poll_fds", fd, this->_serverFd);
@@ -75,8 +75,15 @@ void Server::removeClient( int fd, std::vector<struct pollfd>::iterator it)
 	else
 		std::cout << "Unable to find client in client list" << std::endl;
 	// Remove from _poll_fds .	std::vector<struct pollfd>()
-	_poll_fds.erase(it);
-	std::cout << "Removed client successfully" << std::endl;
+	for (std::vector<struct pollfd>::iterator it = _poll_fds.begin(); it != _poll_fds.end(); ++it)
+	{
+		if ((*it).fd == fd )
+		{
+			_poll_fds.erase(it);
+			break ;
+		}
+	}
+	std::cout << "Client removed client successfully" << std::endl;
 }
 
 void Server::sendData(const char *message) 
