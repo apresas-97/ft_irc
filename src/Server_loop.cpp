@@ -50,6 +50,20 @@ void Server::runServerLoop( void )
 					newClient();
 				else
 					getClientData(i);
+				/*
+Clients like Irssi may automatically request capabilities (CAP LS, CAP REQ, etc.) right after the connection. This is part of the IRCv3 
+extensions, where clients try to negotiate optional features (e.g., for encryption, SASL authentication, etc.).
+    To handle this, you can:
+        Block the capabilities exchange until the password is verified. This means the server should not respond to CAP LS or process any other 
+		client commands until the correct password is provided.
+        Send a PASS command response after successful authentication. Once the password is correct, your server can respond to CAP LS and allow 
+		the handshake to continue.
+
+To avoid processing commands like CAP LS or NICK prematurely, ensure that:
+    No commands (like NICK, USER, CAP LS, etc.) are processed until the password is verified.
+    Buffer the commands or reject them with a temporary error message (e.g., ERR_NOTREGISTERED with an appropriate message) if they are received 
+	before the password is validated.
+				*/
 			}
 		}
     }
@@ -265,12 +279,120 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::cout << "COMMAND in runCommand: " << command << std::endl;
 	if (command == "/PASS")
 		return this->cmdPass(message);
-	else if (!client->isAuthorised())
-		removeClient(message.sender_client_fd);
 	else if (command == "/NICK")
+	{
+		/*
+			Expected response:
+
+		*/
 		return this->cmdNick(message);
+	}
 	else if (command == "/USER")
+	{
+		/*
+			Expected response:
+
+			When Irssi (or any IRC client) sends the USER command, it is part of the initial IRC handshake that allows the server to associate the client's nickname and connection with a user. Specifically, Irssi is sending the following USER command:
+
+USER ffornes- ffornes- localhost :Ferran Fornés palacín
+
+Breakdown of the USER Command:
+
+    USER: This command tells the server about the client’s username and related information.
+    ffornes-: This is the username (usually the real login name or identifier).
+    ffornes-: This is the hostname the client is claiming to come from (often the client's local machine or a reverse DNS name, though it can also be anything).
+    localhost: This is the server’s hostname or domain the client claims to be connecting from.
+    :Ferran Fornés palacín: This is the "real name" or "gecos" field. It can be any arbitrary string the client provides to describe the user.
+
+Expected Server Response:
+
+Once Irssi sends this USER command, the IRC server is expected to respond with a RPL_WELCOME message and other potential welcome messages if needed. Here's how it typically looks:
+
+    RPL_WELCOME (001): This is the most common response, and it tells the client that the server has successfully registered the user.
+
+:server.example.com 001 ffornes- :Welcome to the Internet Relay Network ffornes-!ffornes-@localhost
+
+    server.example.com: The server’s hostname or address.
+    001: The numeric reply code for the "Welcome" message.
+    ffornes-: The nickname being used by the client.
+    !ffornes-@localhost: The full user identifier (user@hostname).
+    The rest of the message is a welcome string.
+
+RPL_YOURHOST (002): This message tells the client the server's version and the hostname.
+
+:server.example.com 002 ffornes- :Your host is server.example.com, running version 1.0
+
+RPL_CREATED (003): This message gives information about when the server was created.
+
+:server.example.com 003 ffornes- :This server was created Mon Dec 19 2024 at 12:34:56 UTC
+
+RPL_MYINFO (004): This message provides the server's capabilities and features.
+
+    :server.example.com 004 ffornes- server.example.com 1.0 iow
+
+        The 1.0 represents the server version.
+        The flags (iow) indicate what features the server supports (e.g., i for "invite-only channels", o for "oper-only channels", w for "wallops").
+
+    Optional: CAP Response: If the server supports IRCv3 capabilities (like SASL, multi-prefix, etc.), it may also send a CAP response to negotiate these features, but this happens after the USER command and can be sent in a sequence of responses.
+
+Handling Password Authentication:
+
+If your IRC server is password-protected and requires a password before allowing the user registration, it should respond to the USER command only after the password is verified. In such cases, the client might not receive these responses immediately after the USER command, but rather only after the correct password has been sent via the PASS command.
+Example Flow if the Password is Correct:
+
+    Client sends PASS (if needed) with the correct password.
+    Server responds with the password verification result (e.g., no error or authentication success).
+    Client sends USER command with the username details.
+    Server responds with the following messages in sequence:
+        RPL_WELCOME (001)
+        RPL_YOURHOST (002)
+        RPL_CREATED (003)
+        RPL_MYINFO (004)
+        Optionally, CAP LS and other capability responses if the server supports them.
+
+Example Sequence:
+
+Client connects:
+
+PASS secretpassword
+USER ffornes- ffornes- localhost :Ferran Fornés palacín
+
+Server response after password verification:
+
+:server.example.com 001 ffornes- :Welcome to the Internet Relay Network ffornes-!ffornes-@localhost
+:server.example.com 002 ffornes- :Your host is server.example.com, running version 1.0
+:server.example.com 003 ffornes- :This server was created Mon Dec 19 2024 at 12:34:56 UTC
+:server.example.com 004 ffornes- server.example.com 1.0 iow
+
+Error Handling:
+
+If the password has not been provided or is incorrect, the server will typically send an error message and disconnect the client. The USER command will not proceed unless the password is valid.
+
+For example, if the password is incorrect, the server might send:
+
+ERROR :Password incorrect. Disconnecting.
+
+Conclusion:
+
+When Irssi sends the USER command, it expects the server to respond with welcome messages, primarily the RPL_WELCOME (001) message, followed by RPL_YOURHOST, RPL_CREATED, and RPL_MYINFO in sequence, and any CAP responses if relevant capabilities are negotiated. However, ensure that the client has been authenticated (if required) before processing the USER command.
+
+		*/
 		return this->cmdUser(message);
+	}
+	else if (!client->isAuthorised())
+	{
+		if (command == "CAP" && message.params[0] == "LS")
+		{
+			const char	response[] = {"CAP * LS :\r\n"};
+			send(message.sender_client_fd, response, 12, 0); 
+			std::cout << "Irssi sending shit" << std::endl;
+			return replies;
+		}
+		std::cout << "Message received: ";
+		printTmessage(message);
+		std::cout << "REMOVING CLIENT IN RUNCOMMAND FUNCTION" << std::endl;
+		removeClient(message.sender_client_fd);
+	}
 	else if (command == "/MODE")
 		return this->cmdMode(message);
 	else if (command == "/JOIN")
