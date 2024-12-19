@@ -461,7 +461,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	{
 		if ((*it).fd == message.sender_client_fd)
 		{
-			removeClient(message.sender_client_fd, it);
+			removeClient(message.sender_client_fd);
 			break ;
 		}
 	}
