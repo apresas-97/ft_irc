@@ -143,7 +143,7 @@ void	Server::getClientData( int i )
 // ffornes-:	What's the point of this function? It barely does anything else besides calling prepareMessage
 void Server::parseData( const std::string & raw_message, int client_fd )
 {
-	std::cout << "MESSAGE RECEIVED: " << raw_message;
+//	std::cout << "MESSAGE RECEIVED: " << raw_message;
 
 	this->_current_client = &this->_clients[client_fd];
 	t_message	message = prepareMessage(raw_message);
@@ -158,6 +158,15 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 //	std::cout << "Message received: ";
 //	printTmessage(message);
 	std::vector<t_message> replies = runCommand(message);
+	for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
+	{
+		printTmessage(*it);
+		//TODO send replies...
+		//send((*it).target_client_fd, 
+	}
+	// apresas-: At this point, the replies should be ready to be processed back to raw data and sent back to the client
+	// For now this will only work for commands that will be returned to the sender
+	// Stil need to implement putting the fd of the target of the message in the t_message struct
 }
 
 /*
@@ -214,10 +223,12 @@ t_message	Server::prepareMessage( std::string raw_message )
 	return message;
 }
 
-static void	stringToUpper( std::string & str, std::string src )
+static std::string	stringToUpper( std::string src )
 {
+	std::string str;
 	for (std::string::iterator it = src.begin(); it != src.end(); it++)
 		str += toupper(*it);
+	return str;
 }
 
 /*
@@ -227,9 +238,11 @@ if-else chain
 std::vector<t_message>	Server::runCommand( t_message & message ) 
 {
 	std::vector<t_message> replies;
-	std::string	command;
-	stringToUpper(command, message.command);
+	std::string	command = stringToUpper(message.command);
 
+	std::cout << "PRINTING MESSAGE" << std::endl;
+	printTmessage(message);
+	std::cout << "END PRINTING MESSAGE" << std::endl;
 	if (command == "/PASS")
 		return this->cmdPass(message);
 	else if (command == "/NICK")
@@ -250,21 +263,53 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	else if (command == "CAP" && !this->_current_client->isAuthorised())
 	{
 		// Must handle the CAP LS that irssi client sends when connecting...
-		t_message	msg;
-		msg.command = "CAP";
-		msg.params[0] = "*";
-		msg.params[1] = "LS";
+		std::vector<std::string>::iterator it = message.params.begin();
+		t_message	msg; // Remember to add info about sender and target
+		msg.command = message.command;
+		msg.sender_client_fd = this->_serverFd;
+		msg.target_client_fd = message.sender_client_fd;
+		while (stringToUpper(*it) != "NICK" && it != message.params.end())
+		{
+			msg.params.push_back(*it);
+			std::advance(it, 1);
+		}
 		replies.push_back(msg); // Respond with CAP * LS
 		// Advance the message until you find the next command NICK, adapt it with the correct params
 		//	and call runCommand again, saving the reply in this replies.
-
+		if (it != message.params.end())
+		{
+			t_message	msg_nick; // Remember to add info about sender and target
+			msg_nick.command = *it;
+			msg_nick.sender_client_fd = this->_serverFd;
+			msg_nick.target_client_fd = message.sender_client_fd;
+			std::advance(it, 1);
+			while (stringToUpper(*it) != "USER" && it != message.params.end())
+			{
+				msg_nick.params.push_back(*it);
+				std::advance(it, 1);
+			}
+			replies.push_back(msg_nick);
+		}
 		// Advance the message until you find the next command USER, adapt it with the correct params
 		//	and call runCommand again, saving the reply in this replies.
-
+		if (it != message.params.end())
+		{
+			t_message	msg_user; // Remember to add info about sender and target
+			msg_user.command = *it;
+			msg_user.sender_client_fd = this->_serverFd;
+			msg_user.target_client_fd = message.sender_client_fd;
+			std::advance(it, 1);
+			while (it != message.params.end())
+			{
+				msg_user.params.push_back(*it);
+				std::advance(it, 1);
+			}
+			replies.push_back(msg_user);
+		}
 		// Send reply number 900 asking for password...
-		replies.push_back(createReply(900, "<nickname>"));
+		// TODO createReply doesnt fill the target............
+		replies.push_back(createReply(900, this->_current_client->getNickname()));
 		return replies;
-
 	}
 	else if (!this->_current_client->isAuthorised())
 	{
@@ -305,5 +350,7 @@ void	Server::printTmessage( t_message message ) const
 	std::cout << "Params ";
 	for (size_t i = 0; i < message.params.size(); i++)
 		std::cout << "[" << message.params[i] << "] ";
+	std::cout << "Sender: " << message.sender_client_fd << std::endl;
+	std::cout << "Target: " << message.target_client_fd << std::endl;
 	std::cout << std::endl;
 }
