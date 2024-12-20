@@ -3,6 +3,10 @@ del canal en el que se encuentra en ese momento. La informacion de otros canales
 canal, por tanto desde el primer momento que entra en un canal se guarda de alguna manera todo el chat
 para imprimirlo en cuanto cambia de canal...
 
+En cuanto irssi conecta con nuestro servidor envia 1 mensaje:
+CAP LS
+NICK ffornes
+USER ffornes- ffornes- localhost :<fullname>
 
 
 
