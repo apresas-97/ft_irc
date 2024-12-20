@@ -24,6 +24,9 @@
 #define RPL_CHANNELMODEIS 324
 #define RPL_CHANNELMODEIS_STR "<channel> <mode> <mode_params>"
 
+#define RPL_INVITING 341
+#define RPL_INVITING_STR "<channel> <nick>"
+
 // ERR_:
 #define ERR_NOSUCHCHANNEL 403
 #define ERR_NOSUCHCHANNEL_STR "<channel> :No such channel"
@@ -53,6 +56,28 @@
 #define ERR_UMODEUNKNOWNFLAG_STR ":Unknown MODE flag"
 #define ERR_USERSDONTMATCH 502
 #define ERR_USERSDONTMATCH_STR ":Cannot change mode for other users"
+#define ERR_NOSUCHCHANNEL 403
+#define ERR_NOSUCHCHANNEL_STR "<channel> :No such channel"
+#define ERR_UNKNOWNCOMMAND 421
+#define ERR_UNKNOWNCOMMAND_STR "<command> :Unknown command"
+#define ERR_NOTONCHANNEL 442
+#define ERR_NOTONCHANNEL_STR "<channel> :You're not on that channel"
+#define ERR_USERONCHANNEL 443
+#define ERR_USERONCHANNEL_STR "<nick> <channel> :is already on channel"
+#define ERR_CHANOPRIVSNEEDED 482
+#define ERR_CHANOPRIVSNEEDED_STR "<channel> :You're not channel operator"
+#define ERR_NOSUCHNICK 401
+#define ERR_NOSUCHNICK_STR "<nick> :No such nick/channel"
+#define ERR_INVITEONLYCHAN 473
+#define ERR_INVITEONLYCHAN_STR "<channel> :Cannot join channel (+i)"
+#define ERR_CHANNELISFULL 471
+#define ERR_CHANNELISFULL_STR "<channel> :Cannot join channel (+l)"
+#define ERR_TOOMANYCHANNELS 405
+#define ERR_TOOMANYCHANNELS_STR "<channel> :You have joined too many channels"
+#define ERR_BADCHANNELKEY 475
+#define ERR_BADCHANNELKEY_STR "<channel> :Cannot join channel (+k)"
+
+
 
 #endif // REPLY_CODES_HPP
 

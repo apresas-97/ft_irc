@@ -33,42 +33,36 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	// TODO ... ?
 
-	if (message.params.size() < 2)
-	{
-		client->sendMessage(/*ERRORNEEDMOREPARAMS*/); // pendant to implement sendMessage
-		return ;
+	if (message.params.size() < 2) {
+		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, ""));
+		return;
 	}
 
 	channelName = message.params[0];
 	// keys = _parseMessage(params[1], ',')
 
-    if (isChannelInServer(channelName))
-	{
-		Channel		& channel = _channels[channelName];
+	if (isChannelInServer(channelName)) {
+		Channel &channel = _channels[channelName];
 
-		if (channel.getMode('i') && !channel.isUserInvited(client->getUsername()))
-		{
-			client->sendMessage(/*Err Invite Only*/);
+		if (channel.getMode('i') && !channel.isUserInvited(client->getUsername())) {
+			replies.push_back(createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, channelName));
 		}
-		if (channel.getMode('l') && channel.h() >= channel.getUserLimit())
-		{
-			client->sendMessage(/*Err Channel is Full*/);
+		if (channel.getMode('l') && channel.h() >= channel.getUserLimit()) {
+			replies.push_back(createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, channelName));
 		}
 		// check if too many channels for client
-		if (client->getChannelCount() >= client->getChannelLimit())
-		{
-			client->sendMessage(/*Err Too Many Channels*/);
+		if (client->getChannelCount() >= client->getChannelLimit()) {
+			replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, channelName));
 		}
 		// check if too many clients in channel
-		if (channel.getUserCount() >= channel.getUserLimit())
-		{
-			client->sendMessage(/*Err Channel is Full*/);
+		if (channel.getUserCount() >= channel.getUserLimit()) {
+			replies.push_back(createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, channelName));
 		}
 		// check the key if it is required for channel
-		if (channel.getMode('k'))
-		{
-			if (!are_keys || cl_fd >= (int)message.params.size() - 1 || message.params[cl_fd] != channel.getKey())
-				client->sendMessage(/*Err Bad Channel Key*/);
+		if (channel.getMode('k')) {
+			if (!are_keys || cl_fd >= (int)message.params.size() - 1 || message.params[cl_fd] != channel.getKey()) {
+				replies.push_back(createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, channelName));
+			}
 		}
 		channel.addUser(*client, cl_fd);
 		client.addChannel(channelName, false);
