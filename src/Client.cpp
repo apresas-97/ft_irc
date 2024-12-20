@@ -110,6 +110,16 @@ void Client::setRegistered( bool value )
 	this->_registered = value;
 }
 
+int Client::getChannelCount(void) const
+{
+    return (this->_channels.size());
+}
+
+int Client::getChannelLimit(void) const
+{
+    return (this->_chan_limit);
+}
+
 bool Client::getMode( char mode ) const 
 {
 	switch (mode)

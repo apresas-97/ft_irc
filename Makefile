@@ -14,7 +14,17 @@ SRC_FILES =	main.cpp \
 			Channel.cpp \
 			commands.cpp \
 			irc_ctype.cpp \
-			numeric_replies.cpp
+			numeric_replies.cpp \
+			server_commands/invite.cpp \
+			server_commands/join.cpp \
+			server_commands/kick.cpp \
+			server_commands/mode.cpp \
+			server_commands/nick.cpp \
+			server_commands/pass.cpp \
+			server_commands/priv.cpp \
+			server_commands/quit.cpp \
+			server_commands/topic.cpp \
+			server_commands/user.cpp
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 

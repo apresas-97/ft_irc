@@ -131,8 +131,21 @@ bool Channel::isUserInvited(const std::string& userName)
     return _invited_users.find(userName) != _invited_users.end();
 }
 
+bool Channel::isUserOperator(const std::string& userName) 
+{
+    return _operators.find(userName) != _operators.end();
+}
+
 // User limit
 void Channel::setUserLimit(size_t limit) 
 {
     this->_user_limit = limit;
+}
+
+size_t	Channel::getUserLimit( void ) {
+    return this->_user_limit;
+}
+
+size_t	Channel::getUserCount( void ) {
+    return this->_user_count;
 }
