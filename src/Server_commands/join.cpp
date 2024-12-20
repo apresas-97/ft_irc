@@ -31,8 +31,6 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 	std::string channelName;
 	// std::vector<std::string> keys;
 
-	// TODO ... ?
-
 	if (message.params.size() < 2) {
 		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, ""));
 		return;
@@ -64,22 +62,43 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				replies.push_back(createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, channelName));
 			}
 		}
-		channel.addUser(*client, cl_fd);
-		client.addChannel(channelName, false);
-		fds = this->_channels[channelName].getClients();
-	}
+
+		// Añadir al canal existente
+        channel.addUser(*client, cl_fd);
+        client->addChannel(channelName, false);
+        sendMessageToChannel(cl_fd, channel, createReply(client->getNickname(), client->getRealname(), client->getHostname(), channelName));
+        if (!channel.getTopic().empty()) {
+            replies.push_back(createReply(RPL_TOPIC, channel.getTopic(), channelName));
+        }
+        _rplNamesList(cl_fd, channelName, channel.getClients());
+    }
 	else
 	{
-		// TODO
-	}
-	/*
-		sendMessageToChannel(sock, channel, RPL_JOIN(client.getNickname(), client.getRealname(), client.getHostname(), chan_name));
-        if (channel.getTopic() != "")
-            client.sendMessage(RPL_TOPIC(client.getNickname(), chan_name, channel.getTopic()));
-        
-        _rplNamesList(sock, chan_name, fds);
-        fds.clear();
-	*/
-	return replies;
+        // Crear un nuevo canal
+        if (client->getChannelCount() >= client->getChannelLimit()) {
+            replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, channelName));
+            return replies;
+        }
+        if (!_validChannelName(channelName)) {
+            replies.push_back(createReply(ERR_BADCHANMASK, ERR_BADCHANMASK_STR, channelName));
+            return replies;
+        }
+
+        Channel newChannel(channelName);
+        newChannel.addUser(*client, true);
+
+        if (!key.empty()) {
+            newChannel.setKey(key);
+            newChannel.setMode('k', true);
+        }
+
+        _channels[channelName] = newChannel;
+        client->addChannel(channelName, true);
+
+        sendMessageToChannel(cl_fd, newChannel, createReply(client->getNickname(), client->getRealname(), client->getHostname(), channelName));
+        _rplNamesList(cl_fd, channelName, newChannel.getClients());
+    }
+
+    return replies;
 }
 

@@ -27,6 +27,9 @@
 #define RPL_INVITING 341
 #define RPL_INVITING_STR "<channel> <nick>"
 
+#define RPL_TOPIC 332
+#define RPL_TOPIC_STR "<channel> :Topic is <topic>"
+
 // ERR_:
 #define ERR_NOSUCHCHANNEL 403
 #define ERR_NOSUCHCHANNEL_STR "<channel> :No such channel"
@@ -76,6 +79,8 @@
 #define ERR_TOOMANYCHANNELS_STR "<channel> :You have joined too many channels"
 #define ERR_BADCHANNELKEY 475
 #define ERR_BADCHANNELKEY_STR "<channel> :Cannot join channel (+k)"
+#define ERR_BADCHANMASK 476
+#define ERR_BADCHANMASK_STR "<channel> :Bad Channel Mask"
 
 
 
