@@ -94,7 +94,6 @@ void	Server::getClientData( int i )
 	char	buffer[BUFFER_SIZE] = {0};
 	memset(buffer, 0, BUFFER_SIZE);
 	int		bytes_received = read(this->_poll_fds[i].fd, buffer, BUFFER_SIZE - 1);
-//	int		bytes_received = recv(this->_poll_fds[i].fd, buffer, sizeof(buffer) - 1, 0);
 
 	if (bytes_received < 0) 
 	{
@@ -114,58 +113,15 @@ void	Server::getClientData( int i )
 	}
 	else 
 	{
-		// Check if there's any NULL characters in the buffer... if there are, the message should be silently ignored
 		if (hasNULL(buffer, bytes_received))
-			return ; // ffornes- maybe not a simple return here?
+			return ;
 	
-		buffer[bytes_received] = '\0'; // Maybe this overwrites the last character received from recv, but I'm not sure
-									   // ffornes- it's necessary in order to check for CRLF, no null == no end??
-
-		// ffornes- We were supposed to look for CRLF but every test I did I wasn't able to find them in any message
-
-//		Client * client = findClient(_poll_fds[i].fd); // ffornes- maybe do it without a pointer?
+		buffer[bytes_received] = '\0';
 
 		std::string message(buffer);
 
-//		client->addToBuffer(buffer); // Check if returned true
-//		std::string	client_buffer = client->getBuffer();
-//		std::string message(client_buffer, client_buffer.size() - 1); // apresas-: Maybe just message(buffer); ?
-//		std::string response;
-
 		parseData(message, this->_poll_fds[i].fd);
 		sendData(buffer);
-//		client->cleanBuffer();
-
-//		delete client; // SHould we handle the client in a different way? If I delete it explodes LMAO
-
-		/* apresas-:
-			TODO:
-			
-			We have to, get all the messages from the received bytes, parsing them, executing them and sending appropriate responses
-
-			Then, we might have incomplete messages at the end of the buffer, so we must store those leftovers in a buffer
-			for that client, so that next time we receive data from that same client, we can append it to their buffer and
-			complete the message and continue.
-
-			Issues:
-				1. This sounds like a pain to implement
-				2. The client might take too long to send the rest of the message, so we should have a time out to discard
-					the client's buffer and start fresh next time we receive data from them
-					-This sounds like a pain to implement too
-			
-			Potential workaround:
-				- We could limit the amount of data we allow a client to send at once, so that we can be sure we can
-					process it all in one go
-				- I mean, this is also a security feature, we wouldn't want that kind of exploit of allowing someone to
-				send us 1TB of data in one go and crash our server
-				- I guess, in a way, this is what we do by default by not handling a client buffer, so we could just handle
-				the given buffer and discard incomplete messages.
-				Example:
-					"PRIVMSG user :Hello\r\nPRIVMSG user2 :Hello2\r\nPRIVMSG user3 :Hello3\r\nPRIVMSG user4 :H"
-				In this cse, in our buffer we were only able to fit the first 3 messages, the remaining "PRIVMSG user4 :H"
-				excedes our BUFFER_SIZE and is not completed with \r\n, it will be ignored and discarded.
-			
-		*/
 	}
 }
 
@@ -185,10 +141,6 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 		return ;
 	}
 	std::vector<t_message> replies = runCommand(message);
-
-	// apresas-: At this point, the replies should be ready to be processed back to raw data and sent back to the client
-	// For now this will only work for commands that will be returned to the sender
-	// Stil need to implement putting the fd of the target of the message in the t_message struct
 }
 
 /*

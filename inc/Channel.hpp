@@ -34,6 +34,8 @@ class Channel
 		void	toggleInviteOnly( void );
 
 		void	toggleUserLimit( void );
+		size_t	getUserLimit( void );
+		size_t	getUserCount( void );
 		void	setUserLimit( size_t limit );
 
 		std::string	getTopic( void ) const;
@@ -48,6 +50,7 @@ class Channel
 
 		void	sendInvite( const std::string & user_name );
 		bool	isUserInvited( const std::string & user_name );
+		bool	isUserOperator( const std::string & user_name );
 
 		Client* seekUser( const std::string & );
 		// t_channel_user	seekUser( const std::string & user_name ); // Alternative
