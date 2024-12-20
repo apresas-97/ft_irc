@@ -4,6 +4,7 @@ NAME = ircserv
 SRC_DIR = src
 INCLUDE_DIR = inc
 OBJ_DIR = obj
+CMD_DIR = Server_commands
 DEPS_DIR = deps
 
 SRC_FILES =	main.cpp \
@@ -15,16 +16,16 @@ SRC_FILES =	main.cpp \
 			commands.cpp \
 			irc_ctype.cpp \
 			numeric_replies.cpp \
-			server_commands/invite.cpp \
-			server_commands/join.cpp \
-			server_commands/kick.cpp \
-			server_commands/mode.cpp \
-			server_commands/nick.cpp \
-			server_commands/pass.cpp \
-			server_commands/priv.cpp \
-			server_commands/quit.cpp \
-			server_commands/topic.cpp \
-			server_commands/user.cpp
+			Server_commands/invite.cpp \
+			Server_commands/join.cpp \
+			Server_commands/kick.cpp \
+			Server_commands/mode.cpp \
+			Server_commands/nick.cpp \
+			Server_commands/pass.cpp \
+			Server_commands/priv.cpp \
+			Server_commands/quit.cpp \
+			Server_commands/topic.cpp \
+			Server_commands/user.cpp
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
 
@@ -63,13 +64,17 @@ $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(MK) | $(OBJ_DIR) $(DEPS_DIR)
 
 $(OBJ_DIR):
 	@$(MKDIR) $(OBJ_DIR)
+	@$(MKDIR) $(OBJ_DIR)/$(CMD_DIR)
 
 $(DEPS_DIR):
 	@$(MKDIR) $(DEPS_DIR)
+	@$(MKDIR) $(DEPS_DIR)/$(CMD_DIR)
 
 clean:
 	@$(RM) $(OBJ)
+	@$(RM) $(OBJ_DIR)/$(CMD_DIR)
 	@$(RM) $(OBJ_DIR)
+	@$(RM) $(DEPS)/$(CMD_DIR)
 	@$(RM) $(DEPS)
 	@$(RM) $(DEPS_DIR)
 
