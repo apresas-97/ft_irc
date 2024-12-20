@@ -11,6 +11,8 @@
 #define RPL_CREATED_STR "This server was created <date>"
 #define RPL_MYINFO 4
 #define RPL_MYINFO_STR "<servername> <version> <available user modes> <available channel modes>"
+#define RPL_PASSWORD 900
+#define RPL_PASSWORD_STR "<nickname> :Please provide the password to continue"
 
 // If server is full
 #define RPL_BOUNCE 5
