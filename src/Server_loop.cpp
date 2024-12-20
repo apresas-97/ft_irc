@@ -139,8 +139,41 @@ void	Server::getClientData( int i )
 	}
 }
 
+// TODO finish this shit
+/*
+	Redo the t_message struct to be able to handle replies or create a new struct to handle replies since
+	replies don't containt commands + if we need to send a reply to a channel we are unable to do so using
+	t_message since it only stores fds and it could be fixed storing a container of fds with all the fds
+	that we want to reach but it's way more fucking easier to have a Channel pointer or something like that
+	that has it's clients and from there we can access them and send the message to all of them
+*/
+static void	sendReplies( t_message reply )
+{
+	size_t	message_size = 0;
+	//const char *	cmd = reply.command.c_str();
+
+	message_size += reply.command.size() + 1;
+	for (std::vector<std::string>::iterator it = reply.params.begin(); it != reply.params.end(); ++it)
+		message_size += (*it).size() + 1;
+	
+	char *	message = new char[message_size];
+
+	strcpy(message, reply.command.c_str());
+	message[reply.command.size()] = ' ';
+	for (std::vector<std::string>::iterator it = reply.params.begin(); it != reply.params.end(); ++it)
+	{
+		//............. fill message...........
+	}
+	message[message_size] == '\0';
+
+//	if ( target is not a channel ... we need to verify this )
+	send(reply.target_client_fd, message, message_size, 0);
+//	else ( target is a channel )
+//	sendToChannel(message, message_size);
+}
+
 /// apresas-: WIP
-// ffornes-:	What's the point of this function? It barely does anything else besides calling prepareMessage
+// ffornes- this does too much I swear I'm gonna change it some day
 void Server::parseData( const std::string & raw_message, int client_fd )
 {
 //	std::cout << "MESSAGE RECEIVED: " << raw_message;
@@ -162,6 +195,7 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 	{
 		printTmessage(*it);
 		//TODO send replies...
+		sendReplies(*it);
 		//send((*it).target_client_fd, 
 	}
 	// apresas-: At this point, the replies should be ready to be processed back to raw data and sent back to the client
