@@ -37,9 +37,9 @@ void Server::runServerLoop( void )
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
             break;
         }
-		else if (pollCount == 0) // ffornes- Can remove this entire condition block....
+		else if (pollCount == 0)
 		{
-        	std::cout << "Poll timed out, no activity" << std::endl;
+        	std::cout << "Poll timed out, no activity" << std::endl; // Remove later...
             continue;
         }
 		for (size_t i = 0; i < _poll_fds.size(); i++) 
@@ -50,20 +50,6 @@ void Server::runServerLoop( void )
 					newClient();
 				else
 					getClientData(i);
-				/*
-Clients like Irssi may automatically request capabilities (CAP LS, CAP REQ, etc.) right after the connection. This is part of the IRCv3 
-extensions, where clients try to negotiate optional features (e.g., for encryption, SASL authentication, etc.).
-    To handle this, you can:
-        Block the capabilities exchange until the password is verified. This means the server should not respond to CAP LS or process any other 
-		client commands until the correct password is provided.
-        Send a PASS command response after successful authentication. Once the password is correct, your server can respond to CAP LS and allow 
-		the handshake to continue.
-
-To avoid processing commands like CAP LS or NICK prematurely, ensure that:
-    No commands (like NICK, USER, CAP LS, etc.) are processed until the password is verified.
-    Buffer the commands or reject them with a temporary error message (e.g., ERR_NOTREGISTERED with an appropriate message) if they are received 
-	before the password is validated.
-				*/
 			}
 		}
     }
@@ -135,12 +121,70 @@ void	Server::getClientData( int i )
 		std::string message(buffer);
 
 		parseData(message, this->_poll_fds[i].fd);
-		sendData(buffer);
+		//	sendData(buffer); // ffornes- we do not send data here we send it with the replies
 	}
 }
 
+// TODO finish this shit
+/*
+	Redo the t_message struct to be able to handle replies or create a new struct to handle replies since
+	replies don't containt commands + if we need to send a reply to a channel we are unable to do so using
+	t_message since it only stores fds and it could be fixed storing a container of fds with all the fds
+	that we want to reach but it's way more fucking easier to have a Channel pointer or something like that
+	that has it's clients and from there we can access them and send the message to all of them
+*/
+static void	fillMessage(t_message reply, char * message)
+{
+	int	j = 0;
+	for (size_t i = 0; i < reply.prefix.size(); ++i)
+	{
+		message[j++] = reply.prefix[i];
+	}
+	message[j++] = ' '; // ffornes- I guess we have to hardcode spaces between the parameters?
+	for (size_t i = 0; i < reply.command.size(); ++i)
+	{
+		message[j++] = reply.prefix[i];
+	}
+	for (std::vector<std::string>::iterator it = reply.params.begin(); it != reply.params.end(); ++it)
+	{
+		message[j++] = ' '; // ffornes- Needed to place a space between commands and parameters and parameters and parameters
+		for (size_t i = 0; i < (*it).size(); ++i)
+		{
+			message[j++] = (*it)[i];
+		}
+	}
+	message[j++] = '\r';
+	message[j++] = '\n';
+	message[j] = '\0';
+	std::cout << "Final reply: " << message;
+}
+
+/*
+	This function must create a char* from all the content in the t_message reply which is [ reply ] [ command ] [ params ]
+*/
+static void	sendReplies( t_message reply )
+{
+	size_t	message_size = 0;
+	//const char *	cmd = reply.command.c_str();
+
+	message_size += reply.prefix.size() + 1;
+	message_size += reply.command.size() + 1;
+	for (std::vector<std::string>::iterator it = reply.params.begin(); it != reply.params.end(); ++it)
+		message_size += (*it).size() + 1;
+	message_size += 2; // In order to fit CRLF
+	
+	char *	message = new char[message_size];
+	fillMessage(reply, message);
+
+	if (reply.target_channels.size() > 0)
+		std::cout << "Target is 1 or more channels..." << std::endl;
+		// sendToChannel(reply);
+	else
+		send(reply.target_client_fd, message, message_size, 0);
+}
+
 /// apresas-: WIP
-// ffornes-:	What's the point of this function? It barely does anything else besides calling prepareMessage
+// ffornes- this does too much I swear I'm gonna change it some day
 void Server::parseData( const std::string & raw_message, int client_fd )
 {
 //	std::cout << "MESSAGE RECEIVED: " << raw_message;
@@ -157,11 +201,12 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 
 //	std::cout << "Message received: ";
 //	printTmessage(message);
-	std::vector<t_message> replies = runCommand(message);
+	std::vector<t_message> replies = runCommand(message); // target must be set in run command...
 	for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
 	{
 		printTmessage(*it);
 		//TODO send replies...
+		sendReplies(*it);
 		//send((*it).target_client_fd, 
 	}
 	// apresas-: At this point, the replies should be ready to be processed back to raw data and sent back to the client
@@ -172,7 +217,7 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 /*
 	Gets the raw message and orders it into a t_message struct
 */
-t_message	Server::prepareMessage( std::string raw_message ) 
+t_message	Server::prepareMessage( std::string raw_message ) // ffornes- Where do we set the target??? 
 {
 	t_message message;
 	std::string word;
@@ -221,14 +266,6 @@ t_message	Server::prepareMessage( std::string raw_message )
 		return message;
 	}
 	return message;
-}
-
-static std::string	stringToUpper( std::string src )
-{
-	std::string str;
-	for (std::string::iterator it = src.begin(); it != src.end(); it++)
-		str += toupper(*it);
-	return str;
 }
 
 /*
@@ -328,29 +365,3 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	return replies;
 }
 
-bool	Server::hasNULL( const char * buffer, int bytes_received ) const
-{
-	for (int i = 0; i < bytes_received; i++)
-		if (buffer[i] == '\0')
-			return true;
-	return false;
-}
-
-bool	Server::hasCRLF( const std::string str ) const
-{
-	if (str.size() > 1)
-		return str[str.size() - 2] == '\r' && str[str.size() - 1] == '\n';
-	return false;
-}
-
-void	Server::printTmessage( t_message message ) const 
-{
-	std::cout << "Prefix [" << message.prefix << "] ";
-	std::cout << "Command [" << message.command << "] ";
-	std::cout << "Params ";
-	for (size_t i = 0; i < message.params.size(); i++)
-		std::cout << "[" << message.params[i] << "] ";
-	std::cout << "Sender: " << message.sender_client_fd << std::endl;
-	std::cout << "Target: " << message.target_client_fd << std::endl;
-	std::cout << std::endl;
-}
