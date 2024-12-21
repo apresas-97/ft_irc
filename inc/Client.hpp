@@ -54,13 +54,13 @@ class Client
 		bool	isRegistered( void ) const;
 		void	setRegistered( bool value );
 
-		int getChannelCount(void) const;
-        int getChannelLimit(void) const;
+		int 	getChannelCount(void) const;
+        int 	getChannelLimit(void) const;
+		void 	addChannel(Channel &channel, std::string& name);
 
 		bool	getMode( char mode ) const;
 		t_mode	getModes( void ) const;
 		void	setMode( char mode, bool value );
-
 		bool	hasMode( char mode ) const;
 		const std::string getModeString( void ) const ;
 
@@ -75,17 +75,17 @@ class Client
 		std::string	_hostname;
 		std::string	_realname;
 
-		t_mode _mode;
+		t_mode		_mode;
 
-		int		_socket;
+		int			_socket;
 		// struct sockaddr_storage _address; // apresas-: Does the client need this?
 
 		std::map<std::string, Channel*>	_channels;
-		int 	_chan_limit;
-		bool	_authorised; // Has the client provided the correct password? (PASS command)
-		bool	_registered; // Has the client properly registered as a user? (NICK and USER commands)
+		int 		_chan_limit;
+		bool		_authorised; // Has the client provided the correct password? (PASS command)
+		bool		_registered; // Has the client properly registered as a user? (NICK and USER commands)
 
-		char 	_buffer[BUFFER_SIZE];
+		char 		_buffer[BUFFER_SIZE];
 };
 
 #endif // CLIENT_HPP

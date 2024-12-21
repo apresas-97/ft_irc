@@ -30,6 +30,9 @@
 #define RPL_TOPIC 332
 #define RPL_TOPIC_STR "<channel> :Topic is <topic>"
 
+#define RPL_NOTOPIC 331
+#define RPL_NOTOPIC_STR "<channel> :No topic is set"
+
 // ERR_:
 #define ERR_NOSUCHCHANNEL 403
 #define ERR_NOSUCHCHANNEL_STR "<channel> :No such channel"
@@ -81,6 +84,12 @@
 #define ERR_BADCHANNELKEY_STR "<channel> :Cannot join channel (+k)"
 #define ERR_BADCHANMASK 476
 #define ERR_BADCHANMASK_STR "<channel> :Bad Channel Mask"
+#define ERR_CANNOTSENDTOCHAN 404
+#define ERR_CANNOTSENDTOCHAN_STR "<channel> :Cannot send to channel"
+#define ERR_NORECIPIENT 411
+#define ERR_NORECIPIENT_STR ":No recipient given (<command>)"
+#define ERR_NOTEXTTOSEND 412
+#define ERR_NOTEXTTOSEND_STR ":No text to send"
 
 
 

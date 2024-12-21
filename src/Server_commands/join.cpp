@@ -1,5 +1,4 @@
 #include "Server.hpp"
-
 /*
 	Command: JOIN
 	Parameters: ( <channel> *( "," <channel> ) [ <key> *( "," <key> ) ] ) / "0"
@@ -20,23 +19,38 @@
 	The server will process this message as if the user had sent a PART command for each
 	channel he is a member of.
 */
+
+static std::vector<std::string> parseMessage(const std::string &message, char delimiter) 
+{
+    std::vector<std::string> tokens;
+    std::string token;
+    std::istringstream tokenStream(message);
+
+    while (std::getline(tokenStream, token, delimiter))
+        tokens.push_back(token);
+
+    return tokens;
+}
+
 std::vector<t_message>	Server::cmdJoin( t_message & message )
 {
 	std::cout << "JOIN command called..." << std::endl;
-	int cl_fd = message.sender_client_fd;
-	Client * client = findClient(cl_fd);
 	std::vector<t_message> replies;
+
+	Client *client = this->_current_client;
+
+	std::vector<std::string> channels;
+    std::vector<std::string> keys;
+    std::vector<int> fds;
+
 	bool are_keys = message.params.size() > 2 ? true : false;
 
-	std::string channelName;
-	// std::vector<std::string> keys;
-
 	if (message.params.size() < 2) {
-		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, ""));
-		return;
+		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, {client->getNickname(), "JOIN"}));
+		return replies;
 	}
 
-	channelName = message.params[0];
+	std::string channelName = message.params[0];
 	// keys = _parseMessage(params[1], ',')
 
 	if (isChannelInServer(channelName)) {
@@ -65,7 +79,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 		// Añadir al canal existente
         channel.addUser(*client, cl_fd);
-        client->addChannel(channelName, false);
+        client->addChannel(channel, channelName);
         sendMessageToChannel(cl_fd, channel, createReply(client->getNickname(), client->getRealname(), client->getHostname(), channelName));
         if (!channel.getTopic().empty()) {
             replies.push_back(createReply(RPL_TOPIC, channel.getTopic(), channelName));

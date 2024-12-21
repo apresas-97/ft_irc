@@ -49,7 +49,8 @@ std::vector<t_message> Server::cmdInvite(t_message &message) {
     inviteMessage.params.push_back(channelName);
     // targetClient->sendMessage(inviteMessage); I have to check where is this sent
 
-    replies.push_back(createReply(RPL_INVITING, RPL_INVITING_STR, targetNickname, channelName));
+    // Create vector
+    // replies.push_back(createReply(RPL_INVITING, RPL_INVITING_STR, targetNickname, channelName));
 
     return replies;
 }

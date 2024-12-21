@@ -120,6 +120,11 @@ int Client::getChannelLimit(void) const
     return (this->_chan_limit);
 }
 
+void 	Client::addChannel(Channel &channel, std::string& name)
+{
+	_channels[name] = &channel;
+}
+
 bool Client::getMode( char mode ) const 
 {
 	switch (mode)
