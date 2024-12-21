@@ -81,9 +81,11 @@ void Server::removeClient( int fd )
 		if ((*it).fd == fd )
 		{
 			_poll_fds.erase(it);
+			std::cout << "Client removed from _poll_fds..." << std::endl;
 			break ;
 		}
 	}
+	this->_client_count -= 1;
 	std::cout << "Client removed client successfully" << std::endl;
 }
 
@@ -196,45 +198,5 @@ void Server::setStartTime( void )
 std::string Server::getStartTimeStr( void ) 
 {
 	return this->_start_time_str;
-}
-
-bool Server::isUserInServer( const std::string & nickname ) 
-{
-	Client * client = findClient(nickname);
-	if (client)
-		return true;
-	return false;
-}
-
-Client * Server::findClient( int fd ) 
-{
-	std::map<int, Client>::iterator it = this->_clients.find(fd);
-	if (it == this->_clients.end())
-		return (NULL); // apresas-: Maybe? I'd rather use references but I'm not sure how to handle this rn
-	return &it->second;
-}
-
-Client * Server::findClient( const std::string & nickname ) 
-{
-	std::map<std::string, int>::iterator it = this->_clients_fd_map.find(nickname);
-	if (it == this->_clients_fd_map.end())
-		return (NULL);
-	return findClient(it->second);
-}
-
-bool Server::isChannelInServer( const std::string & name ) 
-{
-	Channel * channel = findChannel(name);
-	if (channel)
-		return true;
-	return false;
-}
-
-Channel * Server::findChannel( const std::string & name ) 
-{
-	std::map<std::string, Channel *>::iterator it = this->_channels.find(name);
-	if (it == this->_channels.end())
-		return (NULL);
-	return it->second;
 }
 
