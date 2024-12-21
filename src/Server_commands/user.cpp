@@ -25,7 +25,7 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 		// Idk what to do here, the nickname should have been set already
 		// If not, the registration can't continue
 		// I need to figure this out
-		return ; // ???
+		return replies; // ???
 	}
 	Client * client = this->_current_client;
 	if (client->isRegistered() == true) 

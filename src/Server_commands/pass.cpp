@@ -29,3 +29,4 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 		replies.push_back(createReply(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_STR));
 	return replies;
 }
+

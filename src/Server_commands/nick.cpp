@@ -63,5 +63,6 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	I need to look this up
 	Ughhhhh
 	*/
+	delete client;
 	return replies; // TEMP SOLUTION IN ORDER TO COMPILE PROJECT
 }

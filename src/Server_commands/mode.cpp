@@ -112,3 +112,4 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 		replies.push_back(createReply(message, correct_param, client->getNickname()));
 	return replies;
 }
+
