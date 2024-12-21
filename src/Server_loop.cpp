@@ -125,62 +125,33 @@ void	Server::getClientData( int i )
 	}
 }
 
-// TODO finish this shit
-/*
-	Redo the t_message struct to be able to handle replies or create a new struct to handle replies since
-	replies don't containt commands + if we need to send a reply to a channel we are unable to do so using
-	t_message since it only stores fds and it could be fixed storing a container of fds with all the fds
-	that we want to reach but it's way more fucking easier to have a Channel pointer or something like that
-	that has it's clients and from there we can access them and send the message to all of them
-*/
-static void	fillMessage(t_message reply, char * message)
+static std::string	formatReply( t_message reply )
 {
-	int	j = 0;
-	for (size_t i = 0; i < reply.prefix.size(); ++i)
-	{
-		message[j++] = reply.prefix[i];
-	}
-	message[j++] = ' '; // ffornes- I guess we have to hardcode spaces between the parameters?
-	for (size_t i = 0; i < reply.command.size(); ++i)
-	{
-		message[j++] = reply.prefix[i];
-	}
+	std::string	final_reply;
+
+	if (reply.prefix.size() > 0)
+		final_reply += reply.prefix + " ";
+	final_reply += reply.command;
 	for (std::vector<std::string>::iterator it = reply.params.begin(); it != reply.params.end(); ++it)
-	{
-		message[j++] = ' '; // ffornes- Needed to place a space between commands and parameters and parameters and parameters
-		for (size_t i = 0; i < (*it).size(); ++i)
-		{
-			message[j++] = (*it)[i];
-		}
-	}
-	message[j++] = '\r';
-	message[j++] = '\n';
-	message[j] = '\0';
-	std::cout << "Final reply: " << message;
+		final_reply += " " + *it;
+	final_reply += "\r\n";
+	return final_reply;
 }
 
-/*
-	This function must create a char* from all the content in the t_message reply which is [ reply ] [ command ] [ params ]
-*/
 static void	sendReplies( t_message reply )
 {
-	size_t	message_size = 0;
-	//const char *	cmd = reply.command.c_str();
-
-	message_size += reply.prefix.size() + 1;
-	message_size += reply.command.size() + 1;
-	for (std::vector<std::string>::iterator it = reply.params.begin(); it != reply.params.end(); ++it)
-		message_size += (*it).size() + 1;
-	message_size += 2; // In order to fit CRLF
-	
-	char *	message = new char[message_size];
-	fillMessage(reply, message);
+	std::string	output = formatReply(reply);
 
 	if (reply.target_channels.size() > 0)
+	{
 		std::cout << "Target is 1 or more channels..." << std::endl;
 		// sendToChannel(reply);
+	}
 	else
-		send(reply.target_client_fd, message, message_size, 0);
+	{
+		std::cout << "Attempting to send message to irssi......." << std::endl;
+		send(reply.target_client_fd, output.c_str(), output.size(), 0);
+	}
 }
 
 /// apresas-: WIP
@@ -192,6 +163,7 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 	this->_current_client = &this->_clients[client_fd];
 	t_message	message = prepareMessage(raw_message);
 	message.sender_client_fd = client_fd;
+	message.target_client_fd = -1;
 
 	if (message.command.empty()) 
 	{
@@ -345,7 +317,14 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		}
 		// Send reply number 900 asking for password...
 		// TODO createReply doesnt fill the target............
-		replies.push_back(createReply(900, this->_current_client->getNickname()));
+
+//		replies.push_back(createReply(900, this->_current_client->getNickname()));
+
+		t_message	passReply = createReply(900, this->_current_client->getNickname());
+		passReply.sender_client_fd = this->_serverFd;
+		passReply.target_client_fd = message.sender_client_fd;
+		replies.push_back(passReply);
+
 		return replies;
 	}
 	else if (!this->_current_client->isAuthorised())
