@@ -1,0 +1,35 @@
+==607380== 16 bytes in 1 blocks are still reachable in loss record 1 of 3
+==607380==    at 0x4849013: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==607380==    by 0x40E61F: __gnu_cxx::new_allocator<pollfd>::allocate(unsigned long, void const*) (new_allocator.h:127)
+==607380==    by 0x40E5B0: __gnu_cxx::__alloc_traits<std::allocator<pollfd>, pollfd>::allocate(std::allocator<pollfd>&, unsigned long) (alloc_traits.h:133)
+==607380==    by 0x40E3CF: std::_Vector_base<pollfd, std::allocator<pollfd> >::_M_allocate(unsigned long) (stl_vector.h:346)
+==607380==    by 0x40DFCB: std::vector<pollfd, std::allocator<pollfd> >::_M_realloc_insert(__gnu_cxx::__normal_iterator<pollfd*, std::vector<pollfd, std::allocator<pollfd> > >, pollfd const&) (vector.tcc:440)
+==607380==    by 0x40C1DC: std::vector<pollfd, std::allocator<pollfd> >::push_back(pollfd const&) (stl_vector.h:1198)
+==607380==    by 0x40A0A3: Server::newClient() (Server_loop.cpp:87)
+==607380==    by 0x409E95: Server::runServerLoop() (Server_loop.cpp:50)
+==607380==    by 0x408E70: Server::initServer() (Server_init.cpp:41)
+==607380==    by 0x4040C7: Server::Server(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:31)
+==607380==    by 0x403D85: main (main.cpp:42)
+==607380== 
+==607380== 31 bytes in 1 blocks are still reachable in loss record 2 of 3
+==607380==    at 0x4849013: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==607380==    by 0x49BCFEE: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_assign(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==607380==    by 0x49BD4AC: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::operator=(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.30)
+==607380==    by 0x4048AC: Server::setStartTime() (Server.cpp:193)
+==607380==    by 0x4040A4: Server::Server(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&) (Server.cpp:28)
+==607380==    by 0x403D85: main (main.cpp:42)
+==607380== 
+==607380== 1,264 bytes in 1 blocks are still reachable in loss record 3 of 3
+==607380==    at 0x4849013: operator new(unsigned long) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==607380==    by 0x40F88F: __gnu_cxx::new_allocator<std::_Rb_tree_node<std::pair<int const, Client> > >::allocate(unsigned long, void const*) (new_allocator.h:127)
+==607380==    by 0x40F820: __gnu_cxx::__alloc_traits<std::allocator<std::_Rb_tree_node<std::pair<int const, Client> > >, std::_Rb_tree_node<std::pair<int const, Client> > >::allocate(std::allocator<std::_Rb_tree_node<std::pair<int const, Client> > >&, unsigned long) (alloc_traits.h:133)
+==607380==    by 0x40F701: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_get_node() (stl_tree.h:561)
+==607380==    by 0x40F6BC: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_create_node(std::pair<int const, Client> const&) (stl_tree.h:583)
+==607380==    by 0x40F68F: std::_Rb_tree_node<std::pair<int const, Client> >* std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_Alloc_node::operator()<std::pair<int const, Client> >(std::pair<int const, Client> const&) const (stl_tree.h:529)
+==607380==    by 0x40F593: std::_Rb_tree_iterator<std::pair<int const, Client> > std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_insert_<std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_Alloc_node>(std::_Rb_tree_node_base*, std::_Rb_tree_node_base*, std::pair<int const, Client> const&, std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_Alloc_node&) (stl_tree.h:1784)
+==607380==    by 0x40F2D9: std::_Rb_tree<int, std::pair<int const, Client>, std::_Select1st<std::pair<int const, Client> >, std::less<int>, std::allocator<std::pair<int const, Client> > >::_M_insert_unique(std::pair<int const, Client> const&) (stl_tree.h:2129)
+==607380==    by 0x40C22C: std::map<int, Client, std::less<int>, std::allocator<std::pair<int const, Client> > >::insert(std::pair<int const, Client> const&) (stl_map.h:804)
+==607380==    by 0x40A11B: Server::newClient() (Server_loop.cpp:88)
+==607380==    by 0x409E95: Server::runServerLoop() (Server_loop.cpp:50)
+==607380==    by 0x408E70: Server::initServer() (Server_init.cpp:41)
+
