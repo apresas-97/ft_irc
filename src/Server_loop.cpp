@@ -102,14 +102,7 @@ void	Server::getClientData( int i )
 	else if (bytes_received == 0)
 	{
 		std::cout << "Client disconnected: " << this->_poll_fds[i].fd << std::endl;
-		if (close(this->_poll_fds[i].fd) == -1) 
-		{
-			closeFailureLog("_poll_fds", i, this->_poll_fds[i].fd);
-			cleanClose();
-		}
-		std::vector<struct pollfd>::iterator it = _poll_fds.begin();
-		std::advance(it, i);
-		_poll_fds.erase(it);
+		removeClient(this->_poll_fds[i].fd);
 	}
 	else 
 	{
@@ -150,6 +143,7 @@ static void	sendReplies( t_message reply )
 	else
 	{
 		std::cout << "Attempting to send message to irssi......." << std::endl;
+	//	output = "NOTICE AUTH :*** Looking up your hostname\r\n"; // ffornes- THIS IS ACCEPTED BY IRSSI which means this kindof the format expected...
 		send(reply.target_client_fd, output.c_str(), output.size(), 0);
 	}
 }
@@ -269,7 +263,7 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		*/
 		return this->cmdUser(message);
 	}
-	else if (command == "CAP" && !this->_current_client->isAuthorised())
+	else if (command == "CAP" && !this->_current_client->isAuthorised()) // ffornes- :: TODO............
 	{
 		// Must handle the CAP LS that irssi client sends when connecting...
 		std::vector<std::string>::iterator it = message.params.begin();
