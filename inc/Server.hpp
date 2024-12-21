@@ -24,6 +24,7 @@ typedef struct s_message
 	std::vector<std::string> params;
 	int sender_client_fd; // fd of the client that sent the message
 	int target_client_fd; // fd of the client that is the target of the message
+	std::vector<Channel *>	target_channels;
 	// apresas-: More info might be needed here later
 }				t_message;
 
@@ -95,9 +96,6 @@ class Server
 
 		std::string	getName( void ) const;
 
-		bool	hasNULL( const char * buffer, int bytes_received ) const;
-		bool	hasCRLF( const std::string ) const;
-
 		t_message createReply( int number, const std::string message );
 		t_message createReply( int number, const std::string message, const std::string & param );
 		t_message createReply( int number, const std::string message, const std::vector<std::string> & param );
@@ -116,6 +114,11 @@ class Server
 		t_message	prepareMessage( std::string rawMessage );
 
 		static void signalHandler( int signal );
+	
+		// Utils
+		bool	hasNULL( const char * buffer, int bytes_received ) const;
+		bool	hasCRLF( const std::string ) const;
+		std::string	stringToUpper( std::string src );
 
 		// DEBUG
 		void	printTmessage( t_message message ) const;
