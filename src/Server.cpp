@@ -27,6 +27,7 @@ Server::Server( const std::string & port, const std::string & password ) : _port
 	setVersion(1, 0);
 	setStartTime();
 	parseInput();
+	this->_client_count = 0;
 	initServer();
 }
 
@@ -231,9 +232,9 @@ bool Server::isChannelInServer( const std::string & name )
 
 Channel * Server::findChannel( const std::string & name ) 
 {
-	std::map<std::string, Channel>::iterator it = this->_channels.find(name);
+	std::map<std::string, Channel *>::iterator it = this->_channels.find(name);
 	if (it == this->_channels.end())
 		return (NULL);
-	return &it->second;
+	return it->second;
 }
 
