@@ -47,7 +47,7 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 
 	// TODO:
 	// Prepare the welcome message reply
-	replies.push_back(createReply(RPL_WELCOME, RPL_WELCOME_STR, client->getUserIdentifier()));
+	replies.push_back(createReply(RPL_WELCOME, RPL_WELCOME_STR, client->getUserPrefix()));
 	std::vector<std::string> yourhost_params;
 	yourhost_params.push_back(this->getName());
 	yourhost_params.push_back(this->getVersion());

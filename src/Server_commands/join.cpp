@@ -39,9 +39,9 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	Client *client = this->_current_client;
 
-	std::vector<std::string> channels;
-    std::vector<std::string> keys;
-    std::vector<int> fds;
+	std::vector<std::string> 	channels;
+    std::vector<std::string> 	keys;
+    std::vector<int> 			fds;
 
 	bool are_keys = message.params.size() > 2 ? true : false;
 
@@ -50,68 +50,97 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		return replies;
 	}
 
-	std::string channelName = message.params[0];
-	// keys = _parseMessage(params[1], ',')
+	channels = parseMessage(message.params[0], ',');
+	// int channels_n = channels.size();
+    if (are_keys)
+        keys = parseMessage(message.params[1], ',');
 
-	if (isChannelInServer(channelName)) {
-		Channel &channel = _channels[channelName];
-
-		if (channel.getMode('i') && !channel.isUserInvited(client->getUsername())) {
-			replies.push_back(createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, channelName));
-		}
-		if (channel.getMode('l') && channel.h() >= channel.getUserLimit()) {
-			replies.push_back(createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, channelName));
-		}
-		// check if too many channels for client
-		if (client->getChannelCount() >= client->getChannelLimit()) {
-			replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, channelName));
-		}
-		// check if too many clients in channel
-		if (channel.getUserCount() >= channel.getUserLimit()) {
-			replies.push_back(createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, channelName));
-		}
-		// check the key if it is required for channel
-		if (channel.getMode('k')) {
-			if (!are_keys || cl_fd >= (int)message.params.size() - 1 || message.params[cl_fd] != channel.getKey()) {
-				replies.push_back(createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, channelName));
-			}
-		}
-
-		// Añadir al canal existente
-        channel.addUser(*client, cl_fd);
-        client->addChannel(channel, channelName);
-        sendMessageToChannel(cl_fd, channel, createReply(client->getNickname(), client->getRealname(), client->getHostname(), channelName));
-        if (!channel.getTopic().empty()) {
-            replies.push_back(createReply(RPL_TOPIC, channel.getTopic(), channelName));
-        }
-        _rplNamesList(cl_fd, channelName, channel.getClients());
-    }
-	else
+	for (int i = 0; i < channels.size(); i++)
 	{
-        // Crear un nuevo canal
-        if (client->getChannelCount() >= client->getChannelLimit()) {
-            replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, channelName));
-            return replies;
+
+		std::string currentChannel = channels[i];
+		Channel &channel = _channels[currentChannel];
+
+		if (isChannelInServer(currentChannel))
+		{
+
+			// Mode i (Invite-only channel)
+			if (channel.getMode('i') && !channel.isUserInvited(client->getUsername()))
+			{
+				replies.push_back(createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, currentChannel));
+				continue;
+			}
+			// Mode l (Channel limit)
+			if (channel.getMode('l') && channel.getUserCount() >= channel.getUserLimit())
+			{
+				replies.push_back(createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, currentChannel));
+				continue;
+			}
+			if (client->getChannelCount() >= client->getChannelLimit())
+			{
+				replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel));
+				continue;
+			}
+			// Mode k (Channel key)
+			if (channel.getMode('k'))
+			{
+				if (!are_keys || i >= (int)keys.size() - 1 || keys[i] != channel.getKey()) {
+					replies.push_back(createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, currentChannel));
+					continue;
+				}
+			}
+
+			// Add to the current channel
+			channel.addUser(*client, false);
+			client->addChannel(channel, currentChannel);
+			fds = channel.getFds("users");
+		}
+		else
+		{
+			// Create new channel
+			if (client->getChannelCount() >= client->getChannelLimit()) {
+				replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel));
+				return replies;
+			}
+			//	TODO:Do we implement the masks?
+			// if (!_validcurrentChannel(currentChannel)) {
+			// 	replies.push_back(createReply(ERR_BADCHANMASK, ERR_BADCHANMASK_STR, currentChannel));
+			// 	return replies;
+			// }
+
+			Channel newChannel(currentChannel);
+			newChannel.addUser(*client, true);
+
+			if (are_keys && i < (int)keys.size())
+			{
+				newChannel.setKey(keys[i]);
+				newChannel.setMode('k', true);
+			}
+
+			this->_channels[currentChannel] = newChannel;
+			client->addChannel(newChannel, currentChannel);
+			fds = newChannel.getFds("users");
+			channel = newChannel;
+		}
+		
+		// Enviar mensajes de bienvenida al canal
+        t_message joinMessage;
+        joinMessage.prefix = client->getUserPrefix();
+        joinMessage.command = "JOIN";
+        joinMessage.params.push_back(currentChannel);
+        joinMessage.sender_client_fd = client->getSocket();
+        joinMessage.target_channels.push_back(&channel);
+		// We have to add the sendMessage
+        // sendMessageToChannel(client, channel, joinMessage);
+
+        if (channel.getTopic() != "")
+		{
+            replies.push_back(createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), currentChannel, channel.getTopic()}));
         }
-        if (!_validChannelName(channelName)) {
-            replies.push_back(createReply(ERR_BADCHANMASK, ERR_BADCHANMASK_STR, channelName));
-            return replies;
-        }
 
-        Channel newChannel(channelName);
-        newChannel.addUser(*client, true);
-
-        if (!key.empty()) {
-            newChannel.setKey(key);
-            newChannel.setMode('k', true);
-        }
-
-        _channels[channelName] = newChannel;
-        client->addChannel(channelName, true);
-
-        sendMessageToChannel(cl_fd, newChannel, createReply(client->getNickname(), client->getRealname(), client->getHostname(), channelName));
-        _rplNamesList(cl_fd, channelName, newChannel.getClients());
-    }
+        replies.push_back(replyList(client, &channel, fds));
+        fds.clear();
+	}
 
     return replies;
 }

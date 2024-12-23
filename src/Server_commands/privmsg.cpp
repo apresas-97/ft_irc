@@ -19,6 +19,18 @@
 
 #include "Server.hpp"
 
+static std::vector<std::string> parseMessage(const std::string &message, char delimiter) 
+{
+    std::vector<std::string> tokens;
+    std::string token;
+    std::istringstream tokenStream(message);
+
+    while (std::getline(tokenStream, token, delimiter))
+        tokens.push_back(token);
+
+    return tokens;
+}
+
 std::vector<t_message> Server::cmdPrivMsg(t_message &message) 
 {
     std::cout << "PRIVMSG command called..." << std::endl;
@@ -68,7 +80,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 
                 // Send the message to the channel
                 t_message channelMessage;
-                channelMessage.prefix = client->getUserIdentifier();
+                channelMessage.prefix = client->getUserPrefix();
                 channelMessage.command = "PRIVMSG";
                 channelMessage.params.push_back(target);
                 channelMessage.params.push_back(textToSend);
@@ -86,7 +98,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
         else if (Client *targetClient = findClient(target)) 
         {
             t_message privateMessage;
-            privateMessage.prefix = client->getUserIdentifier();
+            privateMessage.prefix = client->getUserPrefix();
             privateMessage.command = "PRIVMSG";
             privateMessage.params.push_back(target);
             privateMessage.params.push_back(textToSend);

@@ -27,66 +27,59 @@ class Client
 	public:
 		Client( void );
 		Client( int socket );
-		// Client( int fd, struct sockaddr_storage address );
 		~Client( void );
 
-		void	sendData( const char * message );
-		void	getClientData( void );
+		// Setters
+		void	setSocket( const int & socket );
+		void	setNickname( const std::string & nickname );
+		void	setUsername( const std::string & username );
+		void	setHostname( const std::string & hostname );
+		void	setRealname( const std::string & realname );
+		void	setAuthorised( bool value );
+		void	setRegistered( bool value );
+		void	setMode( char mode, bool value );
 
+		// Getters
+		int					getSocket( void );
 		const std::string &	getNickname( void ) const;
 		const std::string &	getUsername( void ) const;
 		const std::string &	getHostname( void ) const;
 		const std::string &	getRealname( void ) const;
-		const int & getSocket( void ) const;
+		const std::string & getUserPrefix(void) const;
+		bool				isAuthorised( void ) const;
+		bool				isRegistered( void ) const;
+		bool				getMode( char mode ) const;
+		t_mode				getModes( void ) const;
+		int					getChannelCount(void) const;
+        int					getChannelLimit(void) const;
 
-		void setNickname( const std::string & nickname );
-		void setUsername( const std::string & username );
-		void setHostname( const std::string & hostname );
-		void setRealname( const std::string & realname );
-		void setSocket( const int & socket );
+		// Channel Management
+		void	addChannel(Channel &channel, std::string& name);
+		void	removeChannel(Channel &channel, std::string& name);
 
-		std::string	getPrefix( void ) const;
-		std::string	getUserIdentifier( void ) const;
-
-		bool	isAuthorised( void ) const;
-		void	setAuthorised( bool value );
-
-		bool	isRegistered( void ) const;
-		void	setRegistered( bool value );
-
-		int 	getChannelCount(void) const;
-        int 	getChannelLimit(void) const;
-		void 	addChannel(Channel &channel, std::string& name);
-
-		bool	getMode( char mode ) const;
-		t_mode	getModes( void ) const;
-		void	setMode( char mode, bool value );
-		bool	hasMode( char mode ) const;
-		const std::string getModeString( void ) const ;
-
-		bool	addToBuffer( char * content );
-		void	cleanBuffer( void );
-		std::string getBuffer( void ) const;
+		// Mode Management
+		bool	hasMode(char mode) const;
+		const std::string getModeString(void) const;
 
 	private:
 
+		int			_socket;
 		std::string	_nickname;
 		std::string	_username;
 		std::string	_hostname;
 		std::string	_realname;
-
+		bool		_authorised; // Has the client provided the correct password? (PASS command)
+		bool		_registered; // Has the client properly registered as a user? (NICK and USER commands)
 		t_mode		_mode;
-
-		int			_socket;
-		// struct sockaddr_storage _address; // apresas-: Does the client need this?
 
 		std::map<std::string, Channel*>	_channels;
 		int 		_chan_limit;
-		bool		_authorised; // Has the client provided the correct password? (PASS command)
-		bool		_registered; // Has the client properly registered as a user? (NICK and USER commands)
 
-		char 		_buffer[BUFFER_SIZE];
+		char 		_buffer[BUFFER_SIZE]; // Idk what this does
 };
 
 #endif // CLIENT_HPP
 
+/*
+	cc->isAdmin(channel)
+*/

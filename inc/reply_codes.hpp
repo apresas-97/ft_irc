@@ -33,6 +33,10 @@
 #define RPL_NOTOPIC 331
 #define RPL_NOTOPIC_STR "<channel> :No topic is set"
 
+#define RPL_NAMREPLY 353
+#define RPL_NAMREPLY_STR "= <channel> :<nick1> <nick2> <nick3> ..."
+
+
 // ERR_:
 #define ERR_NOSUCHCHANNEL 403
 #define ERR_NOSUCHCHANNEL_STR "<channel> :No such channel"
