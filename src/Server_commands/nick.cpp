@@ -12,21 +12,28 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	Client * client = this->_current_client;
 	std::vector<t_message> replies;
 
+	// Check if the client is authorised and registered
 	if (client->isAuthorised() == false || client->isRegistered() == false) 
 	{
 		replies.push_back(createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR));
 		return replies;
 	}
+
+	// Check if the client is in restricted mode ( we'll see what we do with this )
 	if (client->getMode('r') == true) 
 	{
 		replies.push_back(createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR));
 		return replies;
 	}
+
+	// Check if the client has provided a nickname
 	if (message.params.size() < 1) 
 	{
 		replies.push_back(createReply(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_STR));
 		return replies;
 	}
+
+	// Check if the nickname follows the valid nickname format
 	std::string nickname = message.params[0];
 	if (irc_isValidNickname(nickname) == false) 
 	{
@@ -34,35 +41,51 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 		return replies;
 	}
 
-	// apresas-: Check for nickname collision ? Idk how to do this yet
-	// This triggers ERR_NICKCOLLISION
+	// If the given nickname is the same as the current nickname, do nothing
+	if (client->getNickname() == nickname) 
+		return replies;
 
-	// apresas-: Check if the nickname cannot be chosen because of the nick delay mechanism
-	// I don't even know if we'll implement that yet
-	// If the name is not available, return ERR_UNAVAILRESOURCE
-
+	// Nickname is already taken ?
 	std::vector<std::string>::iterator it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), nickname);
 	if (it != this->_taken_nicknames.end()) 
 	{
 		replies.push_back(createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname));
 		return replies;
 	}
-	// If all went well, change the user's nickname and return its own message as acknowledgement
+
+	// Store the user's prefix before changing the nickname, for later use
+	std::string old_prefix = client->getPrefix();
+
+	// Remove the old nickname from the taken nicknames list
+	std::string old_nickname = client->getNickname();
+	if (old_nickname.empty() == false) 
+	{
+		it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), old_nickname);
+		if (it != this->_taken_nicknames.end()) 
+			this->_taken_nicknames.erase(it);
+	}
+
+	// Set the new nickname
 	client->setNickname(nickname);
 	this->_taken_nicknames.push_back(nickname);
-	// It should now be removed from the taken nicknames list, but not immediately
-	// I need to look this up and see how it truly works
-	// I think it's removed after a certain amount of time, but I'm not sure
 
-	/*
-	apresas-: TODO: Send a message to all channels the user is in that the nickname has changed
-	The message should be something like:
-	:oldnickname NICK newnickname
-	It should be broadcasted to all users in the same channels as the user
-	And probably only to those that would be allowed to see the user???? Idk
-	I need to look this up
-	Ughhhhh
-	*/
-	delete client;
+	// Send a broadcast message to all users in the same channels as the user
+	// The user itself is included at the message works as an acknowledgement
+	t_message nick_broadcast;
+	nick_broadcast.prefix = old_prefix;
+	nick_broadcast.command = "NICK";
+	nick_broadcast.params.push_back(":" + nickname);
+
+	std::vector<Channel *> channels = client->getChannelsVector();
+
+	for (std::vector<Channel *>::iterator it = channels.begin(); it != channels.end(); ++it) 
+	{
+		std::vector<int> channel_users_fds = (*it)->getFds("users");
+		for (std::vector<int>::iterator it2 = channel_users_fds.begin(); it2 != channel_users_fds.end(); ++it2) 
+			nick_broadcast.target_client_fds.insert(*it2);
+	}
+	replies.push_back(nick_broadcast);
+
+	delete client; // TODO: REMEMBER TO FIX THIS, CLIENT SHOULD NOT BE DELETED HERE
 	return replies; // TEMP SOLUTION IN ORDER TO COMPILE PROJECT
 }
