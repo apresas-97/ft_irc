@@ -23,7 +23,7 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 
     Channel * channel = this->_channels[channelName];
 
-    if (!channel.isUserInChannel(client->getNickname())) 
+    if (!channel->isUserInChannel(client->getNickname())) 
 	{
         replies.push_back(createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, channelName));
         return replies;
@@ -35,7 +35,7 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
     //     return replies;
     // }
 
-    if (!channel.isUserOperator(client->getNickname())) 
+    if (!channel->isUserOperator(client->getNickname())) 
 	{
         replies.push_back(createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, channelName));
         return replies;

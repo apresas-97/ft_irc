@@ -61,18 +61,18 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 	for (size_t i = 0; i < channels.size(); i++)
 	{
 		std::string currentChannel = channels[i];
-		Channel &channel = _channels[currentChannel];
+		Channel * channel = _channels[currentChannel];
 
 		if (isChannelInServer(currentChannel))
 		{
 			// Mode i (Invite-only channel)
-			if (channel.getMode('i') && !channel.isUserInvited(client->getUsername()))
+			if (channel->getMode('i') && !channel->isUserInvited(client->getUsername()))
 			{
 				replies.push_back(createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, currentChannel));
 				continue;
 			}
 			// Mode l (Channel limit)
-			if (channel.getMode('l') && channel.getUserCount() >= channel.getUserLimit())
+			if (channel->getMode('l') && channel->getUserCount() >= channel->getUserLimit())
 			{
 				replies.push_back(createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, currentChannel));
 				continue;
@@ -83,18 +83,18 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				continue;
 			}
 			// Mode k (Channel key)
-			if (channel.getMode('k'))
+			if (channel->getMode('k'))
 			{
-				if (!are_keys || i >= keys.size() - 1 || keys[i] != channel.getKey()) 
+				if (!are_keys || i >= keys.size() - 1 || keys[i] != channel->getKey()) 
 				{
 					replies.push_back(createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, currentChannel));
 					continue;
 				}
 			}
 			// Add to the current channel
-			channel.addUser(*client, false);
-			client->addChannel(channel, currentChannel);
-			fds = channel.getFds("users");
+			channel->addUser(*client, false);
+			client->addChannel(*channel, currentChannel);
+			fds = channel->getFds("users");
 		}
 		else
 		{
@@ -119,10 +119,10 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				newChannel.setMode('k', true);
 			}
 
-			this->_channels[currentChannel] = newChannel;
+			this->_channels[currentChannel] = &newChannel;
 			client->addChannel(newChannel, currentChannel);
 			fds = newChannel.getFds("users");
-			channel = newChannel;
+			channel = &newChannel;
 		}
 		
 		// Enviar mensajes de bienvenida al canal
@@ -131,16 +131,16 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
         joinMessage.command = "JOIN";
         joinMessage.params.push_back(currentChannel);
         joinMessage.sender_client_fd = client->getSocket();
-        joinMessage.target_channels.push_back(&channel);
+        joinMessage.target_channels.push_back(channel);
 		// We have to add the sendMessage
         // sendMessageToChannel(client, channel, joinMessage);
 
-        if (channel.getTopic() != "")
+        if (channel->getTopic() != "")
 		{
 //            replies.push_back(createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), currentChannel, channel.getTopic()})); // This call is incorrect
         }
 
-        replies.push_back(replyList(client, &channel, fds));
+        replies.push_back(replyList(client, channel, fds));
         fds.clear();
 	}
 

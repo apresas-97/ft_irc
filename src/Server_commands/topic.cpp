@@ -20,9 +20,9 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		return replies;
 	}
 
-	Channel &channel = this->_channels[channelName];
+	Channel * channel = this->_channels[channelName];
 
-	if (!channel.isUserInChannel(client->getNickname())) 
+	if (!channel->isUserInChannel(client->getNickname())) 
 	{
 //		replies.push_back(createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, {client->getNickname(), channelName})); // incorrect call
 		return replies;
@@ -30,7 +30,7 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 	if (message.params.size() == 1) 
 	{
-		if (channel.getTopic().empty()) 
+		if (channel->getTopic().empty()) 
 		{
 //			replies.push_back(createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, {client->getNickname(), channelName})); // incorrect call
 		} 
@@ -47,7 +47,7 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 			newTopic += " " + message.params[i];
 		}
 
-		if (channel.getMode('t') && !channel.isUserOperator(client->getNickname())) 
+		if (channel->getMode('t') && !channel->isUserOperator(client->getNickname())) 
 		{
 //			replies.push_back(createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, {client->getNickname(), channelName})); // incorrect call
 			return replies;
@@ -55,18 +55,20 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 		if (newTopic == ":") 
 		{
-			channel.setTopic("");
-		} else {
-			channel.setTopic(newTopic.substr(0, newTopic.size()));
+			channel->setTopic("");
+		} 
+		else 
+		{
+			channel->setTopic(newTopic.substr(0, newTopic.size()));
 		}
 
 		t_message topicMessage;
 		topicMessage.prefix = client->getUserPrefix();
 		topicMessage.command = "TOPIC";
 		topicMessage.params.push_back(channelName);
-		topicMessage.params.push_back(channel.getTopic());
+		topicMessage.params.push_back(channel->getTopic());
 		// topicMessage.sender_client_fd = client->getFd();
-		topicMessage.target_channels.push_back(&channel);
+		topicMessage.target_channels.push_back(channel);
 		// channel.broadcastMessage(topicMessage, client->getNickname());
 
 //		replies.push_back(createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()})); // incorrect call

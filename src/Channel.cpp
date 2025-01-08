@@ -17,12 +17,16 @@ Channel & Channel::operator=( const Channel & src )
 		this->setTopic(src.getTopic());
 		this->setKey(src.getKey());
 		this->_modes = src.getModes();
-		this->setUserLimit(src.getUserLimit());
 		this->_users = src.getTrueUsers();
 		this->_invited_users = src.getTrueInvitedUsers();
 		this->_operators = src.getTrueOperators();
-		this->_user_limit = src.getUserLimit();
-//		this->_has_user_limit = src.
+		if (src.getUserLimit())
+			this->setUserLimit(src.getUserLimit());
+		else
+		{
+			this->_has_user_limit = false;
+			this->_user_limit = 0;
+		}
 	}
 	return *this;
 }

@@ -71,9 +71,9 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
         {
             if (_channels.find(target) != _channels.end()) 
             {
-                Channel &channel = _channels[target];
+				Channel * channel = _channels[target];
 
-                if (!channel.isUserInChannel(client->getNickname())) 
+                if (!channel->isUserInChannel(client->getNickname())) 
 				{
  //                   replies.push_back(createReply(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_STR, {client->getNickname(), target})); // incorrect call
                     continue;
@@ -86,7 +86,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
                 channelMessage.params.push_back(target);
                 channelMessage.params.push_back(textToSend);
                 channelMessage.sender_client_fd = client->getSocket();
-                channelMessage.target_channels.push_back(&channel);
+                channelMessage.target_channels.push_back(channel);
                 // Add channel to my replies and remember to add the channel I want to send the message to into the vector inside t_message called target_channels;
                 // channel.messageToChannel(channelMessage, client->getNickname());
             }
