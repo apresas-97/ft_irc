@@ -24,6 +24,7 @@ typedef struct s_message
 	std::vector<std::string> params;
 	int sender_client_fd; // fd of the client that sent the message
 	int target_client_fd; // fd of the client that is the target of the message
+	std::set<int> target_client_fds; // fd of the clients that are the targets of the message // NEW
 	std::vector<Channel *>	target_channels;
 	// apresas-: More info might be needed here later
 }				t_message;
