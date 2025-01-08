@@ -74,11 +74,11 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 			if ((operation == true && has_mode == false) || (operation == false && has_mode == true)) 
 			{
 				if (operation == true && (mode == 'o' || mode == 'O'))
-	
+					// ??
 				if (operation == false && mode == 'r')
-	
+					// ??
 				if (mode == 'a')
-	
+					// ??
 				client->setMode(mode, operation); // ffornes- same as comment above
 				has_effect = true;
 				if (insert_operator == true) 
@@ -112,3 +112,4 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 		replies.push_back(createReply(message, correct_param, client->getNickname()));
 	return replies;
 }
+

@@ -42,7 +42,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
     // Validate that there are enough parameters
     if (message.params.size() < 2)
     {
-        replies.push_back(createReply(ERR_NORECIPIENT, ERR_NORECIPIENT_STR, {client->getNickname(), "PRIVMSG"}));
+//        replies.push_back(createReply(ERR_NORECIPIENT, ERR_NORECIPIENT_STR, {client->getNickname(), "PRIVMSG"})); // incorrect call
         return replies;
     }
 
@@ -73,8 +73,9 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
             {
                 Channel &channel = _channels[target];
 
-                if (!channel.isUserInChannel(client->getNickname())) {
-                    replies.push_back(createReply(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_STR, {client->getNickname(), target}));
+                if (!channel.isUserInChannel(client->getNickname())) 
+				{
+ //                   replies.push_back(createReply(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_STR, {client->getNickname(), target})); // incorrect call
                     continue;
                 }
 
@@ -91,7 +92,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
             }
             else
             {
-                replies.push_back(createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, {client->getNickname(), target}));
+//                replies.push_back(createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, {client->getNickname(), target})); // incorrect call
             }
         } 
         // Send the message to a specific client
@@ -109,9 +110,10 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
         } 
         else 
         {
-            replies.push_back(createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, {client->getNickname(), target}));
+//            replies.push_back(createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, {client->getNickname(), target})); // incorrect call
         }
     }
 
     return replies;
 }
+

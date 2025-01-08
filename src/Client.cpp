@@ -10,7 +10,7 @@ Client::Client(void)
     _chan_limit = 0;
 }
 
-Client::Client(int socket) : _authorised(false), _registered(false), _socket(socket), _chan_limit(0)
+Client::Client(int socket) : _socket(socket), _authorised(false), _registered(false), _chan_limit(0)
 {
     memset(_buffer, 0, BUFFER_SIZE);
 }
@@ -109,9 +109,11 @@ const std::string &Client::getRealname(void) const
     return this->_realname;
 }
 
-const std::string &Client::getUserPrefix(void) const
+const std::string Client::getUserPrefix(void) const
 {
-    return this->getNickname() + "!" + this->getUsername() + "@" + this->getHostname();
+	std::string	str = this->getNickname() + "!" + this->getUsername() + "@" + this->getHostname();
+
+    return str;
 }
 
 bool Client::isAuthorised(void) const
@@ -179,6 +181,8 @@ void Client::addChannel(Channel &channel, std::string &name)
 void Client::removeChannel(Channel &channel, std::string &name)
 {
     _channels.erase(name);
+	// TODO soomething with &channel??
+	(void)channel;
 }
 
 bool Client::hasMode(char mode) const

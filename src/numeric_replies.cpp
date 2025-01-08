@@ -103,7 +103,7 @@ t_message Server::replyList(Client *client, Channel *channel, std::vector<int>& 
     std::string main = client->getNickname();
 
 	// Generate the list of channel users with the appropriate format
-    for (int i = 0; i < fds.size(); i++) 
+    for (size_t	i = 0; i < fds.size(); i++) 
     {
         Client *currentClient = findClient(fds[i]);
         std::string currentNick = currentClient->getNickname();
@@ -121,6 +121,8 @@ t_message Server::replyList(Client *client, Channel *channel, std::vector<int>& 
 
 	// Create the response with the list of users
 	// RPL_NAMREPLY is the IRC response code for the name list
-    t_message reply = createReply(RPL_NAMREPLY, RPL_NAMREPLY_STR, {main, channel->getName(), userlist});
+
+//    t_message reply = createReply(RPL_NAMREPLY, RPL_NAMREPLY_STR, {main, channel->getName(), userlist}); // TODO incorrect call
+	t_message	reply; // NEEDED IN ORDER TO AVOID PROGRAM SHITTING ITSELF BECAUSE PREVIOUS CALL IS WRONG
     return reply;
 }

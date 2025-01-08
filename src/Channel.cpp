@@ -9,6 +9,30 @@ Channel::Channel(const std::string& name) : _name(name), _user_limit(0), _has_us
 Channel::~Channel(void)
 {}
 
+Channel & Channel::operator=( const Channel & src )
+{
+	if ( this != &src ) 
+	{
+		this->setName(src.getName());
+		this->setTopic(src.getTopic());
+		this->setKey(src.getKey());
+		this->_modes = src.getModes();
+		this->setUserLimit(src.getUserLimit());
+		this->_users = src.getTrueUsers();
+		this->_invited_users = src.getTrueInvitedUsers();
+		this->_operators = src.getTrueOperators();
+		this->_user_limit = src.getUserLimit();
+//		this->_has_user_limit = src.
+	}
+	return *this;
+}
+
+
+Channel::Channel( const Channel & src )
+{
+	*this = src;
+}
+
 // Setters
 void Channel::setName(std::string name)
 {
@@ -68,6 +92,11 @@ bool Channel::getMode(char mode) const
     return std::find(_modes.begin(), _modes.end(), mode) != _modes.end();
 }
 
+std::vector<char>	Channel::getModes( void ) const
+{
+	return this->_modes;
+}
+
 size_t Channel::getUserLimit() const
 {
     return this->_user_limit;
@@ -88,6 +117,11 @@ std::vector<std::string> Channel::getUsers() const
     return users;
 }
 
+std::map<std::string, Client *>	Channel::getTrueUsers() const
+{
+	return this->_users;
+}
+
 std::vector<std::string> Channel::getOperators() const
 {
     std::vector<std::string> operators;
@@ -96,6 +130,11 @@ std::vector<std::string> Channel::getOperators() const
         operators.push_back(it->first);
     }
     return operators;
+}
+
+std::map<std::string, Client *>	Channel::getTrueOperators() const
+{
+	return this->_operators;
 }
 
 std::vector<std::string> Channel::getInvitedUsers() const
@@ -108,27 +147,39 @@ std::vector<std::string> Channel::getInvitedUsers() const
     return invitedUsers;
 }
 
-std::vector<int> Channel::getFds(std::string key) const {
+std::map<std::string, Client *>	Channel::getTrueInvitedUsers() const
+{
+	return this->_invited_users;
+}
+
+std::vector<int> Channel::getFds(std::string key) const 
+{
     std::vector<int> fds;
 
-    if (key == "users") {
-        for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it) {
+    if (key == "users") 
+	{
+        for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it) 
+		{
             int fd = it->second->getSocket();
             if (fd != -1) {
                 fds.push_back(fd);
             }
         }
     }
-    else if (key == "operators") {
-        for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it) {
+    else if (key == "operators") 
+	{
+        for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it) 
+		{
             int fd = it->second->getSocket();
             if (fd != -1) {
                 fds.push_back(fd);
             }
         }
     }
-    else if (key == "invited") {
-        for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it) {
+    else if (key == "invited") 
+	{
+        for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it) 
+		{
             int fd = it->second->getSocket();
             if (fd != -1) {
                 fds.push_back(fd);

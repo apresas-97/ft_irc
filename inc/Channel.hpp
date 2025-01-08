@@ -14,13 +14,13 @@ class Client;
 class Channel
 {
 	private:
-		Channel( const Channel & src );
-		// Channel & operator=( const Channel & src );
 
 	public:
 		Channel( void );
 		Channel( const std::string & name );
 		~Channel( void );
+		Channel( const Channel & src );
+		Channel & operator=( const Channel & src );
 
 		// Setters
         void	setName(std::string name);
@@ -34,12 +34,16 @@ class Channel
 		std::string				getTopic( void ) const;
         std::string				getKey( void ) const;
 		bool					getMode( char mode ) const;
+		std::vector<char>		getModes( void ) const;
 		size_t					getUserLimit( void ) const;
 		size_t					getUserCount( void ) const;
 
 		std::vector<std::string>	getUsers( void ) const;
+		std::map<std::string, Client*>	getTrueUsers( void ) const;
 		std::vector<std::string>	getOperators( void ) const;
+		std::map<std::string, Client*>	getTrueOperators( void ) const;
 		std::vector<std::string>	getInvitedUsers( void ) const;
+		std::map<std::string, Client*>	getTrueInvitedUsers( void ) const;
 
 		std::vector<int>			getFds(std::string key) const;
 

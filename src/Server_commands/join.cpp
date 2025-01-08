@@ -45,25 +45,26 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	bool are_keys = message.params.size() > 2 ? true : false;
 
-	if (message.params.size() < 2) {
-		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, {client->getNickname(), "JOIN"}));
+	if (message.params.size() < 2) 
+	{
+//		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, {client->getNickname(), "JOIN"})); // This call is incorrect
 		return replies;
 	}
 
 	channels = parseMessage(message.params[0], ',');
 	// int channels_n = channels.size();
     if (are_keys)
-        keys = parseMessage(message.params[1], ',');
-
-	for (int i = 0; i < channels.size(); i++)
 	{
+        keys = parseMessage(message.params[1], ',');
+	}
 
+	for (size_t i = 0; i < channels.size(); i++)
+	{
 		std::string currentChannel = channels[i];
 		Channel &channel = _channels[currentChannel];
 
 		if (isChannelInServer(currentChannel))
 		{
-
 			// Mode i (Invite-only channel)
 			if (channel.getMode('i') && !channel.isUserInvited(client->getUsername()))
 			{
@@ -84,12 +85,12 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			// Mode k (Channel key)
 			if (channel.getMode('k'))
 			{
-				if (!are_keys || i >= (int)keys.size() - 1 || keys[i] != channel.getKey()) {
+				if (!are_keys || i >= keys.size() - 1 || keys[i] != channel.getKey()) 
+				{
 					replies.push_back(createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, currentChannel));
 					continue;
 				}
 			}
-
 			// Add to the current channel
 			channel.addUser(*client, false);
 			client->addChannel(channel, currentChannel);
@@ -98,7 +99,8 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		else
 		{
 			// Create new channel
-			if (client->getChannelCount() >= client->getChannelLimit()) {
+			if (client->getChannelCount() >= client->getChannelLimit()) 
+			{
 				replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel));
 				return replies;
 			}
@@ -111,7 +113,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			Channel newChannel(currentChannel);
 			newChannel.addUser(*client, true);
 
-			if (are_keys && i < (int)keys.size())
+			if (are_keys && i < keys.size())
 			{
 				newChannel.setKey(keys[i]);
 				newChannel.setMode('k', true);
@@ -135,7 +137,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
         if (channel.getTopic() != "")
 		{
-            replies.push_back(createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), currentChannel, channel.getTopic()}));
+//            replies.push_back(createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), currentChannel, channel.getTopic()})); // This call is incorrect
         }
 
         replies.push_back(replyList(client, &channel, fds));
