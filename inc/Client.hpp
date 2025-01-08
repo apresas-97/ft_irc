@@ -70,6 +70,8 @@ class Client
 		void	cleanBuffer( void );
 		std::string getBuffer( void ) const;
 
+		std::vector<Channel *>	getChannelsVector( void ) const;
+
 	private:
 
 		std::string	_nickname;

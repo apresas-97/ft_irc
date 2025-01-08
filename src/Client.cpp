@@ -258,3 +258,12 @@ std::string Client::getBuffer( void ) const
 {
 	return _buffer;
 }
+
+std::vector<Channel *>	Client::getChannelsVector( void ) const
+{
+	std::vector<Channel *>	channels;
+
+	for (std::map<std::string, Channel *>::const_iterator it = this->_channels.begin(); it != this->_channels.end(); ++it)
+		channels.push_back(it->second);
+	return channels;
+}
