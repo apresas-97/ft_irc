@@ -1,19 +1,5 @@
-#include <iostream>
 #include <cstring>
-#include <unistd.h>
-#include <arpa/inet.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <sstream>
 #include <cerrno>
-#include <exception>
-#include <cstdlib>
-#include <sys/types.h>
-#include <poll.h>
-#include <cstring>
-#include <ctime>
-#include <iomanip>
-
 #include "ft_irc.hpp"
 #include "Server.hpp"
 
