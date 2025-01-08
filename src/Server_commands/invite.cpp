@@ -23,7 +23,7 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 
     Channel * channel = this->_channels[channelName];
 
-    if (!channel->isUserInChannel(client->getNickname())) 
+    if (!channel.isUserInChannel(client->getNickname())) 
 	{
         replies.push_back(createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, channelName));
         return replies;
@@ -35,7 +35,7 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
     //     return replies;
     // }
 
-    if (!channel->isUserOperator(client->getNickname())) 
+    if (!channel.isUserOperator(client->getNickname())) 
 	{
         replies.push_back(createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, channelName));
         return replies;
@@ -50,16 +50,19 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 
     channel->addUser(*client, 0);
     t_message inviteMessage;
-    inviteMessage.prefix = client->getUserIdentifier();
+    inviteMessage.prefix = client->getUserPrefix();
     inviteMessage.command = "INVITE";
     inviteMessage.params.push_back(targetNickname);
     inviteMessage.params.push_back(channelName);
     // targetClient->sendMessage(inviteMessage); I have to check where is this sent
 
+	// OLD RESPONSE
 	std::vector<std::string>	args;
 	args.push_back(targetNickname);
 	args.push_back(channelName);
     replies.push_back(createReply(RPL_INVITING, RPL_INVITING_STR, args));
+	// NEW RESPONSE
+    // replies.push_back(createReply(RPL_INVITING, RPL_INVITING_STR, targetNickname, channelName));
 
     return replies;
 }

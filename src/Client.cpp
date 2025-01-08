@@ -1,260 +1,213 @@
 #include "Client.hpp"
 #include <cstring>
 
-Client::Client( void ) {
-	memset(_buffer, 0, BUFFER_SIZE);
+// Constructors and Destructor
+Client::Client(void)
+{
+    memset(_buffer, 0, BUFFER_SIZE);
+    _authorised = false;
+    _registered = false;
+    _chan_limit = 0;
 }
 
-// Client::Client( int fd, struct sockaddr_storage address ) : _registered(false), _authorised(false)
-// {
-// 	this->_address = address;
-// }
-
-Client::Client( int socket ) : _authorised(false),  _registered(false) 
+Client::Client(int socket) : _socket(socket), _authorised(false), _registered(false), _chan_limit(0)
 {
-	this->_socket = socket;
+    memset(_buffer, 0, BUFFER_SIZE);
 }
 
-Client::~Client( void ) {}
+Client::~Client(void) {}
 
-
-const std::string & Client::getNickname( void ) const
+// Setters
+void Client::setSocket(const int &socket)
 {
-	return this->_nickname;
+    this->_socket = socket;
 }
 
-const std::string & Client::getUsername( void ) const
+void Client::setNickname(const std::string &nickname)
 {
-	return this->_username;
+    this->_nickname = nickname;
 }
 
-const std::string & Client::getHostname( void ) const
+void Client::setUsername(const std::string &username)
 {
-	return this->_hostname;
+    this->_username = username;
 }
 
-const std::string & Client::getRealname( void ) const
+void Client::setHostname(const std::string &hostname)
 {
-	return this->_realname;
+    this->_hostname = hostname;
 }
 
-const int & Client::getSocket( void ) const 
+void Client::setRealname(const std::string &realname)
 {
-	return this->_socket;
+    this->_realname = realname;
 }
 
-
-void Client::setNickname( const std::string & nickname ) 
+void Client::setAuthorised(bool value)
 {
-	this->_nickname = nickname;
+    this->_authorised = value;
 }
 
-void Client::setUsername( const std::string & username ) 
+void Client::setRegistered(bool value)
 {
-	this->_username = username;
+    this->_registered = value;
 }
 
-void Client::setHostname( const std::string & hostname ) 
+void Client::setMode(char mode, bool value)
 {
-	this->_hostname = hostname;
+    switch (mode)
+    {
+    case 'a':
+        this->_mode.a = value;
+        break;
+    case 'i':
+        this->_mode.i = value;
+        break;
+    case 'w':
+        this->_mode.w = value;
+        break;
+    case 'r':
+        this->_mode.r = value;
+        break;
+    case 'o':
+        this->_mode.o = value;
+        break;
+    case 'O':
+        this->_mode.O = value;
+        break;
+    case 's':
+        this->_mode.s = value;
+        break;
+    default:
+        break;
+    }
 }
 
-void Client::setRealname( const std::string & realname ) 
+// Getters
+int Client::getSocket(void)
 {
-	this->_realname = realname;
+    return this->_socket;
 }
 
-void Client::setSocket( const int & socket ) 
+const std::string &Client::getNickname(void) const
 {
-	this->_socket = socket;
+    return this->_nickname;
 }
 
-std::string Client::getPrefix( void ) const
+const std::string &Client::getUsername(void) const
 {
-	std::string	prefix;
-
-	prefix = ":" + this->getUserIdentifier();
-	return prefix;
+    return this->_username;
 }
 
-std::string Client::getUserIdentifier( void ) const
+const std::string &Client::getHostname(void) const
 {
-	std::string	identifier;
-
-	identifier += this->getNickname();
-	identifier += "!";
-	identifier += this->getUsername();
-	identifier += "@";
-	identifier += this->getHostname();
-
-	return identifier;
+    return this->_hostname;
 }
 
-bool Client::isAuthorised( void ) const
+const std::string &Client::getRealname(void) const
 {
-	return this->_authorised;
+    return this->_realname;
 }
 
-void Client::setAuthorised( bool value )
+const std::string Client::getUserPrefix(void) const
 {
-	this->_authorised = value;
+	std::string	str = this->getNickname() + "!" + this->getUsername() + "@" + this->getHostname();
+
+    return str;
 }
 
-bool Client::isRegistered( void ) const
+bool Client::isAuthorised(void) const
 {
-	return this->_registered;
+    return this->_authorised;
 }
 
-void Client::setRegistered( bool value )
+bool Client::isRegistered(void) const
 {
-	this->_registered = value;
+    return this->_registered;
+}
+
+bool Client::getMode(char mode) const
+{
+    switch (mode)
+    {
+		case 'a':
+			return this->_mode.a;
+			break ;
+		case 'i':
+			return this->_mode.i;
+			break ;
+		case 'w':
+			return this->_mode.w;
+			break ;
+		case 'r':
+			return this->_mode.r;
+			break ;
+		case 'o':
+			return this->_mode.o;
+			break ;
+		case 'O':
+			return this->_mode.O;
+			break ;
+		case 's':
+			return this->_mode.s;
+			break ;
+		default:
+			return false;
+			break ;
+    }
+}
+
+t_mode Client::getModes(void) const
+{
+    return this->_mode;
 }
 
 int Client::getChannelCount(void) const
 {
-    return (this->_channels.size());
+    return static_cast<int>(this->_channels.size());
 }
 
 int Client::getChannelLimit(void) const
 {
-    return (this->_chan_limit);
+    return this->_chan_limit;
 }
 
-bool Client::getMode( char mode ) const 
+// Channel Management
+void Client::addChannel(Channel &channel, std::string &name)
 {
-	switch (mode)
-	{
-		case 'a':
-			return this->_mode.a;
-		case 'i':
-			return this->_mode.i;
-		case 'w':
-			return this->_mode.w;
-		case 'r':
-			return this->_mode.r;
-		case 'o':
-			return this->_mode.o;
-		case 'O':
-			return this->_mode.O;
-		case 's':
-			return this->_mode.s;
-		default:
-			return false;
-	}
+    _channels[name] = &channel;
 }
 
-t_mode	Client::getModes( void ) const 
+void Client::removeChannel(Channel &channel, std::string &name)
 {
-	return this->_mode;
+    _channels.erase(name);
+	// TODO soomething with &channel??
+	(void)channel;
 }
 
-void Client::setMode( char mode, bool value )
+bool Client::hasMode(char mode) const
 {
-	switch (mode)
-	{
-		case 'a':
-			this->_mode.a = value;
-			break;
-		case 'i':
-			this->_mode.i = value;
-			break;
-		case 'w':
-			this->_mode.w = value;
-			break;
-		case 'r':
-			this->_mode.r = value;
-			break;
-		case 'o':
-			this->_mode.o = value;
-			break;
-		case 'O':
-			this->_mode.O = value;
-			break;
-		case 's':
-			this->_mode.s = value;
-			break;
-		default:
-			break;
-	}
+    return getMode(mode);
 }
 
-bool Client::hasMode( char mode ) const
+const std::string Client::getModeString(void) const
 {
-	switch (mode)
-	{
-		case 'a':
-			return this->_mode.a;
-			break;
-		case 'i':
-			return this->_mode.i;
-			break;
-		case 'w':
-			return this->_mode.w;
-			break;
-		case 'r':
-			return this->_mode.r;
-			break;
-		case 'o':
-			return this->_mode.o;
-			break;
-		case 'O':
-			return this->_mode.O;
-			break;
-		case 's':
-			return this->_mode.s;
-			break;
-		default:
-			return false; // ffornes- should we give error message here?
-			break;
-	}
-}
+    std::string str("+");
 
-const std::string Client::getModeString( void ) const
-{
-	std::string	str("+");
+    if (this->hasMode('a'))
+        str += "a";
+    if (this->hasMode('i'))
+        str += "i";
+    if (this->hasMode('w'))
+        str += "w";
+    if (this->hasMode('r'))
+        str += "r";
+    if (this->hasMode('o'))
+        str += "o";
+    if (this->hasMode('O'))
+        str += "O";
+    if (this->hasMode('s'))
+        str += "s";
 
-	if (this->hasMode('a'))
-		str += "a";
-	if (this->hasMode('i'))
-		str += "i";
-	if (this->hasMode('w'))
-		str += "w";
-	if (this->hasMode('r'))
-		str += "r";
-	if (this->hasMode('o'))
-		str += "o";
-	if (this->hasMode('O'))
-		str += "O";
-	if (this->hasMode('s'))
-		str += "s";
-
-	return str;
-}
-
-bool	Client::addToBuffer( char * content ) 
-{
-    int i = 0;
-
-    while (_buffer[i] != '\0' && i < BUFFER_SIZE - 1)
-        i++;
-
-    int j = 0;
-    while (content[j] != '\0' && i < BUFFER_SIZE - 1) {
-        _buffer[i] = content[j];
-        i++;
-        j++;
-    }
-    _buffer[i] = '\0';
-	return true; // ffornes- maybe should return false if the buffer is filled and there's no more space?
-	// should we silently ignore the message in that case?? 
-}
-
-void	Client::cleanBuffer( void )
-{
-	memset(_buffer, 0, BUFFER_SIZE);
-}
-
-std::string Client::getBuffer( void ) const
-{
-	return _buffer;
+    return str;
 }

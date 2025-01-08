@@ -50,7 +50,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	error_acknowledgement.params.push_back(":Closing Link: " + client.getHostname() + " (Quit: " + quit_message + ")");
 	// error_acknowledgement.target_client_fd = ... // This is the TODO part (but this will only be for the sender)
 
-	quit_broadcast.prefix = client.getPrefix();
+	quit_broadcast.prefix = client.getUserPrefix();
 	quit_broadcast.command = "QUIT";
 	quit_message = ":Quit: " + quit_message;
 	quit_broadcast.params.push_back(quit_message);

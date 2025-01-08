@@ -1,13 +1,5 @@
 #include "Server.hpp"
 
-/* apresas-:
-	Some info about commoands:
-
-	Commands will only care about the parameters they expect
-	If a command expects 1 paramter, it will just process the first parameter,
-	the rest will be ignored.
-*/
-
 std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes ) 
 {
 	std::cout << "CHANMODE command called..." << std::endl;

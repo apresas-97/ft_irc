@@ -25,7 +25,7 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 		// Idk what to do here, the nickname should have been set already
 		// If not, the registration can't continue
 		// I need to figure this out
-		return replies; // ???
+//		return ; // ??? // Can't return it's a std::vector<t_message>
 	}
 	Client * client = this->_current_client;
 	if (client->isRegistered() == true) 
@@ -47,7 +47,7 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 
 	// TODO:
 	// Prepare the welcome message reply
-	replies.push_back(createReply(RPL_WELCOME, RPL_WELCOME_STR, client->getUserIdentifier()));
+	replies.push_back(createReply(RPL_WELCOME, RPL_WELCOME_STR, client->getUserPrefix()));
 	std::vector<std::string> yourhost_params;
 	yourhost_params.push_back(this->getName());
 	yourhost_params.push_back(this->getVersion());

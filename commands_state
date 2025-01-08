@@ -1,0 +1,45 @@
+DONE	- INVITE <nickname> <channel>
+			- Maybe only for modes that we care about in ft_irc
+DONE	- PASS <password>
+DONE	- PRIVMSG <msgtarget> <text to be sent>
+DONE	- QUIT [ <quit message> ]
+DONE	- TOPIC <channel> [ <topic> ]
+
+WIP	AAE	- JOIN ( <channel> *("," <channel> ) [ <key> *("," <key>) ] ) / "0"
+
+WIP	APR	- MODE <nickname> *( ( "+" / "-" ) *( "i" / "w" / "o" / "O" / "r" ) )
+WIP	APR	- MODE <channel> *( ("-"/"+") *<modes> *<modeparams> )
+WIP	APR	- NICK <nickname>
+WIP APR	- USER <username> <mode> * <realname>
+
+NS		- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
+
+
+
+- PART <channel> *("," <channel> ) [ <part message> ]
+- NAMES [ <channel> *("," <channel> ) [ <target> ] ]
+	The <target> param is relating to server-to-server connections.
+	We should check if <target> == _server_name
+	If so, good. If not, then ERR_NOSUCHSERVER
+	This way we follow the IRC protocol well enough, but we should test it in a real server
+- LIST [ <channel> *("," <channel> ) [ <target> ] ]
+	We should hangle the targets like I said in NAMES
+- NOTICE <msgtarget> <text to be sent>
+- MOTD [ <target> ]
+	Handle target in the special way
+- LUSERS [ <mask> [ <target> ] ]
+	Idk about the mask and target params
+- VERSION [ <target> ]
+	Handle the target param in the magic ways
+- TIME [ <target> ]
+	Handle the target param in the magic ways
+- ADMIN [ <target> ]
+	Target magic
+- INFO [ <target> ]
+	Target magic
+- WHO [ <mask> [ "o" ] ]
+- WHOIS [ <target> ] <mask> *("," <mask> )
+- WHOWAS <nickname> *("," <nickname> ) [ <count> [ <target> ] ]
+- KILL <nickname> <comment>
+- PING <server1> [ <server2> ]
+- PONG <server> [ <server2> ]

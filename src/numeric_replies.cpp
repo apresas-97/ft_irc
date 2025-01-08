@@ -96,3 +96,33 @@ t_message Server::createReply( t_message & message, std::string corrected_param,
 	reply.params.push_back(param);
 	return reply;
 }
+
+t_message Server::replyList(Client *client, Channel *channel, std::vector<int>& fds)
+{
+    std::string userlist("");
+    std::string main = client->getNickname();
+
+	// Generate the list of channel users with the appropriate format
+    for (size_t	i = 0; i < fds.size(); i++) 
+    {
+        Client *currentClient = findClient(fds[i]);
+        std::string currentNick = currentClient->getNickname();
+
+        // Check if the user is an administrator (with operator in the channel)
+        if (channel->isUserOperator(currentNick)) 
+        {
+            userlist += "@" + currentNick + " ";
+        }
+        else
+        {
+            userlist += currentNick + " ";
+        }
+    }
+
+	// Create the response with the list of users
+	// RPL_NAMREPLY is the IRC response code for the name list
+
+//    t_message reply = createReply(RPL_NAMREPLY, RPL_NAMREPLY_STR, {main, channel->getName(), userlist}); // TODO incorrect call
+	t_message	reply; // NEEDED IN ORDER TO AVOID PROGRAM SHITTING ITSELF BECAUSE PREVIOUS CALL IS WRONG
+    return reply;
+}
