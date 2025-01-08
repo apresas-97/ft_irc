@@ -27,7 +27,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	>> :otherprefix QUIT :Quit: I gotta go grocery shopping, I'll be back later
 
 	*/
-	std::vector<t_message> replies;
+	std::vector<t_message>	replies;
 	t_message error_acknowledgement; // Message for the client that is quitting
 	t_message quit_broadcast; // Message for the clients in the same channels as the quitting client
 	Client & client = *this->_current_client;

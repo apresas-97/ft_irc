@@ -14,10 +14,14 @@ Apparently, nowadays, the <mode> parameter is ignored completely by most servers
 std::vector<t_message>	Server::cmdUser( t_message & message ) 
 {
 	std::cout << "USER command called..." << std::endl;
-	std::vector<t_message> replies;
+	std::vector<t_message>	replies;
+	t_message				reply;
 	if (message.params.size() < 4) 
 	{
-		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, this->_current_client->getNickname()));
+		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, this->_current_client->getNickname());
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 	if (this->_current_client->getNickname().empty() == true) 
@@ -30,7 +34,10 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 	Client * client = this->_current_client;
 	if (client->isRegistered() == true) 
 	{
-		replies.push_back(createReply(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_STR));
+		reply = createReply(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_STR);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 	// apresas-: TODO: Check that the username and realname are not too long
@@ -47,18 +54,35 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 
 	// TODO:
 	// Prepare the welcome message reply
-	replies.push_back(createReply(RPL_WELCOME, RPL_WELCOME_STR, client->getUserPrefix()));
+	reply = createReply(RPL_WELCOME, RPL_WELCOME_STR, client->getUserPrefix());
+	reply.target_client_fd = message.sender_client_fd;
+	reply.sender_client_fd = _serverFd;
+	replies.push_back(reply);
+
 	std::vector<std::string> yourhost_params;
 	yourhost_params.push_back(this->getName());
 	yourhost_params.push_back(this->getVersion());
-	replies.push_back(createReply(RPL_YOURHOST, RPL_YOURHOST_STR, yourhost_params));
-	replies.push_back(createReply(RPL_CREATED, RPL_CREATED_STR, this->getStartTimeStr()));
+
+	reply = createReply(RPL_YOURHOST, RPL_YOURHOST_STR, yourhost_params);
+	reply.target_client_fd = message.sender_client_fd;
+	reply.sender_client_fd = _serverFd;	
+	replies.push_back(reply);
+
+	reply = createReply(RPL_CREATED, RPL_CREATED_STR, this->getStartTimeStr());
+	reply.target_client_fd = message.sender_client_fd;
+	reply.sender_client_fd = _serverFd;		
+	replies.push_back(reply);
+
 	std::vector<std::string> myinfo_params;
 	myinfo_params.push_back(this->getName());
 	myinfo_params.push_back(this->getVersion());
 	myinfo_params.push_back(USER_MODES); // Here will go all of the available user modes
 	myinfo_params.push_back(CHANNEL_MODES); // Here will go all of the available channel modes
-	replies.push_back(createReply(RPL_MYINFO, RPL_MYINFO_STR, myinfo_params));
+
+	reply = createReply(RPL_MYINFO, RPL_MYINFO_STR, myinfo_params);
+	reply.target_client_fd = message.sender_client_fd;
+	reply.sender_client_fd = _serverFd;	
+	replies.push_back(reply);
 
 	return replies;
 }

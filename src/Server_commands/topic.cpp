@@ -3,12 +3,16 @@
 std::vector<t_message> Server::cmdTopic(t_message &message) 
 {
 	std::cout << "TOPIC command called..." << std::endl;
-	std::vector<t_message> replies;
+	std::vector<t_message>	replies;
+	t_message				reply;
 	Client *client = this->_current_client;
 
 	if (message.params.size() < 1) 
 	{
-		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR));
+		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
@@ -16,7 +20,10 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 	if (this->_channels.find(channelName) == this->_channels.end()) 
 	{
-//		replies.push_back(createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, {client->getNickname(), channelName})); // incorrect call
+//		reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, {client->getNickname(), channelName}); // incorrect call
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
@@ -24,7 +31,10 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 	if (!channel->isUserInChannel(client->getNickname())) 
 	{
-//		replies.push_back(createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, {client->getNickname(), channelName})); // incorrect call
+//		reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, {client->getNickname(), channelName}); // incorrect call
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
@@ -32,11 +42,15 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 	{
 		if (channel->getTopic().empty()) 
 		{
-//			replies.push_back(createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, {client->getNickname(), channelName})); // incorrect call
+//			reply = createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, {client->getNickname(), channelName}); // incorrect call
+//			TODO set target_client_fd and sender_client_fd
+			replies.push_back(reply);
 		} 
 		else 
 		{
-//			replies.push_back(createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()})); // incorrect call
+//			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()}); // incorrect call
+//			TODO set target_client_fd and sender_client_fd
+			replies.push_back(reply);
 		}
 	} 
 	else 
@@ -49,7 +63,10 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 		if (channel->getMode('t') && !channel->isUserOperator(client->getNickname())) 
 		{
-//			replies.push_back(createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, {client->getNickname(), channelName})); // incorrect call
+//			reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, {client->getNickname(), channelName}); // incorrect call
+			reply.target_client_fd = message.sender_client_fd;
+			reply.sender_client_fd = _serverFd;
+			replies.push_back(reply);
 			return replies;
 		}
 
@@ -71,7 +88,9 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		topicMessage.target_channels.push_back(channel);
 		// channel.broadcastMessage(topicMessage, client->getNickname());
 
-//		replies.push_back(createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()})); // incorrect call
+//		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()}); // incorrect call
+//		TODO set target_client_fd and sender_client_fd
+		replies.push_back(reply);
 	}
 
 	return replies;

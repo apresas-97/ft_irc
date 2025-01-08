@@ -35,7 +35,8 @@ static std::vector<std::string> parseMessage(const std::string &message, char de
 std::vector<t_message>	Server::cmdJoin( t_message & message )
 {
 	std::cout << "JOIN command called..." << std::endl;
-	std::vector<t_message> replies;
+	std::vector<t_message>	replies;
+	t_message				reply;
 
 	Client *client = this->_current_client;
 
@@ -47,7 +48,10 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	if (message.params.size() < 2) 
 	{
-//		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, {client->getNickname(), "JOIN"})); // This call is incorrect
+//		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, {client->getNickname(), "JOIN"}); // This call is incorrect
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
@@ -68,18 +72,27 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			// Mode i (Invite-only channel)
 			if (channel->getMode('i') && !channel->isUserInvited(client->getUsername()))
 			{
-				replies.push_back(createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, currentChannel));
+				reply = createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, currentChannel);
+				reply.target_client_fd = message.sender_client_fd;
+				reply.sender_client_fd = _serverFd;
+				replies.push_back(reply);
 				continue;
 			}
 			// Mode l (Channel limit)
 			if (channel->getMode('l') && channel->getUserCount() >= channel->getUserLimit())
 			{
-				replies.push_back(createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, currentChannel));
+				reply = createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, currentChannel);
+				reply.target_client_fd = message.sender_client_fd;
+				reply.sender_client_fd = _serverFd;
+				replies.push_back(reply);
 				continue;
 			}
 			if (client->getChannelCount() >= client->getChannelLimit())
 			{
-				replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel));
+				reply = createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel);
+				reply.target_client_fd = message.sender_client_fd;
+				reply.sender_client_fd = _serverFd;
+				replies.push_back(reply);
 				continue;
 			}
 			// Mode k (Channel key)
@@ -87,7 +100,10 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			{
 				if (!are_keys || i >= keys.size() - 1 || keys[i] != channel->getKey()) 
 				{
-					replies.push_back(createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, currentChannel));
+					reply = createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, currentChannel);
+					reply.target_client_fd = message.sender_client_fd;
+					reply.sender_client_fd = _serverFd;
+					replies.push_back(reply);
 					continue;
 				}
 			}
@@ -101,7 +117,10 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			// Create new channel
 			if (client->getChannelCount() >= client->getChannelLimit()) 
 			{
-				replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel));
+				reply = createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel);
+				reply.target_client_fd = message.sender_client_fd;
+				reply.sender_client_fd = _serverFd;
+				replies.push_back(reply);	
 				return replies;
 			}
 			//	TODO:Do we implement the masks?
@@ -137,7 +156,9 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
         if (channel->getTopic() != "")
 		{
-//            replies.push_back(createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), currentChannel, channel.getTopic()})); // This call is incorrect
+//			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), currentChannel, channel.getTopic()}); // This call is incorrect
+//			TODO set target_client_fd and sender_client_fd
+			replies.push_back(reply);
         }
 
         replies.push_back(replyList(client, channel, fds));

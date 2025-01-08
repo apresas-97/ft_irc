@@ -10,27 +10,40 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 {
 	std::cout << "NICK command called..." << std::endl;
 	Client * client = this->_current_client;
-	std::vector<t_message> replies;
+	std::vector<t_message>	replies;
+	t_message				reply;
 
 	if (client->isAuthorised() == false || client->isRegistered() == false) 
 	{
-		replies.push_back(createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR));
+		reply = createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 	if (client->getMode('r') == true) 
 	{
-		replies.push_back(createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR));
+		reply = createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 	if (message.params.size() < 1) 
 	{
-		replies.push_back(createReply(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_STR));
+		reply = createReply(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_STR);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 	std::string nickname = message.params[0];
 	if (irc_isValidNickname(nickname) == false) 
 	{
-		replies.push_back(createReply(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_STR, nickname));
+		reply = createReply(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_STR, nickname);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
@@ -44,12 +57,17 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	std::vector<std::string>::iterator it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), nickname);
 	if (it != this->_taken_nicknames.end()) 
 	{
-		replies.push_back(createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname));
+		reply = createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 	// If all went well, change the user's nickname and return its own message as acknowledgement
 	client->setNickname(nickname);
 	this->_taken_nicknames.push_back(nickname);
+	// TODO create reply when everything went OK
+
 	// It should now be removed from the taken nicknames list, but not immediately
 	// I need to look this up and see how it truly works
 	// I think it's removed after a certain amount of time, but I'm not sure
