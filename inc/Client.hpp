@@ -3,6 +3,8 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include <map>
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
 
