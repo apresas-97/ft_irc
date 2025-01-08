@@ -128,7 +128,8 @@ static void	sendReplies( t_message reply )
 	}
 	else
 	{
-		std::cout << "Attempting to send message to irssi......." << std::endl;
+		std::cout << "Reply target fd: " << reply.target_client_fd << std::endl;
+	//	std::cout << "Attempting to send message to irssi......." << std::endl;
 	//	output = "NOTICE AUTH :*** Looking up your hostname\r\n"; // ffornes- THIS IS ACCEPTED BY IRSSI which means this kindof the format expected...
 		send(reply.target_client_fd, output.c_str(), output.size(), 0);
 	}
@@ -229,9 +230,7 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::vector<t_message> replies;
 	std::string	command = stringToUpper(message.command);
 
-	std::cout << "PRINTING MESSAGE" << std::endl;
 	printTmessage(message);
-	std::cout << "END PRINTING MESSAGE" << std::endl;
 	if (command == "/PASS")
 		return this->cmdPass(message);
 	else if (command == "/NICK")
