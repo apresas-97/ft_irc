@@ -36,6 +36,7 @@ t_message Server::createReply( int number, const std::string message )
 	reply.prefix = ":" + this->getName();
 	reply.command = formatNumber(number);
 	reply.params.push_back(message);
+	reply.target_client_fds.insert(this->_current_client->getSocket());
 	return reply;
 }
 
@@ -57,6 +58,7 @@ t_message Server::createReply( int number, const std::string message, const std:
 	if (start != std::string::npos && end != std::string::npos) 
 		msg.replace(start, end - start + 1, param);
 	reply.params.push_back(msg);
+	reply.target_client_fds.insert(this->_current_client->getSocket());
 	return reply;
 }
 
@@ -83,6 +85,7 @@ t_message Server::createReply( int number, const std::string message, const std:
 		end = msg.find('>');
 	}
 	reply.params.push_back(msg);
+	reply.target_client_fds.insert(this->_current_client->getSocket());
 	return reply;
 }
 
@@ -94,5 +97,6 @@ t_message Server::createReply( t_message & message, std::string corrected_param,
 	reply.command = message.command;
 	std::string param = corrected_param; // TODO: Figure out the ":" part
 	reply.params.push_back(param);
+	reply.target_client_fds.insert(this->_current_client->getSocket());
 	return reply;
 }
