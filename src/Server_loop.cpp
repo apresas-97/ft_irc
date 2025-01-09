@@ -77,6 +77,24 @@ void Server::newClient( void )
 	this->_client_count++;
 }
 
+/// PROVISIONAL
+std::vector<std::string> splitMessage( std::string & message )
+{
+	std::vector<std::string> messages;
+	std::string delimiter = "\r\n";
+
+	size_t pos = 0;
+	std::string token;
+	while ((pos = message.find(delimiter)) != std::string::npos)
+	{
+		token = message.substr(0, pos);
+		messages.push_back(token);
+		message.erase(0, pos + delimiter.length());
+	}
+	return messages;
+}
+///
+
 void	Server::getClientData( int i ) 
 {
 	char	buffer[BUFFER_SIZE] = {0};
@@ -101,7 +119,17 @@ void	Server::getClientData( int i )
 
 		std::string message(buffer);
 
-		parseData(message, this->_poll_fds[i].fd);
+		// Original method
+		// parseData(message, this->_poll_fds[i].fd);
+
+		// apresas- WIP new method
+		// split the message with CRLF as delimiter
+		std::vector<std::string> messages = splitMessage(message);
+
+		// Iterate over the split messages and parse them
+		for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end(); ++it)
+			parseData(*it, this->_poll_fds[i].fd);
+
 		//	sendData(buffer); // ffornes- we do not send data here we send it with the replies
 	}
 }
@@ -131,10 +159,11 @@ static void	sendReplies( t_message reply )
 	}
 	else
 	{
-		std::cout << "Reply target fd: " << reply.target_client_fd << std::endl;
-	//	std::cout << "Attempting to send message to irssi......." << std::endl;
-	//	output = "NOTICE AUTH :*** Looking up your hostname\r\n"; // ffornes- THIS IS ACCEPTED BY IRSSI which means this kindof the format expected...
-		send(reply.target_client_fd, output.c_str(), output.size(), 0);
+		for (std::set<int>::iterator it = reply.target_client_fds.begin(); it != reply.target_client_fds.end(); ++it)
+		{
+			std::cout << "Reply target fd: " << *it << std::endl;
+			send(*it, output.c_str(), output.size(), 0);
+		}
 	}
 }
 
