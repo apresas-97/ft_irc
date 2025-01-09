@@ -4,11 +4,11 @@
 // RPL_:
 // Welcome messages
 #define RPL_WELCOME 1
-#define RPL_WELCOME_STR "Welcome to the Internet Relay Network <identifier(nickname!user@host)>"
+#define RPL_WELCOME_STR ":Welcome to the Internet Relay Network <identifier(nickname!user@host)>"
 #define RPL_YOURHOST 2
-#define RPL_YOURHOST_STR "Your host is <servername>, running version <ver>"
+#define RPL_YOURHOST_STR ":Your host is <servername>, running version <ver>"
 #define RPL_CREATED 3
-#define RPL_CREATED_STR "This server was created <date>"
+#define RPL_CREATED_STR ":This server was created <date>"
 #define RPL_MYINFO 4
 #define RPL_MYINFO_STR "<servername> <version> <available user modes> <available channel modes>"
 #define RPL_PASSWORD 900
