@@ -35,6 +35,7 @@ t_message Server::createReply( int number, const std::string message )
 	// reply.timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
 	reply.command = formatNumber(number);
+	reply.params.push_back(this->_current_client->getNickname());
 	reply.params.push_back(message);
 	reply.target_client_fds.insert(this->_current_client->getSocket());
 	return reply;
@@ -50,6 +51,7 @@ t_message Server::createReply( int number, const std::string message, const std:
 	// std::string timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
 	reply.command = formatNumber(number);
+	reply.params.push_back(this->_current_client->getNickname());
 	std::string msg = message;
 
 	// Replace the <placeholder> in the message with the param
@@ -72,6 +74,7 @@ t_message Server::createReply( int number, const std::string message, const std:
 	// std::string timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
 	reply.command = formatNumber(number);
+	reply.params.push_back(this->_current_client->getNickname());
 	std::string msg = message;
 
 	// Replace the <placeholders> in the message with the param, in order of appearance
@@ -95,6 +98,7 @@ t_message Server::createReply( t_message & message, std::string corrected_param,
 	t_message	reply;
 	reply.prefix = ":" + nickname;
 	reply.command = message.command;
+	reply.params.push_back(this->_current_client->getNickname());
 	std::string param = corrected_param; // TODO: Figure out the ":" part
 	reply.params.push_back(param);
 	reply.target_client_fds.insert(this->_current_client->getSocket());
