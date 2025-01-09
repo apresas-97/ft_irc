@@ -94,7 +94,7 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 
 	// Send a broadcast message to all users in the same channels as the user
 	t_message nick_broadcast;
-	nick_broadcast.prefix = old_prefix;
+	nick_broadcast.prefix = ":" + old_prefix;
 	nick_broadcast.command = "NICK";
 	nick_broadcast.params.push_back(":" + nickname);
 
