@@ -150,14 +150,14 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 	message.sender_client_fd = client_fd;
 	message.target_client_fd = -1;
 
-	if (message.command.empty()) 
+	if (message.command.empty())
 	{
 		std::cerr << "Empty command received, message will be silently ignored" << std::endl;
 		return ;
 	}
 
-//	std::cout << "Message received: ";
-//	printTmessage(message);
+	printTmessage(message);
+
 	std::vector<t_message> replies = runCommand(message); // target must be set in run command...
 	for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
 	{
