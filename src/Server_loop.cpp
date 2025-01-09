@@ -96,7 +96,7 @@ void	Server::getClientData( int i )
 	{
 		if (hasNULL(buffer, bytes_received))
 			return ;
-	
+
 		buffer[bytes_received] = '\0';
 
 		std::string message(buffer);
