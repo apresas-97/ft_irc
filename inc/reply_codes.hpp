@@ -50,6 +50,8 @@
 #define ERR_NICKNAMEINUSE_STR "<nickname> :Nickname is already in use"
 #define ERR_UNAVAILRESOURCE 437
 #define ERR_UNAVAILRESOURCE_STR "<nickname/channel> :Nick/channel is temporarily unavailable"
+#define ERR_NOTREGISTERED 451
+#define ERR_NOTREGISTERED_STR ":You have not registered"
 #define ERR_NEEDMOREPARAMS 461
 #define ERR_NEEDMOREPARAMS_STR "<nickname> :Not enough parameters"
 #define ERR_ALREADYREGISTRED 462
