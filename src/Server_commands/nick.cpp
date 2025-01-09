@@ -70,7 +70,7 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	}
 
 	// Store the user's prefix before changing the nickname, for later use
-	std::string old_prefix = client->getPrefix();
+	std::string old_prefix = client->getUserPrefix();
 
 	// Remove the old nickname from the taken nicknames list
 	std::string old_nickname = client->getNickname();
