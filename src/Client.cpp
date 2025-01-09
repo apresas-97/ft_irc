@@ -23,6 +23,11 @@ void Client::setSocket(const int &socket)
     this->_socket = socket;
 }
 
+void Client::setSockaddr(const struct sockaddr *addr)
+{
+    this->_addr = addr;
+}
+
 void Client::setNickname(const std::string &nickname)
 {
     this->_nickname = nickname;
@@ -219,4 +224,32 @@ std::vector<Channel *>	Client::getChannelsVector( void ) const
 	for (std::map<std::string, Channel *>::const_iterator it = this->_channels.begin(); it != this->_channels.end(); ++it)
 		channels.push_back(it->second);
 	return channels;
+}
+
+std::string Client::hostnameLookup( void )
+{
+    if (this->_addr->sa_family == AF_INET)
+    {
+        // IPv4: We can work with this
+        struct sockaddr_in *addr_in = (struct sockaddr_in *)this->_addr;
+        std::string ip_address = inet_ntoa(addr_in->sin_addr);
+
+        // Get the hostname
+        struct hostent *host_entry = gethostbyname(ip_address.c_str());
+        if (host_entry && host_entry->h_name)
+        {
+            setHostname(std::string(host_entry->h_name));
+            return std::string(":*** Found your hostname:" + this->_hostname);
+        }
+        else
+        {
+            setHostname(ip_address);
+            return std::string(":*** Couldn't resolve your hostname; using your IP address instead");
+        }
+    }
+    // else connection must be IPv6 (I think), TODO make sure
+    // IPv6: Our allowed C functions are limted, we can't do much here
+    setHostname("placeholder.42.fr");
+    std::cout << this->_hostname << std::endl;
+    return std::string(":*** Couldn't resolve your hostname; using a placeholder instead");
 }

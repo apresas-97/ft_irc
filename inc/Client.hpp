@@ -7,6 +7,8 @@
 #include <map>
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
+#include <arpa/inet.h> // inet_ntoa
+#include <netdb.h> // gethostbyname
 
 #include "defines.hpp"
 #include "Channel.hpp"
@@ -33,6 +35,7 @@ class Client
 
 		// Setters
 		void	setSocket( const int & socket );
+		void	setSockaddr( const struct sockaddr *addr );
 		void	setNickname( const std::string & nickname );
 		void	setUsername( const std::string & username );
 		void	setHostname( const std::string & hostname );
@@ -58,23 +61,26 @@ class Client
 		// Channel Management
 		void	addChannel(Channel &channel, std::string& name);
 		void	removeChannel(Channel &channel, std::string& name);
+		std::vector<Channel *>	getChannelsVector( void ) const;
 
 		// Mode Management
 		bool	hasMode(char mode) const;
 		const std::string getModeString(void) const;
 
-		std::vector<Channel *>	getChannelsVector( void ) const;
+		// Hostname Management
+		std::string	hostnameLookup( void );
 
 	private:
 
-		int			_socket;
-		std::string	_nickname;
-		std::string	_username;
-		std::string	_hostname;
-		std::string	_realname;
-		bool		_authorised; // Has the client provided the correct password? (PASS command)
-		bool		_registered; // Has the client properly registered as a user? (NICK and USER commands)
-		t_mode		_mode;
+		int						_socket;
+		const struct sockaddr	*_addr; // For hostname lookup
+		std::string				_nickname;
+		std::string				_username;
+		std::string				_hostname;
+		std::string				_realname;
+		bool					_authorised; // Has the client provided the correct password? (PASS command)
+		bool					_registered; // Has the client properly registered as a user? (NICK and USER commands)
+		t_mode					_mode;
 
 		std::map<std::string, Channel*>	_channels;
 		int 		_chan_limit;
