@@ -181,7 +181,7 @@ void Server::setStartTime( void )
 			oss << "Dec ";
 			break;
 	}
-	oss << std::setw(2) << std::setfill('0') << now->tm_mday << "at ";
+	oss << std::setw(2) << std::setfill('0') << now->tm_mday << " at ";
 	oss << std::setw(2) << std::setfill('0') << now->tm_hour + 1 << ":";
 	oss << std::setw(2) << std::setfill('0') << now->tm_min << ":";
 	oss << std::setw(2) << std::setfill('0') << now->tm_sec << " UTC";
