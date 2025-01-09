@@ -103,6 +103,8 @@ class Server
 		t_message createReply( t_message & message, std::string corrected_param, std::string nickname );
 		t_message replyList(Client *client, Channel *channel, std::vector<int>& fds);
 
+		std::vector<t_message>	createWelcomeReplies( Client * client );
+
 		// Commands
 		std::vector<t_message> cmdInvite( t_message & message );
 		std::vector<t_message> cmdJoin( t_message & message );
