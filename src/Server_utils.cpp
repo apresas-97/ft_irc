@@ -66,11 +66,13 @@ std::string	Server::stringToUpper( std::string src )
 
 void	Server::printTmessage( t_message message ) const 
 {
+	std::cout << "t_message: ";
 	std::cout << "Prefix [" << message.prefix << "] ";
 	std::cout << "Command [" << message.command << "] ";
 	std::cout << "Params ";
 	for (size_t i = 0; i < message.params.size(); i++)
 		std::cout << "[" << message.params[i] << "] ";
+	std::cout << std::endl;
 	std::cout << "Sender: " << message.sender_client_fd << std::endl;
 	std::cout << "Target: " << message.target_client_fd << std::endl;
 	std::cout << std::endl;
