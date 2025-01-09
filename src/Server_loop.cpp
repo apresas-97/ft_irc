@@ -121,6 +121,7 @@ static std::string	formatReply( t_message reply )
 
 static void	sendReplies( t_message reply )
 {
+	// std::cout << "Sending replies..." << std::endl;
 	std::string	output = formatReply(reply);
 
 	if (reply.target_channels.size() > 0)
@@ -141,7 +142,8 @@ static void	sendReplies( t_message reply )
 // ffornes- this does too much I swear I'm gonna change it some day
 void Server::parseData( const std::string & raw_message, int client_fd )
 {
-//	std::cout << "MESSAGE RECEIVED: " << raw_message;
+	// std::cout << "parseData function called..." << std::endl;
+	// std::cout << "MESSAGE RECEIVED: \"" << raw_message << "\"" << std::endl;
 
 	this->_current_client = &this->_clients[client_fd];
 	t_message	message = prepareMessage(raw_message);
@@ -174,6 +176,7 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 */
 t_message	Server::prepareMessage( std::string raw_message ) // ffornes- Where do we set the target??? 
 {
+	// std::cout << "prepareMessage function called..." << std::endl;
 	t_message message;
 	std::string word;
 	std::istringstream iss(raw_message);
