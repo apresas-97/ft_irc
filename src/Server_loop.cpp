@@ -187,17 +187,12 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 
 	printTmessage(message);
 
-	std::vector<t_message> replies = runCommand(message); // target must be set in run command...
+	std::vector<t_message> replies = runCommand(message);
 	for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
 	{
 		printTmessage(*it);
-		//TODO send replies...
 		sendReplies(*it);
-		//send((*it).target_client_fd, 
 	}
-	// apresas-: At this point, the replies should be ready to be processed back to raw data and sent back to the client
-	// For now this will only work for commands that will be returned to the sender
-	// Stil need to implement putting the fd of the target of the message in the t_message struct
 }
 
 /*
@@ -282,63 +277,86 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		*/
 		return this->cmdUser(message);
 	}
-	else if (command == "CAP" && !this->_current_client->isAuthorised()) // ffornes- :: TODO............
+	// else if (command == "CAP" && !this->_current_client->isAuthorised()) // ffornes- :: TODO............
+	// {
+	// 	// Must handle the CAP LS that irssi client sends when connecting...
+	// 	std::vector<std::string>::iterator it = message.params.begin();
+	// 	t_message	msg; // Remember to add info about sender and target
+	// 	msg.command = message.command;
+	// 	msg.sender_client_fd = this->_serverFd;
+	// 	msg.target_client_fd = message.sender_client_fd;
+	// 	while (stringToUpper(*it) != "NICK" && it != message.params.end())
+	// 	{
+	// 		msg.params.push_back(*it);
+	// 		std::advance(it, 1);
+	// 	}
+	// 	replies.push_back(msg); // Respond with CAP * LS
+	// 	// Advance the message until you find the next command NICK, adapt it with the correct params
+	// 	//	and call runCommand again, saving the reply in this replies.
+	// 	if (it != message.params.end())
+	// 	{
+	// 		t_message	msg_nick; // Remember to add info about sender and target
+	// 		msg_nick.command = *it;
+	// 		msg_nick.sender_client_fd = this->_serverFd;
+	// 		msg_nick.target_client_fd = message.sender_client_fd;
+	// 		std::advance(it, 1);
+	// 		while (stringToUpper(*it) != "USER" && it != message.params.end())
+	// 		{
+	// 			msg_nick.params.push_back(*it);
+	// 			std::advance(it, 1);
+	// 		}
+	// 		replies.push_back(msg_nick);
+	// 	}
+	// 	// Advance the message until you find the next command USER, adapt it with the correct params
+	// 	//	and call runCommand again, saving the reply in this replies.
+	// 	if (it != message.params.end())
+	// 	{
+	// 		t_message	msg_user; // Remember to add info about sender and target
+	// 		msg_user.command = *it;
+	// 		msg_user.sender_client_fd = this->_serverFd;
+	// 		msg_user.target_client_fd = message.sender_client_fd;
+	// 		std::advance(it, 1);
+	// 		while (it != message.params.end())
+	// 		{
+	// 			msg_user.params.push_back(*it);
+	// 			std::advance(it, 1);
+	// 		}
+	// 		replies.push_back(msg_user);
+	// 	}
+	// 	// Send reply number 900 asking for password...
+
+	// 	replies.push_back(createReply(900, this->_current_client->getNickname()));
+
+	// 	return replies;
+	// }
+	else if (command == "CAP" && !this->_current_client->isAuthorised())
 	{
-		// Must handle the CAP LS that irssi client sends when connecting...
-		std::vector<std::string>::iterator it = message.params.begin();
-		t_message	msg; // Remember to add info about sender and target
-		msg.command = message.command;
-		msg.sender_client_fd = this->_serverFd;
-		msg.target_client_fd = message.sender_client_fd;
-		while (stringToUpper(*it) != "NICK" && it != message.params.end())
-		{
-			msg.params.push_back(*it);
-			std::advance(it, 1);
-		}
-		replies.push_back(msg); // Respond with CAP * LS
-		// Advance the message until you find the next command NICK, adapt it with the correct params
-		//	and call runCommand again, saving the reply in this replies.
-		if (it != message.params.end())
-		{
-			t_message	msg_nick; // Remember to add info about sender and target
-			msg_nick.command = *it;
-			msg_nick.sender_client_fd = this->_serverFd;
-			msg_nick.target_client_fd = message.sender_client_fd;
-			std::advance(it, 1);
-			while (stringToUpper(*it) != "USER" && it != message.params.end())
-			{
-				msg_nick.params.push_back(*it);
-				std::advance(it, 1);
-			}
-			replies.push_back(msg_nick);
-		}
-		// Advance the message until you find the next command USER, adapt it with the correct params
-		//	and call runCommand again, saving the reply in this replies.
-		if (it != message.params.end())
-		{
-			t_message	msg_user; // Remember to add info about sender and target
-			msg_user.command = *it;
-			msg_user.sender_client_fd = this->_serverFd;
-			msg_user.target_client_fd = message.sender_client_fd;
-			std::advance(it, 1);
-			while (it != message.params.end())
-			{
-				msg_user.params.push_back(*it);
-				std::advance(it, 1);
-			}
-			replies.push_back(msg_user);
-		}
-		// Send reply number 900 asking for password...
-		// TODO createReply doesnt fill the target............
-
-//		replies.push_back(createReply(900, this->_current_client->getNickname()));
-
-		t_message	passReply = createReply(900, this->_current_client->getNickname());
-		passReply.sender_client_fd = this->_serverFd;
-		passReply.target_client_fd = message.sender_client_fd;
-		replies.push_back(passReply);
-
+		// Our server will have no extensions, so we will silently ignore the opening CAP command
 		return replies;
+	}
+	else if (command == "JOIN" && !this->_current_client->isRegistered())
+	{
+		// For the message JOIN : that irssi sends right after CAP
+		// From what I've seen, here is where most servers lookup the hostname of the client and notify them with a NOTICE
+		// TODO: We can make this use the cmdNotice function when we have it
+		t_message notice_lookup;
+		notice_lookup.prefix = ":" + this->getName();
+		std::cout << "notice_lookup.prefix: \"" << notice_lookup.prefix << "\"" << std::endl;
+		notice_lookup.command = "NOTICE";
+		notice_lookup.target_client_fds.insert(this->_current_client->getSocket());
+		notice_lookup.params.push_back("AUTH"); // Or maybe "*" ?
+		notice_lookup.params.push_back(":*** Looking up your hostname");
+		replies.push_back(notice_lookup);
+
+		t_message notice_results;
+		notice_results.prefix = ":" + this->getName();
+		notice_results.command = "NOTICE";
+		notice_results.target_client_fds.insert(this->_current_client->getSocket());
+		notice_results.params.push_back("AUTH"); // Or maybe "*" ?
+		notice_results.params.push_back(this->_current_client->hostnameLookup());
+		replies.push_back(notice_results);
+
+		replies.push_back(createReply(ERR_NOTREGISTERED, "* " ERR_NOTREGISTERED_STR));
 	}
 	else if (!this->_current_client->isAuthorised())
 	{
