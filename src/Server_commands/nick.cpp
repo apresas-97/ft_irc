@@ -14,7 +14,7 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	t_message				reply;
 
 	// Check if the client is authorised and registered
-	if (client->isAuthorised() == false || client->isRegistered() == false) 
+	if (client->isAuthorised() == false) 
 	{
 		reply = createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR);
 		reply.target_client_fd = message.sender_client_fd;
@@ -102,6 +102,5 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	}
 	replies.push_back(nick_broadcast);
 
-	delete client; // TODO: REMEMBER TO FIX THIS, CLIENT SHOULD NOT BE DELETED HERE
-	return replies; // TEMP SOLUTION IN ORDER TO COMPILE PROJECT
+	return replies;
 }
