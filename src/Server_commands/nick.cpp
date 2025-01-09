@@ -85,8 +85,14 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	client->setNickname(nickname);
 	this->_taken_nicknames.push_back(nickname);
 
+	t_message acknowledgement;
+	acknowledgement.prefix = ":" + old_prefix;
+	acknowledgement.command = "NICK";
+	acknowledgement.params.push_back(":" + nickname);
+	acknowledgement.target_client_fds.insert(client->getSocket());
+	replies.push_back(acknowledgement);
+
 	// Send a broadcast message to all users in the same channels as the user
-	// The user itself is included at the message works as an acknowledgement
 	t_message nick_broadcast;
 	nick_broadcast.prefix = old_prefix;
 	nick_broadcast.command = "NICK";
