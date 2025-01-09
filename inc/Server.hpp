@@ -69,6 +69,8 @@ class Server
 		void parseInput( void );
 		void initServer( void );
 
+		void setName( const std::string & name );
+
 		void setVersion( size_t major, size_t minor );
 		std::string getVersion( void ) const;
 

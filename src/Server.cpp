@@ -12,6 +12,7 @@ Server*	Server::instance = NULL;
 Server::Server( const std::string & port, const std::string & password ) : _port(port), _password(password) 
 {
 	instance = this;
+	setName("ft_irc.42.fr");
 	setVersion(1, 0);
 	setStartTime();
 	parseInput();
@@ -82,6 +83,11 @@ void Server::sendData(const char *message)
 	for (size_t i = 1; i < _poll_fds.size(); i++) 
 		if (_poll_fds[i].fd != -1) 
 			send(_poll_fds[i].fd, message, strlen(message), 0);
+}
+
+void Server::setName( const std::string & name )
+{
+	this->_name = name;
 }
 
 std::string Server::getName( void ) const 
