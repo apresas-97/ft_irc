@@ -13,11 +13,15 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 {
 	std::cout << "PASS command called..." << std::endl;
 	Client * client = this->_current_client;
-	std::vector<t_message> replies;
+	std::vector<t_message>	replies;
+	t_message				reply;
 
 	if (message.params.size() < 1)
 	{
-		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client->getNickname()));
+		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client->getNickname());
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 	if (message.params[0] == this->_password) 
@@ -26,7 +30,12 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 		client->setAuthorised(true);
 	}
 	else
-		replies.push_back(createReply(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_STR));
+	{
+		reply = createReply(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_STR);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
+	}
 	return replies;
 }
 

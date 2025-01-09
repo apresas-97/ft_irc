@@ -11,20 +11,20 @@ SRC_FILES =	main.cpp \
 			Server.cpp \
 			Server_init.cpp \
 			Server_loop.cpp \
+			Server_commands/chanmode.cpp \
 			Server_commands/invite.cpp \
 			Server_commands/join.cpp \
 			Server_commands/kick.cpp \
 			Server_commands/mode.cpp \
 			Server_commands/nick.cpp \
 			Server_commands/pass.cpp \
-			Server_commands/priv.cpp \
+			Server_commands/privmsg.cpp \
 			Server_commands/quit.cpp \
 			Server_commands/topic.cpp \
 			Server_commands/user.cpp \
 			Server_utils.cpp \
 			Client.cpp \
 			Channel.cpp \
-			commands.cpp \
 			irc_ctype.cpp \
 			numeric_replies.cpp 
 

@@ -29,6 +29,32 @@ static bool	irc_isValidRealname( const std::string & realname )
 	return true;
 }
 
+std::vector<t_message>	Server::createWelcomeReplies( Client * client )
+{
+	std::vector<t_message>	welcome_replies;
+
+	welcome_replies.push_back(createReply(RPL_WELCOME, RPL_WELCOME_STR, client->getUserPrefix()));
+
+	std::vector<std::string> yourhost_params;
+	yourhost_params.push_back(this->getName());
+	yourhost_params.push_back(this->getVersion());
+
+	welcome_replies.push_back(createReply(RPL_YOURHOST, RPL_YOURHOST_STR, yourhost_params));
+
+	welcome_replies.push_back(createReply(RPL_CREATED, RPL_CREATED_STR, this->getStartTimeStr()));
+
+	std::vector<std::string> myinfo_params;
+	myinfo_params.push_back(this->getName());
+	myinfo_params.push_back(this->getVersion());
+	// These are TODO because I don't know if those are the definitive modes or if this is how we'll handle it
+	myinfo_params.push_back(USER_MODES); // TODO: Here will go all of the available user modes
+	myinfo_params.push_back(CHANNEL_MODES); // TODO: Here will go all of the available channel modes
+
+	welcome_replies.push_back(createReply(RPL_MYINFO, RPL_MYINFO_STR, myinfo_params));
+
+	return welcome_replies;
+}
+
 /*
 Command: USER
 Parameters: <username> <unused> <unused> <realname>
@@ -45,8 +71,8 @@ are irrelevant.
 std::vector<t_message>	Server::cmdUser( t_message & message ) 
 {
 	std::cout << "USER command called..." << std::endl;
-	Client * client = this->_current_client;
-	std::vector<t_message> replies;
+	Client *	client = this->_current_client;
+	std::vector<t_message>	replies;
 
 	// Check if the client is already registered, this takes precedence over everything else
 	if (client->isRegistered() == true)
@@ -90,7 +116,8 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 
 	client->setUsername(message.params[0]);
 	client->setRealname(message.params[3]);
-	// TODO: Actually get the hostname, maybe here or maybe somewhere else
+
+	// TODO: We have to ctually get the client's hostname, maybe here or maybe somewhere else
 	/*
 		- We need to have access to the client's IP address with its sockaddr_in struct
 			std::string ip_address = inet_ntoa(client_addr.sin_addr);
@@ -112,22 +139,8 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 		I'm writing this here instead of implementing it now because I don't want to add more
 		changes to the repository at once until everything is merged and consolidated in the main branch.
 	*/
+
 	client->setRegistered(true);
 
-	// Prepare the welcome message reply
-	replies.push_back(createReply(RPL_WELCOME, RPL_WELCOME_STR, client->getUserIdentifier()));
-	std::vector<std::string> yourhost_params;
-	yourhost_params.push_back(this->getName());
-	yourhost_params.push_back(this->getVersion());
-	replies.push_back(createReply(RPL_YOURHOST, RPL_YOURHOST_STR, yourhost_params));
-	replies.push_back(createReply(RPL_CREATED, RPL_CREATED_STR, this->getStartTimeStr()));
-	std::vector<std::string> myinfo_params;
-	myinfo_params.push_back(this->getName());
-	myinfo_params.push_back(this->getVersion());
-	// These are TODO because I don't know if those are the definitive modes or if this is how we'll handle it
-	myinfo_params.push_back(USER_MODES); // TODO: Here will go all of the available user modes
-	myinfo_params.push_back(CHANNEL_MODES); // TODO: Here will go all of the available channel modes
-	replies.push_back(createReply(RPL_MYINFO, RPL_MYINFO_STR, myinfo_params));
-
-	return replies;
+	return createWelcomeReplies(client);
 }

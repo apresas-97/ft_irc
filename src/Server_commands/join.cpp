@@ -1,5 +1,4 @@
 #include "Server.hpp"
-
 /*
 	Command: JOIN
 	Parameters: ( <channel> *( "," <channel> ) [ <key> *( "," <key> ) ] ) / "0"
@@ -20,66 +19,152 @@
 	The server will process this message as if the user had sent a PART command for each
 	channel he is a member of.
 */
+
+static std::vector<std::string> parseMessage(const std::string &message, char delimiter) 
+{
+    std::vector<std::string> tokens;
+    std::string token;
+    std::istringstream tokenStream(message);
+
+    while (std::getline(tokenStream, token, delimiter))
+        tokens.push_back(token);
+
+    return tokens;
+}
+
 std::vector<t_message>	Server::cmdJoin( t_message & message )
 {
 	std::cout << "JOIN command called..." << std::endl;
-	int cl_fd = message.sender_client_fd;
-	Client * client = findClient(cl_fd);
-	std::vector<t_message> replies;
+	std::vector<t_message>	replies;
+	t_message				reply;
+
+	Client *client = this->_current_client;
+
+	std::vector<std::string> 	channels;
+    std::vector<std::string> 	keys;
+    std::vector<int> 			fds;
+
 	bool are_keys = message.params.size() > 2 ? true : false;
 
-	std::string channelName;
-	// std::vector<std::string> keys;
-
-	// TODO ... ?
-
-	if (message.params.size() < 2) {
-		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, ""));
-		return;
-	}
-
-	channelName = message.params[0];
-	// keys = _parseMessage(params[1], ',')
-
-	if (isChannelInServer(channelName)) {
-		Channel &channel = _channels[channelName];
-
-		if (channel.getMode('i') && !channel.isUserInvited(client->getUsername())) {
-			replies.push_back(createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, channelName));
-		}
-		if (channel.getMode('l') && channel.h() >= channel.getUserLimit()) {
-			replies.push_back(createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, channelName));
-		}
-		// check if too many channels for client
-		if (client->getChannelCount() >= client->getChannelLimit()) {
-			replies.push_back(createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, channelName));
-		}
-		// check if too many clients in channel
-		if (channel.getUserCount() >= channel.getUserLimit()) {
-			replies.push_back(createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, channelName));
-		}
-		// check the key if it is required for channel
-		if (channel.getMode('k')) {
-			if (!are_keys || cl_fd >= (int)message.params.size() - 1 || message.params[cl_fd] != channel.getKey()) {
-				replies.push_back(createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, channelName));
-			}
-		}
-		channel.addUser(*client, cl_fd);
-		client.addChannel(channelName, false);
-		fds = this->_channels[channelName].getClients();
-	}
-	else
+	if (message.params.size() < 2) 
 	{
-		// TODO
+//		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, {client->getNickname(), "JOIN"}); // This call is incorrect
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
+		return replies;
 	}
-	/*
-		sendMessageToChannel(sock, channel, RPL_JOIN(client.getNickname(), client.getRealname(), client.getHostname(), chan_name));
-        if (channel.getTopic() != "")
-            client.sendMessage(RPL_TOPIC(client.getNickname(), chan_name, channel.getTopic()));
-        
-        _rplNamesList(sock, chan_name, fds);
+
+	channels = parseMessage(message.params[0], ',');
+	// int channels_n = channels.size();
+    if (are_keys)
+	{
+        keys = parseMessage(message.params[1], ',');
+	}
+
+	for (size_t i = 0; i < channels.size(); i++)
+	{
+		std::string currentChannel = channels[i];
+		Channel * channel = _channels[currentChannel];
+
+		if (isChannelInServer(currentChannel))
+		{
+			// Mode i (Invite-only channel)
+			if (channel->getMode('i') && !channel->isUserInvited(client->getUsername()))
+			{
+				reply = createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, currentChannel);
+				reply.target_client_fd = message.sender_client_fd;
+				reply.sender_client_fd = _serverFd;
+				replies.push_back(reply);
+				continue;
+			}
+			// Mode l (Channel limit)
+			if (channel->getMode('l') && channel->getUserCount() >= channel->getUserLimit())
+			{
+				reply = createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, currentChannel);
+				reply.target_client_fd = message.sender_client_fd;
+				reply.sender_client_fd = _serverFd;
+				replies.push_back(reply);
+				continue;
+			}
+			if (client->getChannelCount() >= client->getChannelLimit())
+			{
+				reply = createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel);
+				reply.target_client_fd = message.sender_client_fd;
+				reply.sender_client_fd = _serverFd;
+				replies.push_back(reply);
+				continue;
+			}
+			// Mode k (Channel key)
+			if (channel->getMode('k'))
+			{
+				if (!are_keys || i >= keys.size() - 1 || keys[i] != channel->getKey()) 
+				{
+					reply = createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, currentChannel);
+					reply.target_client_fd = message.sender_client_fd;
+					reply.sender_client_fd = _serverFd;
+					replies.push_back(reply);
+					continue;
+				}
+			}
+			// Add to the current channel
+			channel->addUser(*client, false);
+			client->addChannel(*channel, currentChannel);
+			fds = channel->getFds("users");
+		}
+		else
+		{
+			// Create new channel
+			if (client->getChannelCount() >= client->getChannelLimit()) 
+			{
+				reply = createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel);
+				reply.target_client_fd = message.sender_client_fd;
+				reply.sender_client_fd = _serverFd;
+				replies.push_back(reply);	
+				return replies;
+			}
+			//	TODO:Do we implement the masks?
+			// if (!_validcurrentChannel(currentChannel)) {
+			// 	replies.push_back(createReply(ERR_BADCHANMASK, ERR_BADCHANMASK_STR, currentChannel));
+			// 	return replies;
+			// }
+
+			Channel newChannel(currentChannel);
+			newChannel.addUser(*client, true);
+
+			if (are_keys && i < keys.size())
+			{
+				newChannel.setKey(keys[i]);
+				newChannel.setMode('k', true);
+			}
+
+			this->_channels[currentChannel] = &newChannel;
+			client->addChannel(newChannel, currentChannel);
+			fds = newChannel.getFds("users");
+			channel = &newChannel;
+		}
+		
+		// Enviar mensajes de bienvenida al canal
+        t_message joinMessage;
+        joinMessage.prefix = client->getUserPrefix();
+        joinMessage.command = "JOIN";
+        joinMessage.params.push_back(currentChannel);
+        joinMessage.sender_client_fd = client->getSocket();
+        joinMessage.target_channels.push_back(channel);
+		// We have to add the sendMessage
+        // sendMessageToChannel(client, channel, joinMessage);
+
+        if (channel->getTopic() != "")
+		{
+//			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), currentChannel, channel.getTopic()}); // This call is incorrect
+//			TODO set target_client_fd and sender_client_fd
+			replies.push_back(reply);
+        }
+
+        replies.push_back(replyList(client, channel, fds));
         fds.clear();
-	*/
-	return replies;
+	}
+
+    return replies;
 }
 

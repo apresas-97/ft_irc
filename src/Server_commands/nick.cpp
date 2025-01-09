@@ -10,26 +10,36 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 {
 	std::cout << "NICK command called..." << std::endl;
 	Client * client = this->_current_client;
-	std::vector<t_message> replies;
+	std::vector<t_message>	replies;
+	t_message				reply;
 
 	// Check if the client is authorised and registered
 	if (client->isAuthorised() == false || client->isRegistered() == false) 
 	{
-		replies.push_back(createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR));
+		reply = createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
 	// Check if the client is in restricted mode ( we'll see what we do with this )
 	if (client->getMode('r') == true) 
 	{
-		replies.push_back(createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR));
+		reply = createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
 	// Check if the client has provided a nickname
 	if (message.params.size() < 1) 
 	{
-		replies.push_back(createReply(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_STR));
+		reply = createReply(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_STR);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
@@ -37,7 +47,10 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	std::string nickname = message.params[0];
 	if (irc_isValidNickname(nickname) == false) 
 	{
-		replies.push_back(createReply(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_STR, nickname));
+		reply = createReply(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_STR, nickname);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
@@ -49,7 +62,10 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	std::vector<std::string>::iterator it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), nickname);
 	if (it != this->_taken_nicknames.end()) 
 	{
-		replies.push_back(createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname));
+		reply = createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname);
+		reply.target_client_fd = message.sender_client_fd;
+		reply.sender_client_fd = _serverFd;
+		replies.push_back(reply);
 		return replies;
 	}
 
