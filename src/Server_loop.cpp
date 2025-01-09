@@ -71,7 +71,9 @@ void Server::newClient( void )
 	tmp.events = POLLIN;
 	tmp.revents = 0;
 	_poll_fds.push_back(tmp);
-	this->_clients.insert(std::pair<int, Client>(clientFd, Client(clientFd)));
+	Client client(clientFd);
+	client.setSockaddr((struct sockaddr *)&clientAddress);
+	this->_clients.insert(std::pair<int, Client>(clientFd, client));
 	this->_client_count++;
 }
 
