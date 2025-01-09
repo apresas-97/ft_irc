@@ -313,7 +313,7 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	}
 	else if (!this->_current_client->isAuthorised())
 	{
-		// Maybe is too drastic to kick the client? 
+		// Maybe is too drastic to kick the client?
 		std::cout << "REMOVING CLIENT IN RUNCOMMAND FUNCTION" << std::endl;
 		removeClient(message.sender_client_fd);
 	}
