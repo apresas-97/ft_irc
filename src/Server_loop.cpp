@@ -236,9 +236,9 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::string	command = stringToUpper(message.command);
 
 	printTmessage(message);
-	if (command == "/PASS")
+	if (command == "PASS")
 		return this->cmdPass(message);
-	else if (command == "/NICK")
+	else if (command == "NICK")
 	{
 		/*
 			Expected response:
@@ -246,7 +246,7 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		*/
 		return this->cmdNick(message);
 	}
-	else if (command == "/USER")
+	else if (command == "USER")
 	{
 		/*
 
@@ -317,11 +317,11 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		std::cout << "REMOVING CLIENT IN RUNCOMMAND FUNCTION" << std::endl;
 		removeClient(message.sender_client_fd);
 	}
-	else if (command == "/MODE")
+	else if (command == "MODE")
 		return this->cmdMode(message);
-	else if (command == "/JOIN")
+	else if (command == "JOIN")
 		return this->cmdJoin(message);
-	else if (command == "/QUIT")
+	else if (command == "QUIT")
 		return this->cmdQuit(message);
 	else
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
