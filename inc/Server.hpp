@@ -6,6 +6,7 @@
 #include <list>
 #include <vector>
 #include <map>
+#include <set>
 #include <sys/socket.h> // struct sockaddr_in
 #include <sys/poll.h> // struct pollfd
 
