@@ -364,7 +364,7 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		notice_results.params.push_back(this->_current_client->hostnameLookup());
 		replies.push_back(notice_results);
 
-		replies.push_back(createReply(ERR_NOTREGISTERED, "* " ERR_NOTREGISTERED_STR));
+		replies.push_back(createReply(ERR_NOTREGISTERED, ERR_NOTREGISTERED_STR));
 	}
 	// else if (!this->_current_client->isAuthorised())
 	// {
