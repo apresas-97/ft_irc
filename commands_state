@@ -11,7 +11,7 @@ WIP	APR	- MODE <nickname> *( ( "+" / "-" ) *( "i" / "w" / "o" / "O" / "r" ) )
 WIP	APR	- MODE <channel> *( ("-"/"+") *<modes> *<modeparams> )
 WIP	APR	- NICK <nickname>
 WIP	APR	- USER <username> <mode> * <realname>
-WIP	APR	- NOTICE <msgtarget> <text>
+WIP	APR	- NOTICE <msgtarget> <text to be sent>
 
 NS		- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
 
@@ -25,7 +25,6 @@ NS		- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
 	This way we follow the IRC protocol well enough, but we should test it in a real server
 - LIST [ <channel> *("," <channel> ) [ <target> ] ]
 	We should hangle the targets like I said in NAMES
-- NOTICE <msgtarget> <text to be sent>
 - MOTD [ <target> ]
 	Handle target in the special way
 - LUSERS [ <mask> [ <target> ] ]
