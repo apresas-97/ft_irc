@@ -384,6 +384,8 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		return this->cmdNotice(message);
 	else if (command == "VERSION")
 		return this->cmdVersion(message);
+	else if (command == "TIME")
+		return this->cmdTime(message);
 	else
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
 	return replies;

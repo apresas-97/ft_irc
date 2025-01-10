@@ -123,6 +123,7 @@ class Server
 		std::vector<t_message> cmdChanMode( t_message & message, t_mode modes );
 		std::vector<t_message> cmdError( std::string & error_message );
 		std::vector<t_message> cmdVersion( t_message & message );
+		std::vector<t_message> cmdTime( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
 
@@ -132,6 +133,7 @@ class Server
 		bool	hasNULL( const char * buffer, int bytes_received ) const;
 		bool	hasCRLF( const std::string ) const;
 		std::string	stringToUpper( std::string src );
+		std::string getTimestamp( time_t time );
 
 		// DEBUG
 		void	printTmessage( t_message message ) const;

@@ -13,6 +13,7 @@ WIP	APR	- NICK <nickname>
 WIP	APR	- USER <username> <mode> * <realname>
 WIP	APR	- NOTICE <msgtarget> <text to be sent>
 WIP	APR	- VERSION [ <target> ]
+WIP	APR	- TIME [ <target> ]
 
 NS		- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
 
@@ -30,8 +31,6 @@ NS		- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
 	Handle target in the special way
 - LUSERS [ <mask> [ <target> ] ]
 	Idk about the mask and target params
-- TIME [ <target> ]
-	Handle the target param in the magic ways
 - ADMIN [ <target> ]
 	Target magic
 - INFO [ <target> ]
