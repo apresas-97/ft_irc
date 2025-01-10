@@ -22,6 +22,7 @@ SRC_FILES =	main.cpp \
 			Server_commands/quit.cpp \
 			Server_commands/topic.cpp \
 			Server_commands/user.cpp \
+			Server_commands/notice.cpp \
 			Server_utils.cpp \
 			Client.cpp \
 			Channel.cpp \
