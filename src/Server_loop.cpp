@@ -370,6 +370,8 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		return this->cmdJoin(message);
 	else if (command == "QUIT")
 		return this->cmdQuit(message);
+	else if (command == "ERROR")
+		return replies; // Silently ignore the ERROR command from a client
 	else
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
 	return replies;
