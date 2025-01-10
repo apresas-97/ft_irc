@@ -112,10 +112,9 @@ std::string Server::getVersion( void ) const
 	return version;
 }
 
-void Server::setStartTime( void ) 
+std::string Server::getTimestamp( time_t time )
 {
-	this->_start_time = std::time(0);
-	std::tm *now = std::localtime(&this->_start_time);
+	std::tm *now = std::localtime(&time);
 
 	std::ostringstream oss;
 	switch (now->tm_wday) 
@@ -181,12 +180,19 @@ void Server::setStartTime( void )
 			oss << "Dec ";
 			break;
 	}
-	oss << std::setw(2) << std::setfill('0') << now->tm_mday << " at ";
+	oss << std::setw(2) << std::setfill('0') << now->tm_mday << " ";
+	oss << std::setw(4) << std::setfill('0') << now->tm_year + 1900 << " at ";
 	oss << std::setw(2) << std::setfill('0') << now->tm_hour + 1 << ":";
 	oss << std::setw(2) << std::setfill('0') << now->tm_min << ":";
 	oss << std::setw(2) << std::setfill('0') << now->tm_sec << " UTC";
 
-	this->_start_time_str = oss.str();
+	return oss.str();
+}
+
+void Server::setStartTime( void )
+{
+	this->_start_time = std::time(0);
+	this->_start_time_str = getTimestamp(this->_start_time);
 }
 
 std::string Server::getStartTimeStr( void ) 
