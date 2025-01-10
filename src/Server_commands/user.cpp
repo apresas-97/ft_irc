@@ -117,6 +117,10 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 	client->setUsername(message.params[0]);
 	client->setRealname(message.params[3]);
 
+	// If the client is not authorised, then of course, it won't be registered and won't get the WELCOME replies
+	if (client->isAuthorised() == false)
+		return replies;
+
 	client->setRegistered(true);
 
 	return createWelcomeReplies(client);
