@@ -10,7 +10,8 @@ WIP	AAE	- JOIN ( <channel> *("," <channel> ) [ <key> *("," <key>) ] ) / "0"
 WIP	APR	- MODE <nickname> *( ( "+" / "-" ) *( "i" / "w" / "o" / "O" / "r" ) )
 WIP	APR	- MODE <channel> *( ("-"/"+") *<modes> *<modeparams> )
 WIP	APR	- NICK <nickname>
-WIP APR	- USER <username> <mode> * <realname>
+WIP	APR	- USER <username> <mode> * <realname>
+WIP	APR	- NOTICE <msgtarget> <text>
 
 NS		- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
 
