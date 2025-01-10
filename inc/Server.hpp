@@ -122,6 +122,7 @@ class Server
 		std::vector<t_message> cmdUser( t_message & message );
 		std::vector<t_message> cmdChanMode( t_message & message, t_mode modes );
 		std::vector<t_message> cmdError( std::string & error_message );
+		std::vector<t_message> cmdVersion( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
 
