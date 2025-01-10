@@ -116,6 +116,7 @@ class Server
 		std::vector<t_message> cmdNick( t_message & message );
 		std::vector<t_message> cmdPass( t_message & message );
 		std::vector<t_message> cmdPrivMsg( t_message & message );
+		std::vector<t_message> cmdNotice( t_message & message );
 		std::vector<t_message> cmdQuit( t_message & message );
 		std::vector<t_message> cmdTopic( t_message & message );
 		std::vector<t_message> cmdUser( t_message & message );
