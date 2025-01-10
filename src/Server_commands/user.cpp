@@ -117,29 +117,6 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 	client->setUsername(message.params[0]);
 	client->setRealname(message.params[3]);
 
-	// TODO: We have to ctually get the client's hostname, maybe here or maybe somewhere else
-	/*
-		- We need to have access to the client's IP address with its sockaddr_in struct
-			std::string ip_address = inet_ntoa(client_addr.sin_addr);
-
-		Then we can get the hostname like this:
-
-		struct in_addr	addr;
-		struct hostent	*host_entry;
-
-		addr.s_addr = inet_addr(ip_address.c_str());
-
-		// We performe reverse DNS lookup
-		host = gethostbyname(inet_ntoa(addr));
-		if (host == NULL)
-			// No hostname found, we just use the IP address as the hostname
-		else
-			hostname = host->h_name;
-
-		I'm writing this here instead of implementing it now because I don't want to add more
-		changes to the repository at once until everything is merged and consolidated in the main branch.
-	*/
-
 	client->setRegistered(true);
 
 	return createWelcomeReplies(client);
