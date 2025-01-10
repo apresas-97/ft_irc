@@ -260,6 +260,10 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::string	command = stringToUpper(message.command);
 
 	printTmessage(message);
+	if (this->_current_client->isTerminate())
+	{
+		// Close the connection here, send the ERROR message and close the connection with the client
+	}
 	if (command == "PASS")
 		return this->cmdPass(message);
 	else if (command == "NICK")
@@ -273,9 +277,13 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	else if (command == "USER")
 	{
 		/*
-
+			After the USER command, we should check if the client is authorised.
+			If it's NOT, we should set its terminate flag to true
 		*/
-		return this->cmdUser(message);
+		replies = this->cmdUser(message);
+		if (this->_current_client->isAuthorised() == false)
+			this->_current_client->setTerminate(true);
+		return replies;
 	}
 	// else if (command == "CAP" && !this->_current_client->isAuthorised()) // ffornes- :: TODO............
 	// {
@@ -358,12 +366,12 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 
 		replies.push_back(createReply(ERR_NOTREGISTERED, "* " ERR_NOTREGISTERED_STR));
 	}
-	else if (!this->_current_client->isAuthorised())
-	{
-		// Maybe is too drastic to kick the client?
-		std::cout << "REMOVING CLIENT IN RUNCOMMAND FUNCTION" << std::endl;
-		removeClient(message.sender_client_fd);
-	}
+	// else if (!this->_current_client->isAuthorised())
+	// {
+	// 	// Maybe is too drastic to kick the client?
+	// 	std::cout << "REMOVING CLIENT IN RUNCOMMAND FUNCTION" << std::endl;
+	// 	removeClient(message.sender_client_fd);
+	// }
 	else if (command == "MODE")
 		return this->cmdMode(message);
 	else if (command == "JOIN")
