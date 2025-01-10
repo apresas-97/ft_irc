@@ -7,6 +7,7 @@ Client::Client(void)
     memset(_buffer, 0, BUFFER_SIZE);
     _authorised = false;
     _registered = false;
+    _terminate = false;
     _chan_limit = 0;
 }
 
@@ -56,6 +57,11 @@ void Client::setAuthorised(bool value)
 void Client::setRegistered(bool value)
 {
     this->_registered = value;
+}
+
+void Client::setTerminate( bool value )
+{
+    this->_terminate = value;
 }
 
 void Client::setMode(char mode, bool value)
@@ -129,6 +135,11 @@ bool Client::isAuthorised(void) const
 bool Client::isRegistered(void) const
 {
     return this->_registered;
+}
+
+bool Client::isTerminate( void ) const
+{
+    return this->_terminate;
 }
 
 bool Client::getMode(char mode) const
