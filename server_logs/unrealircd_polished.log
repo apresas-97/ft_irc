@@ -1,0 +1,43 @@
+// Connecting with WRONG PASS:
+
+<< CAP LS 302
+<< JOIN :
+// [...]
+<< PASS wrong_password
+<< NICK apresas
+<< USER apresas apresas 192.168.1.129 :albert
+>> ERROR :Closing Link: apresas[192.168.1.129] (You are not authorized to connect to this server)
+
+// Notes:
+Apparently, even if you provide a wrong password, the server will still accept your nick and
+user commands before closing the connection.
+
+I should now test, what happens if the password is incorrect and the nickname is invalid too.
+
+// WRONG PASS + INVALID NICK:
+
+<< CAP LS 302
+<< JOIN :
+// [...]
+<< PASS wrong_password
+<< NICK invalid_nickname
+<< USER apresas apresas 192.168.1.129 :albert
+>> :irc.example.org 432 * invalid_nickname :Nickname is unavailable: Illegal characters
+
+// Notes:
+In this case, it sends the numeric reply for the invalid nickname but it doesn't
+send an ERROR message notifying that you are not authorized.
+But it still closed the connection. Of course.
+
+I don't know what other servers do in this situation. I think the easiest and reasonable thing
+to do would be to send the numeric reply for the invalid nickname, or whatever numeric reply
+has been triggered in the NICK or USER commands, and then send the ERROR message notifying
+that you are not authorized to connect to the server.
+
+The RFC says, about the ERROR message:
+
+"The ERROR message is also used before terminating a client connection."
+
+So, that's what I'll do.
+
+//

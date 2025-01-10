@@ -1,0 +1,146 @@
+<< CAP LS 302
+<< JOIN :
+>> NOTICE AUTH :*** Processing connection to irc.deft.com
+>> NOTICE AUTH :*** Looking up your hostname...
+>> NOTICE AUTH :*** Checking Ident
+>> NOTICE AUTH :*** Found your hostname
+>> NOTICE AUTH :*** No Ident response
+>> :irc.deft.com CAP * LS :multi-prefix
+<< CAP REQ :multi-prefix
+>> :irc.deft.com 451 * :You have not registered
+>> :irc.deft.com CAP * ACK :multi-prefix 
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas ssl.efnet.org :albert
+>> :irc.deft.com 001 apresas :Welcome to the EFnet Internet Relay Chat Network apresas
+<< MODE apresas +i
+>> :irc.deft.com 002 apresas :Your host is irc.deft.com[66.225.225.225/9999], running version ircd-ratbox-3.0.10
+>> :irc.deft.com 003 apresas :This server was created Fri Jan 26 2024 at 20:04:01 UTC
+>> :irc.deft.com 004 apresas irc.deft.com ircd-ratbox-3.0.10 oiwszcrkfydnxbauglZCD biklmnopstveIrS bkloveI
+>> :irc.deft.com 005 apresas CHANTYPES=&# EXCEPTS INVEX CHANMODES=eIb,k,l,imnpstS CHANLIMIT=&#:75 PREFIX=(ov)@+ MAXLIST=beI:100 MODES=4 NETWORK=EFnet KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server
+>> :irc.deft.com 005 apresas SAFELIST ELIST=U CASEMAPPING=rfc1459 CHARSET=ascii NICKLEN=9 CHANNELLEN=50 TOPICLEN=160 ETRACE CPRIVMSG CNOTICE DEAF=D MONITOR=60 :are supported by this server
+>> :irc.deft.com 005 apresas FNC ACCEPT=20 MAP TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: :are supported by this server
+>> :irc.deft.com 251 apresas :There are 3817 users and 5642 invisible on 18 servers
+>> :irc.deft.com 252 apresas 83 :IRC Operators online
+>> :irc.deft.com 253 apresas 4 :unknown connection(s)
+>> :irc.deft.com 254 apresas 6152 :channels formed
+>> :irc.deft.com 255 apresas :I have 1952 clients and 2 servers
+>> :irc.deft.com 265 apresas 1952 2052 :Current local users 1952, max 2052
+>> :irc.deft.com 266 apresas 9459 10070 :Current global users 9459, max 10070
+>> :irc.deft.com 250 apresas :Highest connection count: 2054 (2052 clients) (33986 connections received)
+>> :irc.deft.com 375 apresas :- irc.deft.com Message of the Day - 
+>> :irc.deft.com 372 apresas :- -                                _      __ _   
+>> :irc.deft.com 372 apresas :- -                             __| |___ / _| |_ 
+>> :irc.deft.com 372 apresas :- -                            / _` / -_)  _|  _|
+>> :irc.deft.com 372 apresas :- -                            \__,_\___|_|  \__|
+>> :irc.deft.com 372 apresas :- -  
+>> :irc.deft.com 372 apresas :- -          o Listening on ports: 6660 - 6669, 7000, 8080, 31337 o
+>> :irc.deft.com 372 apresas :- -                 o Listening on SSL ports: 6697, 9999 o
+>> :irc.deft.com 372 apresas :- -               o Visit us @ http://www.deft.com o
+>> :irc.deft.com 372 apresas :- -  
+>> :irc.deft.com 372 apresas :- -  -------- Server Rules ----------------------------------------------
+>> :irc.deft.com 372 apresas :- -  
+>> :irc.deft.com 372 apresas :- -        o No Flooding                         o No DoS bots
+>> :irc.deft.com 372 apresas :- -        o No Clones                           o No Spamming
+>> :irc.deft.com 372 apresas :- -        o No Takeovers                        o No Whiners 
+>> :irc.deft.com 372 apresas :- -  
+>> :irc.deft.com 372 apresas :- -  -------- Server Staff ----------------------------------------------
+>> :irc.deft.com 372 apresas :- -  
+>> :irc.deft.com 372 apresas :- -     o doug, netmunky, zi, orange1, max, scrim, remorse, fddi
+>> :irc.deft.com 372 apresas :- -  
+>> :irc.deft.com 372 apresas :- -  -------- Server Channel --------------------------------------------
+>> :irc.deft.com 372 apresas :- -
+>> :irc.deft.com 372 apresas :- -     o Visit our server's efnet channel:  #deft
+>> :irc.deft.com 372 apresas :- -
+>> :irc.deft.com 372 apresas :- -  -------- Disclaimer ------------------------------------------------
+>> :irc.deft.com 372 apresas :- -  
+>> :irc.deft.com 372 apresas :- -     This server, its staff and the people hosting it are *NOT* 
+>> :irc.deft.com 372 apresas :- -     responsible for the content that passes through this server. 
+>> :irc.deft.com 372 apresas :- -     Use of this server is a *privilege* which may be removed at 
+>> :irc.deft.com 372 apresas :- -     any time and for any reason by the friendly server operators.
+>> :irc.deft.com 372 apresas :- -  
+>> :irc.deft.com 372 apresas :- -  -------- End of MOTD -----------------------------------------------
+>> :irc.deft.com 372 apresas :- -  
+>> :irc.deft.com 376 apresas :End of /MOTD command.
+>> :DM!irc@services.servercentral.net PRIVMSG apresas :VERSION
+>> :apresas MODE apresas :+i
+<< NOTICE DM :VERSION irssi v1.4.3
+<< PING irc.deft.com
+>> :irc.deft.com PONG irc.deft.com :irc.deft.com
+--> lag pong
+<< JOIN #ft_irc_test
+>> :apresas!~apresas@231.97.133.37.dynamic.jazztel.es JOIN :#ft_irc_test
+>> :irc.deft.com MODE #ft_irc_test +nt
+>> :irc.deft.com 353 apresas = #ft_irc_test :@apresas
+>> :irc.deft.com 366 apresas #ft_irc_test :End of /NAMES list.
+<< MODE #ft_irc_test
+>> :irc.deft.com 324 apresas #ft_irc_test +tn
+--> chanquery mode
+>> :irc.deft.com 329 apresas #ft_irc_test 1734119948
+--> event 329
+<< WHO #ft_irc_test
+>> :irc.deft.com 352 apresas #ft_irc_test ~apresas 231.97.133.37.dynamic.jazztel.es irc.deft.com apresas H@ :0 albert
+--> silent event who
+>> :irc.deft.com 315 apresas #ft_irc_test :End of /WHO list.
+--> chanquery who end
+<< MODE #ft_irc_test b
+>> :irc.deft.com 368 apresas #ft_irc_test :End of Channel Ban List
+--> chanquery ban end
+<< PRIVMSG #ft_irc_test :Yeah hello
+<< PING irc.deft.com
+>> :irc.deft.com PONG irc.deft.com :irc.deft.com
+--> lag pong
+<< JOIN #ft_irc_test_2
+>> :apresas!~apresas@231.97.133.37.dynamic.jazztel.es JOIN :#ft_irc_test_2
+>> :irc.deft.com MODE #ft_irc_test_2 +nt
+>> :irc.deft.com 353 apresas = #ft_irc_test_2 :@apresas
+>> :irc.deft.com 366 apresas #ft_irc_test_2 :End of /NAMES list.
+<< MODE #ft_irc_test_2
+>> :irc.deft.com 324 apresas #ft_irc_test_2 +tn
+--> chanquery mode
+>> :irc.deft.com 329 apresas #ft_irc_test_2 1734119989
+--> event 329
+<< WHO #ft_irc_test_2
+>> :irc.deft.com 352 apresas #ft_irc_test_2 ~apresas 231.97.133.37.dynamic.jazztel.es irc.deft.com apresas H@ :0 albert
+--> silent event who
+>> :irc.deft.com 315 apresas #ft_irc_test_2 :End of /WHO list.
+--> chanquery who end
+<< MODE #ft_irc_test_2 b
+>> :irc.deft.com 368 apresas #ft_irc_test_2 :End of Channel Ban List
+--> chanquery ban end
+<< JOIN #ft_irc_test_3 0
+>> :apresas!~apresas@231.97.133.37.dynamic.jazztel.es JOIN :#ft_irc_test_3
+>> :irc.deft.com MODE #ft_irc_test_3 +nt
+>> :irc.deft.com 353 apresas = #ft_irc_test_3 :@apresas
+>> :irc.deft.com 366 apresas #ft_irc_test_3 :End of /NAMES list.
+<< MODE #ft_irc_test_3
+>> :irc.deft.com 324 apresas #ft_irc_test_3 +tn
+--> chanquery mode
+>> :irc.deft.com 329 apresas #ft_irc_test_3 1734120008
+--> event 329
+<< WHO #ft_irc_test_3
+>> :irc.deft.com 352 apresas #ft_irc_test_3 ~apresas 231.97.133.37.dynamic.jazztel.es irc.deft.com apresas H@ :0 albert
+--> silent event who
+>> :irc.deft.com 315 apresas #ft_irc_test_3 :End of /WHO list.
+--> chanquery who end
+<< MODE #ft_irc_test_3 b
+>> :irc.deft.com 368 apresas #ft_irc_test_3 :End of Channel Ban List
+--> chanquery ban end
+<< PRIVMSG #ft_irc_test_2 :hi
+<< PING irc.deft.com
+>> :irc.deft.com PONG irc.deft.com :irc.deft.com
+--> lag pong
+<< PART #ft_irc_test_3 :Bye bye
+>> :apresas!~apresas@231.97.133.37.dynamic.jazztel.es PART #ft_irc_test_3 :Bye bye
+<< PART #ft_irc_tesxxt_3 :Bye bye
+>> :irc.deft.com 403 apresas #ft_irc_tesxxt_3 :No such channel
+<< PART #ft_irc_test_3 :Bye bye
+>> :irc.deft.com 403 apresas #ft_irc_test_3 :No such channel
+<< PART #lobby :Bye bye
+>> :irc.deft.com 442 apresas #lobby :You're not on that channel
+<< PING irc.deft.com
+>> :irc.deft.com PONG irc.deft.com :irc.deft.com
+--> lag pong
+<< QUIT
+>> :apresas!~apresas@231.97.133.37.dynamic.jazztel.es QUIT :Client Quit
+>> ERROR :Closing Link: 231.97.133.37.dynamic.jazztel.es (Client Quit)

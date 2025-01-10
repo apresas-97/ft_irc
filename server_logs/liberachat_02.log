@@ -1,0 +1,119 @@
+<< CAP LS 302
+<< JOIN :
+>> :tungsten.libera.chat NOTICE * :*** Checking Ident
+>> :tungsten.libera.chat NOTICE * :*** Looking up your hostname...
+>> :tungsten.libera.chat NOTICE * :*** Found your hostname: 231.97.133.37.dynamic.jazztel.es
+>> :tungsten.libera.chat NOTICE * :*** No Ident response
+>> :tungsten.libera.chat CAP * LS :account-notify away-notify chghost extended-join multi-prefix sasl=ECDSA-NIST256P-CHALLENGE,EXTERNAL,PLAIN,SCRAM-SHA-512 tls account-tag cap-notify echo-message server-time solanum.chat/identify-msg solanum.chat/oper solanum.chat/realhost
+<< CAP REQ :multi-prefix extended-join away-notify chghost account-notify server-time
+>> :tungsten.libera.chat 451 * :You have not registered
+>> :tungsten.libera.chat CAP * ACK :multi-prefix extended-join away-notify chghost account-notify server-time
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas irc.libera.chat :albert
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 001 apresas :Welcome to the Libera.Chat Internet Relay Chat Network apresas
+<< MODE apresas +i
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 002 apresas :Your host is tungsten.libera.chat[130.239.18.120/6697], running version solanum-1.0-dev
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 003 apresas :This server was created Wed Aug 21 2024 at 21:32:29 UTC
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 004 apresas tungsten.libera.chat solanum-1.0-dev DGIMQRSZaghilopsuwz CFILMPQRSTbcefgijklmnopqrstuvz bkloveqjfI
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 005 apresas ACCOUNTEXTBAN=a FNC MONITOR=100 KNOCK WHOX CALLERID=g ETRACE SAFELIST ELIST=CMNTU CHANTYPES=# EXCEPTS INVEX :are supported by this server
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 005 apresas CHANMODES=eIbq,k,flj,CFLMPQRSTcgimnprstuz CHANLIMIT=#:250 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=Libera.Chat STATUSMSG=@+ CASEMAPPING=rfc1459 NICKLEN=16 MAXNICKLEN=16 CHANNELLEN=50 TOPICLEN=390 :are supported by this server
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 005 apresas DEAF=D TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,agjrxz :are supported by this server
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 251 apresas :There are 58 users and 31628 invisible on 28 servers
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 252 apresas 39 :IRC Operators online
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 253 apresas 39 :unknown connection(s)
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 254 apresas 22860 :channels formed
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 255 apresas :I have 2069 clients and 1 servers
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 265 apresas 2069 2881 :Current local users 2069, max 2881
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 266 apresas 31686 33689 :Current global users 31686, max 33689
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 250 apresas :Highest connection count: 2882 (2881 clients) (381937 connections received)
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 375 apresas :- tungsten.libera.chat Message of the Day - 
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- Welcome to Libera Chat, the IRC network for
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- free & open-source software and peer directed projects.
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :-  
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- Use of Libera Chat is governed by our network policies.
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :-  
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- To reduce network abuses we perform open proxy checks
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- on hosts at connection time.
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :-  
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- Please visit us in #libera for questions and support.
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :-  
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- Website and documentation:  https://libera.chat
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- Webchat:                    https://web.libera.chat
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- Network policies:           https://libera.chat/policies
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 372 apresas :- Email:                      support@libera.chat
+>> @time=2024-12-13T20:15:38.402Z :tungsten.libera.chat 376 apresas :End of /MOTD command.
+>> @time=2024-12-13T20:15:38.402Z :apresas MODE apresas :+Ziw
+<< PING tungsten.libera.chat
+>> @time=2024-12-13T20:15:44.401Z :tungsten.libera.chat PONG tungsten.libera.chat :tungsten.libera.chat
+--> lag pong
+<< QUIT
+>> @time=2024-12-13T20:16:00.204Z :apresas!~apresas@231.97.133.37.dynamic.jazztel.es QUIT :Client Quit
+>> @time=2024-12-13T20:16:00.204Z ERROR :Closing Link: 231.97.133.37.dynamic.jazztel.es (Client Quit)
+<< CAP LS 302
+<< JOIN :
+>> :tungsten.libera.chat NOTICE * :*** Checking Ident
+>> :tungsten.libera.chat NOTICE * :*** Looking up your hostname...
+>> :tungsten.libera.chat NOTICE * :*** Found your hostname: 231.97.133.37.dynamic.jazztel.es
+>> :tungsten.libera.chat NOTICE * :*** No Ident response
+>> :tungsten.libera.chat CAP * LS :account-notify away-notify chghost extended-join multi-prefix sasl=ECDSA-NIST256P-CHALLENGE,EXTERNAL,PLAIN,SCRAM-SHA-512 tls account-tag cap-notify echo-message server-time solanum.chat/identify-msg solanum.chat/oper solanum.chat/realhost
+<< CAP REQ :multi-prefix extended-join away-notify chghost account-notify server-time
+>> :tungsten.libera.chat 451 * :You have not registered
+>> :tungsten.libera.chat CAP * ACK :multi-prefix extended-join away-notify chghost account-notify server-time
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas irc.libera.chat :albert
+>> :tungsten.libera.chat 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 001 apresas_ :Welcome to the Libera.Chat Internet Relay Chat Network apresas_
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 002 apresas_ :Your host is tungsten.libera.chat[130.239.18.120/6697], running version solanum-1.0-dev
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 003 apresas_ :This server was created Wed Aug 21 2024 at 21:32:29 UTC
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 004 apresas_ tungsten.libera.chat solanum-1.0-dev DGIMQRSZaghilopsuwz CFILMPQRSTbcefgijklmnopqrstuvz bkloveqjfI
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 005 apresas_ ACCOUNTEXTBAN=a FNC MONITOR=100 KNOCK WHOX CALLERID=g ETRACE SAFELIST ELIST=CMNTU CHANTYPES=# EXCEPTS INVEX :are supported by this server
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 005 apresas_ CHANMODES=eIbq,k,flj,CFLMPQRSTcgimnprstuz CHANLIMIT=#:250 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=Libera.Chat STATUSMSG=@+ CASEMAPPING=rfc1459 NICKLEN=16 MAXNICKLEN=16 CHANNELLEN=50 TOPICLEN=390 :are supported by this server
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 005 apresas_ DEAF=D TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,agjrxz :are supported by this server
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 251 apresas_ :There are 58 users and 31641 invisible on 28 servers
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 252 apresas_ 39 :IRC Operators online
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 253 apresas_ 134 :unknown connection(s)
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 254 apresas_ 22794 :channels formed
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 255 apresas_ :I have 2087 clients and 1 servers
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 265 apresas_ 2087 2881 :Current local users 2087, max 2881
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 266 apresas_ 31699 33689 :Current global users 31699, max 33689
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 250 apresas_ :Highest connection count: 2882 (2881 clients) (381969 connections received)
+>> @time=2024-12-13T20:20:39.402Z :tungsten.libera.chat 375 apresas_ :- tungsten.libera.chat Message of the Day - 
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- Welcome to Libera Chat, the IRC network for
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- free & open-source software and peer directed projects.
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :-  
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- Use of Libera Chat is governed by our network policies.
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :-  
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- To reduce network abuses we perform open proxy checks
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- on hosts at connection time.
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :-  
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- Please visit us in #libera for questions and support.
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :-  
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- Website and documentation:  https://libera.chat
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- Webchat:                    https://web.libera.chat
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- Network policies:           https://libera.chat/policies
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 372 apresas_ :- Email:                      support@libera.chat
+>> @time=2024-12-13T20:20:39.403Z :tungsten.libera.chat 376 apresas_ :End of /MOTD command.
+>> @time=2024-12-13T20:20:39.403Z :apresas_ MODE apresas_ :+Ziw
+<< MODE apresas_ +i
+<< WHOIS apresas
+>> @time=2024-12-13T20:20:45.401Z :tungsten.libera.chat 311 apresas_ apresas ~apresas 231.97.133.37.dynamic.jazztel.es * :albert
+--> nickfind event whois
+>> @time=2024-12-13T20:20:45.401Z :tungsten.libera.chat 312 apresas_ apresas tungsten.libera.chat :Umeå, SE
+--> event empty
+>> @time=2024-12-13T20:20:45.401Z :tungsten.libera.chat 671 apresas_ apresas :is using a secure connection
+--> event empty
+>> @time=2024-12-13T20:20:45.401Z :tungsten.libera.chat 338 apresas_ apresas 37.133.97.231 :actually using host
+--> event empty
+>> @time=2024-12-13T20:20:45.401Z :tungsten.libera.chat 317 apresas_ apresas 37 1734121208 :seconds idle, signon time
+--> event empty
+>> @time=2024-12-13T20:20:45.401Z :tungsten.libera.chat 318 apresas_ apresas :End of /WHOIS list.
+--> event empty
+<< PING tungsten.libera.chat
+>> @time=2024-12-13T20:20:48.198Z :tungsten.libera.chat PONG tungsten.libera.chat :tungsten.libera.chat
+--> lag pong
+<< QUIT :I gotta go to the grocery shop, I will be back later!
+>> @time=2024-12-13T20:21:03.400Z :apresas_!~apresas@231.97.133.37.dynamic.jazztel.es QUIT :Client Quit
+>> @time=2024-12-13T20:21:03.401Z ERROR :Closing Link: 231.97.133.37.dynamic.jazztel.es (Client Quit)

@@ -1,0 +1,339 @@
+<< CAP LS 302
+<< JOIN :
+>> :bifrost.ca.us.dal.net NOTICE AUTH :*** Looking up your hostname...
+>> :bifrost.ca.us.dal.net NOTICE AUTH :*** Checking Ident
+>> :bifrost.ca.us.dal.net NOTICE AUTH :*** Found your hostname
+<< JOIN #ft_irc_test
+>> :bifrost.ca.us.dal.net NOTICE AUTH :*** No Ident response
+>> :bifrost.ca.us.dal.net 451 * JOIN :You must finish connecting with another nickname first.
+<< NICK apresas
+<< USER apresas apresas irc.dal.net :albert
+>> :bifrost.ca.us.dal.net 451 * JOIN :You must finish connecting with another nickname first.
+<< NICK apresas
+<< USER apresas apresas irc.dal.net :albert
+>> :bifrost.ca.us.dal.net 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+>> :bifrost.ca.us.dal.net 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+>> :bifrost.ca.us.dal.net 001 apresas_ :Welcome to the DALnet IRC Network apresas_!~apresas@231.97.133.37.dynamic.jazztel.es
+>> :bifrost.ca.us.dal.net 002 apresas_ :Your host is bifrost.ca.us.dal.net, running version bahamut-2.2.2
+>> :bifrost.ca.us.dal.net 003 apresas_ :This server was created Wed Oct 12 2022 at 17:21:47 EDT
+>> :bifrost.ca.us.dal.net 004 apresas_ bifrost.ca.us.dal.net bahamut-2.2.2 aAbcCdefFghHiIjkKmnoOPrRsSwxXy AbceiIjklLmMnoOpPrRsStv beIjklov
+>> :bifrost.ca.us.dal.net 005 apresas_ NETWORK=DALnet SAFELIST MAXBANS=200 MAXCHANNELS=30 CHANNELLEN=32 KICKLEN=307 NICKLEN=30 TOPICLEN=307 MODES=6 CHANTYPES=# CHANLIMIT=#:30 PREFIX=(ohv)@%+ STATUSMSG=@%+ :are available on this server
+>> :bifrost.ca.us.dal.net 005 apresas_ CASEMAPPING=ascii WATCH=128 SILENCE=10 ELIST=cmntu EXCEPTS INVEX CHANMODES=beI,k,jl,ciPAmMnOprRsSt MAXLIST=b:200,e:100,I:100 TARGMAX=DCCALLOW:,JOIN:,KICK:4,KILL:20,NOTICE:20,PART:,PRIVMSG:20,WHOIS:,WHOWAS: :are available on this server
+>> :bifrost.ca.us.dal.net 251 apresas_ :There are 50 users and 6727 invisible on 39 servers
+>> :bifrost.ca.us.dal.net 252 apresas_ 76 :IRC Operators online
+>> :bifrost.ca.us.dal.net 254 apresas_ 3558 :channels formed
+>> :bifrost.ca.us.dal.net 255 apresas_ :I have 222 clients and 1 servers
+>> :bifrost.ca.us.dal.net 265 apresas_ :Current local users: 222 Max: 601
+>> :bifrost.ca.us.dal.net 266 apresas_ :Current global users: 6777 Max: 12060
+>> :bifrost.ca.us.dal.net NOTICE apresas_ :*** Notice -- motd was last changed at 7/10/2024 22:36
+>> :bifrost.ca.us.dal.net NOTICE apresas_ :*** Notice -- Please read the motd if you haven't read it
+>> :bifrost.ca.us.dal.net 375 apresas_ :- bifrost.ca.us.dal.net Message of the Day - 
+>> :bifrost.ca.us.dal.net 372 apresas_ :-   
+>> :bifrost.ca.us.dal.net 372 apresas_ :-            *
+>> :bifrost.ca.us.dal.net 372 apresas_ :- *  /\     The rainbow bridge
+>> :bifrost.ca.us.dal.net 372 apresas_ :-       (())  leading from Asgard to Midgard.
+>> :bifrost.ca.us.dal.net 372 apresas_ :-      ((OO))*    
+>> :bifrost.ca.us.dal.net 372 apresas_ :-       (())  _     _  __               _
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    00      | |__ (_)/ _|_ __ ___  ___| |_
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||)     | '_ \| | |_| '__/ _ \/ __| __|
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    |/      | |_) | |  _| | | (_) \__ \ |_
+>> :bifrost.ca.us.dal.net 372 apresas_ :-   (||      |_.__/|_|_| |_|  \___/|___/\__|
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||                bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||)   
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    |/   .__Administrators___________________.
+>> :bifrost.ca.us.dal.net 372 apresas_ :-   (||   | * heimdall   [heimdall@dal.net]   |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||   | * tau        [tau@dal.net]        |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||)  |                                   |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    |/   .__Operators________________________.
+>> :bifrost.ca.us.dal.net 372 apresas_ :-   (||   | * adam       [adam@dal.net]       |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||   | * chalcedony [chalcedony@dal.net] |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||)  | * Estella    [estella@dal.net]    |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    |/   | * jeian      [jeian@dal.net]      |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-   (||   | * knas       [knas@dal.net]       |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||   | * phil       [phil@dal.net]       |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||)  | * Mobscene   [mobscene@dal.net]   |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    |/   |                                   |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-   (||   .__Rules____________________________.
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||   | * No malicious bots.              |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||)  | * No channel fillers of any kind. |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    |/   | * No user/operator impersonators. |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-   (|/   |                                   |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||   .__Channels_________________________.
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||   | * #OperHelp -> IRC Operator help  |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||   | * #Help -> IRC/services help      |
+<< MODE apresas_ +i
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ||   | * #Dragonrealm -> Network base    |
+>> :bifrost.ca.us.dal.net 372 apresas_ :-   (OO)   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    ()
+>> :bifrost.ca.us.dal.net 372 apresas_ :- 
+>> :bifrost.ca.us.dal.net 372 apresas_ :-        In loving memory of Carlos Anibarro.
+>> :bifrost.ca.us.dal.net 372 apresas_ :- 
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    By connecting to this network, you agree to
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    abide by its acceptable use policy (AUP), 
+>> :bifrost.ca.us.dal.net 372 apresas_ :-    available on our website: 
+>> :bifrost.ca.us.dal.net 372 apresas_ :-                      https://www.dal.net/aup 
+>> :bifrost.ca.us.dal.net 376 apresas_ :End of /MOTD command.
+>> :apresas_ MODE apresas_ :+iH
+>> :NickServ!service@dal.net NOTICE apresas_ :Bienvenido(a) a DALnet! Sabías que nuestros servicios apoyan su idioma? Escriba: /NickServ LANG ES para probarlo.
+<< WHOIS apresas
+>> :bifrost.ca.us.dal.net 311 apresas_ apresas ~apresas c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es * :albert
+--> nickfind event whois
+>> :bifrost.ca.us.dal.net 319 apresas_ apresas :@#ft_irc_test 
+--> event empty
+>> :bifrost.ca.us.dal.net 312 apresas_ apresas lion.tx.us.dal.net :bliss
+--> event empty
+>> :bifrost.ca.us.dal.net 318 apresas_ apresas :End of /WHOIS list.
+--> event empty
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< CAP LS 302
+<< JOIN :
+>> :serenity.fl.us.dal.net NOTICE AUTH :*** Looking up your hostname...
+>> :serenity.fl.us.dal.net NOTICE AUTH :*** Checking Ident
+>> :serenity.fl.us.dal.net NOTICE AUTH :*** Found your hostname
+<< JOIN #ft_irc_test
+<< JOIN #ft_irc_test
+<< JOIN #ft_irc_test
+>> :serenity.fl.us.dal.net NOTICE AUTH :*** No Ident response
+>> :serenity.fl.us.dal.net 451 * JOIN :You must finish connecting with another nickname first.
+<< NICK apresas
+<< USER apresas apresas irc.dal.net :albert
+>> :serenity.fl.us.dal.net 451 * JOIN :You must finish connecting with another nickname first.
+<< NICK apresas
+<< USER apresas apresas irc.dal.net :albert
+>> :serenity.fl.us.dal.net 451 * JOIN :You must finish connecting with another nickname first.
+<< NICK apresas
+<< USER apresas apresas irc.dal.net :albert
+>> :serenity.fl.us.dal.net 451 * JOIN :You must finish connecting with another nickname first.
+<< NICK apresas
+<< USER apresas apresas irc.dal.net :albert
+<< WHOIS wawagate
+>> :serenity.fl.us.dal.net 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+>> :serenity.fl.us.dal.net 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+>> :serenity.fl.us.dal.net 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+>> :serenity.fl.us.dal.net 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+<< NICKNAME wawagate
+>> :serenity.fl.us.dal.net 451 * WHOIS :You must finish connecting with another nickname first.
+<< NICK apresas
+<< USER apresas apresas irc.dal.net :albert
+>> :serenity.fl.us.dal.net 433 * apresas_ :Nickname is already in use.
+<< NICK apresas__
+>> :serenity.fl.us.dal.net 433 * apresas_ :Nickname is already in use.
+<< NICK apresas__
+>> :serenity.fl.us.dal.net 433 * apresas_ :Nickname is already in use.
+<< NICK apresas__
+>> :serenity.fl.us.dal.net 433 * apresas_ :Nickname is already in use.
+<< NICK apresas__
+>> :serenity.fl.us.dal.net 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+>> :serenity.fl.us.dal.net 001 apresas__ :Welcome to the DALnet IRC Network apresas__!~apresas@231.97.133.37.dynamic.jazztel.es
+>> :serenity.fl.us.dal.net 002 apresas__ :Your host is serenity.fl.us.dal.net, running version bahamut-2.2.2
+>> :serenity.fl.us.dal.net 003 apresas__ :This server was created Tue 23 Aug UTC at 2022 04:42:56 AM
+>> :serenity.fl.us.dal.net 004 apresas__ serenity.fl.us.dal.net bahamut-2.2.2 aAbcCdefFghHiIjkKmnoOPrRsSwxXy AbceiIjklLmMnoOpPrRsStv beIjklov
+>> :serenity.fl.us.dal.net 005 apresas__ NETWORK=DALnet SAFELIST MAXBANS=200 MAXCHANNELS=50 CHANNELLEN=32 KICKLEN=307 NICKLEN=30 TOPICLEN=307 MODES=6 CHANTYPES=# CHANLIMIT=#:50 PREFIX=(ohv)@%+ STATUSMSG=@%+ :are available on this server
+>> :serenity.fl.us.dal.net 005 apresas__ CASEMAPPING=ascii WATCH=128 SILENCE=10 ELIST=cmntu EXCEPTS INVEX CHANMODES=beI,k,jl,ciPAmMnOprRsSt MAXLIST=b:200,e:100,I:100 TARGMAX=DCCALLOW:,JOIN:,KICK:4,KILL:20,NOTICE:20,PART:,PRIVMSG:20,WHOIS:,WHOWAS: :are available on this server
+>> :serenity.fl.us.dal.net 251 apresas__ :There are 50 users and 6759 invisible on 39 servers
+>> :serenity.fl.us.dal.net 252 apresas__ 76 :IRC Operators online
+>> :serenity.fl.us.dal.net 254 apresas__ 3560 :channels formed
+>> :serenity.fl.us.dal.net 255 apresas__ :I have 245 clients and 1 servers
+>> :serenity.fl.us.dal.net 265 apresas__ :Current local users: 245 Max: 1393
+>> :serenity.fl.us.dal.net 266 apresas__ :Current global users: 6809 Max: 12060
+>> :serenity.fl.us.dal.net NOTICE apresas__ :*** Notice -- motd was last changed at 30/11/2020 19:09
+>> :serenity.fl.us.dal.net 375 apresas__ :- serenity.fl.us.dal.net Message of the Day - 
+>> :serenity.fl.us.dal.net 372 apresas__ :-30/11/2020 19:09
+>> :serenity.fl.us.dal.net 372 apresas__ :- serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net 372 apresas__ :- sponsored by: Kape, Inc & Datapacket.com
+>> :serenity.fl.us.dal.net 372 apresas__ :- admin: Mustang
+>> :serenity.fl.us.dal.net 372 apresas__ :- 
+>> :serenity.fl.us.dal.net 372 apresas__ :- Please abide by DALnet's Acceptable Use Policy:
+>> :serenity.fl.us.dal.net 372 apresas__ :- https://www.dal.net/aup
+>> :serenity.fl.us.dal.net 372 apresas__ :- 
+>> :serenity.fl.us.dal.net 372 apresas__ :- 
+>> :serenity.fl.us.dal.net 376 apresas__ :End of /MOTD command.
+>> :apresas__ MODE apresas__ :+iH
+<< MODE apresas__ +i
+>> :NickServ!service@dal.net NOTICE apresas__ :Bienvenido(a) a DALnet! Sabías que nuestros servicios apoyan su idioma? Escriba: /NickServ LANG ES para probarlo.
+<< WHOIS apresas
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< JOIN #ft_irc_test
+>> :serenity.fl.us.dal.net 433 apresas__ apresas_ :Nickname is already in use.
+<< NICKNAME wawagate
+>> :serenity.fl.us.dal.net 311 apresas__ apresas ~apresas c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es * :albert
+--> nickfind event whois
+>> :serenity.fl.us.dal.net 319 apresas__ apresas :@#ft_irc_test 
+--> event empty
+>> :serenity.fl.us.dal.net 312 apresas__ apresas lion.tx.us.dal.net :bliss
+--> event empty
+>> :serenity.fl.us.dal.net 318 apresas__ apresas :End of /WHOIS list.
+--> event empty
+>> :apresas__!~apresas@c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es JOIN :#ft_irc_test
+>> :serenity.fl.us.dal.net 353 apresas__ = #ft_irc_test :apresas__ @apresas 
+>> :serenity.fl.us.dal.net 366 apresas__ #ft_irc_test :End of /NAMES list.
+<< MODE #ft_irc_test
+>> :serenity.fl.us.dal.net 421 apresas__ NICKNAME :Unknown command
+>> :serenity.fl.us.dal.net 324 apresas__ #ft_irc_test + 
+--> chanquery mode
+>> :serenity.fl.us.dal.net 329 apresas__ #ft_irc_test 1734118708
+--> event 329
+<< WHO #ft_irc_test
+>> :serenity.fl.us.dal.net 352 apresas__ #ft_irc_test ~apresas c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es serenity.fl.us.dal.net apresas__ H :0 albert
+--> silent event who
+>> :serenity.fl.us.dal.net 352 apresas__ #ft_irc_test ~apresas c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es lion.tx.us.dal.net apresas H@ :5 albert
+--> silent event who
+>> :serenity.fl.us.dal.net 315 apresas__ #ft_irc_test :End of /WHO list.
+--> chanquery who end
+<< MODE #ft_irc_test b
+>> :serenity.fl.us.dal.net 368 apresas__ #ft_irc_test :End of Channel Ban List
+--> chanquery ban end
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :apresas__
+--> lag pong
+<< NICK wawagate
+>> :apresas__!~apresas@c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es NICK :wawagate
+<< WHOIS wawagate
+>> :serenity.fl.us.dal.net 311 wawagate wawagate ~apresas c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es * :albert
+>> :serenity.fl.us.dal.net 338 wawagate wawagate :is actually ~apresas@231.97.133.37.dynamic.jazztel.es [37.133.97.231]
+>> :serenity.fl.us.dal.net 319 wawagate wawagate :#ft_irc_test 
+>> :serenity.fl.us.dal.net 312 wawagate wawagate serenity.fl.us.dal.net :serenity or something
+>> :serenity.fl.us.dal.net 317 wawagate wawagate 41 1734118946 :seconds idle, signon time
+>> :serenity.fl.us.dal.net 318 wawagate wawagate :End of /WHOIS list.
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+>> :apresas!~apresas@c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es QUIT :Quit: I'm leaving
+>> :apresas!~apresas@c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es JOIN :#ft_irc_test
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+>> :apresas__!~apresas@c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es JOIN :#ft_irc_test
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+>> :apresas__!~apresas@c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es QUIT :Quit: apresas__
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+>> :apresas__!~apresas@c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es JOIN :#ft_irc_test
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+>> :apresas__!~apresas@c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es QUIT :Quit: leaving
+>> :apresas!~apresas@c944-dde9-1a92-6fdd-8511.dynamic.jazztel.es QUIT :Quit: leaving
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< PING serenity.fl.us.dal.net
+>> :serenity.fl.us.dal.net PONG serenity.fl.us.dal.net :wawagate
+--> lag pong
+<< QUIT :See ya
+>> ERROR :Closing Link: 231.97.133.37.dynamic.jazztel.es (Quit: See ya)
+<< PING bifrost.ca.us.dal.net
+>> :bifrost.ca.us.dal.net PONG bifrost.ca.us.dal.net :apresas_
+--> lag pong
+<< QUIT :See ya
+>> ERROR :Closing Link: 231.97.133.37.dynamic.jazztel.es (Quit: See ya)

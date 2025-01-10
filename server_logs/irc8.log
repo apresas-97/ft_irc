@@ -1,0 +1,1837 @@
+<< CAP LS 302
+<< JOIN :
+>> NOTICE AUTH :*** Processing connection to irc.mzima.net
+>> NOTICE AUTH :*** Looking up your hostname...
+>> NOTICE AUTH :*** Checking Ident
+>> NOTICE AUTH :*** Found your hostname
+>> NOTICE AUTH :*** No Ident response
+>> :irc.mzima.net CAP * LS :multi-prefix
+<< CAP REQ :multi-prefix
+>> :irc.mzima.net 451 * :You have not registered
+>> :irc.mzima.net CAP * ACK :multi-prefix 
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas ssl.efnet.org :albert
+>> :irc.mzima.net 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+>> PING :E47F0B9C
+<< PONG :E47F0B9C
+>> :irc.mzima.net 001 apresas_ :Welcome to the EFNet Internet Relay Chat Network apresas_
+>> :irc.mzima.net 002 apresas_ :Your host is irc.mzima.net[198.47.99.99/9999], running version ircd-ratbox-3.0.10
+>> :irc.mzima.net 003 apresas_ :This server was created Sun Sep 22 2024 at 02:37:16 EDT
+>> :irc.mzima.net 004 apresas_ irc.mzima.net ircd-ratbox-3.0.10 oiwszcrkfydnxbauglZCD biklmnopstveIrS bkloveI
+>> :irc.mzima.net 005 apresas_ CHANTYPES=&# EXCEPTS INVEX CHANMODES=eIb,k,l,imnpstS CHANLIMIT=&#:60 PREFIX=(ov)@+ MAXLIST=beI:100 MODES=4 NETWORK=EFNet KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server
+>> :irc.mzima.net 005 apresas_ SAFELIST ELIST=U CASEMAPPING=rfc1459 CHARSET=ascii NICKLEN=9 CHANNELLEN=50 TOPICLEN=160 ETRACE CPRIVMSG CNOTICE DEAF=D MONITOR=120 :are supported by this server
+>> :irc.mzima.net 005 apresas_ FNC ACCEPT=20 MAP TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:10,NOTICE:10,ACCEPT:,MONITOR: :are supported by this server
+>> :irc.mzima.net 251 apresas_ :There are 3662 users and 5666 invisible on 18 servers
+>> :irc.mzima.net 252 apresas_ 81 :IRC Operators online
+>> :irc.mzima.net 253 apresas_ 1 :unknown connection(s)
+>> :irc.mzima.net 254 apresas_ 6097 :channels formed
+>> :irc.mzima.net 255 apresas_ :I have 732 clients and 1 servers
+>> :irc.mzima.net 265 apresas_ 732 1021 :Current local users 732, max 1021
+>> :irc.mzima.net 266 apresas_ 9328 10070 :Current global users 9328, max 10070
+>> :irc.mzima.net 250 apresas_ :Highest connection count: 1022 (1021 clients) (30617 connections received)
+>> :irc.mzima.net 375 apresas_ :- irc.mzima.net Message of the Day - 
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-                               _.---------------.
+>> :irc.mzima.net 372 apresas_ :-                     _.---,-----_------,-,---.   `------.
+>> :irc.mzima.net 372 apresas_ :-                ,--------/-----+++--------+---`--.--.    `-----.
+>> :irc.mzima.net 372 apresas_ :-             ,-'--/----//--/++++---,+-+:`-.+-++--``+++-..--.---.`--.
+>> :irc.mzima.net 372 apresas_ :-         ,-,--+-+/--=.<'+-/++//--+-++`.):--:.-++--\ .-\\`-,-`--.--. `--.
+>> :irc.mzima.net 372 apresas_ :-      ,-','  /( /-''-+-+/<<,/;--(--//./`-.--`-.+,-.+\`-.\\-`-.-'\,-----.`-.
+>> :irc.mzima.net 372 apresas_ :-    -'  (,---\-+----;,-'\\\X-+-.+-<---',--`-.--`\`.-+`.++|\--+`.-`,-----.. `-.
+>> :irc.mzima.net 372 apresas_ :-  ./ ,-----,''++----|'-,\+\----<---+--------,`.-.\-`-+-+)+|-,-`-+(-:.  ) ).   \
+>> :irc.mzima.net 372 apresas_ :- ,' --   `/|----+----+;-;X------+-----,--------:-+:---++.'+----`.)`+----'( )   `.
+>> :irc.mzima.net 372 apresas_ :- `-. `-----|-.----'---+++----,-''--------------;'++-+-+--/------+---------'-+-,-'
+>> :irc.mzima.net 372 apresas_ :-   \-----.    `----(-'--`-' (`----. `-`-------'---+-----'--------'     _.----'
+>> :irc.mzima.net 372 apresas_ :-          `---------`--------`--.  `-----_\-'------'     _.----------''
+>> :irc.mzima.net 372 apresas_ :-                     `-------. `-------''  \       ----''
+>> :irc.mzima.net 372 apresas_ :-                             |  |    -\     \ \    |
+>> :irc.mzima.net 372 apresas_ :-                             |  |   /  :     \ \   |
+>> :irc.mzima.net 372 apresas_ :-                             |  :  ;   | \    : :  |
+>> :irc.mzima.net 372 apresas_ :-                              |\  ;|   |  :   ; ;  |
+>> :irc.mzima.net 372 apresas_ :-     _u__                     | : |    |  |  ; ;  |        ,---.
+>> :irc.mzima.net 372 apresas_ :-    /____\              ^     \ | :    |  ;  | ;  |       (     )       ^
+>> :irc.mzima.net 372 apresas_ :-    |[][]|      )      /.\    '.|  \   ; /   ;/   |        `-+-'       /.\
+>> :irc.mzima.net 372 apresas_ :-  /\|[]..|  /---        |      ||   : / /   //    |(.)   /\  |  /-----\ |
+>> :irc.mzima.net 372 apresas_ :- /  '--'''      \    /------------\    /-\     /--\ |/--/  \-+-/       \--\
+>> :irc.mzima.net 372 apresas_ :-                 \--/              \--/   \---/s!D \/                      \--\
+>> :irc.mzima.net 372 apresas_ :-                                                                               \
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            Welcome to EFnet. Your host is irc.mzima.net, usage of
+>> :irc.mzima.net 372 apresas_ :-            this server is available on the following ports:
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            6665-6669
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            SSL is now available on ports 6697 and 9999
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            This server is sponsored by Mzima Networks.
+>> :irc.mzima.net 372 apresas_ :-            For more information, please visit http://www.mzima.net
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            This server may not be used for any illegal purposes,
+>> :irc.mzima.net 372 apresas_ :-            including but not limited to droning, cloning, flooding,
+>> :irc.mzima.net 372 apresas_ :-            distribution of copyrighted material, unsolicited
+>> :irc.mzima.net 372 apresas_ :-            advertising or any other actions that we, your
+>> :irc.mzima.net 372 apresas_ :-            Operators, regard as abuse. Any individual or group
+>> :irc.mzima.net 372 apresas_ :-            found to lead or participate in any abusive actions shall
+>> :irc.mzima.net 372 apresas_ :-            be permanently removed from this server.
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            The usage of bots is encouraged to help maintain your
+>> :irc.mzima.net 372 apresas_ :-            channel, however abusive bots will be removed post haste.
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            Should you need to contact someone from our staff, type
+>> :irc.mzima.net 372 apresas_ :-            /stats p and contact one of the people you get in the
+>> :irc.mzima.net 372 apresas_ :-            output.
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            Upon connecting to this server you are being scanned for
+>> :irc.mzima.net 372 apresas_ :-            insecure or open proxy/socks. If you do not consent to
+>> :irc.mzima.net 372 apresas_ :-            be scanned, please disconnect. These scans are being
+>> :irc.mzima.net 372 apresas_ :-            performed for security reasons only.
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            Mzima Networks, EFnet, and the Operators of this server
+>> :irc.mzima.net 372 apresas_ :-            are not to be held responsible for the actions implied
+>> :irc.mzima.net 372 apresas_ :-            or the opinions expressed by the users connecting to
+>> :irc.mzima.net 372 apresas_ :-            this server.
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 372 apresas_ :-            Please do not request to become an Oper.
+>> :irc.mzima.net 372 apresas_ :-  
+>> :irc.mzima.net 376 apresas_ :End of /MOTD command.
+>> :MZdrone!raphidae@mz.dronemon PRIVMSG apresas_ :VERSION
+<< MODE apresas_ +i
+>> :apresas_ MODE apresas_ :+i
+<< WHOIS apresas
+>> :irc.mzima.net 311 apresas_ apresas ~apresas 57.190.79.188.dynamic.jazztel.es * :albert
+--> nickfind event whois
+>> :irc.mzima.net 312 apresas_ apresas irc.swepipe.se :Swepipe EFnet Server (IPv4, IPv6 & SSL)
+--> event empty
+>> :irc.mzima.net 338 apresas_ apresas 188.79.190.57 :actually using host
+--> event empty
+>> :irc.mzima.net 318 apresas_ apresas :End of /WHOIS list.
+--> event empty
+<< NOTICE MZdrone :VERSION irssi v1.4.3
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< JOIN #ft_irc_tests
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es JOIN :#ft_irc_tests
+>> :irc.mzima.net MODE #ft_irc_tests +nt
+>> :irc.mzima.net 353 apresas_ = #ft_irc_tests :@apresas_
+>> :irc.mzima.net 366 apresas_ #ft_irc_tests :End of /NAMES list.
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +tn
+--> chanquery mode
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+--> event 329
+<< WHO #ft_irc_tests
+>> :irc.mzima.net 352 apresas_ #ft_irc_tests ~apresas 57.190.79.188.dynamic.jazztel.es irc.mzima.net apresas_ H@ :0 albert
+--> silent event who
+>> :irc.mzima.net 315 apresas_ #ft_irc_tests :End of /WHO list.
+--> chanquery who end
+<< MODE #ft_irc_tests b
+>> :irc.mzima.net 368 apresas_ #ft_irc_tests :End of Channel Ban List
+--> chanquery ban end
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+>> :apresas__!~apresas@57.190.79.188.dynamic.jazztel.es JOIN :#ft_irc_tests
+>> :apresas__!~apresas@57.190.79.188.dynamic.jazztel.es PRIVMSG #ft_irc_tests :hola
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+>> :apresas__!~apresas@57.190.79.188.dynamic.jazztel.es NICK :miscoJon
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PRIVMSG #ft_irc_tests :hola
+>> :miscoJon!~apresas@57.190.79.188.dynamic.jazztel.es PRIVMSG #ft_irc_tests :hola
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE apresas_ +o
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PRIVMSG #ft_irc_tests :NAMES #ft_irc_tests
+<< NAMES #ft_irc_tests
+>> :irc.mzima.net 353 apresas_ = #ft_irc_tests :miscoJon @apresas_
+>> :irc.mzima.net 366 apresas_ #ft_irc_tests :End of /NAMES list.
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE apresas_
+>> :irc.mzima.net 221 apresas_ +i
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +tn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests +O
+>> :irc.mzima.net 472 apresas_ O :is unknown mode char to me
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests o
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +tn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< MODE #ft_irc_tests +k
+<< MODE #ft_irc_tests +q
+>> :irc.mzima.net 472 apresas_ q :is unknown mode char to me
+<< MODE #ft_irc_tests q
+>> :irc.mzima.net 472 apresas_ q :is unknown mode char to me
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests a
+>> :irc.mzima.net 472 apresas_ a :is unknown mode char to me
+<< MODE #ft_irc_tests i
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests +i 
+<< MODE #ft_irc_tests a
+>> :irc.mzima.net 472 apresas_ a :is unknown mode char to me
+<< MODE #ft_irc_tests n
+<< MODE #ft_irc_tests q
+>> :irc.mzima.net 472 apresas_ q :is unknown mode char to me
+<< MODE #ft_irc_tests p
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests +p 
+<< MODE #ft_irc_tests s
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests +s 
+<< MODE #ft_irc_tests r
+>> :irc.mzima.net 472 apresas_ r :is unknown mode char to me
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests t
+<< MODE #ft_irc_tests l
+<< MODE #ft_irc_tests +l
+<< MODE #ft_irc_tests b
+>> :irc.mzima.net 368 apresas_ #ft_irc_tests :End of Channel Ban List
+<< MODE #ft_irc_tests +b
+>> :irc.mzima.net 368 apresas_ #ft_irc_tests :End of Channel Ban List
+<< MODE #ft_irc_tests +e
+>> :irc.mzima.net 349 apresas_ #ft_irc_tests :End of Channel Exception List
+<< MODE #ft_irc_tests +I
+>> :irc.mzima.net 347 apresas_ #ft_irc_tests :End of Channel Invite List
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +sptin
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests -ips
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests -ips 
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +tn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< MODE #ft_irc_tests +ps
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests +ps 
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +sptn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< MODE #ft_irc_tests -p
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests -p 
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +stn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< MODE #ft_irc_test +p
+>> :irc.mzima.net 403 apresas_ #ft_irc_test :No such channel
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +stn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< MODE #ft_irc_test +p
+>> :irc.mzima.net 403 apresas_ #ft_irc_test :No such channel
+<< MODE #ft_irc_tests +p
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests +p 
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +sptn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +sptn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< MODE #ft_irc_tests -sp
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests -sp 
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +tn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< MODE #ft_irc_tests +isp
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests +isp 
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +sptin
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< MODE #ft_irc_tests -spi
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests -spi 
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +tn
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests +XsYp
+>> :irc.mzima.net 472 apresas_ X :is unknown mode char to me
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests +sp 
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE apresas_ +K+Q+Y+R+Z+Hola+305ha3ha0e--++
+>> :irc.mzima.net 501 apresas_ :Unknown MODE flag
+>> :irc.mzima.net NOTICE apresas_ :*** You need oper and admin flag for +a
+<< MODE apresas_ +w++
+>> :apresas_ MODE apresas_ :+w
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+>> :miscoJon!~apresas@57.190.79.188.dynamic.jazztel.es QUIT :irc.mzima.net ircd.choopa.net
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+>> :miscoJon!~apresas@57.190.79.188.dynamic.jazztel.es JOIN :#ft_irc_tests
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests +l 100
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests +l 100
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +sptnl 100
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE #ft_irc_tests +k secretpass
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #ft_irc_tests +k secretpass
+<< MODE #ft_irc_tests
+>> :irc.mzima.net 324 apresas_ #ft_irc_tests +sptnlk 100 secretpass
+>> :irc.mzima.net 329 apresas_ #ft_irc_tests 1733913871
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< JOIN #+ft_irc_tests_2
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es JOIN :#+ft_irc_tests_2
+>> :irc.mzima.net MODE #+ft_irc_tests_2 +nt
+>> :irc.mzima.net 353 apresas_ = #+ft_irc_tests_2 :@apresas_
+>> :irc.mzima.net 366 apresas_ #+ft_irc_tests_2 :End of /NAMES list.
+<< MODE #+ft_irc_tests_2
+>> :irc.mzima.net 324 apresas_ #+ft_irc_tests_2 +tn
+--> chanquery mode
+>> :irc.mzima.net 329 apresas_ #+ft_irc_tests_2 1733929467
+--> event 329
+<< WHO #+ft_irc_tests_2
+>> :irc.mzima.net 352 apresas_ #+ft_irc_tests_2 ~apresas 57.190.79.188.dynamic.jazztel.es irc.mzima.net apresas_ H@ :0 albert
+--> silent event who
+>> :irc.mzima.net 315 apresas_ #+ft_irc_tests_2 :End of /WHO list.
+--> chanquery who end
+<< MODE #+ft_irc_tests_2 b
+>> :irc.mzima.net 368 apresas_ #+ft_irc_tests_2 :End of Channel Ban List
+--> chanquery ban end
+<< MODE +ft_irc_tests
+>> :irc.mzima.net 403 apresas_ +ft_irc_tests :No such channel
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< MODE +ft_irc_tests_2
+>> :irc.mzima.net 403 apresas_ +ft_irc_tests_2 :No such channel
+<< MODE #+ft_irc_tests_2
+>> :irc.mzima.net 324 apresas_ #+ft_irc_tests_2 +tn
+>> :irc.mzima.net 329 apresas_ #+ft_irc_tests_2 1733929467
+<< MODE #+ft_irc_tests_2 +s
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es MODE #+ft_irc_tests_2 +s 
+<< PART #+ft_irc_tests_2 :"bye"
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es PART #+ft_irc_tests_2 :"bye"
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< JOIN #+ft_irc_tests_3 +s
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es JOIN :#+ft_irc_tests_3
+>> :irc.mzima.net MODE #+ft_irc_tests_3 +nt
+>> :irc.mzima.net 353 apresas_ = #+ft_irc_tests_3 :@apresas_
+>> :irc.mzima.net 366 apresas_ #+ft_irc_tests_3 :End of /NAMES list.
+<< MODE #+ft_irc_tests_3
+>> :irc.mzima.net 324 apresas_ #+ft_irc_tests_3 +tn
+--> chanquery mode
+>> :irc.mzima.net 329 apresas_ #+ft_irc_tests_3 1733930053
+--> event 329
+<< WHO #+ft_irc_tests_3
+>> :irc.mzima.net 352 apresas_ #+ft_irc_tests_3 ~apresas 57.190.79.188.dynamic.jazztel.es irc.mzima.net apresas_ H@ :0 albert
+--> silent event who
+>> :irc.mzima.net 315 apresas_ #+ft_irc_tests_3 :End of /WHO list.
+--> chanquery who end
+<< MODE #+ft_irc_tests_3 b
+>> :irc.mzima.net 368 apresas_ #+ft_irc_tests_3 :End of Channel Ban List
+--> chanquery ban end
+<< PART #+ft_irc_tests_3
+>> :apresas_!~apresas@57.190.79.188.dynamic.jazztel.es PART #+ft_irc_tests_3
+<< JOIN +ft_irc_tests2
+>> :irc.mzima.net 403 apresas_ +ft_irc_tests2 :No such channel
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< JOIN +ft_irc_tests_4
+>> :irc.mzima.net 403 apresas_ +ft_irc_tests_4 :No such channel
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< QUIT :leaving

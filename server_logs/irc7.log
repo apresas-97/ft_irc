@@ -1,0 +1,1646 @@
+<< CAP LS 302
+<< JOIN :
+>> NOTICE AUTH :*** Processing connection to irc.swepipe.se
+>> NOTICE AUTH :*** Looking up your hostname...
+>> NOTICE AUTH :*** Checking Ident
+>> NOTICE AUTH :*** Found your hostname
+>> NOTICE AUTH :*** No Ident response
+>> :irc.swepipe.se CAP * LS :multi-prefix
+<< CAP REQ :multi-prefix
+>> :irc.swepipe.se 451 * :You have not registered
+>> :irc.swepipe.se CAP * ACK :multi-prefix 
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas ssl.efnet.org :albert
+>> :irc.swepipe.se 001 apresas :Welcome to the EFNet Internet Relay Chat Network apresas
+<< MODE apresas +i
+>> :irc.swepipe.se 002 apresas :Your host is irc.swepipe.se[188.240.145.90/9999], running version ircd-ratbox-3.0.10
+>> :irc.swepipe.se 003 apresas :This server was created Wed May 19 2021 at 00:43:22 CEST
+>> :irc.swepipe.se 004 apresas irc.swepipe.se ircd-ratbox-3.0.10 oiwszcrkfydnxbauglZCD biklmnopstveIrS bkloveI
+>> :irc.swepipe.se 005 apresas CHANTYPES=&# EXCEPTS INVEX CHANMODES=eIb,k,l,imnpstS CHANLIMIT=&#:40 PREFIX=(ov)@+ MAXLIST=beI:100 MODES=4 NETWORK=EFNet KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server
+>> :irc.swepipe.se 005 apresas SAFELIST ELIST=U CASEMAPPING=rfc1459 CHARSET=ascii NICKLEN=9 CHANNELLEN=50 TOPICLEN=160 ETRACE CPRIVMSG CNOTICE DEAF=D MONITOR=60 :are supported by this server
+>> :irc.swepipe.se 005 apresas FNC ACCEPT=20 MAP TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: :are supported by this server
+>> :irc.swepipe.se 251 apresas :There are 3662 users and 5665 invisible on 18 servers
+>> :irc.swepipe.se 252 apresas 81 :IRC Operators online
+>> :irc.swepipe.se 254 apresas 6099 :channels formed
+>> :irc.swepipe.se 255 apresas :I have 1105 clients and 1 servers
+>> :irc.swepipe.se 265 apresas 1105 2497 :Current local users 1105, max 2497
+>> :irc.swepipe.se 266 apresas 9327 39777 :Current global users 9327, max 39777
+>> :irc.swepipe.se 250 apresas :Highest connection count: 2498 (2497 clients) (294073 connections received)
+>> :irc.swepipe.se 375 apresas :- irc.swepipe.se Message of the Day - 
+>> :irc.swepipe.se 372 apresas :-   ######  ##      ## ######## ########  #### ########  ########
+>> :irc.swepipe.se 372 apresas :-  ##    ## ##  ##  ## ##       ##     ##  ##  ##     ## ##
+>> :irc.swepipe.se 372 apresas :-  ##       ##  ##  ## ##       ##     ##  ##  ##     ## ##
+>> :irc.swepipe.se 372 apresas :-   ######  ##  ##  ## ######   ########   ##  ########  ######
+>> :irc.swepipe.se 372 apresas :-        ## ##  ##  ## ##       ##         ##  ##        ##
+>> :irc.swepipe.se 372 apresas :-  ##    ## ##  ##  ## ##       ##         ##  ##        ##
+>> :irc.swepipe.se 372 apresas :-   ######   ###  ###  ######## ##        #### ##        ########
+>> :irc.swepipe.se 372 apresas :-  
+>> :irc.swepipe.se 372 apresas :-    Hosted in Stockholm, Sweden. Sponsored by SUNET (AS1653)
+>> :irc.swepipe.se 372 apresas :-      IPv4 & IPv6 Ports: 6665-6669, 6697 (SSL), 7000 (SSL)
+>> :irc.swepipe.se 372 apresas :-   ----------------------------------------------------------
+>> :irc.swepipe.se 372 apresas :-  
+>> :irc.swepipe.se 372 apresas :-   Staff:
+>> :irc.swepipe.se 372 apresas :-         suom1
+>> :irc.swepipe.se 372 apresas :-         Ahnberg
+>> :irc.swepipe.se 372 apresas :-  
+>> :irc.swepipe.se 372 apresas :-   Contact: crew@swepipe.net
+>> :irc.swepipe.se 376 apresas :End of /MOTD command.
+>> :SWopm!bopm@swepipe.bopm NOTICE apresas :You are now being scanned for open proxies by the irc.swepipe.se local and EFNet global open proxy monitors.
+>> :SWdrone!dronemon@swepipe.dronemon PRIVMSG apresas :VERSION
+>> :apresas MODE apresas :+i
+<< NOTICE SWdrone :VERSION irssi v1.4.3
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< MODE apresas
+>> :irc.swepipe.se 221 apresas +i
+<< MODE apresas -i+Kw
+>> :irc.swepipe.se 501 apresas :Unknown MODE flag
+>> :apresas MODE apresas :-i+w
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< MODE apresas +++++++++++i--K+-+-+-Misco+++Holaaaa-w
+>> :irc.swepipe.se 501 apresas :Unknown MODE flag
+>> :irc.swepipe.se NOTICE apresas :*** You need oper and admin flag for +a
+>> :apresas MODE apresas :-w
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< MODE apresas +++++++++++i--K+-+-+-Misco+++Holaaaa-w
+>> :irc.swepipe.se 501 apresas :Unknown MODE flag
+>> :irc.swepipe.se NOTICE apresas :*** You need oper and admin flag for +a
+<< MODE apresas +iw
+>> :apresas MODE apresas :+iw
+<< MODE apresas +iw
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< QUIT :leaving

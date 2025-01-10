@@ -1,0 +1,79 @@
+<< CAP LS 302
+<< JOIN :
+>> NOTICE AUTH :*** Processing connection to irc.swepipe.se
+>> NOTICE AUTH :*** Looking up your hostname...
+>> NOTICE AUTH :*** Checking Ident
+>> NOTICE AUTH :*** Found your hostname
+>> NOTICE AUTH :*** No Ident response
+>> :irc.swepipe.se CAP * LS :multi-prefix
+<< CAP REQ :multi-prefix
+>> :irc.swepipe.se 451 * :You have not registered
+>> :irc.swepipe.se CAP * ACK :multi-prefix 
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas ssl.efnet.org :albert
+>> :irc.swepipe.se 001 apresas :Welcome to the EFNet Internet Relay Chat Network apresas
+<< MODE apresas +i
+>> :irc.swepipe.se 002 apresas :Your host is irc.swepipe.se[188.240.145.90/9999], running version ircd-ratbox-3.0.10
+>> :irc.swepipe.se 003 apresas :This server was created Wed May 19 2021 at 00:43:22 CEST
+>> :irc.swepipe.se 004 apresas irc.swepipe.se ircd-ratbox-3.0.10 oiwszcrkfydnxbauglZCD biklmnopstveIrS bkloveI
+>> :irc.swepipe.se 005 apresas CHANTYPES=&# EXCEPTS INVEX CHANMODES=eIb,k,l,imnpstS CHANLIMIT=&#:40 PREFIX=(ov)@+ MAXLIST=beI:100 MODES=4 NETWORK=EFNet KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server
+>> :irc.swepipe.se 005 apresas SAFELIST ELIST=U CASEMAPPING=rfc1459 CHARSET=ascii NICKLEN=9 CHANNELLEN=50 TOPICLEN=160 ETRACE CPRIVMSG CNOTICE DEAF=D MONITOR=60 :are supported by this server
+>> :irc.swepipe.se 005 apresas FNC ACCEPT=20 MAP TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: :are supported by this server
+>> :irc.swepipe.se 251 apresas :There are 3819 users and 5641 invisible on 18 servers
+>> :irc.swepipe.se 252 apresas 83 :IRC Operators online
+>> :irc.swepipe.se 254 apresas 6149 :channels formed
+>> :irc.swepipe.se 255 apresas :I have 1184 clients and 1 servers
+>> :irc.swepipe.se 265 apresas 1184 2497 :Current local users 1184, max 2497
+>> :irc.swepipe.se 266 apresas 9460 39777 :Current global users 9460, max 39777
+>> :irc.swepipe.se 250 apresas :Highest connection count: 2498 (2497 clients) (294739 connections received)
+>> :irc.swepipe.se 375 apresas :- irc.swepipe.se Message of the Day - 
+>> :irc.swepipe.se 372 apresas :-   ######  ##      ## ######## ########  #### ########  ########
+>> :irc.swepipe.se 372 apresas :-  ##    ## ##  ##  ## ##       ##     ##  ##  ##     ## ##
+>> :irc.swepipe.se 372 apresas :-  ##       ##  ##  ## ##       ##     ##  ##  ##     ## ##
+>> :irc.swepipe.se 372 apresas :-   ######  ##  ##  ## ######   ########   ##  ########  ######
+>> :irc.swepipe.se 372 apresas :-        ## ##  ##  ## ##       ##         ##  ##        ##
+>> :irc.swepipe.se 372 apresas :-  ##    ## ##  ##  ## ##       ##         ##  ##        ##
+>> :irc.swepipe.se 372 apresas :-   ######   ###  ###  ######## ##        #### ##        ########
+>> :irc.swepipe.se 372 apresas :-  
+>> :irc.swepipe.se 372 apresas :-    Hosted in Stockholm, Sweden. Sponsored by SUNET (AS1653)
+>> :irc.swepipe.se 372 apresas :-      IPv4 & IPv6 Ports: 6665-6669, 6697 (SSL), 7000 (SSL)
+>> :irc.swepipe.se 372 apresas :-   ----------------------------------------------------------
+>> :irc.swepipe.se 372 apresas :-  
+>> :irc.swepipe.se 372 apresas :-   Staff:
+>> :irc.swepipe.se 372 apresas :-         suom1
+>> :irc.swepipe.se 372 apresas :-         Ahnberg
+>> :irc.swepipe.se 372 apresas :-  
+>> :irc.swepipe.se 372 apresas :-   Contact: crew@swepipe.net
+>> :irc.swepipe.se 376 apresas :End of /MOTD command.
+>> :SWopm!bopm@swepipe.bopm NOTICE apresas :You are now being scanned for open proxies by the irc.swepipe.se local and EFNet global open proxy monitors.
+>> :SWdrone!dronemon@swepipe.dronemon PRIVMSG apresas :VERSION
+>> :apresas MODE apresas :+i
+<< NOTICE SWdrone :VERSION irssi v1.4.3
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< JOIN #test_channel_abcdef
+>> :apresas!~apresas@231.97.133.37.dynamic.jazztel.es JOIN :#test_channel_abcdef
+>> :irc.swepipe.se MODE #test_channel_abcdef +nt
+>> :irc.swepipe.se 353 apresas = #test_channel_abcdef :@apresas
+>> :irc.swepipe.se 366 apresas #test_channel_abcdef :End of /NAMES list.
+<< MODE #test_channel_abcdef
+>> :irc.swepipe.se 324 apresas #test_channel_abcdef +tn
+--> chanquery mode
+>> :irc.swepipe.se 329 apresas #test_channel_abcdef 1734119639
+--> event 329
+<< WHO #test_channel_abcdef
+>> :irc.swepipe.se 352 apresas #test_channel_abcdef ~apresas 231.97.133.37.dynamic.jazztel.es irc.swepipe.se apresas H@ :0 albert
+--> silent event who
+>> :irc.swepipe.se 315 apresas #test_channel_abcdef :End of /WHO list.
+--> chanquery who end
+<< MODE #test_channel_abcdef b
+>> :irc.swepipe.se 368 apresas #test_channel_abcdef :End of Channel Ban List
+--> chanquery ban end
+<< PING irc.swepipe.se
+>> :irc.swepipe.se PONG irc.swepipe.se :irc.swepipe.se
+--> lag pong
+<< QUIT :Goodbye
+>> :apresas!~apresas@231.97.133.37.dynamic.jazztel.es QUIT :Client Quit
+>> ERROR :Closing Link: 231.97.133.37.dynamic.jazztel.es (Client Quit)

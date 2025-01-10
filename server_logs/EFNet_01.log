@@ -1,0 +1,139 @@
+<< CAP LS 302
+<< JOIN :
+>> NOTICE AUTH :*** Processing connection to irc.efnet.nl
+>> NOTICE AUTH :*** Looking up your hostname...
+>> NOTICE AUTH :*** Checking Ident
+>> NOTICE AUTH :*** Found your hostname
+>> NOTICE AUTH :*** No Ident response
+>> :irc.efnet.nl CAP * LS :multi-prefix
+<< CAP REQ :multi-prefix
+>> :irc.efnet.nl 451 * :You have not registered
+>> :irc.efnet.nl CAP * ACK :multi-prefix 
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas ssl.efnet.org :albert
+>> PING :96D1AA04
+<< PONG :96D1AA04
+>> :irc.efnet.nl 001 apresas :Welcome to the EFNet Internet Relay Chat Network apresas
+>> :irc.efnet.nl 002 apresas :Your host is irc.efnet.nl[185.100.59.59/9999], running version ircd-ratbox-3.0.10
+>> :irc.efnet.nl 003 apresas :This server was created Sun Oct 2 2016 at 04:55:27 CEST
+>> :irc.efnet.nl 004 apresas irc.efnet.nl ircd-ratbox-3.0.10 oiwszcrkfydnxbauglZCD biklmnopstveIrS bkloveI
+>> :irc.efnet.nl 005 apresas CHANTYPES=&# EXCEPTS INVEX CHANMODES=eIb,k,l,imnpstS CHANLIMIT=&#:80 PREFIX=(ov)@+ MAXLIST=beI:100 MODES=4 NETWORK=EFNet KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server
+>> :irc.efnet.nl 005 apresas SAFELIST ELIST=U CASEMAPPING=rfc1459 CHARSET=ascii NICKLEN=9 CHANNELLEN=50 TOPICLEN=160 ETRACE CPRIVMSG CNOTICE DEAF=D MONITOR=60 :are supported by this server
+>> :irc.efnet.nl 005 apresas FNC ACCEPT=20 MAP TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:10,NOTICE:10,ACCEPT:,MONITOR: :are supported by this server
+>> :irc.efnet.nl 251 apresas :There are 3818 users and 5641 invisible on 18 servers
+>> :irc.efnet.nl 252 apresas 83 :IRC Operators online
+>> :irc.efnet.nl 253 apresas 1 :unknown connection(s)
+>> :irc.efnet.nl 254 apresas 6155 :channels formed
+>> :irc.efnet.nl 255 apresas :I have 1012 clients and 1 servers
+>> :irc.efnet.nl 265 apresas 1012 2260 :Current local users 1012, max 2260
+>> :irc.efnet.nl 266 apresas 9459 39777 :Current global users 9459, max 39777
+>> :irc.efnet.nl 250 apresas :Highest connection count: 2261 (2260 clients) (1094391 connections received)
+>> :irc.efnet.nl 375 apresas :- irc.efnet.nl Message of the Day - 
+>> :irc.efnet.nl 372 apresas :- 3                                                                 ..M$
+>> :irc.efnet.nl 372 apresas :- 3                                                                ,MMM.
+>> :irc.efnet.nl 372 apresas :- 3..                                                           ..MMMMN
+>> :irc.efnet.nl 372 apresas :- 3.8.                                                          8MMMMM..
+>> :irc.efnet.nl 372 apresas :- 3 .MM,                                                      ,MMMMMMM.
+>> :irc.efnet.nl 372 apresas :- 3  .~MM8..                                                 MMMMMMMM.
+>> :irc.efnet.nl 372 apresas :- 3    =MMMMM...                                           ..MMMMMMMM.
+>> :irc.efnet.nl 372 apresas :- 3     .MMMMMM...                                       . MMMMMMMMM .
+>> :irc.efnet.nl 372 apresas :- 3     .,MMMMMMMM..                                    .=MMMMMMMMM+
+>> :irc.efnet.nl 372 apresas :- 3       7MMMMMMMNMI                                   MMMMMMMMMMM
+>> :irc.efnet.nl 372 apresas :- 3        ,MMMMMMMMM8..                              .IMMMMMMMMM
+>> :irc.efnet.nl 372 apresas :- 3         ZMMMMMMMMMMM                             .MMMMMMMMMM7.
+>> :irc.efnet.nl 372 apresas :- 3          .7MMMMMMMMMDM.                         =7MMMMMMMMMO
+>> :irc.efnet.nl 372 apresas :- 3          .,MMMMMMMMMMMM                         MMMMMMMMMM..
+>> :irc.efnet.nl 372 apresas :- 3             .DMMMMMMMMMMM.                     MMMMMMMMMM..
+>> :irc.efnet.nl 372 apresas :- 3              OMMMMMMMMMMMM..                  ~MMMMMMMMD.
+>> :irc.efnet.nl 372 apresas :- 3                7MMMMMMMMMMMM.          .--~. 3ZMMMMMMMM.
+>> :irc.efnet.nl 372 apresas :- 3                 ,MMMMMMMMMMMZ~.      _/     \3MMMMMMM,.
+>> :irc.efnet.nl 372 apresas :- 3                   MMMMMMMMMMMM~     /.      3MMMMMMM=.
+>> :irc.efnet.nl 372 apresas :- 3                     .NMMMMMMMMM.   /.      3NMMMMM~. 
+>> :irc.efnet.nl 372 apresas :- 3                      .8MMMMMMMMMN /:       3MMMMM:\_______.
+>> :irc.efnet.nl 372 apresas :- 3                          .MMMMMMMMM      .MMMM  .:\""""//
+>> :irc.efnet.nl 372 apresas :- 3                            .NMMMMMM.     MMM     ::\  //
+>> :irc.efnet.nl 372 apresas :- 3                                MMMMM    MMM     .:::\//
+>> :irc.efnet.nl 372 apresas :-                                  |3 .MM/""\M       .::// 
+>> :irc.efnet.nl 372 apresas :-                                  /.  3N(())D       .://| 
+>> :irc.efnet.nl 372 apresas :-                                 |:3 ,MM\__/MM8       V:| 
+>> :irc.efnet.nl 372 apresas :- 3                                 IMMMM8.  3MMMMM+.. ..::\
+>> :irc.efnet.nl 372 apresas :- 3                              .,MMMMMM~.   3MMMMMMI...::| 
+>> :irc.efnet.nl 372 apresas :- 3                             NMMMMMMM     3..MMMMMMMMD.:| 
+>> :irc.efnet.nl 372 apresas :- 3                            ZMMMMMMM."""""""3.MMMMMMMMMI" .
+>> :irc.efnet.nl 372 apresas :- 3                          MMMMMMMMM..        3.DMMMMMMMMM+.
+>> :irc.efnet.nl 372 apresas :- 3                        .MMMMMMMMM.           3.+MMMMMMMMMMM
+>> :irc.efnet.nl 372 apresas :- 3                      .MMMMMMMMM:.        ___   3?MMMMMMMMMMN,
+>> :irc.efnet.nl 372 apresas :- 3                    .MMMMMMMMMMM.         | |    3~MMMMMMMMMMMI
+>> :irc.efnet.nl 372 apresas :- 3                   =MMMMMMMMMMM.|:.       |_|    3.~MMMMMMMMMMMM~
+>> :irc.efnet.nl 372 apresas :- 3                 ..DMMMMMMMMMN  |:        | |      3,.MMMMMMMMMMM.
+>> :irc.efnet.nl 372 apresas :- 3                 MMMMMMMMMMM$  /:.        |_|       3.:MMMMMMMMMMD.
+>> :irc.efnet.nl 372 apresas :- 3               .MMMMMMMMMMM.  .|:.                     3.MMMMMMMMMM.
+>> :irc.efnet.nl 372 apresas :- 3              .8MMMMMMMMM+    .|:.     0,4            ...:. 3=NMMMMMMMM.
+>> :irc.efnet.nl 372 apresas :- 3              ?MMMMMMMMM+     .|:      0,0               :::.  3MMMMMMMM~
+>> :irc.efnet.nl 372 apresas :- 3             MMMMMMMMDM.       |:      0,12               .::|.  3+MMMMMMM
+>> :irc.efnet.nl 372 apresas :- 3           ?MMMMMMMMM.         |.                      .:|     3,MMMMMM.
+>> :irc.efnet.nl 372 apresas :- 3          .MMMMMMMM     .______|_________________________|_____. 3.OMMM..
+>> :irc.efnet.nl 372 apresas :- 3         .MMMMMMI,       \####################################/    3?=MMN
+>> :irc.efnet.nl 372 apresas :- 3       .:MMMMM+..   _     |:.         __            _   :::::|  _    3~NM=
+>> :irc.efnet.nl 372 apresas :- 3       7MMMM..     (_)    |.         / _|          | |    .::| | |     3:M.
+>> :irc.efnet.nl 372 apresas :- 3      DMD~          _ _ __|___   ___| |_ _ __   ___| |_   _ _| | |      3.=
+>> :irc.efnet.nl 372 apresas :- 3     MI.           | | '__/ __| / _ \  _| '_ \ / _ \ __| | '_ \| |        3.
+>> :irc.efnet.nl 372 apresas :- 3    $     Admins:  | | | | (__ |  __/ | | | | |  __/ |_ _| | | | |
+>> :irc.efnet.nl 372 apresas :-           raphidae |_|_|  \___(_)___|_| |_| |_|\___|\__(_)_| |_|_|
+>> :irc.efnet.nl 372 apresas :-          ### Beige        |.                          ..:::::|     ####
+>> :irc.efnet.nl 372 apresas :-        ###################|____###___##___####_______###_################
+>> :irc.efnet.nl 372 apresas :-  /""O""""""""o""""""""""""""""""O""o"""""""""""""""""""""""""""o"0""""""o"""\.
+>> :irc.efnet.nl 372 apresas :- |O                                                                           |
+>> :irc.efnet.nl 372 apresas :- |  -Connecting-                                                              |
+>> :irc.efnet.nl 372 apresas :- |    The following ports are available: 6667 & 6668, SSL: 6669 & 9999.      o|
+>> :irc.efnet.nl 372 apresas :- |    If you have an issue connecting, please contact the server staff.       |
+>> :irc.efnet.nl 372 apresas :- |o                                                                           O
+>> :irc.efnet.nl 372 apresas :- |  -Scanning-                                                                |
+>> :irc.efnet.nl 372 apresas :- |    Your (or your organisation's) firewall may log attempted connections    |
+>> :irc.efnet.nl 372 apresas :- |    to your TCP ports. You should not be alarmed by these.                  |
+>> :irc.efnet.nl 372 apresas :- |                                                                            |
+>> :irc.efnet.nl 372 apresas :- |  -Abuse-                                                                   O
+>> :irc.efnet.nl 372 apresas :- |o   Abusive bots and clients will be K:lined (banned) on sight. To report  o|
+>> :irc.efnet.nl 372 apresas :- O    abuse on this server, please contact the server staff. You may locate   |
+>> :irc.efnet.nl 372 apresas :- |    an active oper using: /STATS p                                          |
+>> :irc.efnet.nl 372 apresas :- |                                                                            |
+>> :irc.efnet.nl 372 apresas :- O    Connecting to this server is a privilege, not a birthright. You may     |
+>> :irc.efnet.nl 372 apresas :- |    be banned at the discretion of this network's operators.                |
+>> :irc.efnet.nl 372 apresas :- |                                                                            O
+>> :irc.efnet.nl 372 apresas :- |  -Contact & support-                                                       |
+>> :irc.efnet.nl 372 apresas :- |    Server staff:   drachen, ninex, neonjesus, duck, steve, tau, ayzee      |
+>> :irc.efnet.nl 372 apresas :- |                    perplexa, lil0ne-, gre (also see "/STATS p" output)     |
+>> :irc.efnet.nl 372 apresas :- |    Server support: #irc.efnet.nl                                           |
+>> :irc.efnet.nl 372 apresas :- |    Help with IRC:  #irchelp & http://irchelp.org/                          |
+>> :irc.efnet.nl 372 apresas :- O    Other support:  #help    (general help)                                O|
+>> :irc.efnet.nl 372 apresas :- |                    #spamfix (report spam and flooding)                     |
+>> :irc.efnet.nl 372 apresas :- |                    #chanfix (channel opless or taken over)                 |
+>> :irc.efnet.nl 372 apresas :- |    General chat:   #efnet, #helpchat                                       |
+>> :irc.efnet.nl 372 apresas :- |                    Use /LIST to list all channels.                         |
+>> :irc.efnet.nl 372 apresas :- |                                                                            |
+>> :irc.efnet.nl 372 apresas :-  \_oO________________________________o______________O_______________________/
+>> :irc.efnet.nl 372 apresas :-  
+>> :irc.efnet.nl 372 apresas :- ## This server is administered by Darkness Reigns (Holding) B.V. - 20190131 ##
+>> :irc.efnet.nl 372 apresas :-                                                                           !eof
+>> :irc.efnet.nl 376 apresas :End of /MOTD command.
+>> :NLopm!raphidae@nl.bopm NOTICE apresas :You are now being scanned for open proxies by the irc.efnet.nl local and EFNet global open proxy monitors.
+>> :NLdrone!raphidae@nl.dronemon PRIVMSG apresas :VERSION
+<< MODE apresas +i
+>> :apresas MODE apresas :+i
+<< NOTICE NLdrone :VERSION irssi v1.4.3
+<< PING irc.efnet.nl
+>> :irc.efnet.nl PONG irc.efnet.nl :irc.efnet.nl
+--> lag pong
+<< PING irc.efnet.nl
+>> :irc.efnet.nl PONG irc.efnet.nl :irc.efnet.nl
+--> lag pong
+<< PING irc.efnet.nl
+>> :irc.efnet.nl PONG irc.efnet.nl :irc.efnet.nl
+--> lag pong
+<< PING irc.efnet.nl
+>> :irc.efnet.nl PONG irc.efnet.nl :irc.efnet.nl
+--> lag pong
+<< QUIT :I gotta go to the grocery shop, I will be back later!
+>> :apresas!~apresas@231.97.133.37.dynamic.jazztel.es QUIT :Client Quit
+>> ERROR :Closing Link: 231.97.133.37.dynamic.jazztel.es (Client Quit)

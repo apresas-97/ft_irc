@@ -1,0 +1,122 @@
+<< CAP LS 302
+<< JOIN :
+>> :halcyon.il.us.dal.net NOTICE AUTH :*** Looking up your hostname...
+>> :halcyon.il.us.dal.net NOTICE AUTH :*** Found your hostname
+>> :halcyon.il.us.dal.net 451 * JOIN :You must finish connecting with another nickname first.
+<< NICK apresas
+<< USER apresas apresas irc.dal.net :albert
+>> :halcyon.il.us.dal.net 001 apresas :Welcome to the DALnet IRC Network apresas!~apresas@193.190.79.188.dynamic.jazztel.es
+<< MODE apresas +i
+>> :halcyon.il.us.dal.net 002 apresas :Your host is halcyon.il.us.dal.net, running version bahamut-2.2.4
+>> :halcyon.il.us.dal.net 003 apresas :This server was created Fri Nov 22 2024 at 14:35:51 UTC
+>> :halcyon.il.us.dal.net 004 apresas halcyon.il.us.dal.net bahamut-2.2.4 aAbcCdefFghHiIjkKmnoOPrRsSwxXy AbceiIjklLmMnoOpPrRsStv beIjklov
+>> :halcyon.il.us.dal.net 005 apresas NETWORK=DALnet SAFELIST MAXBANS=200 MAXCHANNELS=50 CHANNELLEN=32 KICKLEN=307 NICKLEN=30 TOPICLEN=307 MODES=6 CHANTYPES=# CHANLIMIT=#:50 PREFIX=(ohv)@%+ STATUSMSG=@%+ :are available on this server
+>> :halcyon.il.us.dal.net 005 apresas CASEMAPPING=ascii WATCH=128 SILENCE=10 ELIST=cmntu EXCEPTS INVEX CHANMODES=beI,k,jl,ciPAmMnOprRsSt MAXLIST=b:200,e:100,I:100 TARGMAX=DCCALLOW:,JOIN:,KICK:4,KILL:20,NOTICE:20,PART:,PRIVMSG:20,WHOIS:,WHOWAS: :are available on this server
+>> :halcyon.il.us.dal.net 251 apresas :There are 51 users and 6768 invisible on 39 servers
+>> :halcyon.il.us.dal.net 252 apresas 76 :IRC Operators online
+>> :halcyon.il.us.dal.net 254 apresas 3470 :channels formed
+>> :halcyon.il.us.dal.net 255 apresas :I have 508 clients and 1 servers
+>> :halcyon.il.us.dal.net 265 apresas :Current local users: 508 Max: 1845
+>> :halcyon.il.us.dal.net 266 apresas :Current global users: 6819 Max: 8275
+>> :halcyon.il.us.dal.net NOTICE apresas :*** Notice -- motd was last changed at 2/9/2024 13:45
+>> :halcyon.il.us.dal.net 375 apresas :- halcyon.il.us.dal.net Message of the Day - 
+>> :halcyon.il.us.dal.net 372 apresas :-2/9/2024 13:45
+>> :halcyon.il.us.dal.net 372 apresas :-              _  _ ____ _    ____ _ _ ____ __ _
+>> :halcyon.il.us.dal.net 372 apresas :-              |--| |--| |___ |___  Y  [__] | \|
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :-                 [ halcyon.il.us.dal.net    ]
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :-                 [ Accessible via...        ]
+>> :halcyon.il.us.dal.net 372 apresas :-                 [ ipv4: halcyon.dal.net    ]
+>> :halcyon.il.us.dal.net 372 apresas :-                 [ ipv6: halcyon-v6.dal.net ]
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :- Welcome to DALnet!  By connecting to this network, you agree to abide
+>> :halcyon.il.us.dal.net 372 apresas :- by its acceptable use policy, available here: http://www.dal.net/aup
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :- Server Policies:
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :-    *   We reserve the right to deny access to this server without
+>> :halcyon.il.us.dal.net 372 apresas :-        warning or explanation
+>> :halcyon.il.us.dal.net 372 apresas :-    *   No malicious bots, including flood and nick/channel chasers
+>> :halcyon.il.us.dal.net 372 apresas :-    *   No channel filler bots/clients/psybncs
+>> :halcyon.il.us.dal.net 372 apresas :-          - A channel filler is a client, bnc, or bot which is
+>> :halcyon.il.us.dal.net 372 apresas :-            connected just to fill a channel and make it look
+>> :halcyon.il.us.dal.net 372 apresas :-            bigger
+>> :halcyon.il.us.dal.net 372 apresas :-    *   Operator impersonation, spamming, or any other abuse will
+>> :halcyon.il.us.dal.net 372 apresas :-        cause you to be banned from this server
+>> :halcyon.il.us.dal.net 372 apresas :-    *   Abide by DALnet's AUP (www.dal.net/aup)
+>> :halcyon.il.us.dal.net 372 apresas :-    *   Please have fun and enjoy DALnet!
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :-      ///admins////////////////////////////////////////
+>> :halcyon.il.us.dal.net 372 apresas :-      //                                             //
+>> :halcyon.il.us.dal.net 372 apresas :-      //  [ brandon - administrator             ]    //
+>> :halcyon.il.us.dal.net 372 apresas :-      //  [ klb     - assistant administrator   ]    //
+>> :halcyon.il.us.dal.net 372 apresas :-      //                                             //
+>> :halcyon.il.us.dal.net 372 apresas :-      ///operators/////////////////////////////////////
+>> :halcyon.il.us.dal.net 372 apresas :-      //                                             //
+>> :halcyon.il.us.dal.net 372 apresas :-      //  [ guppy  ] [ oldcrow  ] [ rasengan ]       //
+>> :halcyon.il.us.dal.net 372 apresas :-      //  [ s2pid  ] [ lilmiss  ] [ kiraela  ]       //
+>> :halcyon.il.us.dal.net 372 apresas :-      //  [ DTC    ] [ io       ]                    //
+>> :halcyon.il.us.dal.net 372 apresas :-      //                                             //
+>> :halcyon.il.us.dal.net 372 apresas :-      /////////////////////////////////////////////////
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :- For IRCop assistance, please /join #operhelp or message one of our
+>> :halcyon.il.us.dal.net 372 apresas :- friendly server staff listed above.
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :- For multilingual information:  <http://docs.dal.net/>
+>> :halcyon.il.us.dal.net 372 apresas :- 
+>> :halcyon.il.us.dal.net 372 apresas :- Thank you for using DALnet!  We hope you have a pleasant day.
+>> :halcyon.il.us.dal.net 376 apresas :End of /MOTD command.
+>> :apresas MODE apresas :+iH
+>> :NickServ!service@dal.net NOTICE apresas :Bienvenido(a) a DALnet! Sabías que nuestros servicios apoyan su idioma? Escriba: /NickServ LANG ES para probarlo.
+<< PING halcyon.il.us.dal.net
+>> :halcyon.il.us.dal.net PONG halcyon.il.us.dal.net :apresas
+--> lag pong
+<< NICK
+>> :halcyon.il.us.dal.net 431 apresas :No nickname given
+<< NICK apresas
+<< PING halcyon.il.us.dal.net
+>> :halcyon.il.us.dal.net PONG halcyon.il.us.dal.net :apresas
+--> lag pong
+<< PING halcyon.il.us.dal.net
+>> :halcyon.il.us.dal.net PONG halcyon.il.us.dal.net :apresas
+--> lag pong
+<< PING halcyon.il.us.dal.net
+>> :halcyon.il.us.dal.net PONG halcyon.il.us.dal.net :apresas
+--> lag pong
+<< PING halcyon.il.us.dal.net
+>> :halcyon.il.us.dal.net PONG halcyon.il.us.dal.net :apresas
+--> lag pong
+<< NICK yes
+>> :apresas!~apresas@9a6a-cfa2-1182-73ef-b918.dynamic.jazztel.es NICK :yes
+>> :NickServ!service@dal.net NOTICE yes :This nick is owned by someone else. Please choose another.
+>> :NickServ!service@dal.net NOTICE yes :If this is your nick, type: /msg NickServ@services.dal.net IDENTIFY <password>
+>> :NickServ!service@dal.net NOTICE yes :Your nick will be changed in 60 seconds if you do not comply.
+>> :NickServ!service@dal.net NOTICE yes :You now have 40 seconds to change your nick. The nick you are
+>> :NickServ!service@dal.net NOTICE yes :currently using is registered to another user.
+<< NICK apresas
+>> :yes!~apresas@9a6a-cfa2-1182-73ef-b918.dynamic.jazztel.es NICK :apresas
+<< PING halcyon.il.us.dal.net
+>> :halcyon.il.us.dal.net PONG halcyon.il.us.dal.net :apresas
+--> lag pong
+<< NICK apresasmiscojone
+>> :apresas!~apresas@9a6a-cfa2-1182-73ef-b918.dynamic.jazztel.es NICK :apresasmiscojone
+<< NICK apresas-yea
+>> :apresasmiscojone!~apresas@9a6a-cfa2-1182-73ef-b918.dynamic.jazztel.es NICK :apresas-yea
+<< PING halcyon.il.us.dal.net
+>> :halcyon.il.us.dal.net PONG halcyon.il.us.dal.net :apresas-yea
+--> lag pong
+<< NICK afehaienfianeifyhaeifhiaeuytiui39u3-53
+>> :apresas-yea!~apresas@9a6a-cfa2-1182-73ef-b918.dynamic.jazztel.es NICK :afehaienfianeifyhaeifhiaeuytiu
+<< NICK afehaienfianeifyhaeifhiaeuytiuAe
+<< NICK afehaienfianeifyhaeifhiaeuytiCa
+>> :afehaienfianeifyhaeifhiaeuytiu!~apresas@9a6a-cfa2-1182-73ef-b918.dynamic.jazztel.es NICK :afehaienfianeifyhaeifhiaeuytiC
+<< NICK afehaienfi/////a
+>> :afehaienfianeifyhaeifhiaeuytiC!~apresas@9a6a-cfa2-1182-73ef-b918.dynamic.jazztel.es NICK :afehaienfi
+<< PING halcyon.il.us.dal.net
+>> :halcyon.il.us.dal.net PONG halcyon.il.us.dal.net :afehaienfi
+--> lag pong
+<< NICK apresas
+>> :afehaienfi!~apresas@9a6a-cfa2-1182-73ef-b918.dynamic.jazztel.es NICK :apresas
+<< QUIT :leaving

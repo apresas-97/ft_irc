@@ -1,0 +1,173 @@
+<< CAP LS 302
+<< JOIN :
+>> :copper.libera.chat NOTICE * :*** Checking Ident
+>> :copper.libera.chat NOTICE * :*** Looking up your hostname...
+>> :copper.libera.chat NOTICE * :*** Found your hostname: 180.189.79.188.dynamic.jazztel.es
+>> :copper.libera.chat NOTICE * :*** No Ident response
+>> :copper.libera.chat CAP * LS :account-notify away-notify chghost extended-join multi-prefix sasl=ECDSA-NIST256P-CHALLENGE,EXTERNAL,PLAIN,SCRAM-SHA-512 tls account-tag cap-notify echo-message server-time solanum.chat/identify-msg solanum.chat/oper solanum.chat/realhost
+<< CAP REQ :multi-prefix extended-join away-notify chghost account-notify server-time
+>> :copper.libera.chat 451 * :You have not registered
+>> :copper.libera.chat CAP * ACK :multi-prefix extended-join away-notify chghost account-notify server-time
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas irc.libera.chat :albert
+>> @time=2024-12-10T11:03:46.179Z :copper.libera.chat 001 apresas :Welcome to the Libera.Chat Internet Relay Chat Network apresas
+<< MODE apresas +i
+>> @time=2024-12-10T11:03:46.180Z :copper.libera.chat 002 apresas :Your host is copper.libera.chat[130.185.232.126/6697], running version solanum-1.0-dev
+>> @time=2024-12-10T11:03:46.180Z :copper.libera.chat 003 apresas :This server was created Wed Jul 17 2024 at 21:52:01 UTC
+>> @time=2024-12-10T11:03:46.180Z :copper.libera.chat 004 apresas copper.libera.chat solanum-1.0-dev DGIMQRSZaghilopsuwz CFILMPQRSTbcefgijklmnopqrstuvz bkloveqjfI
+>> @time=2024-12-10T11:03:46.180Z :copper.libera.chat 005 apresas ACCOUNTEXTBAN=a ETRACE FNC WHOX KNOCK CALLERID=g MONITOR=100 SAFELIST ELIST=CMNTU CHANTYPES=# EXCEPTS INVEX :are supported by this server
+>> @time=2024-12-10T11:03:46.180Z :copper.libera.chat 005 apresas CHANMODES=eIbq,k,flj,CFLMPQRSTcgimnprstuz CHANLIMIT=#:250 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=Libera.Chat STATUSMSG=@+ CASEMAPPING=rfc1459 NICKLEN=16 MAXNICKLEN=16 CHANNELLEN=50 TOPICLEN=390 :are supported by this server
+>> @time=2024-12-10T11:03:46.180Z :copper.libera.chat 005 apresas DEAF=D TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,agjrxz :are supported by this server
+>> @time=2024-12-10T11:03:46.180Z :copper.libera.chat 251 apresas :There are 57 users and 31764 invisible on 28 servers
+>> @time=2024-12-10T11:03:46.180Z :copper.libera.chat 252 apresas 40 :IRC Operators online
+>> @time=2024-12-10T11:03:46.181Z :copper.libera.chat 253 apresas 223 :unknown connection(s)
+>> @time=2024-12-10T11:03:46.181Z :copper.libera.chat 254 apresas 22809 :channels formed
+>> @time=2024-12-10T11:03:46.181Z :copper.libera.chat 255 apresas :I have 2023 clients and 1 servers
+>> @time=2024-12-10T11:03:46.181Z :copper.libera.chat 265 apresas 2023 2058 :Current local users 2023, max 2058
+>> @time=2024-12-10T11:03:46.181Z :copper.libera.chat 266 apresas 31821 32153 :Current global users 31821, max 32153
+>> @time=2024-12-10T11:03:46.181Z :copper.libera.chat 250 apresas :Highest connection count: 2059 (2058 clients) (24075 connections received)
+>> @time=2024-12-10T11:03:46.181Z :copper.libera.chat 375 apresas :- copper.libera.chat Message of the Day - 
+>> @time=2024-12-10T11:03:46.181Z :copper.libera.chat 372 apresas :- Welcome to Libera Chat, the IRC network for
+>> @time=2024-12-10T11:03:46.181Z :copper.libera.chat 372 apresas :- free & open-source software and peer directed projects.
+>> @time=2024-12-10T11:03:46.182Z :copper.libera.chat 372 apresas :-  
+>> @time=2024-12-10T11:03:46.182Z :copper.libera.chat 372 apresas :- Use of Libera Chat is governed by our network policies.
+>> @time=2024-12-10T11:03:46.182Z :copper.libera.chat 372 apresas :-  
+>> @time=2024-12-10T11:03:46.182Z :copper.libera.chat 372 apresas :- To reduce network abuses we perform open proxy checks
+>> @time=2024-12-10T11:03:46.182Z :copper.libera.chat 372 apresas :- on hosts at connection time.
+>> @time=2024-12-10T11:03:46.182Z :copper.libera.chat 372 apresas :-  
+>> @time=2024-12-10T11:03:46.182Z :copper.libera.chat 372 apresas :- Please visit us in #libera for questions and support.
+>> @time=2024-12-10T11:03:46.182Z :copper.libera.chat 372 apresas :-  
+>> @time=2024-12-10T11:03:46.183Z :copper.libera.chat 372 apresas :- Website and documentation:  https://libera.chat
+>> @time=2024-12-10T11:03:46.183Z :copper.libera.chat 372 apresas :- Webchat:                    https://web.libera.chat
+>> @time=2024-12-10T11:03:46.183Z :copper.libera.chat 372 apresas :- Network policies:           https://libera.chat/policies
+>> @time=2024-12-10T11:03:46.183Z :copper.libera.chat 372 apresas :- Email:                      support@libera.chat
+>> @time=2024-12-10T11:03:46.183Z :copper.libera.chat 376 apresas :End of /MOTD command.
+>> @time=2024-12-10T11:03:46.183Z :apresas MODE apresas :+Ziw
+<< MODES
+>> @time=2024-12-10T11:04:38.945Z :copper.libera.chat 421 apresas MODES :Unknown command
+<< MODE
+>> @time=2024-12-10T11:04:44.683Z :copper.libera.chat 461 apresas MODE :Not enough parameters
+<< MODE misco
+>> @time=2024-12-10T11:06:54.997Z :copper.libera.chat 403 apresas misco :No such channel
+<< MODE apresas
+>> @time=2024-12-10T11:08:19.145Z :copper.libera.chat 221 apresas +Ziw
+<< MODE apresas +Q -Y +k
+>> @time=2024-12-10T11:10:09.288Z :apresas MODE apresas :+Q
+<< MODE apresas -Q -Y +k
+>> @time=2024-12-10T11:10:28.725Z :apresas MODE apresas :-Q
+<< MODE apresas -Y +k
+>> @time=2024-12-10T11:10:31.968Z :copper.libera.chat 501 apresas :Unknown MODE flag
+<< MODE apresas -Y +k +Q
+>> @time=2024-12-10T11:10:44.157Z :copper.libera.chat 501 apresas :Unknown MODE flag
+<< MODE apresas
+>> @time=2024-12-10T11:10:52.904Z :copper.libera.chat 221 apresas +Ziw
+<< MODE apresas h +Q
+>> @time=2024-12-10T11:11:05.504Z :copper.libera.chat 723 apresas usermode:helpops :Insufficient oper privs
+<< MODE apresas q +Q
+>> @time=2024-12-10T11:11:19.074Z :copper.libera.chat 501 apresas :Unknown MODE flag
+<< MODE apresas
+>> @time=2024-12-10T11:11:25.535Z :copper.libera.chat 221 apresas +Ziw
+<< MODE apresas +Qw
+>> @time=2024-12-10T11:13:22.391Z :apresas MODE apresas :+Q
+<< MODE apresas -Qw
+>> @time=2024-12-10T11:13:29.209Z :apresas MODE apresas :-Qw
+<< MODE apresas
+>> @time=2024-12-10T11:13:36.995Z :copper.libera.chat 221 apresas +Zi
+<< MODE apresas +Q +w
+>> @time=2024-12-10T11:13:50.010Z :apresas MODE apresas :+Q
+<< MODE apresas +w
+>> @time=2024-12-10T11:15:48.428Z :apresas MODE apresas :+w
+<< MODE apresas w
+<< MODE apresas +Q-w
+>> @time=2024-12-10T11:16:00.675Z :apresas MODE apresas :-w
+<< MODE apresas
+>> @time=2024-12-10T11:16:10.016Z :copper.libera.chat 221 apresas +QZi
+<< MODE apresas +w-Q
+>> @time=2024-12-10T11:16:14.947Z :apresas MODE apresas :-Q+w
+<< MODE apresas +Q
+>> @time=2024-12-10T11:16:54.577Z :apresas MODE apresas :+Q
+<< MODE apresas -Q-w
+>> @time=2024-12-10T11:16:59.589Z :apresas MODE apresas :-Qw
+<< MODE apresas
+>> @time=2024-12-10T11:17:04.165Z :copper.libera.chat 221 apresas +Zi
+<< MODE apresas +w
+>> @time=2024-12-10T11:17:08.741Z :apresas MODE apresas :+w
+<< MODE apresas
+>> @time=2024-12-10T11:17:10.215Z :copper.libera.chat 221 apresas +Ziw
+<< MODE apresas Q
+>> @time=2024-12-10T11:19:37.770Z :apresas MODE apresas :+Q
+<< MODE apresas -Q
+>> @time=2024-12-10T11:19:51.332Z :apresas MODE apresas :-Q
+<< MODE apresas Q
+>> @time=2024-12-10T11:19:53.196Z :apresas MODE apresas :+Q
+<< MODE apresas a
+>> @time=2024-12-10T11:22:20.991Z :copper.libera.chat NOTICE apresas :*** You need oper and admin flag for +a
+<< MODE apresas -r
+>> @time=2024-12-10T11:28:55.699Z :copper.libera.chat 501 apresas :Unknown MODE flag
+<< MODE apresas +i
+<< MODE apresas +i
+<< MODE apresas -i
+>> @time=2024-12-10T11:38:12.046Z :apresas MODE apresas :-i
+<< MODE apresas +i
+>> @time=2024-12-10T11:46:14.611Z :apresas MODE apresas :+i
+<< MODE apresas +iK
+>> @time=2024-12-10T11:46:28.127Z :copper.libera.chat 501 apresas :Unknown MODE flag
+<< MODE apresas +iO
+>> @time=2024-12-10T12:47:21.343Z :copper.libera.chat 501 apresas :Unknown MODE flag
+<< MODE apresas +io
+<< MODE apresas +o
+<< MODE apresas +i
+<< MODE apresas -i
+>> @time=2024-12-10T12:47:44.964Z :apresas MODE apresas :-i
+<< MODE apresas +io
+>> @time=2024-12-10T12:48:03.872Z :apresas MODE apresas :+i
+<< MODE apresas +
+<< MODE apresas -
+<< MODE apresas 2
+>> @time=2024-12-10T12:53:50.647Z :copper.libera.chat 501 apresas :Unknown MODE flag
+<< MODE apresas +-Q
+>> @time=2024-12-10T12:57:52.851Z :apresas MODE apresas :-Q
+<< MODE apresas +++--+-Q
+<< MODE apresas +-++--+Q
+>> @time=2024-12-10T12:58:29.601Z :apresas MODE apresas :+Q
+<< MODE apresas ------------i
+>> @time=2024-12-10T13:02:49.154Z :apresas MODE apresas :-i
+<< MODE apresas -----------i
+<< MODE apresas ++++w++++i
+>> @time=2024-12-10T13:04:28.540Z :apresas MODE apresas :+i
+<< MODE apresas -w
+>> @time=2024-12-10T13:15:27.284Z :apresas MODE apresas :-w
+<< MODE apresas -Q+w-i
+>> @time=2024-12-10T13:15:32.900Z :apresas MODE apresas :-Qi+w
+<< MODE apresas +i
+>> @time=2024-12-10T13:15:49.243Z :apresas MODE apresas :+i
+<< MODE apresas -w
+>> @time=2024-12-10T13:15:53.297Z :apresas MODE apresas :-w
+<< MODE apresas +w
+>> @time=2024-12-10T13:15:58.349Z :apresas MODE apresas :+w
+<< MODE apresas
+>> @time=2024-12-10T13:16:04.960Z :copper.libera.chat 221 apresas +Ziw
+<< MODE apresas Q
+>> @time=2024-12-10T13:38:36.861Z :apresas MODE apresas :+Q
+<< MODE apresas -Qiw
+>> @time=2024-12-10T13:51:36.400Z :apresas MODE apresas :-Qiw
+<< MODE apresas +Q+K+w-Z+i
+>> @time=2024-12-10T13:51:57.580Z :copper.libera.chat 501 apresas :Unknown MODE flag
+>> @time=2024-12-10T13:51:57.581Z :apresas MODE apresas :+Qiw
+<< MODE apresas -Z
+<< MODE apresas
+>> @time=2024-12-10T15:35:01.745Z :copper.libera.chat 221 apresas +QZiw
+<< :apresas
+<< MODE apresas
+>> @time=2024-12-10T17:24:04.524Z :copper.libera.chat 221 apresas +QZiw
+<< MODE apresas -Q
+>> @time=2024-12-10T17:24:25.960Z :apresas MODE apresas :-Q
+<< NICK wawagate
+>> @time=2024-12-10T17:55:47.202Z :apresas!~apresas@180.189.79.188.dynamic.jazztel.es NICK :wawagate
+<< MODE apresas -Q
+>> @time=2024-12-10T17:56:10.989Z :copper.libera.chat 403 wawagate apresas :No such channel
+<< MODE wawagate -Q
+<< MODE wawagate +Q
+>> @time=2024-12-10T17:56:21.342Z :wawagate MODE wawagate :+Q
+<< QUIT :leaving

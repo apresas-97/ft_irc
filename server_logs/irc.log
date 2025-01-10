@@ -1,0 +1,207 @@
+<< CAP LS 302
+<< JOIN :
+>> :tantalum.libera.chat NOTICE * :*** Checking Ident
+>> :tantalum.libera.chat NOTICE * :*** Looking up your hostname...
+>> :tantalum.libera.chat NOTICE * :*** Couldn't look up your hostname
+>> :tantalum.libera.chat NOTICE * :*** No Ident response
+>> :tantalum.libera.chat CAP * LS :account-notify away-notify chghost extended-join multi-prefix sasl=ECDSA-NIST256P-CHALLENGE,EXTERNAL,PLAIN,SCRAM-SHA-512 tls account-tag cap-notify echo-message server-time solanum.chat/identify-msg solanum.chat/oper solanum.chat/realhost
+<< CAP REQ :multi-prefix extended-join away-notify chghost account-notify server-time
+>> :tantalum.libera.chat 451 * :You have not registered
+>> :tantalum.libera.chat CAP * ACK :multi-prefix extended-join away-notify chghost account-notify server-time
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas irc.libera.chat :albert
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 001 apresas :Welcome to the Libera.Chat Internet Relay Chat Network apresas
+<< MODE apresas +i
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 002 apresas :Your host is tantalum.libera.chat[93.158.237.2/6697], running version solanum-1.0-dev
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 003 apresas :This server was created Wed Jul 17 2024 at 21:46:54 UTC
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 004 apresas tantalum.libera.chat solanum-1.0-dev DGIMQRSZaghilopsuwz CFILMPQRSTbcefgijklmnopqrstuvz bkloveqjfI
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 005 apresas ACCOUNTEXTBAN=a WHOX MONITOR=100 SAFELIST ELIST=CMNTU ETRACE FNC CALLERID=g KNOCK CHANTYPES=# EXCEPTS INVEX :are supported by this server
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 005 apresas CHANMODES=eIbq,k,flj,CFLMPQRSTcgimnprstuz CHANLIMIT=#:250 PREFIX=(ov)@+ MAXLIST=bqeI:100 MODES=4 NETWORK=Libera.Chat STATUSMSG=@+ CASEMAPPING=rfc1459 NICKLEN=16 MAXNICKLEN=16 CHANNELLEN=50 TOPICLEN=390 :are supported by this server
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 005 apresas DEAF=D TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: EXTBAN=$,agjrxz :are supported by this server
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 251 apresas :There are 60 users and 32038 invisible on 28 servers
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 252 apresas 40 :IRC Operators online
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 253 apresas 246 :unknown connection(s)
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 254 apresas 22874 :channels formed
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 255 apresas :I have 2081 clients and 1 servers
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 265 apresas 2081 2624 :Current local users 2081, max 2624
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 266 apresas 32098 34153 :Current global users 32098, max 34153
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 250 apresas :Highest connection count: 2625 (2624 clients) (488945 connections received)
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 375 apresas :- tantalum.libera.chat Message of the Day - 
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- This server provided by Hyperfilter (https://hyperfilter.com)
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- Welcome to Libera Chat, the IRC network for
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- free & open-source software and peer directed projects.
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- Use of Libera Chat is governed by our network policies.
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- To reduce network abuses we perform open proxy checks
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- on hosts at connection time.
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- Please visit us in #libera for questions and support.
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- Website and documentation:  https://libera.chat
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- Webchat:                    https://web.libera.chat
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- Network policies:           https://libera.chat/policies
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 372 apresas :- Email:                      support@libera.chat
+>> @time=2024-12-03T19:00:07.400Z :tantalum.libera.chat 376 apresas :End of /MOTD command.
+>> @time=2024-12-03T19:00:07.400Z :apresas MODE apresas :+Ziw
+<< PING tantalum.libera.chat
+>> @time=2024-12-03T19:00:13.396Z :tantalum.libera.chat PONG tantalum.libera.chat :tantalum.libera.chat
+--> lag pong
+<< motd
+>> @time=2024-12-03T19:00:42.939Z :tantalum.libera.chat 375 apresas :- tantalum.libera.chat Message of the Day - 
+>> @time=2024-12-03T19:00:42.939Z :tantalum.libera.chat 372 apresas :- This server provided by Hyperfilter (https://hyperfilter.com)
+>> @time=2024-12-03T19:00:42.939Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:42.939Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:42.939Z :tantalum.libera.chat 372 apresas :- Welcome to Libera Chat, the IRC network for
+>> @time=2024-12-03T19:00:42.939Z :tantalum.libera.chat 372 apresas :- free & open-source software and peer directed projects.
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :- Use of Libera Chat is governed by our network policies.
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :- To reduce network abuses we perform open proxy checks
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :- on hosts at connection time.
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :- Please visit us in #libera for questions and support.
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :-  
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :- Website and documentation:  https://libera.chat
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :- Webchat:                    https://web.libera.chat
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :- Network policies:           https://libera.chat/policies
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 372 apresas :- Email:                      support@libera.chat
+>> @time=2024-12-03T19:00:42.940Z :tantalum.libera.chat 376 apresas :End of /MOTD command.
+<< PING tantalum.libera.chat
+>> @time=2024-12-03T19:01:13.371Z :tantalum.libera.chat PONG tantalum.libera.chat :tantalum.libera.chat
+--> lag pong
+<< TOPIC #irssi
+>> @time=2024-12-03T19:02:13.839Z :tantalum.libera.chat 332 apresas #irssi :🔥 Irssi Libera Chat | **Latest release**: 1.4.5 | https://irssi.org/ | Tip: Irssi commands are preceded by a / | https://irssi.org/New-users/ | FP: 7EE6 5E30 82A5 FB06 AC7C 368D 00CC B587 DDBE F0E1 | Pastebin: https://paste.opensuse.org/
+>> @time=2024-12-03T19:02:13.839Z :tantalum.libera.chat 333 apresas #irssi Nei 1725222474
+<< PING tantalum.libera.chat
+>> @time=2024-12-03T19:02:16.432Z :tantalum.libera.chat PONG tantalum.libera.chat :tantalum.libera.chat
+--> lag pong
+<< JOIN #lobby
+>> @time=2024-12-03T19:02:48.929Z :tantalum.libera.chat 470 apresas #lobby #libera :Forwarding to another channel
+>> @time=2024-12-03T19:02:48.930Z :apresas!~apresas@188.79.190.0 JOIN #libera * :albert
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 332 apresas #libera :Welcome to Libera.Chat support | Not for politics, IRC drama, cryptocurrency, ban appeals, etc. | FAQ and guides: https://libera.chat/guides/faq | Need to PM staff? Find on-call staff with "/stats p" | Finding channels: https://libera.chat/guides/findingchannels | Advice for helpers: https://libera.chat/guides/helpers
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 333 apresas #libera She!haveident@libera/staff/she/her 1712621132
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :apresas ArtBlob lewisakura format_c GreenRiot fonini Levike nshire Livio_ tieinv thorre s4lt Neptune8 tili daemonspudguy WaterQuark dirmaster0 NomadOfNorad trekkie1701c pavelow error dandendindondun progandy Wouter01002 Lord_of_Life johnnyreb Haxxlolz Umbire taylor HumbleGeometer MrLuca murph mirppc oatmealraisin GuestZero oraculo obrien cthae lucenera colinsane bwitt Feniks aiyunyuner ff2210 stateless vesui FluffyMask E_Bomb3 voltage_ tutu loopfor
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :petra_the_kat mantraofpie \subline Pixi graves skaadye3 claudinec yuta gr33n7007h powermail Sciuro Arrowmaster hexa- yshui happymeal` agrmohit15 lorimer bildramer DodoGTA mnrnnaugh BrownBear dbee_ chalcedony APPbera HenryTheLongshot Gr33nR10t PowerUser64 skapata Sl4yer waffeln2 aqsd hoochmonger ronillon oku monr0e qur rvalue joey bn_work pavonia Sohom_Datta jim g0tmi1k berong91 delfyni teepee ChaiTRex FinnElija cmc_ wyvern wonderer zer0 BearFortress Guyver2
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :nanashi Incredulous Birosso turlando darsie tsp Hackerpcs olspookishmagus tonymec|away ju Smiles tomkap Linux_Kerio krazysteve33 slim dalan03822833508 TheEnbyperor dkh Ghlrvz jra Hypfer6 akossh de-facto et ialokin Selavi DinoWilliam SixterBR strategictravele ursa The_Farr0w TetoM genera__ schizo skunk yeahitsme @tomaw andreas303 TomTom Guest8032 hrvstr MichaelLong ceanothus k-man ByronJohnson leighbb gebra mxz_ Mintle irets tux97 arahael shamoe Goddess Penguin
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :hakanrw Jhonny2x4 Chex oxbar- Thedarkb Kelsar TeodOR ic310rd mrpelotazo Seeder99 DiffieHellman SkippyTheAwesome Yonle Hooloovoo EagleEye69 kidsan RaptorJesus b2ag_ e54 skyfly12340 mxz BOWnbERTHA864 tanglewreck gurki CompanionCube jessicant Crakila audiodef Stary mspe @amdj luva jsalvia eroc1990 auri kontio buy a42wk7nl BUSY drewlander sirdidymus ketas kn6ipa innermost ErrantEgo dudz duude__ Cienisty justanotheruser EGH DarthGandalf hstormo lilmonkey` shebri
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :Shyny Jeremy_Rand srp ifohancroft Origin nonchip jreicher winstonsmith breavyn Nokaji SpAmPeR rorx Scottyoak Pea89284 pi3ce pounce krahbah mzajc Ezp nynxz snowhawk KimuSan^ zmt00 revolt112 X-Anonymous-Y xandris Cheaterman pluto22 System_Error somlis biberu JanC xploreU lojik Tori_Ooka hggdh svm_invictvs Starfoxxes duri dr3v3s isak genii burrows flotwig XiaoXi lazywalker BSaboia Smeef Grimster greypw1 Lantizia APic DigitalDragon9 enkrypt tmbg techtruth Noisytoot
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :slikislik kour1er lag morganamilo Exterminador pikapika_lunar nbolton_ alexxy BIGDONNY kernelcorrupt z0mbie drathir_tor MiloTilo Torin3 zer0bitz- \mSg emntn ryzenda The_Tablet DStranding2019 bindu thomas_D88 Stryyker quorra Sousapro insidesources nanowire Sput Forza T-X mpan zaz\ Enviosity_ doge Pie-jacker875 zenmov av6 bpye rtzoeller mys_721tx gvg jpdugan5 Trifton ZeeCas47675 chexum fatal evilgohan2 cow321 jtgd polarian lambda Schrapnel Odyss3us ultra
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :Finnsflyer fury JaseW randalth0r pedrocr niv dharrigan z3t0 sihloo Mahjong maknho Erwinstein VoidKrypt GadgeteerZA electricworry toch dungodung brethil Eikoo kron madage lorwp oerheks Warr1024 V kode54 witch earlybird eyeoh ormaaj midou aryak sjoerd cebor cow nyov Tempesta haritz stu jesse larjona Caden bt Wookipan BelCalm Lizard uf8 baakeydow NeoRoll batman thelounge3218833 kimiamania abs3nt dob1 ixlun ueberall stac MyNetAz n_crm_ Sylveon pyfibot asarandi @el
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :freanux jpw yason Xe misanthrobe Echoz daemon redCOAT mokou Netboy3 avu TheSilentLink Amny B[] birkoff Madatnek Guest508025523 nyanotech Checker8763 Againmenon fiet otr gnu3ra vgtw ThinkT510 pppingme frumious doc Brewster tec4 RaimondRaj finsternis mrkirby153 strugee cxc ramenu acidsys noahajac graphitemaster CheckYourSix scifi_cli layline lynndotpy poorboy LMZ Sakura`Kinomoto eof atb jamesp oisota phuzion zBeeble benbb xorAxAx crabbedhaloablut Manchineel ml|
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :alucardromero RichSmith trebmuh Repentinus buzel GnuYawk Nav emash NeoThermic dmb seanh Nitrousoxide haggertk aombk2 esran znpy plowsof Gokturk Logg CeBe LinusCDE ede Ycarus faizul krytarik Woundheir clarity mvchtz nathanpc intruso ricardoamaro p3n brendo ActionHOSchT_ tacocats Feras8 patrick_ F0ma chesty arch-nemesis rcf bowlofeggs kyoji nb brainfunnel Kandarihu sams xoddf2 fling nvz y2kboy238 emigrant gothicserpent xaltsc lostbeard _ReVoLt_ SDGNelson marcf
+>> @time=2024-12-03T19:02:48.933Z :tantalum.libera.chat 353 apresas = #libera :tkimball clueminati chiselfuse Alan taavi linuxgemini dustinm` fbegyn mehdix- tomhek Arsen NetSysFire wdb zutt @A_Dragon patriik84 tuxifan squeaktoy pntaylor buZz EdFletcher PublicWiFi fivehundredcc @deedra robertfoss magmaus3 lilmike vii_majesty fury999io zzz lagkage end canton7 Ekho aaabbb hikikomori zippy decimuscorvinus hirish Mizopa zauberfisch birdnest SysGhost picooz itsuki antto dodo spx Celis njt uther nepeat dbohdan Guest1407 SleePy xs eyJhb cyan0
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :MrBonkers Sonar_Guy TadeusTaD Prutser ralothar mmerkel1 Captain8771 pbsds3 cim wsor4035 blkt emneo ice9 Pippin_ kusanagi theo domicron antanst mpmc Derailed manwithluck root- grim letto duckscarf dmt420 Guest717 ZLima12 _________ Oldiesmann WhizzWr clarkandson ztrawhcse f0x_303369127618 stan-turing andrew abydon5 portalrat fo0bar disko Notgnoshi Ranhir allison krumelmonster _nikko weeb Chai ctfg_ NaviTheFairy Atlas ghavil hololeap tkob HugoH Bayangan x10 tjr
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :arv LeoDB encukou novns KDN_Observer rkj1638021517 JTL LambdaComplex Artea Novi daddy MetaNova sbp ricab mistiry Geolykt qwerty yourfate Psi-Jack tonyt kumquat thumbs jaskal duracrisis gradator rbraun Adran Sonia tangomango265 itsonlybinary res0 death916 Arieh sybariten jp mlog deepend isakBSD cornfeedhobo defec7ed nonsane vegetux marshmallow microfracture DLange Agent jbowen CypherCat Techman cu Kassiopeia tripleslash peter_ sprock LjL llu_ wof Gavisann
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :fe[nl]ix thekingofbandit tmalloc monkeystu c Solitary rx runxiyu luckman212 Eickmeyer ponies SuperLag peterz evanim boubou Codemastr persib guerby_ The_Blode sheep brushaway__ NiKaN jb3 nurupo lunchd FLHerne DaTa QingWasLost @g rhe yano jdx6 arty01238 ATAD CarusoKoenig tortillasandwich qed kaipee_ dev-null wereii andi- vrkr Andy spithash TheTechRobo aewyn V3n3RiX kus IamKing stux|away cryptic1 cyaan Mog tabakhase taiyu Purrl madduck KAL9000 ash_11 guardian
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :coderandy chris64 FireFly jsto sympt berkay gsora barjac_ keith fs2 eloy csc2ya mrpond @Kuraokami Ruby NSA NewtonTrendy bw1 fluter allejo overholts tomreyn jkhsjdhjs Soliton dimaguy robertfo1 mjones wb9688 fcser ter0 ski fig mornfall rj r3m AJ_Z0 parfait yar Teacup ExEric3 Teraii naos omero blast007 idar RedW evenfall Abuela sud0 mefistofeles Eustachy_Kapusta Joel kd4ihw_home girst Tobbi moo OverCoder lh tobyvin poyu jtbx mulliken rmrf ninjin ntdll jonesv cofob
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :dooba jsanz LadySera djelic jmcantrell jopes lucyy amada95 chlvr srhm trvv hm0880 jleightcap sntx tigerchops dfriehs trinity natkin jsvcycling akelly SusanTheNerd2 ursa-major merl atgumx RetroPunk bitfehler momcorp j3s_ sm2n fur Ankhers psnszsn bagels efftoyz sus atiltedtree raghavgururajan tmpod muuo pitust mfru eb idmyn luana fnstudio dorkbutt nicohman skeels tpjg akarle kindablue sirufer monadgauge karthin antiquis orzfly hannibal_ad_port mainiomano psw
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :signaryk shreyasminocha chiraag immutable baraq mapperr insistent bdn kf ajhalili2006 wiredtonowhere fcresende ShayKStage avshar mrzv arctic Dodecahedron aleksrutins trbjo kfoley tkna nedia jamesatjaminit Reggie_ SusanTheNerd emilknievel hanna miffi halvdan halzy ataractic otherdudedidit halikular gary-kim wtfiscrq yuiyukihira ztrawhcse__ rash_pro paladox Kaare melmothX tofohty cptaffe Moth depeche vectr0n shoragan ced117 Panjera Yiming coruja SQ9KQS VoidKrypt_
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :boghan zas1 murphnj lion328 bencevans M-M_Exp_in_Low_O y2k kldint MrElendig diogenese b0b jm18 psy32nd croraf Wollino esselfe Skeptic Epsilon GrantN05 AG3NT reborn Appellate Angelz L0G1C greyz alexlehm hook54321 rb Reptile Marc @glguy Administrator Nonsvch balrog_ BinarySavior Erisa dfg blackfield tnewman3 esainane Freeyorp PwnHoaX Skunky _justin_kelly todi tbeholder Takios wCPO Xen Nei CptLuxx trippelganger herme5 generator74 ItaloRaver- Saphire tsjost zagura
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :anthonyg jeffrom Bossi Snivy014 instantp10neer replay dionysos weyhmueller AreSee DirkSt javi404 sadclown duskmoss Whippersnapper dvdmuckle antoniomika Raito_Bezarius sky- elf Ox7C5 Tonux se6astian Ade^ nephyrin_ redj_ Jaran Tabmow tronic Cornelius-Figgle w8vx charls_a lyla myhre ashkitten-irc trillion_exabyte scain arki neoandroid microbiome JerryXiao rhansen coolapso Zookfax frah250547 sweatiest f_[x] flamingspinach ReimuHakurei matt lostbits Me-me Valeria22
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :Duckle cris10an SnoFox fr33domlover jmjl rakka xanax tardybaker dreamreal justache Arrietty k0t3x croc carbolymer Masklin DasBrain rewby Visigoth abff }P{ sf123 night finnekit lewildZesty_ hata TMedina Noxturnix n0xx jpb Dumbfoundde4d twice Aidhan archpc kiska3 val iczero PocketKiller iovoid moony Radon ptgb habnabit @kline MillerBOSS Sunrise gry svetlemodry moxie kosayoda Metroid slowjo Exa luspi n0toose oxbar matttest cell voeid bodhi Kani emergence
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :fs_captain Takarias dostoyevsky2 Bradv alyx explodes elliot mz` njan Juest CheckMyBrain @ozone @ChanServ roosterphant_ SMRT windragon kofuyu milky_ luca0N Ctaeth cancername_ swifteh ramsey c355E3B Your_Dog dedz__ s1gyn giesen Maff asa mccobsta @nckx CosmicLightDraco jeff oldlaptop jocke r00t thoatt_ @Sario tydel mukti LOVV les peaches junyx seanicus @JonathanD keigel2001 Pingue Langoor paul424- gosu Pricey jason123onirc Azonic @jess omorrigan hexnewbie finfa
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :constip8 danbee duckfullstop nurtle Nothing4You NightMonkey cicz CodeGeek GreenShield l0co b|ang HighlandGNU2 Numline1 tomf taco PanamaCity3003_ _rubik SurfBlueCrab WifiRouter Max-P eagles0513875 bads ecks @ben rsheftel51 rwp Disconsented murr4y peb stephan48 wildeboskat mock pyre fired JackyB b3nw erry rIMpossible Disavowed Zegnat cinderblock wikidasher cysquatch LinearArray peer Znevna zayd revi connstruct vx Tknoguyfication ljharb urbanecm Kyoto Ders chovy
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :Cronfox abrotman vague @JackFrost Hobbyboy DOGEMEMEGOD_D brprice GTAXL gluteusmaximus raj_ bougyman @catte graingert Nick- letztesendung style dennis` disc zerorez meg mattx thomasd Affliction robink gusto @Allie sofar cnsvc relipse____ dmlloyd tparenti sebastorama kushal InvalidUserName theRealAlexz Leo fluix martin2020 warsoul DCTWD Habbie Remco wraeth ghostbuster squirrel alex javivi wyrm Armen Netshroud86 xerox hotaruN xtro CoJaBo Meroje milkii VIqbang
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :Kabouik @She robla SantaGibby os2mac Koragg ggherdov Grinnz justizin_ WillyEast ross woo RhinosF1 eatyourglory ThatOneRoadie KnownSyntax esum AlexZ MJ94 sdoran dxrt eggy brennz zeol snep lostlazy anbless kaij famfo Rick FamousEccles mooff tiar Xesxen Sevalecan vega leonardo Yamakaja_ flynn Daniel daikojun shan anthonylavado NeddySeagoon nax_ sivoais fossdd intrac luca cacheyourdreams kwork toshywoshy brjl Matthew_ 082AAQ6L6 Felenov dusk voice argentum ave
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :merve410 gbmor Guest6526 noob manawyrm Two9A tisiphone snowolf Fusl ThiefMaster truebad0ur aebian Jinglevana maxxe gmdsantana dupondje cruxeternus TheRealHellcat Aureus munkis nax signalhunter TimWolla loopss MatthewAllan93 blazed laezy pj Bram Sk1LLman Maulwurf mimasama Twister darkblue anginapectoris zhu_jong Mathisen hudo__ Przemek92 [ u^A Enapiuz ACG thib axsuul jumpcutking soukev Tiger` kilofox Houndor RichiH juliaaaa ladybug seth tbrowder hovsater gigamo
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :derfel_ dTal AndyCap kkd money Faely hassoon f0zk ham wodencafe mawk chasiubao ComputerTech- sbach Dimitris libcat leah2 nsh another| uioop88 Den4ikRus skydoge manish dracorex lumidify leftyfb Rikem SunOS Ariadne Titore bebna dis4rray gandalf7 apb Vermont Atque Hobby gildarts Naleksuh marrold computerquip Zppix macdude22 afarrag LetoThe2nd CaptainN binucopia Parabellus za3k @nicole tk @Allie` codydh Quokka jmbsvicetto shiver ethereal stefan-_ @stw bytearray64
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :dextro9 BLaCkShaDoW gunnar phebus snoopy DarthOreo Mombius midgard nuala Arrow swordsmanz pog pkill9 deafboy dostoyevsky loredin corwin e-neko @moonmoon gmodena Edgy2 mst Kris545545 InPhase ornitorrincos jrb0001 pekster neil litharge Anth0mk- PMT Przt wavecatcher cynthia kd___ zifnab padski nwf vulpine Johann ozymandias Hackintech nickodd sean bbbccc nkukard \\ linuxdaemon rud0lf Ahnberg knolle Melsom Operator873 hype mooo waltman f_ very_sneaky ugjka APLU
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :slow99 sus0 argonel EpicNeo Peng_ Mrkva netx_ x_ bkembo davef g33kl33t XgF jfred-linode barlas_ marens101_ Miblo xelxebar Adeon marahin roadkill xnbya2 brandon aloo richrd l0de rdm zyme FastLizard4 c0ded phy1729 alice sa pax_73 famicom_guy sdirge cisco87 elucidator Lenny_ kashike bookworm guntbert ponycat oandrew em Legomannetje sjs HuggableSquare Corroddity fizi CalimeroTeknik Dannyelito janneke Hex burnout BrandonArnold jrtc27 KindOne Tips|Cloud terjan Norkle
+>> @time=2024-12-03T19:02:48.934Z :tantalum.libera.chat 353 apresas = #libera :sickle qsx puck buayadarat ariel vls satanist txtsd Tristam sauce @bakerst TC01 thecliguy jiffy nyany siniSter andrei omnigoat d10n_ Optic hudo wallabra nitrix swift110-mobile Dude swinnenb alisonw willcl-ark bigfoot547 ornx tries dab21 Ckat Furna brabo RBecker Phase astra Comnenus Menzador zcat atomik mtrovilho wikky wakejagr bq newton crummel vroman xzatovic0 carpenter badpixel r0bby @Bahhumbug fauxpride scardracs carlos22 hgw artart78 DoomS Irydacea thurin
+>> @time=2024-12-03T19:02:48.935Z :tantalum.libera.chat 353 apresas = #libera :@Swant AMG mdpv Macuser snowcode Mc feuerrot hasha_ TimeRider royks cobraboy riddle wbewl lamer simpleauthority alamar_ Spitfire_ Spydar007 Namarrgon Casper ikiryo the4oo4 bcksl andreyv tris KeyboardCowboy dmonschein elisaado acro trygveaa dnsmcbr teesquare_ myselfs retrofunpl cooldude cheapie jcallen octav1a Foxboron noahmg123 @jose dago beaky ncf farn__ [_________] yamchah2 KitsuWhooa hiya KokaKiwi tofran dvzrv Banunu citty eletrotupi dlunch bleb rubin55
+>> @time=2024-12-03T19:02:48.935Z :tantalum.libera.chat 353 apresas = #libera :SSLbits ben_at_harrison brand0 perplexa dbohdan[phone] Evolver Russell raindryp Jack81 voker57 relipse jesse-s utsuhorocks Khaytsus Peng @Stx jetchisel ST47 pizza janis caf_ mjh4386 @spb MPenguin k6ka pocketprotector draq kenwoodfox baloona1 Liver_K Triskelios cloak silentusr gachikuku katia Gaelan chicken_m figment kenzie venatio olasd kisser wryl PeGaSuS dingwat PANDEMONS pilha Baughn White_Flame andr01d nate Blablubber Guest2045 PsyZeus link-net xMopx
+>> @time=2024-12-03T19:02:48.935Z :tantalum.libera.chat 353 apresas = #libera :Jubes98 Alix_Cozmo aphelion702 td00 CrashLoopBackOff RAWWWR Alpha DarkG ia Kirjava jelly sam113101 itok themill deetwelve Solbu joe7057 down200 bawan1 beneth ihabunek Catty shady curtis Chaosmaster Caeli fredrikhl kraucrow
+>> @time=2024-12-03T19:02:48.935Z :tantalum.libera.chat 366 apresas #libera :End of /NAMES list.
+<< MODE #libera
+>> @time=2024-12-03T19:02:51.428Z :tantalum.libera.chat 324 apresas #libera +CPTntf #libera-overflow
+--> chanquery mode
+>> @time=2024-12-03T19:02:51.428Z :tantalum.libera.chat 329 apresas #libera 1619211933
+--> event 329
+<< MODE #libera b
+>> @time=2024-12-03T19:02:53.932Z :tantalum.libera.chat 367 apresas #libera $a:saintlymic el!el@libera/staff/el 1732060795
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.932Z :tantalum.libera.chat 367 apresas #libera *!ba5022c672@telesto.hot-chilli.net catte!catte@libera/staff/cat/catte 1731451022
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.932Z :tantalum.libera.chat 367 apresas #libera *!*@88.99.166.23 litharge!litharge@libera/bot/litharge 1730779667
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.932Z :tantalum.libera.chat 367 apresas #libera $a:lebowski el!el@libera/staff/el 1730689747
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.932Z :tantalum.libera.chat 367 apresas #libera *!*@32-216-231-67.bng01.nwhn.ct.frontiernet.net el!el@libera/staff/el 1730689676
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.932Z :tantalum.libera.chat 367 apresas #libera *!*@*/bot/* She!haveident@libera/staff/she/her 1725737765
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@user/scoopy She!haveident@libera/staff/she/her 1723507668
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera $a:incog Sario!sario@libera/staff/owl/sario 1720061819
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera $a:flyback el!el@libera/staff/el 1718409476
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@c-73-157-148-15.hsd1.or.comcast.net She!haveident@libera/staff/she/her 1705085117
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@ntp-pool.time.4v1.in She!haveident@libera/staff/she/her 1692977500
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@2a01:4f8:242:56ca::2 She!haveident@libera/staff/she/her 1691459920
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera $a:SparkBuddy She!haveident@libera/staff/she/her 1688309063
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera $a:jiggawatt moonmoon!awoo@libera/staff/wofl/moonmoon 1679596832
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@98.50.16.116 She!haveident@libera/staff/she/her 1674354845
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!ratbox@triton.blinkenshell.org She!haveident@libera/staff/she/her 1672361915
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@user/loggingbot She!haveident@libera/staff/she/her 1667350093
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@pa49-181-193-242.pa.nsw.optusnet.com.au helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera MatrixBot*!*@* helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@2001:470:69fc:105::2:391c helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera $a:Kalio helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@user/truthr helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@user/filystyn helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@119246041048.ctinets.com helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*@user/panopticon helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!*limnoria@2400:8904::f03c:92ff:fe9b:* helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.933Z :tantalum.libera.chat 367 apresas #libera *!?id507024@id-507024.ilkley.irccloud.com helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.934Z :tantalum.libera.chat 367 apresas #libera $a:h4x0r helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.934Z :tantalum.libera.chat 367 apresas #libera $a:RingtailedFox helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.934Z :tantalum.libera.chat 367 apresas #libera $a:alexdelarge helium.libera.chat 1662267401
+--> chanquery ban
+>> @time=2024-12-03T19:02:53.934Z :tantalum.libera.chat 368 apresas #libera :End of Channel Ban List
+--> chanquery ban end
+>> @time=2024-12-03T19:03:03.896Z :M-M_Exp_in_Low_O!sid432071@id-432071.ilkley.irccloud.com AWAY
+>> @time=2024-12-03T19:03:11.839Z :kariosfox!~kariosfox@user-164-127-217-4.play-internet.pl JOIN #libera kariosfox :kariosfox
+>> @time=2024-12-03T19:03:16.498Z :BSaboia!~bsaboia@user/BSaboia AWAY :Auto away at Tue Dec  3 19:03:16 2024 UTC
+>> @time=2024-12-03T19:03:17.068Z :orzfly!ee07671b51@user/orzfly AWAY
+<< PING tantalum.libera.chat
+>> @time=2024-12-03T19:03:17.492Z :tantalum.libera.chat PONG tantalum.libera.chat :tantalum.libera.chat
+--> lag pong
+>> @time=2024-12-03T19:04:13.854Z :orzfly!ee07671b51@user/orzfly AWAY :Auto away
+<< PING tantalum.libera.chat
+>> @time=2024-12-03T19:04:18.558Z :tantalum.libera.chat PONG tantalum.libera.chat :tantalum.libera.chat
+--> lag pong
+>> @time=2024-12-03T19:04:31.213Z :zagura!zagura@user/zagura AWAY
+>> @time=2024-12-03T19:04:42.457Z :nanashi!~nanashi@182.66.218.121 QUIT :Ping timeout: 246 seconds
+>> @time=2024-12-03T19:04:50.494Z :bwitt!~bwitt@user/bwitt QUIT :Remote host closed the connection
+>> @time=2024-12-03T19:04:54.464Z :jason123onirc!~jason123o@user/jason123onirc AWAY :Auto away at Tue Dec  3 19:03:33 2024 UTC
+<< PART #libera
+>> @time=2024-12-03T19:05:13.260Z :apresas!~apresas@188.79.190.0 PART #libera
+<< PING tantalum.libera.chat
+>> @time=2024-12-03T19:05:19.623Z :tantalum.libera.chat PONG tantalum.libera.chat :tantalum.libera.chat
+--> lag pong
+<< QUIT :leaving

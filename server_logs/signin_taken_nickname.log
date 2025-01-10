@@ -1,0 +1,35 @@
+<< CAP LS 302
+<< JOIN :
+>> NOTICE AUTH :*** Processing connection to irc.mzima.net
+>> NOTICE AUTH :*** Looking up your hostname...
+>> NOTICE AUTH :*** Checking Ident
+>> NOTICE AUTH :*** Found your hostname
+>> NOTICE AUTH :*** No Ident response
+>> :irc.mzima.net CAP * LS :multi-prefix
+<< CAP REQ :multi-prefix
+>> :irc.mzima.net 451 * :You have not registered
+>> :irc.mzima.net CAP * ACK :multi-prefix 
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas ssl.efnet.org :albert
+>> :irc.mzima.net 433 * apresas :Nickname is already in use.
+<< NICK apresas_
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< PING irc.mzima.net
+>> :irc.mzima.net PONG irc.mzima.net :irc.mzima.net
+--> lag pong
+<< QUIT :leaving

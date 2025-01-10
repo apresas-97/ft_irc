@@ -1,0 +1,260 @@
+<< CAP LS 302
+<< JOIN :
+>> :liquid.oftc.net NOTICE AUTH :*** Looking up your hostname...
+>> :liquid.oftc.net NOTICE AUTH :*** Checking Ident
+>> :liquid.oftc.net NOTICE AUTH :*** Found your hostname
+>> :liquid.oftc.net NOTICE AUTH :*** No Ident response
+>> :liquid.oftc.net CAP * LS :multi-prefix
+<< CAP REQ :multi-prefix
+>> :liquid.oftc.net 451 *  :Register first.
+>> :liquid.oftc.net CAP * ACK :multi-prefix
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas irc.oftc.net :albert
+>> :liquid.oftc.net NOTICE apresas :*** Connected securely via TLSv1.3 TLS_AES_256_GCM_SHA384-256
+>> :liquid.oftc.net 001 apresas :Welcome to the OFTC Internet Relay Chat Network apresas
+<< MODE apresas +i
+>> :liquid.oftc.net 002 apresas :Your host is liquid.oftc.net[188.240.145.40/6697], running version hybrid-7.2.2+oftc1.7.3
+>> :liquid.oftc.net 003 apresas :This server was created Nov  1 2023 at 10:11:37
+>> :liquid.oftc.net 004 apresas liquid.oftc.net hybrid-7.2.2+oftc1.7.3 CDGPRSabcdfgijklnorsuwxyz bciklmnopstvzeIMRS bkloveI
+>> :liquid.oftc.net 005 apresas CALLERID CASEMAPPING=rfc1459 DEAF=D KICKLEN=160 MODES=4 NICKLEN=30 PREFIX=(ov)@+ STATUSMSG=@+ TOPICLEN=391 NETWORK=OFTC MAXLIST=beI:100 MAXTARGETS=1 CHANTYPES=# :are supported by this server
+>> :liquid.oftc.net 005 apresas CHANLIMIT=#:250 CHANNELLEN=50 CHANMODES=eIqb,k,l,cimnpstzMRS ELIST=CMNTU SAFELIST AWAYLEN=160 KNOCK EXCEPTS=e INVEX=I :are supported by this server
+>> :liquid.oftc.net 042 apresas 7YZAAC57N :your unique ID
+>> :liquid.oftc.net 251 apresas :There are 32 users and 14031 invisible on 19 servers
+>> :liquid.oftc.net 252 apresas 21 :IRC Operators online
+>> :liquid.oftc.net 254 apresas 4055 :channels formed
+>> :liquid.oftc.net 255 apresas :I have 2727 clients and 1 servers
+>> :liquid.oftc.net 265 apresas :Current local users: 2727  Max: 3710
+>> :liquid.oftc.net 266 apresas :Current global users: 14063  Max: 15191
+>> :liquid.oftc.net 250 apresas :Highest connection count: 3711 (3710 clients) (134690 connections received)
+>> :liquid.oftc.net 375 apresas :- liquid.oftc.net Message of the Day - 
+>> :liquid.oftc.net 372 apresas :-   O
+>> :liquid.oftc.net 372 apresas :-    \   The Open and Free
+>> :liquid.oftc.net 372 apresas :-     O  Technology Community
+>> :liquid.oftc.net 372 apresas :-    /|  https://www.oftc.net
+>> :liquid.oftc.net 372 apresas :- O-O O
+>> :liquid.oftc.net 372 apresas :- 
+>> :liquid.oftc.net 372 apresas :- Welcome to the OFTC IRC Network.
+>> :liquid.oftc.net 372 apresas :- 
+>> :liquid.oftc.net 372 apresas :- The Open and Free Technology Community was founded at the
+>> :liquid.oftc.net 372 apresas :- end of 2001 by a group of experienced members of the Open
+>> :liquid.oftc.net 372 apresas :- Source and Free Software communities; it is aimed at
+>> :liquid.oftc.net 372 apresas :- providing these communities with better communication,
+>> :liquid.oftc.net 372 apresas :- development, and support infrastructure. Our goal is to
+>> :liquid.oftc.net 372 apresas :- provide stable services to members of the community in any
+>> :liquid.oftc.net 372 apresas :- part of the world, while listening closely to their needs
+>> :liquid.oftc.net 372 apresas :- and desires.
+>> :liquid.oftc.net 372 apresas :- 
+>> :liquid.oftc.net 372 apresas :- We are not a general purpose chat platform, but a topical
+>> :liquid.oftc.net 372 apresas :- network intent on providing the open source and free
+>> :liquid.oftc.net 372 apresas :- software communities a means to cooperate and communicate.
+>> :liquid.oftc.net 372 apresas :- As such, illegal and off-topic activity, such as warez
+>> :liquid.oftc.net 372 apresas :- trading, will result in being barred from access.
+>> :liquid.oftc.net 372 apresas :- 
+>> :liquid.oftc.net 372 apresas :- OFTC honors your privacy. To operate the network, we store
+>> :liquid.oftc.net 372 apresas :- and process information about IRC connections, nicknames,
+>> :liquid.oftc.net 372 apresas :- and channels. Our Privacy Policy explains what we do with
+>> :liquid.oftc.net 372 apresas :- that data, and what your rights are. By connecting, you
+>> :liquid.oftc.net 372 apresas :- accept these terms: https://www.oftc.net/Privacy_Policy/
+>> :liquid.oftc.net 372 apresas :- 
+>> :liquid.oftc.net 372 apresas :- If you require assistance with using the OFTC IRC network,
+>> :liquid.oftc.net 372 apresas :- stop by in channel #oftc, or email support@oftc.net with
+>> :liquid.oftc.net 372 apresas :- details. For help with non-IRC questions please refer to
+>> :liquid.oftc.net 372 apresas :- the respective channels and project homepages.
+>> :liquid.oftc.net 372 apresas :- 
+>> :liquid.oftc.net 372 apresas :- Thanks and enjoy your stay! The OFTC team.
+>> :liquid.oftc.net 376 apresas :End of /MOTD command.
+>> :apresas!~apresas@25.37.135.37.dynamic.jazztel.es MODE apresas :+i
+>> :CTCPServ!services@services.oftc.net PRIVMSG apresas :VERSION
+<< NOTICE CTCPServ :VERSION irssi v1.4.3
+<< PING liquid.oftc.net
+>> :liquid.oftc.net PONG liquid.oftc.net :liquid.oftc.net
+--> lag pong
+<< info
+>> :liquid.oftc.net 371 apresas :IRC --
+>> :liquid.oftc.net 371 apresas :Based on the original code written by Jarkko Oikarinen
+>> :liquid.oftc.net 371 apresas :Copyright 1988, 1989, 1990, 1991 University of Oulu, Computing Center
+>> :liquid.oftc.net 371 apresas :Copyright (c) 1997-2006 Hybrid Development Team
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :This program is free software; you can redistribute it and/or
+>> :liquid.oftc.net 371 apresas :modify it under the terms of the GNU General Public License as
+>> :liquid.oftc.net 371 apresas :published by the Free Software Foundation; either version 2, or
+>> :liquid.oftc.net 371 apresas :(at your option) any later version.
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :The hybrid team is a group of ircd coders who were frustrated
+>> :liquid.oftc.net 371 apresas :with the instability and all-out dirtiness of the EFnet ircd's
+>> :liquid.oftc.net 371 apresas :available. hybrid is the name for the collective efforts of a group
+>> :liquid.oftc.net 371 apresas :of people, all of us.
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :Anyone is welcome to contribute to this effort. You are encouraged
+>> :liquid.oftc.net 371 apresas :to participate in the Hybrid mailing list. To subscribe to the
+>> :liquid.oftc.net 371 apresas :Hybrid List, use this link:
+>> :liquid.oftc.net 371 apresas :  https://lists.ircd-hybrid.org/mailman/listinfo/hybrid
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :The core team as, of this major release:
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :adx, Piotr Nizynski <adx@irc7.pl>
+>> :liquid.oftc.net 371 apresas :billy-jon, William Bierman III <bill@mu.org>
+>> :liquid.oftc.net 371 apresas :cryogen, Stuart Walsh <stu@ipng.org.uk>
+>> :liquid.oftc.net 371 apresas :Dianora, Diane Bruce <db@db.net>
+>> :liquid.oftc.net 371 apresas :joshk, Joshua Kwan <joshk@triplehelix.org>
+>> :liquid.oftc.net 371 apresas :knight, Alan LeVee <alan.levee@prometheus-designs.net>
+>> :liquid.oftc.net 371 apresas :metalrock, Jack Low <jclow@csupomona.edu>
+>> :liquid.oftc.net 371 apresas :Michael, Michael Wobst <michael.wobst@gmail.com>
+>> :liquid.oftc.net 371 apresas :Rodder, Jon Lusky <lusky@blown.net>
+>> :liquid.oftc.net 371 apresas :Wohali, Joan Touzet <joant@ieee.org>
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :The following people have contributed blood, sweat, and/or code to
+>> :liquid.oftc.net 371 apresas :recent releases of Hybrid, in nick alphabetical order:
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :A1kmm, Andrew Miller <a1kmm@mware.virtualave.net>
+>> :liquid.oftc.net 371 apresas :AndroSyn, Aaron Sethman <androsyn@ratbox.org>
+>> :liquid.oftc.net 371 apresas :bane, Dragan Dosen <bane@idolnet.org>
+>> :liquid.oftc.net 371 apresas :bysin, Ben Kittridge <bkittridge@cfl.rr.com>
+>> :liquid.oftc.net 371 apresas :cosine, Patrick Alken <wnder@uwns.underworld.net>
+>> :liquid.oftc.net 371 apresas :David-T, David Taylor <davidt@yadt.co.uk>
+>> :liquid.oftc.net 371 apresas :fl, Lee Hardy <lee@leeh.co.uk>
+>> :liquid.oftc.net 371 apresas :Garion, Joost Vunderink <garion@efnet.nl>
+>> :liquid.oftc.net 371 apresas :Habeeb, David Supuran <habeeb@cfl.rr.com>
+>> :liquid.oftc.net 371 apresas :Hwy101, W. Campbell <wcampbel@botbay.net>
+>> :liquid.oftc.net 371 apresas :jmallett, Juli Mallett <jmallett@FreeBSD.org>
+>> :liquid.oftc.net 371 apresas :jv, Jakub Vlasek <jv@pilsedu.cz>
+>> :liquid.oftc.net 371 apresas :k9, Jeremy Chadwick <ircd@jdc.parodius.com>
+>> :liquid.oftc.net 371 apresas :kire, Erik Small <smalle@hawaii.edu>
+>> :liquid.oftc.net 371 apresas :kre, Dinko Korunic <kreator@fly.srk.fer.hr>
+>> :liquid.oftc.net 371 apresas :madmax, Paul Lomax <madmax@efnet.org>
+>> :liquid.oftc.net 371 apresas :nenolod, William Pitcock <nenolod@nenolod.net>
+>> :liquid.oftc.net 371 apresas :Riedel, Dennis Vink, <riedel@chaotic.nl>
+>> :liquid.oftc.net 371 apresas :scuzzy, David Todd <scuzzy@aniverse.net>
+>> :liquid.oftc.net 371 apresas :spookey, David Colburn <spookey@spookey.org>
+>> :liquid.oftc.net 371 apresas :TimeMr14C, Yusuf Iskenderoglu <uhc0@stud.uni-karlsruhe.de>
+>> :liquid.oftc.net 371 apresas :toot, Toby Verrall <to7@antipope.fsnet.co.uk>
+>> :liquid.oftc.net 371 apresas :vx0, Mark Miller <mark@oc768.net>
+>> :liquid.oftc.net 371 apresas :wiz, Jason Dambrosio <jason@wiz.cx>
+>> :liquid.oftc.net 371 apresas :Xride, Soeren Straarup <xride@x12.dk>
+>> :liquid.oftc.net 371 apresas :zb^3, Alfred Perlstein <alfred@freebsd.org>
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :Others are welcome. Always. And if we left anyone off the above list,
+>> :liquid.oftc.net 371 apresas :be sure to let us know that too. Many others have contributed to
+>> :liquid.oftc.net 371 apresas :previous versions of this ircd and its ancestors, too many to list
+>> :liquid.oftc.net 371 apresas :here.
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :Send bug fixes/complaints/rotten tomatoes to bugs@ircd-hybrid.org.
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :On-line since Fri Jul 19 01:42:49 2024
+>> :liquid.oftc.net 374 apresas :End of /INFO list.
+<< PING liquid.oftc.net
+>> :liquid.oftc.net PONG liquid.oftc.net :liquid.oftc.net
+--> lag pong
+<< PING liquid.oftc.net
+>> :liquid.oftc.net PONG liquid.oftc.net :liquid.oftc.net
+--> lag pong
+<< PING liquid.oftc.net
+>> :liquid.oftc.net PONG liquid.oftc.net :liquid.oftc.net
+--> lag pong
+<< :apresas JOIN #lobby 
+>> :apresas!~apresas@25.37.135.37.dynamic.jazztel.es JOIN :#lobby
+>> :liquid.oftc.net MODE #lobby +nt
+>> :liquid.oftc.net 353 apresas = #lobby :@apresas
+>> :liquid.oftc.net 366 apresas #lobby :End of /NAMES list.
+>> :ChanServ!services@services.oftc.net MODE #lobby -o apresas
+>> :ChanServ!services@services.oftc.net NOTICE apresas :Deopped you on channel #lobby because it is registered with channel services
+>> :ChanServ!services@services.oftc.net NOTICE apresas :and you are not a CHANOP on its access list.
+>> :ChanServ!services@services.oftc.net TOPIC #lobby :Chat Lobby
+<< MODE #lobby
+>> :liquid.oftc.net 324 apresas #lobby +nt 
+--> chanquery mode
+>> :liquid.oftc.net 329 apresas #lobby 1733416701
+--> event 329
+<< WHO #lobby
+>> :liquid.oftc.net 352 apresas #lobby ~apresas 25.37.135.37.dynamic.jazztel.es liquid.oftc.net apresas H :0 albert
+--> silent event who
+>> :liquid.oftc.net 315 apresas #lobby :End of /WHO list.
+--> chanquery who end
+<< MODE #lobby b
+>> :liquid.oftc.net 368 apresas #lobby :End of Channel Ban List
+--> chanquery ban end
+<< PING liquid.oftc.net
+>> :liquid.oftc.net PONG liquid.oftc.net :liquid.oftc.net
+--> lag pong
+<< :misco PART
+>> :liquid.oftc.net 461 apresas PART :Not enough parameters
+<< PING liquid.oftc.net
+>> :liquid.oftc.net PONG liquid.oftc.net :liquid.oftc.net
+--> lag pong
+<< :misco INFO
+>> :liquid.oftc.net 371 apresas :IRC --
+>> :liquid.oftc.net 371 apresas :Based on the original code written by Jarkko Oikarinen
+>> :liquid.oftc.net 371 apresas :Copyright 1988, 1989, 1990, 1991 University of Oulu, Computing Center
+>> :liquid.oftc.net 371 apresas :Copyright (c) 1997-2006 Hybrid Development Team
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :This program is free software; you can redistribute it and/or
+>> :liquid.oftc.net 371 apresas :modify it under the terms of the GNU General Public License as
+>> :liquid.oftc.net 371 apresas :published by the Free Software Foundation; either version 2, or
+>> :liquid.oftc.net 371 apresas :(at your option) any later version.
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :The hybrid team is a group of ircd coders who were frustrated
+>> :liquid.oftc.net 371 apresas :with the instability and all-out dirtiness of the EFnet ircd's
+>> :liquid.oftc.net 371 apresas :available. hybrid is the name for the collective efforts of a group
+>> :liquid.oftc.net 371 apresas :of people, all of us.
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :Anyone is welcome to contribute to this effort. You are encouraged
+>> :liquid.oftc.net 371 apresas :to participate in the Hybrid mailing list. To subscribe to the
+>> :liquid.oftc.net 371 apresas :Hybrid List, use this link:
+>> :liquid.oftc.net 371 apresas :  https://lists.ircd-hybrid.org/mailman/listinfo/hybrid
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :The core team as, of this major release:
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :adx, Piotr Nizynski <adx@irc7.pl>
+>> :liquid.oftc.net 371 apresas :billy-jon, William Bierman III <bill@mu.org>
+>> :liquid.oftc.net 371 apresas :cryogen, Stuart Walsh <stu@ipng.org.uk>
+>> :liquid.oftc.net 371 apresas :Dianora, Diane Bruce <db@db.net>
+>> :liquid.oftc.net 371 apresas :joshk, Joshua Kwan <joshk@triplehelix.org>
+>> :liquid.oftc.net 371 apresas :knight, Alan LeVee <alan.levee@prometheus-designs.net>
+>> :liquid.oftc.net 371 apresas :metalrock, Jack Low <jclow@csupomona.edu>
+>> :liquid.oftc.net 371 apresas :Michael, Michael Wobst <michael.wobst@gmail.com>
+>> :liquid.oftc.net 371 apresas :Rodder, Jon Lusky <lusky@blown.net>
+>> :liquid.oftc.net 371 apresas :Wohali, Joan Touzet <joant@ieee.org>
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :The following people have contributed blood, sweat, and/or code to
+>> :liquid.oftc.net 371 apresas :recent releases of Hybrid, in nick alphabetical order:
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :A1kmm, Andrew Miller <a1kmm@mware.virtualave.net>
+>> :liquid.oftc.net 371 apresas :AndroSyn, Aaron Sethman <androsyn@ratbox.org>
+>> :liquid.oftc.net 371 apresas :bane, Dragan Dosen <bane@idolnet.org>
+>> :liquid.oftc.net 371 apresas :bysin, Ben Kittridge <bkittridge@cfl.rr.com>
+>> :liquid.oftc.net 371 apresas :cosine, Patrick Alken <wnder@uwns.underworld.net>
+>> :liquid.oftc.net 371 apresas :David-T, David Taylor <davidt@yadt.co.uk>
+>> :liquid.oftc.net 371 apresas :fl, Lee Hardy <lee@leeh.co.uk>
+>> :liquid.oftc.net 371 apresas :Garion, Joost Vunderink <garion@efnet.nl>
+>> :liquid.oftc.net 371 apresas :Habeeb, David Supuran <habeeb@cfl.rr.com>
+>> :liquid.oftc.net 371 apresas :Hwy101, W. Campbell <wcampbel@botbay.net>
+>> :liquid.oftc.net 371 apresas :jmallett, Juli Mallett <jmallett@FreeBSD.org>
+>> :liquid.oftc.net 371 apresas :jv, Jakub Vlasek <jv@pilsedu.cz>
+>> :liquid.oftc.net 371 apresas :k9, Jeremy Chadwick <ircd@jdc.parodius.com>
+>> :liquid.oftc.net 371 apresas :kire, Erik Small <smalle@hawaii.edu>
+>> :liquid.oftc.net 371 apresas :kre, Dinko Korunic <kreator@fly.srk.fer.hr>
+>> :liquid.oftc.net 371 apresas :madmax, Paul Lomax <madmax@efnet.org>
+>> :liquid.oftc.net 371 apresas :nenolod, William Pitcock <nenolod@nenolod.net>
+>> :liquid.oftc.net 371 apresas :Riedel, Dennis Vink, <riedel@chaotic.nl>
+>> :liquid.oftc.net 371 apresas :scuzzy, David Todd <scuzzy@aniverse.net>
+>> :liquid.oftc.net 371 apresas :spookey, David Colburn <spookey@spookey.org>
+>> :liquid.oftc.net 371 apresas :TimeMr14C, Yusuf Iskenderoglu <uhc0@stud.uni-karlsruhe.de>
+>> :liquid.oftc.net 371 apresas :toot, Toby Verrall <to7@antipope.fsnet.co.uk>
+>> :liquid.oftc.net 371 apresas :vx0, Mark Miller <mark@oc768.net>
+>> :liquid.oftc.net 371 apresas :wiz, Jason Dambrosio <jason@wiz.cx>
+>> :liquid.oftc.net 371 apresas :Xride, Soeren Straarup <xride@x12.dk>
+>> :liquid.oftc.net 371 apresas :zb^3, Alfred Perlstein <alfred@freebsd.org>
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :Others are welcome. Always. And if we left anyone off the above list,
+>> :liquid.oftc.net 371 apresas :be sure to let us know that too. Many others have contributed to
+>> :liquid.oftc.net 371 apresas :previous versions of this ircd and its ancestors, too many to list
+>> :liquid.oftc.net 371 apresas :here.
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :Send bug fixes/complaints/rotten tomatoes to bugs@ircd-hybrid.org.
+>> :liquid.oftc.net 371 apresas : 
+>> :liquid.oftc.net 371 apresas :On-line since Fri Jul 19 01:42:49 2024
+>> :liquid.oftc.net 374 apresas :End of /INFO list.
+<< QUIT :leaving

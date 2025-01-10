@@ -1,0 +1,2956 @@
+<< CAP LS 302
+<< JOIN :
+>> NOTICE AUTH :*** Processing connection to irc.underworld.no
+>> NOTICE AUTH :*** Looking up your hostname...
+>> NOTICE AUTH :*** Checking Ident
+>> NOTICE AUTH :*** Found your hostname
+>> NOTICE AUTH :*** No Ident response
+>> :irc.underworld.no CAP * LS :multi-prefix
+<< CAP REQ :multi-prefix
+>> :irc.underworld.no 451 * :You have not registered
+>> :irc.underworld.no CAP * ACK :multi-prefix 
+<< CAP END
+<< NICK apresas
+<< USER apresas apresas ssl.efnet.org :albert
+>> :irc.underworld.no 001 apresas :Welcome to the EFNet Internet Relay Chat Network apresas
+<< MODE apresas +i
+>> :irc.underworld.no 002 apresas :Your host is irc.underworld.no[128.39.65.230/9999], running version ircd-ratbox-3.0.10
+>> :irc.underworld.no 003 apresas :This server was created Mon Dec 5 2022 at 21:09:54 CET
+>> :irc.underworld.no 004 apresas irc.underworld.no ircd-ratbox-3.0.10 oiwszcrkfydnxbauglZCD biklmnopstveIrS bkloveI
+>> :irc.underworld.no 005 apresas CHANTYPES=&# EXCEPTS INVEX CHANMODES=eIb,k,l,imnpstS CHANLIMIT=&#:40 PREFIX=(ov)@+ MAXLIST=beI:100 MODES=4 NETWORK=EFNet KNOCK STATUSMSG=@+ CALLERID=g :are supported by this server
+>> :irc.underworld.no 005 apresas SAFELIST ELIST=U CASEMAPPING=rfc1459 CHARSET=ascii NICKLEN=9 CHANNELLEN=50 TOPICLEN=160 ETRACE CPRIVMSG CNOTICE DEAF=D MONITOR=60 :are supported by this server
+>> :irc.underworld.no 005 apresas FNC ACCEPT=20 MAP TARGMAX=NAMES:1,LIST:1,KICK:1,WHOIS:1,PRIVMSG:4,NOTICE:4,ACCEPT:,MONITOR: :are supported by this server
+>> :irc.underworld.no 251 apresas :There are 3740 users and 5713 invisible on 18 servers
+>> :irc.underworld.no 252 apresas 79 :IRC Operators online
+>> :irc.underworld.no 254 apresas 6182 :channels formed
+>> :irc.underworld.no 255 apresas :I have 1394 clients and 1 servers
+>> :irc.underworld.no 265 apresas 1394 2364 :Current local users 1394, max 2364
+>> :irc.underworld.no 266 apresas 9453 13342 :Current global users 9453, max 13342
+>> :irc.underworld.no 250 apresas :Highest connection count: 2365 (2364 clients) (362320 connections received)
+>> :irc.underworld.no 375 apresas :- irc.underworld.no Message of the Day - 
+>> :irc.underworld.no 372 apresas :-  
+>> :irc.underworld.no 372 apresas :-    I   R   C .  __                                  __     __
+>> :irc.underworld.no 372 apresas :- .--.--.-----.--|  |.-----.----.--.--.--.-----.----.|  |.--|  |
+>> :irc.underworld.no 372 apresas :- |  |  |     |  _  ||  -__|   _|  |  |  |  _  |   _||  ||  _  |
+>> :irc.underworld.no 372 apresas :- |_____|__|__|_____||_____|__| |________|_____|__|  |__||_____|
+>> :irc.underworld.no 372 apresas :-                                                      .  N  O
+>> :irc.underworld.no 372 apresas :-  
+>> :irc.underworld.no 372 apresas :-  Welcome to irc.underworld.no, operated by Underworld and
+>> :irc.underworld.no 372 apresas :-  sponsored by UNINETT, the Norwegian academic research network.
+>> :irc.underworld.no 372 apresas :-  
+>> :irc.underworld.no 372 apresas :-  This server is open to the world and currently supports:
+>> :irc.underworld.no 372 apresas :-  irc.underworld.no - IPv4 - 6665-6669,7000
+>> :irc.underworld.no 372 apresas :-  irc.underworld.no - IPv6 - 6667, 7000
+>> :irc.underworld.no 372 apresas :-  irc.underworld.no - SSL - 6697, 9999
+>> :irc.underworld.no 372 apresas :-  
+>> :irc.underworld.no 372 apresas :-  Some simple rules:
+>> :irc.underworld.no 372 apresas :-  -> no cloning
+>> :irc.underworld.no 372 apresas :-  -> no spam
+>> :irc.underworld.no 372 apresas :-  -> no flooding
+>> :irc.underworld.no 372 apresas :-  -> dont harass other users
+>> :irc.underworld.no 372 apresas :-  
+>> :irc.underworld.no 372 apresas :-  We reserve the right to remove your access to this server
+>> :irc.underworld.no 372 apresas :-  at any time at our opers discretion.
+>> :irc.underworld.no 372 apresas :-  
+>> :irc.underworld.no 372 apresas :-  Proxy and drone (ctcp version) scans are issued upon connecting
+>> :irc.underworld.no 372 apresas :-  to this server. If you wish not to be scanned, disconnect
+>> :irc.underworld.no 372 apresas :-  now and do not use this server. These are not hack attempts!
+>> :irc.underworld.no 372 apresas :-  
+>> :irc.underworld.no 372 apresas :-  News and discussions about this network can be found at
+>> :irc.underworld.no 372 apresas :-  www.efnet.org and #efnet.org
+>> :irc.underworld.no 372 apresas :-  
+>> :irc.underworld.no 372 apresas :-  Thank you for using EFnet, and have a pleasant stay! :-)
+>> :irc.underworld.no 372 apresas :-  
+>> :irc.underworld.no 376 apresas :End of /MOTD command.
+>> :uwdrone!dronemon@underworld.bot PRIVMSG apresas :VERSION
+>> :apresas MODE apresas :+i
+<< NOTICE uwdrone :VERSION irssi v1.4.3
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< NICK
+>> :irc.underworld.no 431 apresas :No nickname given
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< NICK apresas
+<< NICK yes
+>> :apresas!~apresas@193.190.79.188.dynamic.jazztel.es NICK :yes
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< NICK jones
+>> :yes!~apresas@193.190.79.188.dynamic.jazztel.es NICK :jones
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< WHO
+>> :irc.underworld.no 461 jones WHO :Not enough parameters
+<< NAMES
+>> :irc.underworld.no 353 jones = #AmigaDev :@med
+>> :irc.underworld.no 353 jones = #masterchannel :Biotch @Buster
+>> :irc.underworld.no 353 jones = #wd :Biotch @Buster
+>> :irc.underworld.no 353 jones = #politicalE :@coldsoup
+>> :irc.underworld.no 353 jones = #dragonflybsd1 :@jsb-17
+>> :irc.underworld.no 353 jones = #LinuxLounge :@Shadow_
+>> :irc.underworld.no 353 jones = #notagain :@Shadow_
+>> :irc.underworld.no 353 jones = #urnnghghgh :@_Forbin
+>> :irc.underworld.no 353 jones = #forbin :@_Forbin
+>> :irc.underworld.no 353 jones = #snakkis :struggle @Grei
+>> :irc.underworld.no 353 jones = #IRCFOREVER :@AriesBoy
+>> :irc.underworld.no 353 jones = #+rance :@trance957
+>> :irc.underworld.no 353 jones = #mvh :@trance957
+>> :irc.underworld.no 353 jones = #Folken :@Folken
+>> :irc.underworld.no 353 jones = #hiphopworld :@oqmecr
+>> :irc.underworld.no 353 jones = ##kramell :@Postquell
+>> :irc.underworld.no 353 jones = #USAChat :@Ticcc
+>> :irc.underworld.no 353 jones = #Antiidle :@Ticcc
+>> :irc.underworld.no 353 jones = #40Something :@Ticcc
+>> :irc.underworld.no 353 jones = #xtv :oqmecr
+>> :irc.underworld.no 353 jones = #kuzu :@hayabusa
+>> :irc.underworld.no 353 jones = #bbqnut :@bbqnut
+>> :irc.underworld.no 353 jones = #rda :@RDABot
+>> :irc.underworld.no 353 jones = #fbsd :@fstd
+>> :irc.underworld.no 353 jones = #<3 :@fstd
+>> :irc.underworld.no 353 jones = #freeboot :@fstd
+>> :irc.underworld.no 353 jones = #jays :@whiteking
+>> :irc.underworld.no 353 jones = #befl :@whiteking
+>> :irc.underworld.no 353 jones = #aceland :@whiteking
+>> :irc.underworld.no 353 jones = #IDF-command :@whiteking
+>> :irc.underworld.no 353 jones = #bajskorvnettet1 :YDFALRaP
+>> :irc.underworld.no 353 jones = #fcuk :GennaiDE_
+>> :irc.underworld.no 353 jones = #rave.au :@switchr
+>> :irc.underworld.no 353 jones = #doctorwho :@TARDIS
+>> :irc.underworld.no 353 jones = &amp :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #notanime :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #Make_Anime_Great_Again :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #fixingmycar :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #mysongs :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #pocketpc :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #animemp3 :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #_needtofindagainitems :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #uoft2 :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #AMV :@Aerith_Gx
+>> :irc.underworld.no 353 jones = #stardust :@Spaceship
+>> :irc.underworld.no 353 jones = #shelltalk :jacobk_
+>> :irc.underworld.no 353 jones = #LINX :@jordan_0
+>> :irc.underworld.no 353 jones = #ComputerClub :@int0x47
+>> :irc.underworld.no 353 jones = #lb :TrbleClef
+>> :irc.underworld.no 353 jones = #flight :TrbleClef
+>> :irc.underworld.no 353 jones = #facebook :TrbleClef
+>> :irc.underworld.no 353 jones = #amiga.se :@corpnicle
+>> :irc.underworld.no 353 jones = #interviews :@loller_
+>> :irc.underworld.no 353 jones = #BidenManDemented :@loller_
+>> :irc.underworld.no 353 jones = #☭ :@loller_
+>> :irc.underworld.no 353 jones = #interview :@loller_
+>> :irc.underworld.no 353 jones = #ccp :@loller_
+>> :irc.underworld.no 353 jones = #communism :@loller_
+>> :irc.underworld.no 353 jones = #✈▌▌ :@loller_
+>> :irc.underworld.no 353 jones = #rephlex :@H3RB42O
+>> :irc.underworld.no 353 jones = #aphextwin :@H3RB42O
+>> :irc.underworld.no 353 jones = #cemetechbot :eZ80Bot @frbrd_bot
+>> :irc.underworld.no 353 jones = #error :@gay4ops
+>> :irc.underworld.no 353 jones = #blastwave :@lead_pipe
+>> :irc.underworld.no 353 jones = #alt.binaries.ipod.videos :@R3Ds
+>> :irc.underworld.no 353 jones = #D0C :@R3Ds
+>> :irc.underworld.no 353 jones = #lusers :@CompWizrd
+>> :irc.underworld.no 353 jones = #fuck_the_world :@CompWizrd
+>> :irc.underworld.no 353 jones = #zen :@CompWizrd
+>> :irc.underworld.no 353 jones = #infamy :@CompWizrd
+>> :irc.underworld.no 353 jones = #2¸000 :@CompWizrd
+>> :irc.underworld.no 353 jones = #org :@CompWizrd
+>> :irc.underworld.no 353 jones = #sleepers :@CompWizrd
+>> :irc.underworld.no 353 jones = #catman :@catman
+>> :irc.underworld.no 353 jones = #eos :@t0ubab0k0
+>> :irc.underworld.no 353 jones = #edc :@t0ubab0k0
+>> :irc.underworld.no 353 jones = #danceforum :@scf_
+>> :irc.underworld.no 353 jones = #5000 :@shimmer
+>> :irc.underworld.no 353 jones = #cebu :@Ritche
+>> :irc.underworld.no 353 jones = #abuse-com :@Ritche
+>> :irc.underworld.no 353 jones = #cservice_info :@Ritche
+>> :irc.underworld.no 353 jones = #rixhosting :@Ritche
+>> :irc.underworld.no 353 jones = #spartanhost :@Ritche
+>> :irc.underworld.no 353 jones = #ateneo :@Ritche
+>> :irc.underworld.no 353 jones = #regteam :@Ritche
+>> :irc.underworld.no 353 jones = #valhalla :@Ritche
+>> :irc.underworld.no 353 jones = #undernet-admins :@Ritche
+>> :irc.underworld.no 353 jones = #cservice :@Ritche
+>> :irc.underworld.no 353 jones = #cse-abuse :@Ritche
+>> :irc.underworld.no 353 jones = #noxfire :@pepmate
+>> :irc.underworld.no 353 jones = #trade-pl :dexterity @hcaos
+>> :irc.underworld.no 353 jones = #bootmii :Juest
+>> :irc.underworld.no 353 jones = #politicallysmart :coldsoup |werejag|
+>> :irc.underworld.no 353 jones = #botsaq :@DobbS
+>> :irc.underworld.no 353 jones = #breakfast :@DobbS
+>> :irc.underworld.no 353 jones = #lunch :@DobbS
+>> :irc.underworld.no 353 jones = #subgenius :@DobbS
+>> :irc.underworld.no 353 jones = #Xshellz :SiZogaL @AriesBoy
+>> :irc.underworld.no 353 jones = #Asia :@SiZogaL @AriesBoy
+>> :irc.underworld.no 353 jones = #klklyyt :maat
+>> :irc.underworld.no 353 jones = ##HamRadio :@gimzmoe
+>> :irc.underworld.no 353 jones = #76ers :whiteking schilling @flyer
+>> :irc.underworld.no 353 jones = #im :@centie
+>> :irc.underworld.no 353 jones = #extracts :@centie
+>> :irc.underworld.no 353 jones = #Bnc :@centie
+>> :irc.underworld.no 353 jones = #uberleet :@firewyre
+>> :irc.underworld.no 353 jones = #cph :@pepmate
+>> :irc.underworld.no 353 jones = #ijustleftirc :@tdaddy62
+>> :irc.underworld.no 353 jones = #0xday :@tdaddy62
+>> :irc.underworld.no 353 jones = #0xdev :@tdaddy62
+>> :irc.underworld.no 353 jones = ##hackers :@tdaddy62
+>> :irc.underworld.no 353 jones = ##0xdev :@tdaddy62
+>> :irc.underworld.no 353 jones = ##0xday :@tdaddy62
+>> :irc.underworld.no 353 jones = #wiin64 :@DarukBot
+>> :irc.underworld.no 353 jones = #extremscorner :@DarukBot
+>> :irc.underworld.no 353 jones = #freebsd-xfce :@lbart
+>> :irc.underworld.no 353 jones = #freebsd-office :@lbart
+>> :irc.underworld.no 353 jones = #DarkDimension :CoLoN
+>> :irc.underworld.no 353 jones = #midi :@octo
+>> :irc.underworld.no 353 jones = #lebanon :@ElRonaldo @RoyMercer
+>> :irc.underworld.no 353 jones = #wikipedia :@ElRonaldo @RoyMercer
+>> :irc.underworld.no 353 jones = #Egypt :@ElRonaldo @RoyMercer
+>> :irc.underworld.no 353 jones = #boxing-news :@RoyMercer
+>> :irc.underworld.no 353 jones = #RGH :@barnito
+>> :irc.underworld.no 353 jones = #PS4hack :@barnito
+>> :irc.underworld.no 353 jones = #J-Runner :@barnito
+>> :irc.underworld.no 353 jones = #casabonita :@barnito
+>> :irc.underworld.no 353 jones = #movian :@barnito
+>> :irc.underworld.no 353 jones = #xbonehack :@barnito
+>> :irc.underworld.no 353 jones = #♥ :@sayjau
+>> :irc.underworld.no 353 jones = #analorgy :@sayjau
+>> :irc.underworld.no 353 jones = #nk :centie
+>> :irc.underworld.no 353 jones = #milkness :@milkness
+>> :irc.underworld.no 353 jones = #vegaswarez :@BoM-SKwad
+>> :irc.underworld.no 353 jones = #incels :@xboner
+>> :irc.underworld.no 353 jones = #pound :@sayjau @lulzy
+>> :irc.underworld.no 353 jones = #hardchats :@lulzy
+>> :irc.underworld.no 353 jones = #ED :@lulzy
+>> :irc.underworld.no 353 jones = #glandeurs :@EddiePALA
+>> :irc.underworld.no 353 jones = #PSiONiC :@Hardrider
+>> :irc.underworld.no 353 jones = #alt.binaries.sony.psvita :@Hardrider
+>> :irc.underworld.no 353 jones = #alt.binaries.gamecube :@Hardrider
+>> :irc.underworld.no 353 jones = #alt.binaries.games.xbox :@Hardrider
+>> :irc.underworld.no 353 jones = #alt.binaries.dreamcast :@Hardrider
+>> :irc.underworld.no 353 jones = #alt.binaries.cd.image.playstation2.dvdiso :@Hardrider
+>> :irc.underworld.no 353 jones = #l33tsecurity :@hawer
+>> :irc.underworld.no 353 jones = #rathole-bots :@Dat
+>> :irc.underworld.no 353 jones = #nodialtone :@lucidphre
+>> :irc.underworld.no 353 jones = #pbx :@lucidphre
+>> :irc.underworld.no 353 jones = #x.25 :@lucidphre
+>> :irc.underworld.no 353 jones = #x25 :@lucidphre
+>> :irc.underworld.no 353 jones = #telconinjaz :@lucidphre
+>> :irc.underworld.no 353 jones = #telco :@lucidphre
+>> :irc.underworld.no 353 jones = #phreaking :@lucidphre
+>> :irc.underworld.no 353 jones = #pla :@lucidphre
+>> :irc.underworld.no 353 jones = #740kbs :@Elmoe
+>> :irc.underworld.no 353 jones = #Nerdman :@Snafu
+>> :irc.underworld.no 353 jones = #CoastToCoast :@Snafu
+>> :irc.underworld.no 353 jones = #Coast2Coast :@Snafu
+>> :irc.underworld.no 353 jones = #CoastToCoastAM :@Snafu
+>> :irc.underworld.no 353 jones = #ArtBell2 :@Snafu
+>> :irc.underworld.no 353 jones = #boof :@kossy
+>> :irc.underworld.no 353 jones = #barn :@kossy
+>> :irc.underworld.no 353 jones = #nintendoxtreme :@AmonX
+>> :irc.underworld.no 353 jones = #3doxtreme :@AmonX
+>> :irc.underworld.no 353 jones = #whitesonly :@diNGo
+>> :irc.underworld.no 353 jones = #premierleague :@rp_
+>> :irc.underworld.no 353 jones = #random2 :@h|tl
+>> :irc.underworld.no 353 jones = #ramdom :@h|tl
+>> :irc.underworld.no 353 jones = #puppylinux :@h|tl
+>> :irc.underworld.no 353 jones = #ngircd :@h|tl
+>> :irc.underworld.no 353 jones = #❄ :@h|tl
+>> :irc.underworld.no 353 jones = #xffx :@bowbot
+>> :irc.underworld.no 353 jones = #mobilaris :@bowbot
+>> :irc.underworld.no 353 jones = #bowman :@bowbot
+>> :irc.underworld.no 353 jones = #veterans :@peaches
+>> :irc.underworld.no 353 jones = #ice99 :@|_b_|
+>> :irc.underworld.no 353 jones = #troposphere :@WCDave
+>> :irc.underworld.no 353 jones = #btn-support :@plzdontba
+>> :irc.underworld.no 353 jones = #ultrapre :@tuxedo
+>> :irc.underworld.no 353 jones = #Omerta :@WyRm
+>> :irc.underworld.no 353 jones = #standup :@fr33d0g
+>> :irc.underworld.no 353 jones = #compsci :@woggle
+>> :irc.underworld.no 353 jones = ##mma-tv :@kanodogg-
+>> :irc.underworld.no 353 jones = #shrooms :@Cashlin
+>> :irc.underworld.no 353 jones = #italopassion :@ItaloCarl
+>> :irc.underworld.no 353 jones = #irkenau :daij lloyden1
+>> :irc.underworld.no 353 jones = #ost :@trondvh
+>> :irc.underworld.no 353 jones = #erf :@erf
+>> :irc.underworld.no 353 jones = #computers[ck] :@erf
+>> :irc.underworld.no 353 jones = #moir :@horpach
+>> :irc.underworld.no 353 jones = #apcoh :@horpach
+>> :irc.underworld.no 353 jones = #switzerland :@horpach
+>> :irc.underworld.no 353 jones = #zurich :@horpach
+>> :irc.underworld.no 353 jones = #extreme :@SolidBoss
+>> :irc.underworld.no 353 jones = #pc-ops :@GensENVY
+>> :irc.underworld.no 353 jones = #fyp :@ningkelle
+>> :irc.underworld.no 353 jones = #-O :@ningkelle
+>> :irc.underworld.no 353 jones = #korvo :@bolmar
+>> :irc.underworld.no 353 jones = #botgurt :@bolmar
+>> :irc.underworld.no 353 jones = #bolbot :@bolmar
+>> :irc.underworld.no 353 jones = #tonytest :@tony-
+>> :irc.underworld.no 353 jones = #reagan :@latte1
+>> :irc.underworld.no 353 jones = #dsl :@sonkulp2
+>> :irc.underworld.no 353 jones = #utcs :@fusQueezy
+>> :irc.underworld.no 353 jones = #Zaubers-pre :@Fool
+>> :irc.underworld.no 353 jones = #Zaubers-chat :@Fool
+>> :irc.underworld.no 353 jones = #THS :@Fool
+>> :irc.underworld.no 353 jones = #flea-warez :@ront2
+>> :irc.underworld.no 353 jones = #Amunisi :@mhamadt-_
+>> :irc.underworld.no 353 jones = #malvik :@frank
+>> :irc.underworld.no 353 jones = #nootdorp :@tiki
+>> :irc.underworld.no 353 jones = #st.valentines :@phaeton
+>> :irc.underworld.no 353 jones = #revelation :@phaeton
+>> :irc.underworld.no 353 jones = #thenexus :@eefer_
+>> :irc.underworld.no 353 jones = #Republican :@cryptic
+>> :irc.underworld.no 353 jones = #jwheare :@jwheare
+>> :irc.underworld.no 353 jones = #dn42 :@immibis
+>> :irc.underworld.no 353 jones = #utopiasoft :AmonX @nausicaa
+>> :irc.underworld.no 353 jones = #fee1dead :b4t_ @meuj
+>> :irc.underworld.no 353 jones = #expowertech :@Olen
+>> :irc.underworld.no 353 jones = #warezfrancais :@EddiePALA
+>> :irc.underworld.no 353 jones = #suisse :@EddiePALA
+>> :irc.underworld.no 353 jones = #fuckthescene :@Xhomaz
+>> :irc.underworld.no 353 jones = #cloaked :@bj0rn
+>> :irc.underworld.no 353 jones = #pretildeath :@sonax
+>> :irc.underworld.no 353 jones = #fsnpreshit :@sonax
+>> :irc.underworld.no 353 jones = #philosophy# :@jogmaster
+>> :irc.underworld.no 353 jones = #philosophicus :@jogmaster
+>> :irc.underworld.no 353 jones = #kdf :bj0rn @kuksatan
+>> :irc.underworld.no 353 jones = #pickle :@naderman
+>> :irc.underworld.no 353 jones = #ChatLand :@Koragg
+>> :irc.underworld.no 353 jones = #s23 :@t23
+>> :irc.underworld.no 353 jones = #seti23 :@t23
+>> :irc.underworld.no 353 jones = #JKO :@jordan_0
+>> :irc.underworld.no 353 jones = #gameboy :@joshua_
+>> :irc.underworld.no 353 jones = #fttest :@joshua_
+>> :irc.underworld.no 353 jones = #tod3-hyperscan :@joshua_
+>> :irc.underworld.no 353 jones = #tod3-hwdev :@joshua_
+>> :irc.underworld.no 353 jones = #tod3-eversd :@joshua_
+>> :irc.underworld.no 353 jones = #tod3-bets :@joshua_
+>> :irc.underworld.no 353 jones = #tod3 :@joshua_
+>> :irc.underworld.no 353 jones = #wwwnet :@v|g|LanT-
+>> :irc.underworld.no 353 jones = #parkour :@oldtopman
+>> :irc.underworld.no 353 jones = #switchhelp :@oldtopman
+>> :irc.underworld.no 353 jones = #peenerweenerdingdong :@Spud17
+>> :irc.underworld.no 353 jones = #godogsgo :@Spud17
+>> :irc.underworld.no 353 jones = #water :@shit
+>> :irc.underworld.no 353 jones = #yatb :@syndr0me
+>> :irc.underworld.no 353 jones = ##Christianity :@Adiemus
+>> :irc.underworld.no 353 jones = #Dnbproduction :@Adiemus
+>> :irc.underworld.no 353 jones = #hemmmmelig :@po0h
+>> :irc.underworld.no 353 jones = #bärenhölle :picea
+>> :irc.underworld.no 353 jones = #faggot :@l0de
+>> :irc.underworld.no 353 jones = #efnot :@l0de
+>> :irc.underworld.no 353 jones = #Pranks :@l0de
+>> :irc.underworld.no 353 jones = #ogoi :@TB @mew
+>> :irc.underworld.no 353 jones = #mewt :@mew
+>> :irc.underworld.no 353 jones = #kfd :@mew
+>> :irc.underworld.no 353 jones = #philcollins2 :@gummysale
+>> :irc.underworld.no 353 jones = #philcollins :@gummysale
+>> :irc.underworld.no 353 jones = #page2 :@gummysale
+>> :irc.underworld.no 353 jones = #dinosaur :@gummysale
+>> :irc.underworld.no 353 jones = #chubbycherub2 :@gummysale
+>> :irc.underworld.no 353 jones = #chubbycherub :@gummysale
+>> :irc.underworld.no 353 jones = #COMPUTERWIZARD :@gummysale
+>> :irc.underworld.no 353 jones = #PanicBNC :@PBNCRelay
+>> :irc.underworld.no 353 jones = #Webfallout :Reflex
+>> :irc.underworld.no 353 jones = #TheLoft :Reflex
+>> :irc.underworld.no 353 jones = #Colonel-Ingus :@gravitaz
+>> :irc.underworld.no 353 jones = #gravibottest :@gravitaz
+>> :irc.underworld.no 353 jones = #kombucha :@diNGo @bex
+>> :irc.underworld.no 353 jones = #saltgang :@alyosha
+>> :irc.underworld.no 353 jones = #waterboygospellyrics :s0k1t @NastyCode
+>> :irc.underworld.no 353 jones = #rock :@clrscrn
+>> :irc.underworld.no 353 jones = #nettrim :@IKEA
+>> :irc.underworld.no 353 jones = #requests :@clrscrn
+>> :irc.underworld.no 353 jones = #neuf :@kevin06
+>> :irc.underworld.no 353 jones = #military :@clrscrn
+>> :irc.underworld.no 353 jones = #drastic :@icedragon
+>> :irc.underworld.no 353 jones = #constitution :@clrscrn
+>> :irc.underworld.no 353 jones = #bluegrass :@clrscrn
+>> :irc.underworld.no 353 jones = #autocad :@clrscrn
+>> :irc.underworld.no 353 jones = #aec :@clrscrn
+>> :irc.underworld.no 353 jones = #2112 :@clrscrn
+>> :irc.underworld.no 353 jones = #slacker.se :@feldcloud
+>> :irc.underworld.no 353 jones = #kaffe :@feldcloud
+>> :irc.underworld.no 353 jones = #ikom :@feldcloud
+>> :irc.underworld.no 353 jones = #FreeIRC :@h-
+>> :irc.underworld.no 353 jones = #pnc :s0k1t FireMan IRcap NastyCode @SplinTer
+>> :irc.underworld.no 353 jones = #cloudabi :@M-ou-se_
+>> :irc.underworld.no 353 jones = #canuckshd :@_VanCity
+>> :irc.underworld.no 353 jones = #mahatma :qvwn1
+>> :irc.underworld.no 353 jones = #cosmic_day :qvwn1
+>> :irc.underworld.no 353 jones = #kvasigen :tags
+>> :irc.underworld.no 353 jones = #va3odc :@guk
+>> :irc.underworld.no 353 jones = #Dialin-NET :tuvok
+>> :irc.underworld.no 353 jones = #darknewz :@[Dodger]
+>> :irc.underworld.no 353 jones = #scxeqx :@Tortelli
+>> :irc.underworld.no 353 jones = #monstiekoeker :@Tortelli
+>> :irc.underworld.no 353 jones = #vems :@dangelo
+>> :irc.underworld.no 353 jones = #DEFABC :@h_
+>> :irc.underworld.no 353 jones = #fp-priv :@h_
+>> :irc.underworld.no 353 jones = #EQCO :@RickiTan
+>> :irc.underworld.no 353 jones = #aerosol :nerv
+>> :irc.underworld.no 353 jones = #EatSushi :nerv
+>> :irc.underworld.no 353 jones = #twtest :@VerthNeel
+>> :irc.underworld.no 353 jones = #guitarists :mDRealTng
+>> :irc.underworld.no 353 jones = #thunderirc :h|tl @ThunderIR
+>> :irc.underworld.no 353 jones = #yonle :SiZogaL @Yonle
+>> :irc.underworld.no 353 jones = #lecturify :AriesBoy thegreatB Yonle
+>> :irc.underworld.no 353 jones = #political-masters :politburo @efnetbot`
+>> :irc.underworld.no 353 jones = #GumbyBRAIN :@GumbyBRAI
+>> :irc.underworld.no 353 jones = #SolliDPS :@Ptn
+>> :irc.underworld.no 353 jones = #bj0rncave :bj0rn
+>> :irc.underworld.no 353 jones = #dampfnudel :@lenny
+>> :irc.underworld.no 353 jones = #america :@Goddess1
+>> :irc.underworld.no 353 jones = #nu-skool :ekchuan haze @globule
+>> :irc.underworld.no 353 jones = #metaphysics :@efnetbot`
+>> :irc.underworld.no 353 jones = #failosophy :@efnetbot`
+>> :irc.underworld.no 353 jones = #amsxbsd :@farrokhi
+>> :irc.underworld.no 353 jones = #racingmania :@EqUaTe
+>> :irc.underworld.no 353 jones = #buffy-unlimited :@EqUaTe
+>> :irc.underworld.no 353 jones = #theserverchannel :@EqUaTe
+>> :irc.underworld.no 353 jones = #sfvi :Kanodogg
+>> :irc.underworld.no 353 jones = #kano :Kanodogg kanodogg-
+>> :irc.underworld.no 353 jones = #259KeenSt :@Zeus
+>> :irc.underworld.no 353 jones = #LinearG :@Zeus
+>> :irc.underworld.no 353 jones = #android-dev :mDRealTng
+>> :irc.underworld.no 353 jones = #party# :@cooldude
+>> :irc.underworld.no 353 jones = #bangladesh :@BDspace
+>> :irc.underworld.no 353 jones = #Frauenkauf :@AsToN
+>> :irc.underworld.no 353 jones = #Spydar007 :@SpydarO07
+>> :irc.underworld.no 353 jones = #SNEEK :@Remfin
+>> :irc.underworld.no 353 jones = #RawkSD :@Remfin
+>> :irc.underworld.no 353 jones = #RawkHD :@Remfin
+>> :irc.underworld.no 353 jones = #ttb :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #shoutcast :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #searchlight :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #renegadebbs :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #renegade :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #quantumbbs :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #pyrrhous :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #micronet :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #mbsedev :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #maximus :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #inverted :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #iniquitybbs :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #iniquity :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #ezycom :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #erg :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #d.t :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #bbsesinf :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #bbses.info :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #Mbsebbs :mro @bbsesdoti
+>> :irc.underworld.no 353 jones = #splunkui :@karr
+>> :irc.underworld.no 353 jones = #suckafreecity :@karr
+>> :irc.underworld.no 353 jones = #myoho :@karr
+>> :irc.underworld.no 353 jones = #animevivo :@karr
+>> :irc.underworld.no 353 jones = #japanesedrama :pilbot @yhwh
+>> :irc.underworld.no 353 jones = #mathy :pilbot @yhwh
+>> :irc.underworld.no 353 jones = #stacks :@vb
+>> :irc.underworld.no 353 jones = #lordpil-networks :pilbot @yhwh
+>> :irc.underworld.no 353 jones = #controlstar :@oldlaptop
+>> :irc.underworld.no 353 jones = #nethack :Trel
+>> :irc.underworld.no 353 jones = #itanium :pilbot @yhwh
+>> :irc.underworld.no 353 jones = #ââãÐÚÔâ :@SpOpsCody
+>> :irc.underworld.no 353 jones = #last.fm :@constanti
+>> :irc.underworld.no 353 jones = #catanathon :@SpOpsCody
+>> :irc.underworld.no 353 jones = #triforce :@SpOpsCody
+>> :irc.underworld.no 353 jones = #ssnakes :@SpOpsCody
+>> :irc.underworld.no 353 jones = #Coast2CoastAM :Snafu
+>> :irc.underworld.no 353 jones = #sstakes :@SpOpsCody
+>> :irc.underworld.no 353 jones = #love :PrfsrLove CompWizrd
+>> :irc.underworld.no 353 jones = #ebola :@Mayonaise
+>> :irc.underworld.no 353 jones = #HappyHardcore :@Mayonaise
+>> :irc.underworld.no 353 jones = #ipod :@Mayonaise
+>> :irc.underworld.no 353 jones = #Windsor :@Mayonaise
+>> :irc.underworld.no 353 jones = #Paynomind :@Mayonaise
+>> :irc.underworld.no 353 jones = #Malk :@Mayonaise
+>> :irc.underworld.no 353 jones = #dontwhoismeyoucrackwhore :@Trel
+>> :irc.underworld.no 353 jones = #krynn :@Tristam
+>> :irc.underworld.no 353 jones = #couchland :@Tristam
+>> :irc.underworld.no 353 jones = #citadel :@fcser__
+>> :irc.underworld.no 353 jones = #infinite :@fcser__
+>> :irc.underworld.no 353 jones = #limitedrungames :@fcser__
+>> :irc.underworld.no 353 jones = #TheCitadel :@fcser__
+>> :irc.underworld.no 353 jones = #ioftpd :@JoC
+>> :irc.underworld.no 353 jones = #kb :big_juice
+>> :irc.underworld.no 353 jones = #crinkle :@AcquaCow
+>> :irc.underworld.no 353 jones = #subaru :@AcquaCow
+>> :irc.underworld.no 353 jones = #the_box :@AcquaCow
+>> :irc.underworld.no 353 jones = #xboxunity :JQE
+>> :irc.underworld.no 353 jones = #virus :@vladbot
+>> :irc.underworld.no 353 jones = #drwho :@euclid
+>> :irc.underworld.no 353 jones = #cooldude13233 :@_CF_2 @_CF_1 @cooldude
+>> :irc.underworld.no 353 jones = #ticalc :Forty-Bot
+>> :irc.underworld.no 353 jones = #Mp3CountryJukebox :@navig8r @`namni3`_ @Ydarb_
+>> :irc.underworld.no 353 jones = #bidenmanbad :us loller_
+>> :irc.underworld.no 353 jones = #abum :us loller_
+>> :irc.underworld.no 353 jones = #✈▌▌☭ :us loller_
+>> :irc.underworld.no 353 jones = #wool :@SMAN788
+>> :irc.underworld.no 353 jones = #autechre :_0b
+>> :irc.underworld.no 353 jones = #fuckthesound :_0b
+>> :irc.underworld.no 353 jones = #usenet :cp-
+>> :irc.underworld.no 353 jones = #uucp :cp-
+>> :irc.underworld.no 353 jones = #freepascal :cp-
+>> :irc.underworld.no 353 jones = #gcw-chat :@mengo
+>> :irc.underworld.no 353 jones = #admuncher :@mengo
+>> :irc.underworld.no 353 jones = #tihlde :@Terje
+>> :irc.underworld.no 353 jones = #hots :Rein
+>> :irc.underworld.no 353 jones = #cyber :@flipwad
+>> :irc.underworld.no 353 jones = #cyberspace :@flipwad
+>> :irc.underworld.no 353 jones = #saskatchewan :lex_
+>> :irc.underworld.no 353 jones = #1bmr0x :@kissinger
+>> :irc.underworld.no 353 jones = #eye :_eye_ artmodelm
+>> :irc.underworld.no 353 jones = #hongkongcavaliers :@gknux
+>> :irc.underworld.no 353 jones = #deadassdurag :@gknux
+>> :irc.underworld.no 353 jones = #christiandadsthatvape :@gknux
+>> :irc.underworld.no 353 jones = #BloccChainZ :@gknux
+>> :irc.underworld.no 353 jones = #poanyc :@gknux
+>> :irc.underworld.no 353 jones = #poa :@gknux
+>> :irc.underworld.no 353 jones = #pissedoffadmins :@gknux
+>> :irc.underworld.no 353 jones = #pissedoffadmin :@gknux
+>> :irc.underworld.no 353 jones = #Vandamme :@VanDam
+>> :irc.underworld.no 353 jones = #rancid :@rancid
+>> :irc.underworld.no 353 jones = #math-ag :@sek
+>> :irc.underworld.no 353 jones = #orangemanbad :@Arevik
+>> :irc.underworld.no 353 jones = #fanatics :@Arevik
+>> :irc.underworld.no 353 jones = #putin :@Arevik
+>> :irc.underworld.no 353 jones = #tma :dhz1 franky__
+>> :irc.underworld.no 353 jones = #BEWBIES :@^daisy^
+>> :irc.underworld.no 353 jones = #theabandonoftheartists :@luckcolor
+>> :irc.underworld.no 353 jones = #noanswers :@luckcolor
+>> :irc.underworld.no 353 jones = #nomoreaud.io :@luckcolor
+>> :irc.underworld.no 353 jones = #discard :@luckcolor
+>> :irc.underworld.no 353 jones = #soundclown :@luckcolor
+>> :irc.underworld.no 353 jones = #notarchivebot :@luckcolor
+>> :irc.underworld.no 353 jones = #shreddit :@luckcolor
+>> :irc.underworld.no 353 jones = #notsosung :@luckcolor
+>> :irc.underworld.no 353 jones = #theisolatedartists :@luckcolor
+>> :irc.underworld.no 353 jones = #chaingang :@luckcolor
+>> :irc.underworld.no 353 jones = #luckcolors :@luckcolor
+>> :irc.underworld.no 353 jones = #tinydick :@luckcolor
+>> :irc.underworld.no 353 jones = #angelonfire :@luckcolor
+>> :irc.underworld.no 353 jones = #archivebot-bs :@luckcolor
+>> :irc.underworld.no 353 jones = #OP5 :@swinokur
+>> :irc.underworld.no 353 jones = #fp2 :@funkpumpr
+>> :irc.underworld.no 353 jones = #fp :@funkpumpr
+>> :irc.underworld.no 353 jones = #gunnit :@Lexeiwa
+>> :irc.underworld.no 353 jones = #ch :W6RK KD9BNQ W6RK-Bot
+>> :irc.underworld.no 353 jones = #jafo :@blaxthos
+>> :irc.underworld.no 353 jones = #eztvweb :^daisy^ @^goober^
+>> :irc.underworld.no 353 jones = #mvgroup :@^goober^
+>> :irc.underworld.no 353 jones = #agora :@^goober^
+>> :irc.underworld.no 353 jones = #dust :rocketm_n
+>> :irc.underworld.no 353 jones = #digitalfix :rocketm_n
+>> :irc.underworld.no 353 jones = #liaison :rocketm_n
+>> :irc.underworld.no 353 jones = #unik :rocketm_n
+>> :irc.underworld.no 353 jones = #toodles :@xtor
+>> :irc.underworld.no 353 jones = #cimahi :@mu
+>> :irc.underworld.no 353 jones = #jllim :@DoctorAWS
+>> :irc.underworld.no 353 jones = #limjunlong :@DoctorAWS
+>> :irc.underworld.no 353 jones = #dw2k :_whiskey_
+>> :irc.underworld.no 353 jones = #fantasybasketball :RSSBot`
+>> :irc.underworld.no 353 jones = #videogamedeals :mDRealTng RSSBot`
+>> :irc.underworld.no 353 jones = #VW :@Figz
+>> :irc.underworld.no 353 jones = #immortaldescendants :@mjuad
+>> :irc.underworld.no 353 jones = #oranges :@ten
+>> :irc.underworld.no 353 jones = #starbug :@Colin_M_
+>> :irc.underworld.no 353 jones = #carnivore :@foofur
+>> :irc.underworld.no 353 jones = #ebay :@foofur
+>> :irc.underworld.no 353 jones = #metallica :@foofur
+>> :irc.underworld.no 353 jones = #tiasm :h|tl
+>> :irc.underworld.no 353 jones = #Lunatic-Fringe :Adelign
+>> :irc.underworld.no 353 jones = #cloudbot2 :@trub0rt
+>> :irc.underworld.no 353 jones = #MyAdminChannel2 :@trub0rt
+>> :irc.underworld.no 353 jones = #shakira :@comrade
+>> :irc.underworld.no 353 jones = #veronikazemanova :@comrade
+>> :irc.underworld.no 353 jones = #jessicachastain :@comrade
+>> :irc.underworld.no 353 jones = #petajensen :@comrade
+>> :irc.underworld.no 353 jones = #deviance :@comrade
+>> :irc.underworld.no 353 jones = #glukoza :@comrade
+>> :irc.underworld.no 353 jones = #dc-shadow :@sveny
+>> :irc.underworld.no 353 jones = #teamslack :@baubles
+>> :irc.underworld.no 353 jones = #cemetech-quiz :@Hooloovoo
+>> :irc.underworld.no 353 jones = #axon :@R_
+>> :irc.underworld.no 353 jones = #tetrinet :@bfft
+>> :irc.underworld.no 353 jones = #helix7 :@helix7
+>> :irc.underworld.no 353 jones = #clan-saft :@sjefen6
+>> :irc.underworld.no 353 jones = #sluts :@keeper
+>> :irc.underworld.no 353 jones = #sluts-hell :@keeper
+>> :irc.underworld.no 353 jones = #WinAmp :mball
+>> :irc.underworld.no 353 jones = #mp3z :mball
+>> :irc.underworld.no 353 jones = #mp3s :mball
+>> :irc.underworld.no 353 jones = #UOO :mball
+>> :irc.underworld.no 353 jones = #valley :mball
+>> :irc.underworld.no 353 jones = #alt.binari :@JSG
+>> :irc.underworld.no 353 jones = #ab :@JSG
+>> :irc.underworld.no 353 jones = #Slimey :SlimeyX Slimey
+>> :irc.underworld.no 353 jones = #DSW :@min1on
+>> :irc.underworld.no 353 jones = #curupted :sveny @min1on
+>> :irc.underworld.no 353 jones = #asdfghjklöä :@Away21
+>> :irc.underworld.no 353 jones = #TheSIDStation :@Away21
+>> :irc.underworld.no 353 jones = #zekeism :@kyoku-znc
+>> :irc.underworld.no 353 jones = #nzism :@kyoku-znc
+>> :irc.underworld.no 353 jones = #truthdare :Devs Drkmirror
+>> :irc.underworld.no 353 jones = #newsgrabberbot :luckcolor logchfo_1
+>> :irc.underworld.no 353 jones = #mamak :@kidrobot
+>> :irc.underworld.no 353 jones = #kampung :@kidrobot
+>> :irc.underworld.no 353 jones = #kl :@kidrobot
+>> :irc.underworld.no 353 jones = #toorcamp :nujabes
+>> :irc.underworld.no 353 jones = #dmt :@f_19_usa
+>> :irc.underworld.no 353 jones = #unite :anti_ms
+>> :irc.underworld.no 353 jones = #colond :@heeki_
+>> :irc.underworld.no 353 jones = #dz :@heeki_
+>> :irc.underworld.no 353 jones = #spacebar :@space
+>> :irc.underworld.no 353 jones = #oldcroc :@L0jik
+>> :irc.underworld.no 353 jones = #ThighHaus :@L0jik
+>> :irc.underworld.no 353 jones = #sf6 :@Kohr-Ah
+>> :irc.underworld.no 353 jones = #roms :@Kohr-Ah
+>> :irc.underworld.no 353 jones = #Testes :@Kiprocu
+>> :irc.underworld.no 353 jones = #alt.binaries.games.nintendo3ds :Hardrider @ris2z
+>> :irc.underworld.no 353 jones = #eu-admins :@ketas
+>> :irc.underworld.no 353 jones = #bsdusb :@ketas
+>> :irc.underworld.no 353 jones = #maryland :krzx_
+>> :irc.underworld.no 353 jones = #virginia :\subline krzx_
+>> :irc.underworld.no 353 jones = #va :krzx_
+>> :irc.underworld.no 353 jones = #buze :zonaj
+>> :irc.underworld.no 353 jones = #EnergyDjs :@Enrgy1200
+>> :irc.underworld.no 353 jones = #nvidia :@vgl
+>> :irc.underworld.no 353 jones = #mixtapes :@vgl
+>> :irc.underworld.no 353 jones = #amd :@vgl
+>> :irc.underworld.no 353 jones = #yt :@frh
+>> :irc.underworld.no 353 jones = #themanadrain :[Klep]_ [Klep]___
+>> :irc.underworld.no 353 jones = #rochester :Dave123_
+>> :irc.underworld.no 353 jones = #swingset :@e_tea
+>> :irc.underworld.no 353 jones = #kolbu :struggle THANEW
+>> :irc.underworld.no 353 jones = #Trivia2 :triviaman
+>> :irc.underworld.no 353 jones = #kveik2011 :ponco
+>> :irc.underworld.no 353 jones = #plum :@Angelz
+>> :irc.underworld.no 353 jones = #satcable :AnnieMac Stanton @Skream
+>> :irc.underworld.no 353 jones = #Straznice :reddy red75rpi_
+>> :irc.underworld.no 353 jones = #Peninsule-Acadienne :Dan @Ti-Ti
+>> :irc.underworld.no 353 jones = #delphiops :@ki9a
+>> :irc.underworld.no 353 jones = #OPLFEED :@OnPatrol
+>> :irc.underworld.no 353 jones = #hiphop-videos :@elkayhhv
+>> :irc.underworld.no 353 jones = #my :@kidrobot @emilda
+>> :irc.underworld.no 353 jones = #hhv :@elkayhhv
+>> :irc.underworld.no 353 jones = #tngnet :Ritche Peer
+>> :irc.underworld.no 353 jones = #horror :gravitaz
+>> :irc.underworld.no 353 jones = #meetingplace :@Ubik_
+>> :irc.underworld.no 353 jones = #NO-LOAFING :@Ubik_
+>> :irc.underworld.no 353 jones = #smokeweedeveryday :@Jungleman
+>> :irc.underworld.no 353 jones = #azr :@elkayhhv
+>> :irc.underworld.no 353 jones = #lk :@elkayhhv
+>> :irc.underworld.no 353 jones = #thewarmth :Lighthope
+>> :irc.underworld.no 353 jones = #Energy1200 :@Enrgy1200
+>> :irc.underworld.no 353 jones = #alero :@MrIce`
+>> :irc.underworld.no 353 jones = #fiend :@MrIce`
+>> :irc.underworld.no 353 jones = #bHQ :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #add :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #p-R-e :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #addnfo :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #nukenets :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #addurl :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #siteinfo :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #add-db.admin :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #add-db :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #botofsolaris :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #nukeSRC :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #sitepre.hq :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #newdir :@deviance @Oldest @imdb @securom
+>> :irc.underworld.no 353 jones = #Volition :@EnvyNUT
+>> :irc.underworld.no 353 jones = #DOD :@EnvyNUT
+>> :irc.underworld.no 353 jones = #DeMoN :@EnvyNUT
+>> :irc.underworld.no 353 jones = #IdleRPG-help :@RussBot` RussBot @AmiRuss2
+>> :irc.underworld.no 353 jones = #zonenet :@deviance @Oldest @imdb @securom @Marbitoz
+>> :irc.underworld.no 353 jones = #bootcamp :@BC-NFO @HelsAngel @Hell-NFO
+>> :irc.underworld.no 353 jones = #trivialand :@victorix
+>> :irc.underworld.no 353 jones = #vännäs :@joda
+>> :irc.underworld.no 353 jones = #fredrika :@joda
+>> :irc.underworld.no 353 jones = #bjurholm :@joda
+>> :irc.underworld.no 353 jones = #Vhost :@e_tea
+>> :irc.underworld.no 353 jones = #exiled :@e_tea
+>> :irc.underworld.no 353 jones = #Cricket :Picaso
+>> :irc.underworld.no 353 jones = #orkim :@orkim
+>> :irc.underworld.no 353 jones = #cemetech-staff :@Jonimus
+>> :irc.underworld.no 353 jones = #pickering :@\subline
+>> :irc.underworld.no 353 jones = #tennis :@\subline
+>> :irc.underworld.no 353 jones = #subline :@\subline
+>> :irc.underworld.no 353 jones = #nationals :@\subline
+>> :irc.underworld.no 353 jones = ##toronto :@\subline
+>> :irc.underworld.no 353 jones = #uoft :Aerith_Gx \subline
+>> :irc.underworld.no 353 jones = #libertarian :\subline
+>> :irc.underworld.no 353 jones = #Turks :MaRJiNaL Zeynep Swift_
+>> :irc.underworld.no 353 jones = #test0r :@CitizenX
+>> :irc.underworld.no 353 jones = #icons_of_prespam :@spinsane
+>> :irc.underworld.no 353 jones = #waddinxveen :@tiki @enjoos
+>> :irc.underworld.no 353 jones = #lan :@tiki @enjoos
+>> :irc.underworld.no 353 jones = #homebrew-connection :@_Swizzy
+>> :irc.underworld.no 353 jones = #djdje :@rain_
+>> :irc.underworld.no 353 jones = #geeksquad :@gibby
+>> :irc.underworld.no 353 jones = #mw-raves :@siezer_
+>> :irc.underworld.no 353 jones = #ExtremePRE :@ZarTek
+>> :irc.underworld.no 353 jones = #eXtADD :@ZarTek
+>> :irc.underworld.no 353 jones = #xihr :@xihr_
+>> :irc.underworld.no 353 jones = #jerkcity :@xihr_
+>> :irc.underworld.no 353 jones = #gaziza :@xihr_
+>> :irc.underworld.no 353 jones = #bonequest :@xihr_
+>> :irc.underworld.no 353 jones = #aaf :@xihr_
+>> :irc.underworld.no 353 jones = #Linux.stvg :@jedi
+>> :irc.underworld.no 353 jones = #Hundvåg :@jedi
+>> :irc.underworld.no 353 jones = #easyisp :@jedi
+>> :irc.underworld.no 353 jones = #xboxhacker :@jpsr
+>> :irc.underworld.no 353 jones = #leksehjelp :@nilsbert
+>> :irc.underworld.no 353 jones = #whatever :PaxAnima
+>> :irc.underworld.no 353 jones = #lab :@Kawliga
+>> :irc.underworld.no 353 jones = #yahoomsn :@yahoomsn
+>> :irc.underworld.no 353 jones = #titan.office :haskal2
+>> :irc.underworld.no 353 jones = #titan.bar :haskal2
+>> :irc.underworld.no 353 jones = #idib2 :racketee-
+>> :irc.underworld.no 353 jones = #jarochos :@aura__
+>> :irc.underworld.no 353 jones = #Veracruz :@aura__
+>> :irc.underworld.no 353 jones = #googleminus :@pikami
+>> :irc.underworld.no 353 jones = #toolmusic :@Skunny
+>> :irc.underworld.no 353 jones = #mcs :@b0b
+>> :irc.underworld.no 353 jones = #irc.mcs.net :@b0b
+>> :irc.underworld.no 353 jones = #nitemare :@tjr__
+>> :irc.underworld.no 353 jones = #tileague :@cowboy
+>> :irc.underworld.no 353 jones = #pcbboard :@scutage
+>> :irc.underworld.no 353 jones = #altmusic :@ecaf1337
+>> :irc.underworld.no 353 jones = #spiritualism :@badman
+>> :irc.underworld.no 353 jones = #shintoism :@badman
+>> :irc.underworld.no 353 jones = #shinto :@badman
+>> :irc.underworld.no 353 jones = #rupnow :@badman
+>> :irc.underworld.no 353 jones = #radfemhitler :@badman
+>> :irc.underworld.no 353 jones = #natalierupnow :@badman
+>> :irc.underworld.no 353 jones = #natalie :@badman
+>> :irc.underworld.no 353 jones = #luigimangione :@badman
+>> :irc.underworld.no 353 jones = #luigi :@badman
+>> :irc.underworld.no 353 jones = #flirtyfishing :@badman
+>> :irc.underworld.no 353 jones = #badcave :@badman
+>> :irc.underworld.no 353 jones = #MakeAIDSFatalAgain :@badman
+>> :irc.underworld.no 353 jones = #MAFA :@badman
+>> :irc.underworld.no 353 jones = #AmishCaravan :@badman
+>> :irc.underworld.no 353 jones = #no-nonsense :@m0c-
+>> :irc.underworld.no 353 jones = #worm :@anjii
+>> :irc.underworld.no 353 jones = #skullgang :@anjii
+>> :irc.underworld.no 353 jones = #clubpenguin :@anjii
+>> :irc.underworld.no 353 jones = #banirccloud :@anjii
+>> :irc.underworld.no 353 jones = #SPSG :@anjii
+>> :irc.underworld.no 353 jones = #MilkFirst :@anjii
+>> :irc.underworld.no 353 jones = #adun.se :@Kottizen
+>> :irc.underworld.no 353 jones = #ps6 :@olus @arenite
+>> :irc.underworld.no 353 jones = #tralala :@klx
+>> :irc.underworld.no 353 jones = #meatloaf :idolpx
+>> :irc.underworld.no 353 jones = #csdb :idolpx
+>> :irc.underworld.no 353 jones = #style64 :_dW idolpx
+>> :irc.underworld.no 353 jones = #berg :@tat
+>> :irc.underworld.no 353 jones = #belem :@neskau @order
+>> :irc.underworld.no 353 jones = #sl0th :@ops
+>> :irc.underworld.no 353 jones = #deaf :krzx_
+>> :irc.underworld.no 353 jones = #lonely :us we me
+>> :irc.underworld.no 353 jones = #cracks :mofo-x
+>> :irc.underworld.no 353 jones = #chex :@CerealBot
+>> :irc.underworld.no 353 jones = #shellz :mball
+>> :irc.underworld.no 353 jones = #mung-markets :@roof
+>> :irc.underworld.no 353 jones = #bass :@roof
+>> :irc.underworld.no 353 jones = #robstack :tacobot @syrinx
+>> :irc.underworld.no 353 jones = #skull2 :@L0jik
+>> :irc.underworld.no 353 jones = #sonicempire :vulture_
+>> :irc.underworld.no 353 jones = #bafh :vulture_
+>> :irc.underworld.no 353 jones = #se :vulture_
+>> :irc.underworld.no 353 jones = #gamedev.se :dvoid
+>> :irc.underworld.no 353 jones = #neogeoiso :XNDL
+>> :irc.underworld.no 353 jones = #wassup :@vexorg
+>> :irc.underworld.no 353 jones = #allroy :@vexorg
+>> :irc.underworld.no 353 jones = #the_collective :@vexorg
+>> :irc.underworld.no 353 jones = #mp3indie :brine @Pio
+>> :irc.underworld.no 353 jones = #w00w00 :@Retarded
+>> :irc.underworld.no 353 jones = #ozark :@Retarded
+>> :irc.underworld.no 353 jones = #jp :@Retarded
+>> :irc.underworld.no 353 jones = #incel :@Retarded
+>> :irc.underworld.no 353 jones = ##metal :@Retarded
+>> :irc.underworld.no 353 jones = #Wiccan :@Zeke @Medusa @Abu
+>> :irc.underworld.no 353 jones = #Dead-Stick :@Zeke @Medusa @Abu
+>> :irc.underworld.no 353 jones = #aquilla-palace :Naishai
+>> :irc.underworld.no 353 jones = #BeerClub :@ispookan @Spookan @idlerman @Sicarius @linuxyo
+>> :irc.underworld.no 353 jones = #twisted :@n0ne` @gh0st0
+>> :irc.underworld.no 353 jones = #evilcore :@AllanJude
+>> :irc.underworld.no 353 jones = #corex :@AllanJude
+>> :irc.underworld.no 353 jones = #core9 :@AllanJude
+>> :irc.underworld.no 353 jones = #switchdev-ot :ihaveamac
+>> :irc.underworld.no 353 jones = #ipv4 :@leisrich
+>> :irc.underworld.no 353 jones = #i :@CVBot
+>> :irc.underworld.no 353 jones = #comictech :@CVBot
+>> :irc.underworld.no 353 jones = #rcfreak0-op :@CVBot
+>> :irc.underworld.no 353 jones = #garbagelivesmatter :@Maharaja
+>> :irc.underworld.no 353 jones = #makegarbagegreatagain :@Maharaja
+>> :irc.underworld.no 353 jones = #makeamericagreatagain :@Maharaja
+>> :irc.underworld.no 353 jones = #NOAA :@Maharaja
+>> :irc.underworld.no 353 jones = #banned :e_tea
+>> :irc.underworld.no 353 jones = #cosmicblue :Berserker
+>> :irc.underworld.no 353 jones = #archiveteam-cabal :@kiska20
+>> :irc.underworld.no 353 jones = #pirations :@armadura
+>> :irc.underworld.no 353 jones = #snakes :@MatCat
+>> :irc.underworld.no 353 jones = #一=テ┳︻ :@ottoseer
+>> :irc.underworld.no 353 jones = #! :@III
+>> :irc.underworld.no 353 jones = #igloo :@eskimo
+>> :irc.underworld.no 353 jones = #amapa :@campari @maverick|
+>> :irc.underworld.no 353 jones = #theyard :@bUd^oo
+>> :irc.underworld.no 353 jones = #mycalcs-vip :Discord82 @CVBot @PentiumII @notipa
+>> :irc.underworld.no 353 jones = #parasiteanime :youli effriti @Miri
+>> :irc.underworld.no 353 jones = #upsd :@arny
+>> :irc.underworld.no 353 jones = #horses :@arny
+>> :irc.underworld.no 353 jones = #horse :@arny
+>> :irc.underworld.no 353 jones = #3dfxmc :bowbot
+>> :irc.underworld.no 353 jones = #bbq :@foofur
+>> :irc.underworld.no 353 jones = #dice :@FireBot @fire|tl @h|tl @h_ @_9pfs]
+>> :irc.underworld.no 353 jones = #chex99 :CerealBot
+>> :irc.underworld.no 353 jones = #hondaklubben :Mordiax
+>> :irc.underworld.no 353 jones = #ladies :us loller_ we me
+>> :irc.underworld.no 353 jones = #misscleo :@MissCleo
+>> :irc.underworld.no 353 jones = #offgridanarchy :@linuxyo
+>> :irc.underworld.no 353 jones = #ghosts :@linuxyo
+>> :irc.underworld.no 353 jones = #Darklite :zokum
+>> :irc.underworld.no 353 jones = #tearlist :@LRH
+>> :irc.underworld.no 353 jones = #mega :l0de gay4pay @l0dey
+>> :irc.underworld.no 353 jones = #lesbian :@Poetic___
+>> :irc.underworld.no 353 jones = #Trivia_Crib :@Poetic___
+>> :irc.underworld.no 353 jones = #HEAFS :@LRH
+>> :irc.underworld.no 353 jones = #sn-btops :@Poetic___
+>> :irc.underworld.no 353 jones = #tolivealie :@fastcore_
+>> :irc.underworld.no 353 jones = #optics :@_sol_____
+>> :irc.underworld.no 353 jones = #ee :@_sol_____
+>> :irc.underworld.no 353 jones = #Magick :@_sol_____
+>> :irc.underworld.no 353 jones = #Germania :Notoriou- @BiKeRBoY @Craiova
+>> :irc.underworld.no 353 jones = #ircd :+haarek
+>> :irc.underworld.no 353 jones = #dolphin-emu :oldtopman
+>> :irc.underworld.no 353 jones = #pokemongo :whiteking Aerith_Gx CoMBo
+>> :irc.underworld.no 353 jones = #cactus :@bison
+>> :irc.underworld.no 353 jones = #huncentral :@l23456
+>> :irc.underworld.no 353 jones = #thecity :@nck
+>> :irc.underworld.no 353 jones = #profflisens :@Pompel
+>> :irc.underworld.no 353 jones = #fmnorge :@Pompel
+>> :irc.underworld.no 353 jones = #brann :@Pompel
+>> :irc.underworld.no 353 jones = #FUT :@Pompel
+>> :irc.underworld.no 353 jones = #espanol :@Mintle
+>> :irc.underworld.no 353 jones = #deathrow :@Shane @w3stside
+>> :irc.underworld.no 353 jones = #olehabba :m1k[3y]
+>> :irc.underworld.no 353 jones = #ssbbrawl :||
+>> :irc.underworld.no 353 jones = #br4in-admin :LHS
+>> :irc.underworld.no 353 jones = #wizardry :zokum
+>> :irc.underworld.no 353 jones = #quizz :obelix asterix victorix
+>> :irc.underworld.no 353 jones = #trivia-francais :asterix victorix
+>> :irc.underworld.no 353 jones = #russian.literature :asterix victorix
+>> :irc.underworld.no 353 jones = #jeux :asterix victorix
+>> :irc.underworld.no 353 jones = #bangka :asterix victorix
+>> :irc.underworld.no 353 jones = #straightpride :dave
+>> :irc.underworld.no 353 jones = #grindcore :tdaddy62 nordaxe nordac
+>> :irc.underworld.no 353 jones = #\m/ :nordaxe nordac
+>> :irc.underworld.no 353 jones = #metal.org :nordaxe nordac
+>> :irc.underworld.no 353 jones = #got :@dboard2
+>> :irc.underworld.no 353 jones = #ytmnd :@dboard420
+>> :irc.underworld.no 353 jones = #chelsea :yahoomsn
+>> :irc.underworld.no 353 jones = #zzyzx :@alt|away
+>> :irc.underworld.no 353 jones = #so :@Skyfish
+>> :irc.underworld.no 353 jones = #oldscene :@Skyfish
+>> :irc.underworld.no 353 jones = #cricky&noxas :@Cricky
+>> :irc.underworld.no 353 jones = #ovial :guisch b4t_
+>> :irc.underworld.no 353 jones = #openbsd.se :@Uttern
+>> :irc.underworld.no 353 jones = #kode :kbsLxtPht
+>> :irc.underworld.no 353 jones = #bigwyyzradio :@agatha
+>> :irc.underworld.no 353 jones = #kmart :@agatha
+>> :irc.underworld.no 353 jones = #lansd :@agatha
+>> :irc.underworld.no 353 jones = #dyndns :@alh
+>> :irc.underworld.no 353 jones = #alt.binaries.tvseries :thomsloan
+>> :irc.underworld.no 353 jones = #zfsonlinux :lystra_
+>> :irc.underworld.no 353 jones = #cgi :@spork
+>> :irc.underworld.no 353 jones = #planetofnix :Angelz planetofn
+>> :irc.underworld.no 353 jones = #quadriga :bish0p
+>> :irc.underworld.no 353 jones = #sportsbook :bish0p
+>> :irc.underworld.no 353 jones = #PoE :GumbyBRAI
+>> :irc.underworld.no 353 jones = #chisysadmins :tim
+>> :irc.underworld.no 353 jones = #pyite :loveleigh
+>> :irc.underworld.no 353 jones = #spectre :@druid
+>> :irc.underworld.no 353 jones = #oddprotocol :Angelz @druid
+>> :irc.underworld.no 353 jones = #Mathias :@Mathias
+>> :irc.underworld.no 353 jones = #matrix :constanti
+>> :irc.underworld.no 353 jones = #Betters :@constanti
+>> :irc.underworld.no 353 jones = #vhicago :@orb
+>> :irc.underworld.no 353 jones = #OhioState :@theLand
+>> :irc.underworld.no 353 jones = #zorchenhimer :@LkBurn
+>> :irc.underworld.no 353 jones = #mmatv :@LkBurn
+>> :irc.underworld.no 353 jones = #sinewave :nance navi` nancy
+>> :irc.underworld.no 353 jones = #abchat :@Bosaik
+>> :irc.underworld.no 353 jones = #aplus :@Bosaik
+>> :irc.underworld.no 353 jones = #k77 :HA1337
+>> :irc.underworld.no 353 jones = #hackpl :skope
+>> :irc.underworld.no 353 jones = #hose :@Socip_E3
+>> :irc.underworld.no 353 jones = #as400 :@erebus
+>> :irc.underworld.no 353 jones = #australia :Goddess1 mildseven
+>> :irc.underworld.no 353 jones = #shelter :@^kazak^ @firecat^
+>> :irc.underworld.no 353 jones = #kratom :gravitaz vb_
+>> :irc.underworld.no 353 jones = #tc9 :@Uttern
+>> :irc.underworld.no 353 jones = #servicedesk :@Uttern
+>> :irc.underworld.no 353 jones = #dvd_r :@Uttern
+>> :irc.underworld.no 353 jones = #idsbl :ialokin
+>> :irc.underworld.no 353 jones = #piratez :@Uttern
+>> :irc.underworld.no 353 jones = #openbsd.nu :@Uttern
+>> :irc.underworld.no 353 jones = #nsHome :ialokin
+>> :irc.underworld.no 353 jones = #BT-Chat :@wang
+>> :irc.underworld.no 353 jones = #philly :schilling @flyer
+>> :irc.underworld.no 353 jones = #ogc :@ground0
+>> :irc.underworld.no 353 jones = #modestmouse :@adamDavis
+>> :irc.underworld.no 353 jones = #flashparty :@Bombe
+>> :irc.underworld.no 353 jones = #biggen :@blathijs
+>> :irc.underworld.no 353 jones = #Ipad :Jinx-Pi2W Maharaja
+>> :irc.underworld.no 353 jones = #threads :Maharaja
+>> :irc.underworld.no 353 jones = #bookz :Eugor
+>> :irc.underworld.no 353 jones = #book :paul Eugor
+>> :irc.underworld.no 353 jones = #/list :Eugor
+>> :irc.underworld.no 353 jones = #majncraft :@pulec
+>> :irc.underworld.no 353 jones = #majncraft.game :@pulec
+>> :irc.underworld.no 353 jones = #hrnec :@pulec
+>> :irc.underworld.no 353 jones = #vraq :@modin
+>> :irc.underworld.no 353 jones = #mellovision :@modin
+>> :irc.underworld.no 353 jones = #kthkista :@modin
+>> :irc.underworld.no 353 jones = #kth :@modin
+>> :irc.underworld.no 353 jones = #ozcable :mildseven
+>> :irc.underworld.no 353 jones = #prosit :@inamo
+>> :irc.underworld.no 353 jones = #inamo-test :@inamo
+>> :irc.underworld.no 353 jones = #electronic_warfare :@sonic_
+>> :irc.underworld.no 353 jones = ######### :@Collyk
+>> :irc.underworld.no 353 jones = #HD-x.ADMINs :@HDx2k18
+>> :irc.underworld.no 353 jones = #HD-x :@HDx2k18
+>> :irc.underworld.no 353 jones = #godeshoehe :hammel sonic_ @hansel_
+>> :irc.underworld.no 353 jones = #birdbirdbird :@aves
+>> :irc.underworld.no 353 jones = #wyzzards-tower :@runit
+>> :irc.underworld.no 353 jones = #hardgaychats :@runit
+>> :irc.underworld.no 353 jones = #dawhla :@runit
+>> :irc.underworld.no 353 jones = #afterparty :@runit
+>> :irc.underworld.no 353 jones = #MeToo :@runit
+>> :irc.underworld.no 353 jones = #stonkz :arenite
+>> :irc.underworld.no 353 jones = #[-cap-] :]-cap-[
+>> :irc.underworld.no 353 jones = #srrxxx :aox
+>> :irc.underworld.no 353 jones = #burningman :@stratum_
+>> :irc.underworld.no 353 jones = #goodspirit :@posty
+>> :irc.underworld.no 353 jones = #nycmeshnet :@maylay
+>> :irc.underworld.no 353 jones = #blacktwitter :spinsane
+>> :irc.underworld.no 353 jones = #goth :@nits_77
+>> :irc.underworld.no 353 jones = #redwood :Alder @notorious
+>> :irc.underworld.no 353 jones = #chatsubo :@slyeandth @inc__
+>> :irc.underworld.no 353 jones = #infostudis :timayd
+>> :irc.underworld.no 353 jones = #goequiz :timayd
+>> :irc.underworld.no 353 jones = #papermoon :@EqUaTe
+>> :irc.underworld.no 353 jones = #JBT2000 :@JBT0002
+>> :irc.underworld.no 353 jones = #chart.dk :@down1
+>> :irc.underworld.no 353 jones = #614 :@scotek
+>> :irc.underworld.no 353 jones = #yahoosucks :Terbium
+>> :irc.underworld.no 353 jones = #pythons-attack-y! :Terbium
+>> :irc.underworld.no 353 jones = #soundbutt :luckcolor
+>> :irc.underworld.no 353 jones = #SketchedOut :luckcolor
+>> :irc.underworld.no 353 jones = #malaysia :df kidrobot
+>> :irc.underworld.no 353 jones = #blacksun :@nita
+>> :irc.underworld.no 353 jones = #flying :diNGo KD
+>> :irc.underworld.no 353 jones = #business :hams @ionizer
+>> :irc.underworld.no 353 jones = #projectnewsletter :logchfo_1
+>> :irc.underworld.no 353 jones = #Bar :Patron
+>> :irc.underworld.no 353 jones = #allillegal :@xshadowx
+>> :irc.underworld.no 353 jones = #netstumbler :icmps
+>> :irc.underworld.no 353 jones = #dallas :Ritche @Death_Syn
+>> :irc.underworld.no 353 jones = #tardbin :@Death_Syn
+>> :irc.underworld.no 353 jones = #suc :pimp
+>> :irc.underworld.no 353 jones = #187 :@+II @+III
+>> :irc.underworld.no 353 jones = #gps :foofur
+>> :irc.underworld.no 353 jones = #703 :@ITechGeek
+>> :irc.underworld.no 353 jones = #NOVA :JQE @Maester|A
+>> :irc.underworld.no 353 jones = #Aurora :JQE _Swizzy @Maester|A
+>> :irc.underworld.no 353 jones = #xebuild :JQE _Swizzy @[cOz]
+>> :irc.underworld.no 353 jones = #budlight :@kuato
+>> :irc.underworld.no 353 jones = #gamme :@kuato
+>> :irc.underworld.no 353 jones = #splunk-dev :karr amrit-
+>> :irc.underworld.no 353 jones = #statsy :goals @statsy
+>> :irc.underworld.no 353 jones = #recording-studio-live-chat :mDRealTng
+>> :irc.underworld.no 353 jones = #Kanji :[KiTA]
+>> :irc.underworld.no 353 jones = #dogs :centie
+>> :irc.underworld.no 353 jones = #r00m :@nightfrog
+>> :irc.underworld.no 353 jones = #messdev :sairuk-
+>> :irc.underworld.no 353 jones = #ambo :@ambo @zenik
+>> :irc.underworld.no 353 jones = ##Brasil :Jubilal Miromba Kiprocu @InterIRC @Tigrinho
+>> :irc.underworld.no 353 jones = ##WorldChat :@InterIRC @Tigrinho
+>> :irc.underworld.no 353 jones = #curry :Toll_Work Toll_Free
+>> :irc.underworld.no 353 jones = #cod :Toll_Work Toll_Free
+>> :irc.underworld.no 353 jones = #athletics :\subline
+>> :irc.underworld.no 353 jones = #chanstat :@ChanStat
+>> :irc.underworld.no 353 jones = #dot :@Marantz
+>> :irc.underworld.no 353 jones = #rom-fusion :@Ghabry
+>> :irc.underworld.no 353 jones = #ProjectBlueBeam :@armeni
+>> :irc.underworld.no 353 jones = #BlueBeam :@armeni
+>> :irc.underworld.no 353 jones = #PBB :@armeni
+>> :irc.underworld.no 353 jones = #solana :hamzzzz
+>> :irc.underworld.no 353 jones = #req :@useretail
+>> :irc.underworld.no 353 jones = #zoot-suits :srsstix1
+>> :irc.underworld.no 353 jones = #nabolaget :@jorg
+>> :irc.underworld.no 353 jones = #phrozencrew :sniff-
+>> :irc.underworld.no 353 jones = #test56734 :@rando
+>> :irc.underworld.no 353 jones = #irc.is.dead :@skope
+>> :irc.underworld.no 353 jones = #area51 :aura__
+>> :irc.underworld.no 353 jones = #nlpoker :@luny
+>> :irc.underworld.no 353 jones = #.NET :@luny
+>> :irc.underworld.no 353 jones = #acid :zokum
+>> :irc.underworld.no 353 jones = #kristiansand :numeo
+>> :irc.underworld.no 353 jones = #itpro :numeo
+>> :irc.underworld.no 353 jones = #the-void :@joesmoe
+>> :irc.underworld.no 353 jones = #jama :syndrom
+>> :irc.underworld.no 353 jones = #llama :Quazgaa
+>> :irc.underworld.no 353 jones = #rewt :opie4624
+>> :irc.underworld.no 353 jones = #foppall :@IRCNO
+>> :irc.underworld.no 353 jones = #c.no :@IRCNO
+>> :irc.underworld.no 353 jones = #activeirc :@IRCNO
+>> :irc.underworld.no 353 jones = #start.no :@IRCNO
+>> :irc.underworld.no 353 jones = #witch-house :@IRCNO
+>> :irc.underworld.no 353 jones = #halden :IRCNO @Takapa
+>> :irc.underworld.no 353 jones = #!raphidae@mzima.dronemon :@EliDupree
+>> :irc.underworld.no 353 jones = #host1 :IRCNO @krage
+>> :irc.underworld.no 353 jones = #ranalan :@krage
+>> :irc.underworld.no 353 jones = #icehockey :Fresco
+>> :irc.underworld.no 353 jones = #mif :dstien
+>> :irc.underworld.no 353 jones = #mm3 :dstien
+>> :irc.underworld.no 353 jones = #mm2 :dstien
+>> :irc.underworld.no 353 jones = #despotify :dstien
+>> :irc.underworld.no 353 jones = #stunts :Shadow_ dstien
+>> :irc.underworld.no 353 jones = #tacos :DobbS syrinx
+>> :irc.underworld.no 353 jones = #cali :\subline
+>> :irc.underworld.no 353 jones = #securefiber :\subline
+>> :irc.underworld.no 353 jones = #calneva :\subline
+>> :irc.underworld.no 353 jones = #metadock :larsinio
+>> :irc.underworld.no 353 jones = #Horten :@CybKnight
+>> :irc.underworld.no 353 jones = #appcompat :CatButts ]_
+>> :irc.underworld.no 353 jones = #phish :cajuncook
+>> :irc.underworld.no 353 jones = #orangelivesmatter :dave
+>> :irc.underworld.no 353 jones = #FriendlyDojo :@pluto
+>> :irc.underworld.no 353 jones = #Kickasstorrents.com :@Spiritas @Cattorren @Aliska1 +Scarlet +Hector
+>> :irc.underworld.no 353 jones = #KOnAmi :@Spiritas @Cattorren @Aliska1
+>> :irc.underworld.no 353 jones = #peacesfgc :@Darn
+>> :irc.underworld.no 353 jones = #darnefnet :@Darn
+>> :irc.underworld.no 353 jones = #ActualHelp :@Darn
+>> :irc.underworld.no 353 jones = #Tanaweb :@Jubilal @InterIRC Murduk @Tigrinho @Kiprocu @Zoldax @Miromba
+>> :irc.underworld.no 353 jones = #InterIRC :@Jubilal @InterIRC Murduk @Tigrinho @Kiprocu @Zoldax @Miromba
+>> :irc.underworld.no 353 jones = #Cebolinha :@Jubilal @InterIRC Murduk @Tigrinho @Kiprocu @Zoldax @Miromba
+>> :irc.underworld.no 353 jones = #jacksoow :@Jubilal @InterIRC Murduk @Tigrinho Kiprocu @Miromba
+>> :irc.underworld.no 353 jones = #XTC :@DexLV
+>> :irc.underworld.no 353 jones = #assassins :@min
+>> :irc.underworld.no 353 jones = #bongs :@min
+>> :irc.underworld.no 353 jones = #Klingon :Worf
+>> :irc.underworld.no 353 jones = #interburn :@creator
+>> :irc.underworld.no 353 jones = #theseus :@posty @lockie
+>> :irc.underworld.no 353 jones = #formula1 :x11-62 @cris10an
+>> :irc.underworld.no 353 jones = #nsa :@webdawg
+>> :irc.underworld.no 353 jones = #Catholicism :Dave123_ emode2
+>> :irc.underworld.no 353 jones = #philosophical :@shit MINNIE18
+>> :irc.underworld.no 353 jones = #minnie18 :minnieme @MINNIE18 Darn
+>> :irc.underworld.no 353 jones = #ropium :@badman
+>> :irc.underworld.no 353 jones = #:heart: :@panndora @pankakes
+>> :irc.underworld.no 353 jones = #bifemunix :@LabMonkey
+>> :irc.underworld.no 353 jones = #videogaming :@Dman4Life
+>> :irc.underworld.no 353 jones = #videogames2 :@Dman4Life
+>> :irc.underworld.no 353 jones = #playstation :@Dman4Life
+>> :irc.underworld.no 353 jones = #gaming :@Dman4Life
+>> :irc.underworld.no 353 jones = #capsicum :fbsdslack AllanJude
+>> :irc.underworld.no 353 jones = #partydome :@jsqv
+>> :irc.underworld.no 353 jones = #macwarez :@jsqv
+>> :irc.underworld.no 353 jones = #deadinside :@yeenoghu
+>> :irc.underworld.no 353 jones = #awesome2.0 :@marek
+>> :irc.underworld.no 353 jones = #frontrangebug :@reidl
+>> :irc.underworld.no 353 jones = #pandemic :tdaddy62 vgl CoronaBot sYN4P515_
+>> :irc.underworld.no 353 jones = #witch :Rein Gothi[c]
+>> :irc.underworld.no 353 jones = #Gujranwala :Shahensha @UsmanAli_ alphatec- Usman_
+>> :irc.underworld.no 353 jones = #Sialkot :Shahensha UsmanAli_ alphatec-
+>> :irc.underworld.no 353 jones = #/test\ :Sassy @Austin
+>> :irc.underworld.no 353 jones = #ddr :Mayonaise
+>> :irc.underworld.no 353 jones = #win10 :@giesen
+>> :irc.underworld.no 353 jones = #win11 :@giesen
+>> :irc.underworld.no 353 jones = #winchan :@giesen
+>> :irc.underworld.no 353 jones = #nflticket :@NaiWiste
+>> :irc.underworld.no 353 jones = #ircuser00 :@ircuser06
+>> :irc.underworld.no 353 jones = #life :@chutz
+>> :irc.underworld.no 353 jones = #siple :Death_Syn
+>> :irc.underworld.no 353 jones = #calc-ti :Patrick-D
+>> :irc.underworld.no 353 jones = #ti-files :Patrick-D
+>> :irc.underworld.no 353 jones = #ti-net :Patrick-D
+>> :irc.underworld.no 353 jones = #honda :Darn
+>> :irc.underworld.no 353 jones = #ccb :cliffi
+>> :irc.underworld.no 353 jones = #mups :cliffi
+>> :irc.underworld.no 353 jones = #kosmo :cliffi
+>> :irc.underworld.no 353 jones = #radiohead :airbag @n00bhippy @adamDavis
+>> :irc.underworld.no 353 jones = #YesALLWomen :@pluto
+>> :irc.underworld.no 353 jones = #cavern :@pluto
+>> :irc.underworld.no 353 jones = #aegis :aegis
+>> :irc.underworld.no 353 jones = #scenetrivia :JoC
+>> :irc.underworld.no 353 jones = #the_lot :Nota_ @adamDavis
+>> :irc.underworld.no 353 jones = #UT :Pompel Gizmo
+>> :irc.underworld.no 353 jones = #riko :^tinman^
+>> :irc.underworld.no 353 jones = #tardis :^tinman^
+>> :irc.underworld.no 353 jones = #triviaworld :^tinman^
+>> :irc.underworld.no 353 jones = #ashley :ihasdivui smashgrab
+>> :irc.underworld.no 353 jones = #warez-paige :CompWizrd Ysean
+>> :irc.underworld.no 353 jones = #tempf2room :voodoo070
+>> :irc.underworld.no 353 jones = #vbnorge :@Peppe
+>> :irc.underworld.no 353 jones = #middle-earth :@Peppe
+>> :irc.underworld.no 353 jones = #manetheren :@Peppe
+>> :irc.underworld.no 353 jones = #korax :pearax zeurkous
+>> :irc.underworld.no 353 jones = #darkweb :rookie_25
+>> :irc.underworld.no 353 jones = #anime&videogames :us loller_ we me ircuser06
+>> :irc.underworld.no 353 jones = #radio :+kylefoth +om4e
+>> :irc.underworld.no 353 jones = #prison :explodes
+>> :irc.underworld.no 353 jones = #BosaikHats :BN-Relay @CVBot @PentiumII @notipa @Bosaik
+>> :irc.underworld.no 353 jones = #skunny :BoM-SKwad Skunny
+>> :irc.underworld.no 353 jones = #infernet :shakal
+>> :irc.underworld.no 353 jones = #lynx :efrank
+>> :irc.underworld.no 353 jones = #arnprior :xer
+>> :irc.underworld.no 353 jones = #c0de :@dio
+>> :irc.underworld.no 353 jones = #eisohq :@tr4x
+>> :irc.underworld.no 353 jones = #blazn :pyr0
+>> :irc.underworld.no 353 jones = #heavens-gate :sonikk_ BoRaaS-
+>> :irc.underworld.no 353 jones = #propaganda :Arevik @Solaris
+>> :irc.underworld.no 353 jones = #warez2 :Ysean WangYard
+>> :irc.underworld.no 353 jones = #warez3 :Ysean WangYard
+>> :irc.underworld.no 353 jones = #warez4 :Ysean WangYard
+>> :irc.underworld.no 353 jones = #alt.binaries.erotica :@brumbrum
+>> :irc.underworld.no 353 jones = #tore.neset :@Jallenbo
+>> :irc.underworld.no 353 jones = #lexx :@Anubis169
+>> :irc.underworld.no 353 jones = #eztv-bitch :@Anubis169
+>> :irc.underworld.no 353 jones = #mde :Retarded
+>> :irc.underworld.no 353 jones = #gabber :TAFKAMP_
+>> :irc.underworld.no 353 jones = #cosmology :@dOm3r
+>> :irc.underworld.no 353 jones = #crystalpeak :@zacie
+>> :irc.underworld.no 353 jones = #syria :RoyMercer @ElRonaldo
+>> :irc.underworld.no 353 jones = #OpenChat :@CrazyBonz
+>> :irc.underworld.no 353 jones = #Atari8bits :@CrazyBonz
+>> :irc.underworld.no 353 jones = #expresscart :@CrazyBonz
+>> :irc.underworld.no 353 jones = ##atari :Snail CrazyBonz
+>> :irc.underworld.no 353 jones = #thelabs :silenz @Harbaugh
+>> :irc.underworld.no 353 jones = #detnet :Anubis169
+>> :irc.underworld.no 353 jones = #hotbox :karr amrit-
+>> :irc.underworld.no 353 jones = #myadminchannel :@c|oneman
+>> :irc.underworld.no 353 jones = #unpolitical :@Solaris
+>> :irc.underworld.no 353 jones = #wgetlua :_niklas_
+>> :irc.underworld.no 353 jones = #2umbledown :_niklas_
+>> :irc.underworld.no 353 jones = #textreamer :_niklas_
+>> :irc.underworld.no 353 jones = #pentest :__a ads
+>> :irc.underworld.no 353 jones = #candyshop.mp3 :ads
+>> :irc.underworld.no 353 jones = #mm2k :flaccidon
+>> :irc.underworld.no 353 jones = #DOStalgia :@DeusQain
+>> :irc.underworld.no 353 jones = #teklinux :@DeusQain
+>> :irc.underworld.no 353 jones = #LegacyOfQain :@DeusQain
+>> :irc.underworld.no 353 jones = #deals-chat :@Deals
+>> :irc.underworld.no 353 jones = #gp32dev :@Orkie
+>> :irc.underworld.no 353 jones = #gp32 :@Orkie
+>> :irc.underworld.no 353 jones = #gp2x :@Orkie
+>> :irc.underworld.no 353 jones = #stefan_hans :@stefan
+>> :irc.underworld.no 353 jones = #d0m3r :@dOm3r
+>> :irc.underworld.no 353 jones = #ps3downgrade :barnito
+>> :irc.underworld.no 353 jones = #djt2024 :+yarg
+>> :irc.underworld.no 353 jones = #illuminati :captnkirk
+>> :irc.underworld.no 353 jones = #doctor64 :cliffi
+>> :irc.underworld.no 353 jones = #smspower :AmonX panzeroce
+>> :irc.underworld.no 353 jones = #chess :m1ke
+>> :irc.underworld.no 353 jones = #queers :@devnu11
+>> :irc.underworld.no 353 jones = #homo :@devnu11
+>> :irc.underworld.no 353 jones = #gaygeeks :@devnu11
+>> :irc.underworld.no 353 jones = #Windrop :@devnu11
+>> :irc.underworld.no 353 jones = #tribalwar :MrIce`
+>> :irc.underworld.no 353 jones = #insomniac :@nix4me @FDA
+>> :irc.underworld.no 353 jones = #evildojo.com :aimilf @jewbird
+>> :irc.underworld.no 353 jones = #thewavebot :@WaveBot @crystal
+>> :irc.underworld.no 353 jones = #symbian :@crystal
+>> :irc.underworld.no 353 jones = #ufology :Arevik @Cyborg
+>> :irc.underworld.no 353 jones = #omghax :@^ditto @diogenes @+redlegion
+>> :irc.underworld.no 353 jones = #circus :Arevik armeni @Nemesys
+>> :irc.underworld.no 353 jones = #er0kdren :@nerdk0re
+>> :irc.underworld.no 353 jones = #grafik :GRID
+>> :irc.underworld.no 353 jones = #TyrylPreparesForJeopardy :@cooey
+>> :irc.underworld.no 353 jones = #ugology :@Cyborg
+>> :irc.underworld.no 353 jones = #os/2 :@CrazyBonz
+>> :irc.underworld.no 353 jones = #阴阳 :@Minnen
+>> :irc.underworld.no 353 jones = #天 :@Minnen
+>> :irc.underworld.no 353 jones = #retro :zoot2 @zoot
+>> :irc.underworld.no 353 jones = #remixcommodore :zoot2 @zoot
+>> :irc.underworld.no 353 jones = #klangforschung :zoot2 @zoot
+>> :irc.underworld.no 353 jones = #RealModScene :barnito JQE justme
+>> :irc.underworld.no 353 jones = #AUDIO0DAY :@inhiding
+>> :irc.underworld.no 353 jones = #minetest :@inhiding
+>> :irc.underworld.no 353 jones = #kung-fo :GTP Mayonaise
+>> :irc.underworld.no 353 jones = #industrial :@inhiding
+>> :irc.underworld.no 353 jones = #Bubbles :CoLoN barnito LuGgz
+>> :irc.underworld.no 353 jones = #pascal :cp- ads
+>> :irc.underworld.no 353 jones = #jagermeister :JL
+>> :irc.underworld.no 353 jones = #juhuism :juhu Colgate
+>> :irc.underworld.no 353 jones = #MoZilla :smash
+>> :irc.underworld.no 353 jones = #tvspel :josk
+>> :irc.underworld.no 353 jones = #techno :latez
+>> :irc.underworld.no 353 jones = #m0m0 :latez
+>> :irc.underworld.no 353 jones = #tronix :megaphysx
+>> :irc.underworld.no 353 jones = #dsp :@CatButts @crystal
+>> :irc.underworld.no 353 jones = #MINECHAT :@cooey
+>> :irc.underworld.no 353 jones = #uppretro :josk
+>> :irc.underworld.no 353 jones = #slothana :@Cequel
+>> :irc.underworld.no 353 jones = #wiimod :barnito
+>> :irc.underworld.no 353 jones = #goonsquad :@gusto
+>> :irc.underworld.no 353 jones = #Ass :larsinio
+>> :irc.underworld.no 353 jones = #sendmail :@TWT_
+>> :irc.underworld.no 353 jones = #resistance :vOYtEC___
+>> :irc.underworld.no 353 jones = #ngc :Hardrider @Verius
+>> :irc.underworld.no 353 jones = #bierdopje :@Takkie
+>> :irc.underworld.no 353 jones = #drinks :@brtndr
+>> :irc.underworld.no 353 jones = #barkeep :x- brtndr
+>> :irc.underworld.no 353 jones = #fh :varu
+>> :irc.underworld.no 353 jones = #x360key :Shad0w_
+>> :irc.underworld.no 353 jones = #elburrito :ElPurro
+>> :irc.underworld.no 353 jones = #leagueoflegends :vb
+>> :irc.underworld.no 353 jones = #libera :@pocketpro
+>> :irc.underworld.no 353 jones = #devnots :@pocketpro
+>> :irc.underworld.no 353 jones = #regex :@pocketpro
+>> :irc.underworld.no 353 jones = #rabbitmq :@pocketpro
+>> :irc.underworld.no 353 jones = ##aws :@pocketpro
+>> :irc.underworld.no 353 jones = #clamav :@pocketpro
+>> :irc.underworld.no 353 jones = #sed :@pocketpro
+>> :irc.underworld.no 353 jones = #openstack :@pocketpro
+>> :irc.underworld.no 353 jones = #google :@pocketpro
+>> :irc.underworld.no 353 jones = #rockylinux :@pocketpro
+>> :irc.underworld.no 353 jones = ##tty :@pocketpro
+>> :irc.underworld.no 353 jones = #textual :@pocketpro
+>> :irc.underworld.no 353 jones = #iterm2 :@pocketpro
+>> :irc.underworld.no 353 jones = #gpt :@pocketpro
+>> :irc.underworld.no 353 jones = #oracle :@pocketpro
+>> :irc.underworld.no 353 jones = #xfs :@pocketpro
+>> :irc.underworld.no 353 jones = #rhel :@pocketpro
+>> :irc.underworld.no 353 jones = ##chatbots :@pocketpro
+>> :irc.underworld.no 353 jones = #kubernetes :@pocketpro
+>> :irc.underworld.no 353 jones = #grep :@pocketpro
+>> :irc.underworld.no 353 jones = #oci :@pocketpro
+>> :irc.underworld.no 353 jones = #iterm :@pocketpro
+>> :irc.underworld.no 353 jones = #ansible :@pocketpro
+>> :irc.underworld.no 353 jones = #zwift :@pocketpro
+>> :irc.underworld.no 353 jones = #freeipa :@pocketpro
+>> :irc.underworld.no 353 jones = #helm :@pocketpro
+>> :irc.underworld.no 353 jones = #rockylinux-infra :@pocketpro
+>> :irc.underworld.no 353 jones = #docker :@pocketpro
+>> :irc.underworld.no 353 jones = #openssh :@pocketpro
+>> :irc.underworld.no 353 jones = #k8s :@pocketpro
+>> :irc.underworld.no 353 jones = #cinder :@pocketpro
+>> :irc.underworld.no 353 jones = #lvm :@pocketpro
+>> :irc.underworld.no 353 jones = #Plex :barnito foofur Hobbyboy
+>> :irc.underworld.no 353 jones = #wiiu :barnito Shad0w_
+>> :irc.underworld.no 353 jones = #killaz-r-us :HelsAngel [cOz]
+>> :irc.underworld.no 353 jones = #greatlookup :luckcolor superkuh
+>> :irc.underworld.no 353 jones = #bats :[__]
+>> :irc.underworld.no 353 jones = #Twitter :Arevik @Solaris @Nemesys
+>> :irc.underworld.no 353 jones = #AltPolitics :Arevik @Solaris @Nemesys
+>> :irc.underworld.no 353 jones = #islam :Arevik @Solaris @Nemesys
+>> :irc.underworld.no 353 jones = #ret :mjuad crudd
+>> :irc.underworld.no 353 jones = #hcunix :GH0S1
+>> :irc.underworld.no 353 jones = #punk :fastcore_
+>> :irc.underworld.no 353 jones = #kr :@Phil21
+>> :irc.underworld.no 353 jones = #alt.binaries.sony.psp :Hardrider @samorost
+>> :irc.underworld.no 353 jones = #alt.binaries.games.wii :Hardrider @samorost
+>> :irc.underworld.no 353 jones = #alt.binaries.games.nintendods :Hardrider @samorost
+>> :irc.underworld.no 353 jones = #alt.binaries.console.ps :@samorost
+>> :irc.underworld.no 353 jones = #oculusdev :aloril
+>> :irc.underworld.no 353 jones = #yard :iks
+>> :irc.underworld.no 353 jones = #scnzb :beastie ris2z samorost
+>> :irc.underworld.no 353 jones = #aaaaa :Suzuki_
+>> :irc.underworld.no 353 jones = #farting000 :Cathy____ fcser__
+>> :irc.underworld.no 353 jones = #Sacramento :ITechGeek
+>> :irc.underworld.no 353 jones = #freebsd-br :dbaio
+>> :irc.underworld.no 353 jones = #barbar :dbaio
+>> :irc.underworld.no 353 jones = #rubyonrails :pocketpro
+>> :irc.underworld.no 353 jones = #batcountry :arp
+>> :irc.underworld.no 353 jones = #spmpdev :balrog
+>> :irc.underworld.no 353 jones = #z :std srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #eiso :tr4x
+>> :irc.underworld.no 353 jones = #rangers :\subline
+>> :irc.underworld.no 353 jones = #GORGOR :Poster
+>> :irc.underworld.no 353 jones = #yianniflop :Yianni happydude
+>> :irc.underworld.no 353 jones = #albany :bscabl
+>> :irc.underworld.no 353 jones = #stage.dat :SlimeyX Slimey Freakuan-
+>> :irc.underworld.no 353 jones = #k3-add :@miroplex
+>> :irc.underworld.no 353 jones = #carnage :flyback
+>> :irc.underworld.no 353 jones = #fishtanklive :Lions
+>> :irc.underworld.no 353 jones = #scuba :Mart
+>> :irc.underworld.no 353 jones = #neckbeard :mwilson
+>> :irc.underworld.no 353 jones = #Bordersee :@miroplex
+>> :irc.underworld.no 353 jones = #Borderland :@miroplex
+>> :irc.underworld.no 353 jones = #thenorth :@TReKiE
+>> :irc.underworld.no 353 jones = #mdn :@TReKiE
+>> :irc.underworld.no 353 jones = #ie6 :@TReKiE
+>> :irc.underworld.no 353 jones = #new2cracking :nanobit_
+>> :irc.underworld.no 353 jones = #java :MrIce` smash
+>> :irc.underworld.no 353 jones = #ADULTSWIM :wasted
+>> :irc.underworld.no 353 jones = #BangBang :devnu11_ devnu11
+>> :irc.underworld.no 353 jones = #youtube :cyco
+>> :irc.underworld.no 353 jones = #oldtimers :Ysean aegis
+>> :irc.underworld.no 353 jones = #starlink :krzx_ \subline tjr__ adversary
+>> :irc.underworld.no 353 jones = #gnu :pocketpro
+>> :irc.underworld.no 353 jones = #testing13 :dickbot clownbot twatbot @moeSizlak
+>> :irc.underworld.no 353 jones = #tvnzb :samorost
+>> :irc.underworld.no 353 jones = #dodgers :\subline Skunny DDensity
+>> :irc.underworld.no 353 jones = #calcgames :bsparks Barrett nikky
+>> :irc.underworld.no 353 jones = #wire :krzx_ @adversary @ifrit
+>> :irc.underworld.no 353 jones = #oneworld :_sol_____
+>> :irc.underworld.no 353 jones = #ii-city :AirMan_
+>> :irc.underworld.no 353 jones = #qainsworld :sio DeusQain
+>> :irc.underworld.no 353 jones = #level1 :sio DeusQain
+>> :irc.underworld.no 353 jones = #sacredland :@Cequel
+>> :irc.underworld.no 353 jones = #cablemodemwarez :j0bez sent Cyc66
+>> :irc.underworld.no 353 jones = #hugchan :cutie578
+>> :irc.underworld.no 353 jones = #snacks :@fermat
+>> :irc.underworld.no 353 jones = #alt.binaries.movies.divx :JSG thomsloan samorost
+>> :irc.underworld.no 353 jones = #813friends :spinsane
+>> :irc.underworld.no 353 jones = #signal :krzx_ @adversary @ifrit
+>> :irc.underworld.no 353 jones = #elpurroprod :ElPurro cheapie
+>> :irc.underworld.no 353 jones = #vray :GRID
+>> :irc.underworld.no 353 jones = #bots :@burn0ut
+>> :irc.underworld.no 353 jones = #cache :jonny @aWX-[i] @BGL-Z2X4 dociday
+>> :irc.underworld.no 353 jones = #daimx :trouf
+>> :irc.underworld.no 353 jones = #hwt :bnovkov
+>> :irc.underworld.no 353 jones = #znc-dev :pocketpro
+>> :irc.underworld.no 353 jones = #longview :alahzad @LabMonkey @nck
+>> :irc.underworld.no 353 jones = #bourbon :ionizer
+>> :irc.underworld.no 353 jones = #jupes :caesar
+>> :irc.underworld.no 353 jones = #vmware :latez
+>> :irc.underworld.no 353 jones = #Q* :Arevik armeni @Solaris @Nemesys @Cyborg
+>> :irc.underworld.no 353 jones = #berkeley :ront2 Retarded
+>> :irc.underworld.no 353 jones = #musclecars :karr amrit-
+>> :irc.underworld.no 353 jones = #eminence :dstar
+>> :irc.underworld.no 353 jones = #assholes :fysa CompWizrd phillip__
+>> :irc.underworld.no 353 jones = #!enn :Retarded
+>> :irc.underworld.no 353 jones = #grateful :Juest grateful goals statsy
+>> :irc.underworld.no 353 jones = #vps :Nick
+>> :irc.underworld.no 353 jones = #provoked :@Cathy____ @bishun_ @fcser__
+>> :irc.underworld.no 353 jones = #butchie :@SuPaJeRm @Ditka @Sweetness
+>> :irc.underworld.no 353 jones = #RMS :JQE Maester|A @[cOz] skymi
+>> :irc.underworld.no 353 jones = #afghanistan :@+caesar
+>> :irc.underworld.no 353 jones = #alt.binaries.moovee :JSG ris2z brumbrum
+>> :irc.underworld.no 353 jones = #win7 :@giesen
+>> :irc.underworld.no 353 jones = #winxp :@giesen
+>> :irc.underworld.no 353 jones = #GameCube :kof673
+>> :irc.underworld.no 353 jones = #ps3test :barnito Hardrider
+>> :irc.underworld.no 353 jones = #gestapo :caesar @retsamyar
+>> :irc.underworld.no 353 jones = #!@ :@demented @chase
+>> :irc.underworld.no 353 jones = #dickshouse :@demented @chase
+>> :irc.underworld.no 353 jones = #bulls :@SuPaJeRm @Ditka @Sweetness
+>> :irc.underworld.no 353 jones = #newton :yeled
+>> :irc.underworld.no 353 jones = #michigan :+\subline @Eco @r0ni
+>> :irc.underworld.no 353 jones = #conflict :vgl astro
+>> :irc.underworld.no 353 jones = #salt :octo @spoke
+>> :irc.underworld.no 353 jones = #ADHD :@fckd
+>> :irc.underworld.no 353 jones = #Virt-Host :@Who-m3
+>> :irc.underworld.no 353 jones = #sports-bar :firewyre
+>> :irc.underworld.no 353 jones = #hearthstone :vb xboner
+>> :irc.underworld.no 353 jones = #physics :us firewyre jackal^ jogmaster monochrom me @suj _sol_____
+>> :irc.underworld.no 353 jones = #astronomy :firewyre
+>> :irc.underworld.no 353 jones = #TradeWars :Galien__ @Galien
+>> :irc.underworld.no 353 jones = #GayWisconsin :Galien__ @Galien
+>> :irc.underworld.no 353 jones = #GayBears :Galien__ @Galien
+>> :irc.underworld.no 353 jones = #GComm :Galien__ @Galien
+>> :irc.underworld.no 353 jones = #GCLadders :Galien__ @Galien
+>> :irc.underworld.no 353 jones = #BearForest :Galien__ @Galien
+>> :irc.underworld.no 353 jones = #juniper :branto giesen
+>> :irc.underworld.no 353 jones = #nfl :Raptors firewyre constanti
+>> :irc.underworld.no 353 jones = #amigazone :mDRealTng
+>> :irc.underworld.no 353 jones = #fisihome :rosmo1__
+>> :irc.underworld.no 353 jones = #AsphyxiA :@DexLV
+>> :irc.underworld.no 353 jones = #corebay :@DexLV
+>> :irc.underworld.no 353 jones = #asthenia :@DexLV
+>> :irc.underworld.no 353 jones = #nfodb :@DexLV
+>> :irc.underworld.no 353 jones = #GabberMP3 :@DexLV
+>> :irc.underworld.no 353 jones = #junglist :@DexLV
+>> :irc.underworld.no 353 jones = #dont.whois.me.bitch :@DexLV
+>> :irc.underworld.no 353 jones = #drumnbass.lv :@DexLV
+>> :irc.underworld.no 353 jones = #Repco :Peter- timka_ @Zeus
+>> :irc.underworld.no 353 jones = #tghack :skandix sithis kfh
+>> :irc.underworld.no 353 jones = #chatlaw_🔎 :@posty @lockie
+>> :irc.underworld.no 353 jones = #lofoten :+haarek
+>> :irc.underworld.no 353 jones = #ShipIt :choo kubo
+>> :irc.underworld.no 353 jones = #dharma :nordaxe nordac
+>> :irc.underworld.no 353 jones = #Cybersky :@+haarek
+>> :irc.underworld.no 353 jones = #el8 :@buzz
+>> :irc.underworld.no 353 jones = #psicorp :De1-Mordo
+>> :irc.underworld.no 353 jones = #trendingreels :@xt
+>> :irc.underworld.no 353 jones = #vimage-prep :brooks
+>> :irc.underworld.no 353 jones = #psxcare :@daz
+>> :irc.underworld.no 353 jones = #LethBSD :@Ltning
+>> :irc.underworld.no 353 jones = #beginnerops :@Cricky
+>> :irc.underworld.no 353 jones = #gotham :KeyzrSoze Gotham
+>> :irc.underworld.no 353 jones = #Vance :Atlas Fan Sophia Child Cosmos Juniper Plasmoid @Artemis Tesla @armeni @Solaris
+>> :irc.underworld.no 353 jones = #freethought :@alt|away @Omorpheus
+>> :irc.underworld.no 353 jones = #200sx-ogn :@alexbst
+>> :irc.underworld.no 353 jones = #meshneteurope :@alexbst
+>> :irc.underworld.no 353 jones = #BKK :sukker
+>> :irc.underworld.no 353 jones = #vocht.pre :@kiWil33ch
+>> :irc.underworld.no 353 jones = #vocht :@kiWil33ch
+>> :irc.underworld.no 353 jones = #fxp-friends :@kiWil33ch
+>> :irc.underworld.no 353 jones = #IoD :@kiWil33ch
+>> :irc.underworld.no 353 jones = #internat-nett :Eplebit
+>> :irc.underworld.no 353 jones = #Bahamas :Plan_IX
+>> :irc.underworld.no 353 jones = #helsfyr :@ViD
+>> :irc.underworld.no 353 jones = #neko :@ViD
+>> :irc.underworld.no 353 jones = #tg16tech :@ViD
+>> :irc.underworld.no 353 jones = #qwerdy :@qwerdy
+>> :irc.underworld.no 353 jones = #hackaskurk :@runborg
+>> :irc.underworld.no 353 jones = #NISLab :NetCraWlr stianh
+>> :irc.underworld.no 353 jones = #java.no :mattis
+>> :irc.underworld.no 353 jones = #letittest :letitle
+>> :irc.underworld.no 353 jones = #kool-aid :Brexit
+>> :irc.underworld.no 353 jones = #yyctrivia :Brexit
+>> :irc.underworld.no 353 jones = #oshtson :DacoTaco Tugboat
+>> :irc.underworld.no 353 jones = #zoo :aves
+>> :irc.underworld.no 353 jones = #tcsh :vader____
+>> :irc.underworld.no 353 jones = #schizophrenia :@+yeenoghu jonny
+>> :irc.underworld.no 353 jones = #predators.lair :@ElBurro
+>> :irc.underworld.no 353 jones = #zoes :IRCNO
+>> :irc.underworld.no 353 jones = #lek :@Takapa
+>> :irc.underworld.no 353 jones = #f�st :@Takapa
+>> :irc.underworld.no 353 jones = #krise :@Takapa
+>> :irc.underworld.no 353 jones = #smarties :@Takapa
+>> :irc.underworld.no 353 jones = #monsternett :@Takapa
+>> :irc.underworld.no 353 jones = #SCX :Tortelli iPre FireBall
+>> :irc.underworld.no 353 jones = #freethought2 :@alt|away @Omorpheus
+>> :irc.underworld.no 353 jones = #hhr :whiteking THANEW
+>> :irc.underworld.no 353 jones = #bsdjunk :ketas Angelz
+>> :irc.underworld.no 353 jones = #gaybacon :otter jrkotrla
+>> :irc.underworld.no 353 jones = #shitpost :pannkaka panndora pankakes pancakkes @princess
+>> :irc.underworld.no 353 jones = #Porsche :Atlas Fan Sophia Child Cosmos @Artemis Tesla @armeni
+>> :irc.underworld.no 353 jones = #aether :Atlas Fan Sophia Child Cosmos Artemis Tesla @armeni
+>> :irc.underworld.no 353 jones = #Tulsi :Atlas Fan Child Sophia Finix astx Juniper Cosmos tulsi Artemis Tesla @armeni @Solaris
+>> :irc.underworld.no 353 jones = #polen99 :Arafat
+>> :irc.underworld.no 353 jones = #DogTown :|_ocke3 @Berserker
+>> :irc.underworld.no 353 jones = #linux-wtf :@kvakula
+>> :irc.underworld.no 353 jones = #games-wtf :@kvakula
+>> :irc.underworld.no 353 jones = #Italia :depeche- m1ke Notoriou- BiKeRBoY depecher exciter Craiova
+>> :irc.underworld.no 353 jones = #wtf :McKoro @ionizer
+>> :irc.underworld.no 353 jones = #tg.salg :sjefen6 TamazSvr
+>> :irc.underworld.no 353 jones = #hackersunited :LkBurn__ LkBurn
+>> :irc.underworld.no 353 jones = #lawl :LkBurn__ LkBurn
+>> :irc.underworld.no 353 jones = #dc-forums :pikami
+>> :irc.underworld.no 353 jones = #zendamateur :blaat questor
+>> :irc.underworld.no 353 jones = #cccx :EliDupree
+>> :irc.underworld.no 353 jones = #ashtest :Lemieux stats
+>> :irc.underworld.no 353 jones = #donhead :Fresco stats
+>> :irc.underworld.no 353 jones = #serioustraders :bohtic
+>> :irc.underworld.no 353 jones = #206 :ZeroxFED
+>> :irc.underworld.no 353 jones = #Cleveland :\subline @theLand
+>> :irc.underworld.no 353 jones = #sony :@theLand
+>> :irc.underworld.no 353 jones = #UNITY :Atlas Fan Sophia Child astx Cosmos Artemis Tesla armeni @Solaris @Cyborg @Nemesys
+>> :irc.underworld.no 353 jones = #mad :mRmiSta Berserker
+>> :irc.underworld.no 353 jones = #NewJersey :@nes0r @tydel
+>> :irc.underworld.no 353 jones = #nerdk0re :whiteking @nerdk0re
+>> :irc.underworld.no 353 jones = #dg :@Boiidan
+>> :irc.underworld.no 353 jones = #Intelligent :+Jinx-Pi2W
+>> :irc.underworld.no 353 jones = #Lødingen :@Slippern
+>> :irc.underworld.no 353 jones = #teamxecuter :LkBurn__ LkBurn
+>> :irc.underworld.no 353 jones = #gbdev2-meta :DarukBot DarukBNC
+>> :irc.underworld.no 353 jones = #mplayer_ce :@DarukBot @Extrems @DarukBNC
+>> :irc.underworld.no 353 jones = #idle-chat :@Illern
+>> :irc.underworld.no 353 jones = #investments :funkpumpr octopus
+>> :irc.underworld.no 353 jones = #Mexico :mist0ph Patron aura__
+>> :irc.underworld.no 353 jones = #xibo2 :tubman__
+>> :irc.underworld.no 353 jones = #ripplehaven :Celiann EliDupree
+>> :irc.underworld.no 353 jones = #TOR :TrueShift
+>> :irc.underworld.no 353 jones = #idleref :@Illern @Uttern
+>> :irc.underworld.no 353 jones = #hexero :@Illern @Uttern
+>> :irc.underworld.no 353 jones = #dunderdata :@Illern @Uttern
+>> :irc.underworld.no 353 jones = #habs :deathr0w
+>> :irc.underworld.no 353 jones = #.se :@Illern @Uttern
+>> :irc.underworld.no 353 jones = #USSR-Scene :sYN4P515_
+>> :irc.underworld.no 353 jones = #emufrance :sebbu @pignouf
+>> :irc.underworld.no 353 jones = #Politics2 :EmleyXMPP
+>> :irc.underworld.no 353 jones = #charmed :scotteh
+>> :irc.underworld.no 353 jones = #just4fun :badahead CubaLibre
+>> :irc.underworld.no 353 jones = #techz :@wkhome
+>> :irc.underworld.no 353 jones = #Liberty :Adiemus @Thronja
+>> :irc.underworld.no 353 jones = #bored_as_fuck :CompWizrd rys_
+>> :irc.underworld.no 353 jones = #psytrance :bfft
+>> :irc.underworld.no 353 jones = #ARTeam :dstar
+>> :irc.underworld.no 353 jones = #pc88 :skymi
+>> :irc.underworld.no 353 jones = #bangkok :jeevesGPT dbt
+>> :irc.underworld.no 353 jones = #virtualboy :lameboy
+>> :irc.underworld.no 353 jones = #biology :_sol_____ cow_2001 superkuh
+>> :irc.underworld.no 353 jones = #biznatch :Niska
+>> :irc.underworld.no 353 jones = ##rap :@Retarded
+>> :irc.underworld.no 353 jones = #l :Unicorn Maturesh BasharTeg
+>> :irc.underworld.no 353 jones = #norcan :julezyr
+>> :irc.underworld.no 353 jones = #kickass-vids :dt_phone @Mauro
+>> :irc.underworld.no 353 jones = #Voss :Ptn
+>> :irc.underworld.no 353 jones = #crypt :silicon
+>> :irc.underworld.no 353 jones = #upalse :pulec nonsuch
+>> :irc.underworld.no 353 jones = #tg.dc :ponas
+>> :irc.underworld.no 353 jones = #spanningnetworks :@unes
+>> :irc.underworld.no 353 jones = #nornet :@unes
+>> :irc.underworld.no 353 jones = #placeholderLAN :@unes
+>> :irc.underworld.no 353 jones = #placeholder_LAN :@unes
+>> :irc.underworld.no 353 jones = #skatechat :H3RB42O shadow
+>> :irc.underworld.no 353 jones = #mtg :talizator vb
+>> :irc.underworld.no 353 jones = #mtgrules :talizator vb
+>> :irc.underworld.no 353 jones = #livredd :@IKEA @Ptn @pi
+>> :irc.underworld.no 353 jones = #neuralink :@Zuberlan
+>> :irc.underworld.no 353 jones = #SpaceOpera :@Zuberlan
+>> :irc.underworld.no 353 jones = #happy :Dan ikiboo|2
+>> :irc.underworld.no 353 jones = #FOOTBALL2 :whiteking THANEW
+>> :irc.underworld.no 353 jones = #anti.no :cabal_
+>> :irc.underworld.no 353 jones = #dazp :@MarkyP
+>> :irc.underworld.no 353 jones = #hostile :@makaveli- tupac @spliff-og
+>> :irc.underworld.no 353 jones = #irc.efnet.pl :efnetbot`
+>> :irc.underworld.no 353 jones = #gbdev2-tools :DarukBot Max DarukBNC
+>> :irc.underworld.no 353 jones = #gbdev2-ot :DarukBot Max DarukBNC
+>> :irc.underworld.no 353 jones = #gbdev2-hw :DarukBot Max DarukBNC
+>> :irc.underworld.no 353 jones = #gbdev2-emu :DarukBot Max DarukBNC
+>> :irc.underworld.no 353 jones = #Zurna :MaRJiNaL Zeynep Raiden Swift_
+>> :irc.underworld.no 353 jones = #Turkey :MaRJiNaL Zeynep Raiden Swift_ vgl
+>> :irc.underworld.no 353 jones = #Istanbul :MaRJiNaL Zeynep Raiden Swift_
+>> :irc.underworld.no 353 jones = #Constantinople :MaRJiNaL Zeynep Raiden Swift_
+>> :irc.underworld.no 353 jones = #Ankara :MaRJiNaL Zeynep Raiden Swift_
+>> :irc.underworld.no 353 jones = #Greek :MaRJiNaL Zeynep Raiden Swift_
+>> :irc.underworld.no 353 jones = #Greeks :MaRJiNaL Zeynep Raiden Swift_
+>> :irc.underworld.no 353 jones = #Izmir :MaRJiNaL Zeynep Raiden Swift_
+>> :irc.underworld.no 353 jones = #Athens :MaRJiNaL Zeynep Raiden Swift_
+>> :irc.underworld.no 353 jones = #Cyprus :MaRJiNaL Zeynep Raiden Swift_
+>> :irc.underworld.no 353 jones = #SinkPissers :L0jik
+>> :irc.underworld.no 353 jones = #eh? :@JohnnyM @MrJM
+>> :irc.underworld.no 353 jones = #bikeshed :@xt
+>> :irc.underworld.no 353 jones = #lart-dota :lorelai @xt
+>> :irc.underworld.no 353 jones = #Varden :@someonels @deabot
+>> :irc.underworld.no 353 jones = #senate :Atlas Fan Sophia Child Arevik Cosmos Artemis Tesla armeni @Solaris anthropos @Nemesys
+>> :irc.underworld.no 353 jones = #therapy :Atlas Fan Sophia Child Arevik Cosmos Artemis Tesla armeni @Solaris anthropos @Nemesys
+>> :irc.underworld.no 353 jones = #2�000 :@PsyM @UrPrince @UrMajesty
+>> :irc.underworld.no 353 jones = #olebobo :abum m1k[3y]
+>> :irc.underworld.no 353 jones = #spel :@Peppe
+>> :irc.underworld.no 353 jones = #awknet :@nujabes sasha Retarded
+>> :irc.underworld.no 353 jones = #netflix :@Zuberlan
+>> :irc.underworld.no 353 jones = #nop :joshua_
+>> :irc.underworld.no 353 jones = #pens :Lemieux deathr0w @cma3585 stats
+>> :irc.underworld.no 353 jones = ##Christian :@Adiemus @Herbs @Berean @Thronja
+>> :irc.underworld.no 353 jones = #juggalol :megadark abigor agatha
+>> :irc.underworld.no 353 jones = #h :std srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #n :std srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #v :std srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #M :std srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #P :std srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #cocaine :@std @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #卍 :@std @srs @nv @ssh @envy
+>> :irc.underworld.no 353 jones = #lol :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #dong :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #j :std sh srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #support :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #e :std srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #% :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #1 :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #gangster :std sh srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #arab :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #droid :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #pimpin :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #tits :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #sublime :std sh srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #wutang :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #whores :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #gangsta :std sh srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #skill :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #codex :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #maine :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #fish :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #drama :@std @sh @srs @nv @ssh @envy @dro
+>> :irc.underworld.no 353 jones = #mcse :H3RB42O vader____
+>> :irc.underworld.no 353 jones = #naggisch :_jAyArkVy kai
+>> :irc.underworld.no 353 jones = #pirate7 :\subline tetraodon
+>> :irc.underworld.no 353 jones = #christian :Exusiai Adiemus
+>> :irc.underworld.no 353 jones = #evadistan :@pack @Jungleman
+>> :irc.underworld.no 353 jones = #SportsEntertainment :@nR Dman4Life @nerdk0re
+>> :irc.underworld.no 353 jones = #sandefjord :@someonels @deabot
+>> :irc.underworld.no 353 jones = #Lahore :@cheetes Shahensha alphatec-
+>> :irc.underworld.no 353 jones = #Islamabad :@cheetes Shahensha alphatec-
+>> :irc.underworld.no 353 jones = #hiddensoundsystem :TAFKAMP_
+>> :irc.underworld.no 353 jones = #arching-kaos :lebrbt graniehuk Ringtaile
+>> :irc.underworld.no 353 jones = #bodø :@eagleeye
+>> :irc.underworld.no 353 jones = #937 :infi [bob] siezer_
+>> :irc.underworld.no 353 jones = #neonsky :dOm3r
+>> :irc.underworld.no 353 jones = #xgbl :THANEW p00n
+>> :irc.underworld.no 353 jones = #fb :THANEW p00n
+>> :irc.underworld.no 353 jones = #mews :scarrlet_ mew
+>> :irc.underworld.no 353 jones = #official.eggdrop :CURiOUSKC TAFKAMP_
+>> :irc.underworld.no 353 jones = #0DAYDNB :CyraX666 DexLV
+>> :irc.underworld.no 353 jones = #dnbcz :CyraX666
+>> :irc.underworld.no 353 jones = #efnet.se :@Ratler
+>> :irc.underworld.no 353 jones = #update.bots :maat tomtild Mimbot kgs
+>> :irc.underworld.no 353 jones = #mp3-sweden :@H0ax_ @SMAN788
+>> :irc.underworld.no 353 jones = #vbots :v|g|LanT_ v|g|LanT- neskau
+>> :irc.underworld.no 353 jones = #lama :jostein
+>> :irc.underworld.no 353 jones = #ph0enix :iPre sniff- FireBall kiWil33ch
+>> :irc.underworld.no 353 jones = #ska :@UrPrince @clrscrn @papaskin @UrMajesty
+>> :irc.underworld.no 353 jones = #netsplits :@tydel
+>> :irc.underworld.no 353 jones = #/r/ :@skyqueen @orealw @scar4lyfe @jemnezmy @catharsis @nekofox
+>> :irc.underworld.no 353 jones = #hostmask :ChanStat
+>> :irc.underworld.no 353 jones = #bearcave :heeki_ vgl iks cooey
+>> :irc.underworld.no 353 jones = #poker :@ledyt @cryptic @tydel
+>> :irc.underworld.no 353 jones = #adulting :anthis
+>> :irc.underworld.no 353 jones = #Israelite :bfft sniff- FireBall
+>> :irc.underworld.no 353 jones = #psvita :pathway27
+>> :irc.underworld.no 353 jones = #revengetechniques :@CURiOUSKC @TAFKAMP_ @+TAF68k
+>> :irc.underworld.no 353 jones = #minimumcontrol :CURiOUSKC TAFKAMP_ TAF68k
+>> :irc.underworld.no 353 jones = #sailormoon :hibiscus
+>> :irc.underworld.no 353 jones = #hackthebox :esdius6 coldfront ShadoX1
+>> :irc.underworld.no 353 jones = #portland :TrbleClef @spitz ryang
+>> :irc.underworld.no 353 jones = #pyrexhosting :@+dfz
+>> :irc.underworld.no 353 jones = #UKDNB :FRACTi0N DexLV
+>> :irc.underworld.no 353 jones = #manila :@zG-
+>> :irc.underworld.no 353 jones = #vinylvortex :phuzz
+>> :irc.underworld.no 353 jones = #dune :emiliana @jezebel @elijah
+>> :irc.underworld.no 353 jones = #wootoff :APic CATPic
+>> :irc.underworld.no 353 jones = #piano :emiliana elijah
+>> :irc.underworld.no 353 jones = #reversing :sjas
+>> :irc.underworld.no 353 jones = #newsfr :EddiePALA ya
+>> :irc.underworld.no 353 jones = #DrunkLivesMatter :@Robby
+>> :irc.underworld.no 353 jones = #alt.binaries.teevee :ris2z brumbrum
+>> :irc.underworld.no 353 jones = #hacked :pepmate barnito gachikuku immibis @+caesar bfft @+knox NiKaN_ @+ensane so0t okidoki
+>> :irc.underworld.no 353 jones = #bash :@+dfz +smash +Leolo +pocketpro
+>> :irc.underworld.no 353 jones = #mirkk :@UrPrince @Apachez @UrMajesty TheeDude
+>> :irc.underworld.no 353 jones = #hiphop :fstd VladPutin @burn0ut
+>> :irc.underworld.no 353 jones = #tromsø :Unicorn Maturesh McHowie spidy @TriiiX
+>> :irc.underworld.no 353 jones = #allnitecafe :MagaBot2 mDRealTng @TriiiX
+>> :irc.underworld.no 353 jones = #Phoenix :@nakedgoat @Retarded @phigcloud
+>> :irc.underworld.no 353 jones = #Risingnet :@espresso @AqarA reborn @six sactown bagol doomsday
+>> :irc.underworld.no 353 jones = #obama :kylefoth |werejag| latte1 @cajuncook @leddy @WorkTrout +no-n +RoboBiden m1k[3y] emode2
+>> :irc.underworld.no 353 jones = #depressed :flyback emiliana krzx_ @beekeeper monalisa @datura @chew-z @can-d @jezebel @elijah
+>> :irc.underworld.no 353 jones = #LivePD :cryptic McKoro OnPatrol HardDisk xboner
+>> :irc.underworld.no 353 jones = #stopwhoisingme :+Ritche +vb @r0ni
+>> :irc.underworld.no 353 jones = #bmotion :hawer cooldude McKoro tjr__ @JamesOff thg
+>> :irc.underworld.no 353 jones = #Skate2Create :@maj
+>> :irc.underworld.no 353 jones = #brasil :@ph33r Murduk @constanti @buzz @neskau shman @Zoldax @order @spy- root3 okidoki @small ifrit
+>> :irc.underworld.no 353 jones = #OnPatrolLive :+powerfon- +Robby +sonkulp2 +cryptic +k3vin @+spleef +THANEW @+makaveli- +Nick +McKoro +OnPatrol @+tupac @+spliff-og +Fasa @+Towner +powertab @+Necrosand
+>> :irc.underworld.no 353 jones = #kFtnews :@Eomer82
+>> :irc.underworld.no 353 jones = #backyard :ChanStat pluto LuGgz ElBurro
+>> :irc.underworld.no 353 jones = #infowars :zacie
+>> :irc.underworld.no 353 jones = #potions :Matt| vb maj barbs lala ifrit
+>> :irc.underworld.no 353 jones = #cDc :miah anthis smash __ebx_ anthis_ sjas so0t @arp
+>> :irc.underworld.no 353 jones = #hackers :jonny immibis [1]KEYGEN xboner bison @doomsday okidoki
+>> :irc.underworld.no 353 jones = #crackheads :jeevesGPT @sofa
+>> :irc.underworld.no 353 jones = #jrh :Cashlin alyosha semen Retarded ElBurro adct
+>> :irc.underworld.no 353 jones = #cbd :@smashgrab @qubitor @grns3
+>> :irc.underworld.no 353 jones = #house :+H3RB42O @+caesar +skope
+>> :irc.underworld.no 353 jones = #playstation4 :|_ocke3
+>> :irc.underworld.no 353 jones = #edmonton :\subline
+>> :irc.underworld.no 353 jones = #♂🚽 :rena @Robby @Spear @PsyMaster @zemyna2 @McKoro @nes0r @ramses @feron @Visor @mits`
+>> :irc.underworld.no 353 jones = #Cheers :cornbread @+Suntop @^tinman^
+>> :irc.underworld.no 353 jones = #pp4l :loller_ dboard2
+>> :irc.underworld.no 353 jones = #dopewars :@nes0r @dopewars @Darn @cyco @fckd @barbs @bobafet @grns3
+>> :irc.underworld.no 353 jones = #Christianity :@Adiemus @Thronja
+>> :irc.underworld.no 353 jones = #Networking :+ar- +techtruth @voice @+ar @+ai @+McKoro @+ao @+aq +sjas +Thuryn +rewd
+>> :irc.underworld.no 353 jones = #czech :+shejn
+>> :irc.underworld.no 353 jones = #troulite :@Jean-Gui @Fagoon_ @Xavier_OM @lolo @Finrodd @MrLog
+>> :irc.underworld.no 353 jones = #operation :@+Aerith_Gx @+ar- +flipwad @+lennox\ @voice @+ar @+ai @+spitz @+cka @+ao @+aq @+maj @+alt|away @+nck @+latez
+>> :irc.underworld.no 353 jones = #freenode :ketas wallacer druid
+>> :irc.underworld.no 353 jones = #wickedsoftware :@Danny @cyco @OwnerNB @fckd
+>> :irc.underworld.no 353 jones = #/<-rad :@dexa| @anthis vgl @dexa- @maj @anthis_ @ajb @chaos
+>> :irc.underworld.no 353 jones = #kernel :byte_me bsdbandit spacehog Nick MZx90- lucabtz _OverLord @nR beatdown|
+>> :irc.underworld.no 353 jones = #egghelp :__un__ boubou min1on alt|away leprechau MrC
+>> :irc.underworld.no 353 jones = #Eggdrop :CompWizrd m0n4t gopo idolpx skill min1on heeki_ @McKoro shman @Suntop exciter tabb sactown devnu11_ TriiiX tydel devnu11 Phil21 MrC
+>> :irc.underworld.no 353 jones = #doom9 :JSG auenf edenist
+>> :irc.underworld.no 353 jones = #Christian-Chat-Chalice :@+Pleroma` +Flexray` @+Exusiai @+Fountain @Adiemus @+Berean @+Herbs @+Virtues @+Thronja +emode2
+>> :irc.underworld.no 353 jones = #catholics :Dave123_ smirk Fountain Adiemus AltKey Thronja
+>> :irc.underworld.no 353 jones = #IdleRPG :nax- APic AJ Tazorus untZ Haxxlolz paiN Quwk gosu FBI f0zk blaze root Drkmirror bfft @+inhiding Fritzl RussBot` EnvyNUT RussBot AmiRuss2 smash nax_ _nax LuGgz
+>> :irc.underworld.no 353 jones = #trump :|werejag| loller_ MagaBot2 latte1 cryptic crackfu @WorkTrout \subline Plan_IX @Maharaja +RoboBiden dave giesen zacie pocketpro hfam
+>> :irc.underworld.no 353 jones = #psp :barnito maylay
+>> :irc.underworld.no 353 jones = #manga :@Zuberlan bsdbandit
+>> :irc.underworld.no 353 jones = #0fucks :joako techtruth @c0ded gay4pay ambo felon raah @gh0st0 @n0ne` panndora @feron @tabb @tydel nck ducks redlegion @burn0ut @fckd @mits`
+>> :irc.underworld.no 353 jones = #snowboard :@dialed5G
+>> :irc.underworld.no 353 jones = #battlefield :@dialed5G
+>> :irc.underworld.no 353 jones = #motorsports :@dialed5G
+>> :irc.underworld.no 353 jones = #xperia :@dialed5G
+>> :irc.underworld.no 353 jones = #nissan :@dialed5G
+>> :irc.underworld.no 353 jones = #wekfest :@dialed5G
+>> :irc.underworld.no 353 jones = #jdm :@dialed5G
+>> :irc.underworld.no 353 jones = #boosted :@dialed5G
+>> :irc.underworld.no 353 jones = #enitg :skandix numeo
+>> :irc.underworld.no 353 jones = #synthpop :@Illern @Uttern
+>> :irc.underworld.no 353 jones = #ftpz :@Illern @Uttern
+>> :irc.underworld.no 353 jones = #treffpunkt :arbor
+>> :irc.underworld.no 353 jones = #oldgaming :Skyfish Harekiet
+>> :irc.underworld.no 353 jones = #ManOwaR :@Illern @Uttern
+>> :irc.underworld.no 353 jones = #proxxi :Gnitset
+>> :irc.underworld.no 353 jones = #bluejackets :Lemieux
+>> :irc.underworld.no 353 jones = #SUPERNETS :hgw ACID
+>> :irc.underworld.no 353 jones = #jt6HmxVUhfGY7Q :miley
+>> :irc.underworld.no 353 jones = #r0x0r :CubaLibre
+>> :irc.underworld.no 353 jones = #ovh :octopus dboard420 okidoki wkhome
+>> :irc.underworld.no 353 jones = #USA :v|g|LanT- \subline aura__
+>> :irc.underworld.no 353 jones = #irc.awknet.ca :@nujabes @probspot sasha @merzbow
+>> :irc.underworld.no 353 jones = #electronic_music :gummysale
+>> :irc.underworld.no 353 jones = #london :TrbleClef
+>> :irc.underworld.no 353 jones = #Ethereum :hamzzzz dave
+>> :irc.underworld.no 353 jones = #amsterdam :constanti
+>> :irc.underworld.no 353 jones = #TempleOS :LRH dboard420
+>> :irc.underworld.no 353 jones = #raspberrypi :Shad0w_
+>> :irc.underworld.no 353 jones = #weather :firewyre alt|away
+>> :irc.underworld.no 353 jones = #gamez :@EnvyNUT @DrugMe
+>> :irc.underworld.no 353 jones = #cinema :latte1 @Zuberlan m1ke DrToshiba aura__ shman @nR ChanStat zacie
+>> :irc.underworld.no 353 jones = #StarCitizen :@Zuberlan benharri
+>> :irc.underworld.no 353 jones = #xbox360 :barnito ufdm LkBurn__ LkBurn Dman4Life Shad0w_
+>> :irc.underworld.no 353 jones = #exchange :cooldude hgw anthis ACID anthis_ IRCCEX
+>> :irc.underworld.no 353 jones = #baseball :+LnkStern0 +Juest +firewyre +ront2 @+spleef +THANEW +RickiTan +poccri +grateful @+makaveli- +jimmychef +L0jik @eNforcer @+tupac +\subline +mortl +Berserker +deathr0w +BerkKAT32 @+spliff-og @+Towner +goals +statsy +Dman4Life +DDensity +croc +latez +nerdk0re @+tisk
+>> :irc.underworld.no 353 jones = #boxing :@+ar- @+lennox\ +cryptic +VladPutin @+voice +dexa| @+ar @+ai +bish0p @+ao @+aq +dexa- +nerdk0re @+latez +tisk
+>> :irc.underworld.no 353 jones = #mp3addicts :H3RB42O +navig8r firewyre +Mauro H0ax_ Ydarb_ +Who-m3 +Lonehawk inhiding Gecko
+>> :irc.underworld.no 353 jones = #mp3addicts-ops :+Who-m3
+>> :irc.underworld.no 353 jones = #guitar :mDRealTng kanodogg- raah pw- arp
+>> :irc.underworld.no 353 jones = #irc-fishing :+Aerith_Gx @+hackteck @]Mr_Fish[ @+cowboy @+moeSizlak
+>> :irc.underworld.no 353 jones = ##tv :@+blindpeer @+gravitaz @+cowboy +zyme @dickbot @+clownbot @twatbot @moeSizlak
+>> :irc.underworld.no 353 jones = #Ripz-Chat :+sactown
+>> :irc.underworld.no 353 jones = #shellweb :sactown
+>> :irc.underworld.no 353 jones = #banana :@TReKiE +jonathan` DXtremz +lopardo mezzanine
+>> :irc.underworld.no 353 jones = #tomcosm :@+caesar
+>> :irc.underworld.no 353 jones = #movies :lurk3r
+>> :irc.underworld.no 353 jones = #SwitchHack :+|werejag| +firewyre +barnito +lameboy @Jinx +MrCarter @+Jinx-Pi2W +Mibix +orb +f_[x] +dingir_ +phigcloud +Jinx-Pi1Z +nerdk0re
+>> :irc.underworld.no 353 jones = #RipGamez :JFoX useretail
+>> :irc.underworld.no 353 jones = #diablo3 :carl_ vb
+>> :irc.underworld.no 353 jones = #crypto :tdaddy62 cooldude astra _OverLord @adversary @ifrit
+>> :irc.underworld.no 353 jones = #icons_of_vanity :CompWizrd @UrPrince @PsyMaster @UrMajesty +chaos
+>> :irc.underworld.no 353 jones = #ups :+reflux +vb @EnvyNUT @DrugMe
+>> :irc.underworld.no 353 jones = #punx :@+DrugMe
+>> :irc.underworld.no 353 jones = #AOC :@Maharaja
+>> :irc.underworld.no 353 jones = #jazz :clrscrn rewd
+>> :irc.underworld.no 353 jones = #florida :+TrbleClef @+Robby +latte1 +MrCarter @+latez
+>> :irc.underworld.no 353 jones = #cancer-survivors :@+MrJinks @+`Bear
+>> :irc.underworld.no 353 jones = #gameofthrones :jimmychef @nR
+>> :irc.underworld.no 353 jones = #macbook :@Who-m3 mav
+>> :irc.underworld.no 353 jones = #risc :+Toll_Work +Toll_Free @+EnvyNUT @+DrugMe
+>> :irc.underworld.no 353 jones = #stranger_things :@dexa| @dexa-
+>> :irc.underworld.no 353 jones = #irc.mzima.net :@+Asmodeus @+stoic
+>> :irc.underworld.no 353 jones = #drugz :@dexa| @dexa- +okidoki
+>> :irc.underworld.no 353 jones = #dexa :dexa| @dexa-
+>> :irc.underworld.no 353 jones = #nM :@dexa| @dexa-
+>> :irc.underworld.no 353 jones = #triviacow :@JamesOff
+>> :irc.underworld.no 353 jones = #ags :@JamesOff
+>> :irc.underworld.no 353 jones = #seinfeld :vegar_ mEX-tits @doomsday
+>> :irc.underworld.no 353 jones = #comedy :techtruth @doomsday
+>> :irc.underworld.no 353 jones = #thc :firewyre vgl ducks @burn0ut boxette @fckd Cequel
+>> :irc.underworld.no 353 jones = #chatgpt :mDRealTng jpsr dave pocketpro
+>> :irc.underworld.no 353 jones = #elite :@interd0me dOm3r
+>> :irc.underworld.no 353 jones = #news.no :+gusto
+>> :irc.underworld.no 353 jones = #macosx :IamKing entrex pocketpro
+>> :irc.underworld.no 353 jones = #cia :entrex
+>> :irc.underworld.no 353 jones = #ddos :@doomsday @fckd
+>> :irc.underworld.no 353 jones = #ircpimps :@burn0ut
+>> :irc.underworld.no 353 jones = #winning :pluto @burn0ut
+>> :irc.underworld.no 353 jones = #fuckery :@burn0ut
+>> :irc.underworld.no 353 jones = #nigga :@burn0ut
+>> :irc.underworld.no 353 jones = #reggae :clrscrn @burn0ut ducks
+>> :irc.underworld.no 353 jones = #burnout :krzx_ tabb ducks
+>> :irc.underworld.no 353 jones = #savage :@burn0ut
+>> :irc.underworld.no 353 jones = #lel :@burn0ut
+>> :irc.underworld.no 353 jones = #dunno :|Rain| druid
+>> :irc.underworld.no 353 jones = #fed :suj @burn0ut
+>> :irc.underworld.no 353 jones = #hax :gachikuku __ebx_ @tydel okidoki @burn0ut @fckd
+>> :irc.underworld.no 353 jones = #irc.du.se :+Sicarius +heeki_ +catatonic +InteRmezO +linuxyo +fckd
+>> :irc.underworld.no 353 jones = #efnet.portlane.se :@+Ritche
+>> :irc.underworld.no 353 jones = #hungary :hawer
+>> :irc.underworld.no 353 jones = #CHi-ROCK :@wutx0r
+>> :irc.underworld.no 353 jones = #ps4dev :pathway27 barnito Duckbuste lex1 Genolo justme
+>> :irc.underworld.no 353 jones = #anal :Retarded @burn0ut
+>> :irc.underworld.no 353 jones = #Annihilation :+tdaddy62 @+interd0me @+zenik +dOm3r
+>> :irc.underworld.no 353 jones = #psychology :Juest WCDave latte1 @+caesar carver
+>> :irc.underworld.no 353 jones = #frash :@blaxthos @stoic
+>> :irc.underworld.no 353 jones = #coronavirus :cryptic Tchiak__ caesar CoronaBot Dude_ Pixi Apachez sYN4P515_ TAF68k
+>> :irc.underworld.no 353 jones = #COVID-19 :@+caesar +tmbg_ +vgl +Dude_ +Pixi +sYN4P515_ +TAF68k
+>> :irc.underworld.no 353 jones = #Biden :+latte1 @Jinx +Jinx-Pi2W +emode2
+>> :irc.underworld.no 353 jones = #Debate :+|werejag| +fleerbap +dTal +latte1 +gravitaz @Jinx +aWX-[i] +Jinx-Pi2W +CoMBo +\subline +fChanX +dociday +ionizer +ChanStat +lockie +astro
+>> :irc.underworld.no 353 jones = #catholic :Dave123_ smirk @UrPrince cartan Adiemus AltKey deucalion @UrMajesty
+>> :irc.underworld.no 353 jones = #24/7 :+whiteking +Kanodogg @+spleef +reflux +RickiTan @+makaveli- @+eNforcer @+tupac @+spliff-og +FE4 @+Towner +statsy @+NaiWiste @+latez
+>> :irc.underworld.no 353 jones = #cybercafe :@UrPrince mDRealTng @UrMajesty
+>> :irc.underworld.no 353 jones = #moscow :Atlas Fan Sophia Child Arevik Cosmos Artemis Tesla armeni @Solaris anthropos @Nemesys @Cyborg
+>> :irc.underworld.no 353 jones = #psychic :@+UrPrince @+UrMajesty +disgrunt
+>> :irc.underworld.no 353 jones = #efnut :@+caesar
+>> :irc.underworld.no 353 jones = #buds :Nick
+>> :irc.underworld.no 353 jones = #mafia :@+caesar
+>> :irc.underworld.no 353 jones = #root :@zenik
+>> :irc.underworld.no 353 jones = #onepice :dexa|
+>> :irc.underworld.no 353 jones = #troll :+goodtimes +pannkaka +knox +brian @luldangs +Retarded +panndora +pankakes @doomsday @arseloch +fckd +hfam
+>> :irc.underworld.no 353 jones = #linuxchat :fstd
+>> :irc.underworld.no 353 jones = #spoof :zenik
+>> :irc.underworld.no 353 jones = #MassEffect :@Zuberlan
+>> :irc.underworld.no 353 jones = #deft :ledyt @blaxthos panndora pankakes armeni druid +tydel +fckd +x-
+>> :irc.underworld.no 353 jones = #chatbots :CageyBee @Zuberlan @nR
+>> :irc.underworld.no 353 jones = #orlando :@Orlcord
+>> :irc.underworld.no 353 jones = #sfv :kanodogg- vb Dman4Life
+>> :irc.underworld.no 353 jones = #suicide2 :sq
+>> :irc.underworld.no 353 jones = #hack4jesus :rookie_25 @interd0me
+>> :irc.underworld.no 353 jones = #corn :lol0gram funkpumpr octopus
+>> :irc.underworld.no 353 jones = #party :Cashlin
+>> :irc.underworld.no 353 jones = #googlehackers :nemox nemox1
+>> :irc.underworld.no 353 jones = #vanity :spitz
+>> :irc.underworld.no 353 jones = #linux-noob :KobrAs_
+>> :irc.underworld.no 353 jones = #superbowl :+ar- @+spleef @+voice @+ar +hgw @+ai @+makaveli- @+tupac @+ao @+spliff-og @+aq +ACID @+latez
+>> :irc.underworld.no 353 jones = #multirpg :@RussRelay AJ +lord-znc @mrpgrelay @RussellB @multirpg RussBot frky +xo` @AmiRuss2 +Tezca +bong xu
+>> :irc.underworld.no 353 jones = #FreeStyleDash :fstd barnito JQE
+>> :irc.underworld.no 353 jones = #pazudora :beatsgop bVork
+>> :irc.underworld.no 353 jones = #mythpc :comrade sYN4P515_ iks
+>> :irc.underworld.no 353 jones = #chatz :devnull @nR
+>> :irc.underworld.no 353 jones = #alt.binaries.flac :H0ax_ ris2z brumbrum
+>> :irc.underworld.no 353 jones = #admins :ketas
+>> :irc.underworld.no 353 jones = #battlefield2042 :dialed5G pacmanfan
+>> :irc.underworld.no 353 jones = #vim :Retarded newton
+>> :irc.underworld.no 353 jones = #mindvox :ankh zzzeek_ arp
+>> :irc.underworld.no 353 jones = #x :std srs nv ssh envy dro
+>> :irc.underworld.no 353 jones = #nix :Mayonaise
+>> :irc.underworld.no 353 jones = #asian :cna_ Picaso Mete-_ insamniac okidoki
+>> :irc.underworld.no 353 jones = #iraq :caesar
+>> :irc.underworld.no 353 jones = #notenn :L0jik Retarded
+>> :irc.underworld.no 353 jones = #tupac :@+spleef @makaveli- @tupac @spliff-og
+>> :irc.underworld.no 353 jones = #makaveli :@+spleef @makaveli- @tupac @spliff-og
+>> :irc.underworld.no 353 jones = #PS5Hack :VladPutin +phigcloud
+>> :irc.underworld.no 353 jones = #wiibrew :HexGlaze DarukBot +Extrems @Jinx leonardus Baloo @+Jinx-Pi2W f_[x] maylay
+>> :irc.underworld.no 353 jones = #Buttigieg :@Jinx
+>> :irc.underworld.no 353 jones = #nouveau-brunswick :@Dan @+ikiboo|2 @Danny @cyco @OwnerNB +fckd +grns3
+>> :irc.underworld.no 353 jones = #Emi :kossy Retarded bopadoo k________
+>> :irc.underworld.no 353 jones = #blacklight :@lord-znc
+>> :irc.underworld.no 353 jones = #budapest :@lord-znc
+>> :irc.underworld.no 353 jones = #helios :@lord-znc
+>> :irc.underworld.no 353 jones = #th3g3ntl3man :+CitizenX @phigan @phigtoo
+>> :irc.underworld.no 353 jones = #tesla :@Zuberlan armeni
+>> :irc.underworld.no 353 jones = #vae :jrra_ trash e_tea panndora pankakes leisrich_ suruh ChanStat doomsday spoke jewbird
+>> :irc.underworld.no 353 jones = #titan.stbg :cslag x_ crispr iks
+>> :irc.underworld.no 353 jones = #asians :okidoki
+>> :irc.underworld.no 353 jones = #stavanger :tdaddy62 astra numeo
+>> :irc.underworld.no 353 jones = #minnesota :caesar retsamyar
+>> :irc.underworld.no 353 jones = #zephyr-dev :@Bovine
+>> :irc.underworld.no 353 jones = #steam :@std @sh @srs @nv @+ssh @envy @dro
+>> :irc.underworld.no 353 jones = #3dprinting :idlerman Spike mDRealTng chip farmr @leisrich @MatCat @leisrich_ orb ionizer @nerdk0re astro
+>> :irc.underworld.no 353 jones = #movieboyz :pomru @Matsubue @KoG @Clee
+>> :irc.underworld.no 353 jones = #gaymathsex :jonathan`
+>> :irc.underworld.no 353 jones = #bcr :ayenon orcus @Tezca
+>> :irc.underworld.no 353 jones = #nastycode :s0k1t vbr FireMan IRcap NastyCode SplinTer heeki_
+>> :irc.underworld.no 353 jones = #leafs :@shanny @tavares @nylander @reaves @matthews @rielly @marner @knies
+>> :irc.underworld.no 353 jones = #sfgoth :joshua_
+>> :irc.underworld.no 353 jones = #offline :heeki_ LuGgz
+>> :irc.underworld.no 353 jones = #bulgaria :krzx_ f_19_usa LIERO
+>> :irc.underworld.no 353 jones = #bapudi :@jezuz @bapudi @PlatinumD
+>> :irc.underworld.no 353 jones = #bernie :gravitaz
+>> :irc.underworld.no 353 jones = #priiloader :HexGlaze Juest DacoTaco
+>> :irc.underworld.no 353 jones = #code :std srs nv ssh envy @ensane dro
+>> :irc.underworld.no 353 jones = #PC98 :Shadow_ @skymi
+>> :irc.underworld.no 353 jones = #Bible-Trivia-Quiz :@+Pleroma` +Flexray` @+Exusiai @Adiemus @+Berean @+Herbs @+Thronja
+>> :irc.underworld.no 353 jones = #ffxi :Jinx-Pi2W vulture_
+>> :irc.underworld.no 353 jones = #wiidevot :@DarukBot @Extrems @DarukBNC
+>> :irc.underworld.no 353 jones = #quebec :@Danny @cyco @tabb @OwnerNB @Cequel
+>> :irc.underworld.no 353 jones = #finance :mDRealTng
+>> :irc.underworld.no 353 jones = #Sparc :@phigan @phigcloud @phigtoo +skymi +arp
+>> :irc.underworld.no 353 jones = #it98 :the_jk washout iT-1337
+>> :irc.underworld.no 353 jones = #aide :@cyco OwnerNB @Cequel
+>> :irc.underworld.no 353 jones = #nyc :foamy_ latez
+>> :irc.underworld.no 353 jones = #miami :TrbleClef latez
+>> :irc.underworld.no 353 jones = #!sXe :pooky @+phigan @+phigcloud @phigtoo
+>> :irc.underworld.no 353 jones = #england :Denali` @Eiger`
+>> :irc.underworld.no 353 jones = #hostsailor :@Ritche dfz Randy_ reborn
+>> :irc.underworld.no 353 jones = #mp3punk :Xhomaz
+>> :irc.underworld.no 353 jones = #computer :GTP
+>> :irc.underworld.no 353 jones = #bitcoins :@aWX-[i]
+>> :irc.underworld.no 353 jones = #weeatass :@interd0me
+>> :irc.underworld.no 353 jones = #🖕🏻 :@interd0me
+>> :irc.underworld.no 353 jones = #velocitum :nita
+>> :irc.underworld.no 353 jones = #EmuXtras :@HyperEye @phigan @phigcloud @phigtoo
+>> :irc.underworld.no 353 jones = #Christian-Chat-Chalice-German :@+Pleroma` +Flexray` @+Exusiai @+Fountain @Adiemus @+Berean @+Herbs @+Virtues @+Thronja
+>> :irc.underworld.no 353 jones = #Bible-Study-Fellowship :@+Pleroma` +Flexray` @+Exusiai @+Fountain @Adiemus @+Berean @+Herbs @+Virtues @+Thronja
+>> :irc.underworld.no 353 jones = #arioli :@Exusiai @Fountain @Adiemus @Thronja
+>> :irc.underworld.no 353 jones = #synology :@dfz
+>> :irc.underworld.no 353 jones = #taune :@dfz
+>> :irc.underworld.no 353 jones = #TheSwamp :kanodogg- GTP pugfantus
+>> :irc.underworld.no 353 jones = #saipanpredatorwatch :@corsehock l0de +xtor +Mete-_
+>> :irc.underworld.no 353 jones = #8star :hawer Picaso
+>> :irc.underworld.no 353 jones = #asot :+H0ax_
+>> :irc.underworld.no 353 jones = #illniggas :@niggaj0e
+>> :irc.underworld.no 353 jones = #lugosi :griefbot
+>> :irc.underworld.no 353 jones = #maryjane :@doomsday
+>> :irc.underworld.no 353 jones = #Theology :@Fountain @Adiemus @Virtues @Thronja ecaf1337
+>> :irc.underworld.no 353 jones = ##Bible-Study-Fellowship :@Fountain @Adiemus @Virtues @Thronja
+>> :irc.underworld.no 353 jones = ##Christian-Chat-Chalice :@Fountain @Adiemus @Virtues @Thronja
+>> :irc.underworld.no 353 jones = #osdev :joshua_ nita
+>> :irc.underworld.no 353 jones = #xpt2000 :NinJak
+>> :irc.underworld.no 353 jones = #topgear :TrbleClef |Rain|
+>> :irc.underworld.no 353 jones = #TheDonald :Mintle
+>> :irc.underworld.no 353 jones = #packets :@doomsday
+>> :irc.underworld.no 353 jones = #PHX2600 :phigan phigcloud phigtoo
+>> :irc.underworld.no 353 jones = #Sydney :mm mz reborn xx
+>> :irc.underworld.no 353 jones = #karawang :mm mz reborn xx
+>> :irc.underworld.no 353 jones = #batam :Om mm mz reborn xx vR
+>> :irc.underworld.no 353 jones = #pekanbaru :mm mz reborn xx
+>> :irc.underworld.no 353 jones = #cirebon :Om mm mz reborn xx
+>> :irc.underworld.no 353 jones = #bekasi :mm mz reborn xx
+>> :irc.underworld.no 353 jones = #idbnc :mm mz H0ax_ reborn xx
+>> :irc.underworld.no 353 jones = #yogyakarta :Om mm mz reborn xx vR
+>> :irc.underworld.no 353 jones = #opengl :med luny
+>> :irc.underworld.no 353 jones = #Denpasar :Om mm mz reborn xx
+>> :irc.underworld.no 353 jones = #kisaran :Om mm mz reborn xx vR
+>> :irc.underworld.no 353 jones = #Siantar :Om mm mz reborn xx vR
+>> :irc.underworld.no 353 jones = #gp2xdev :Sphinxtor Orkie
+>> :irc.underworld.no 353 jones = #security :pepmate tdaddy62 ghost64 @knox sjas @doomsday
+>> :irc.underworld.no 353 jones = #irc :+firewyre @+doomsday
+>> :irc.underworld.no 353 jones = #arstechnica :@oldkenobi icebalm
+>> :irc.underworld.no 353 jones = #pussy :@dexa| @dexa-
+>> :irc.underworld.no 353 jones = #blackhat :+int0x47 @bfft @+dnsk @+ottoseer @+spidy @+interd0me +okidoki @+zenik +dOm3r
+>> :irc.underworld.no 353 jones = #Brasnet :Jubilal @InterIRC Murduk @constanti @Tigrinho Kiprocu @buzz @neskau @Zoldax Miromba @campari @order @spy- ChanStat
+>> :irc.underworld.no 353 jones = #minecraft :midnight inhiding McKoro ris2z
+>> :irc.underworld.no 353 jones = #SteamDeck :|_ocke3 @+Jinx-Pi2W +Kohr-Ah f_[x] +lurk3r
+>> :irc.underworld.no 353 jones = #Vshell :@+sdx +mm +mz +H0ax_ +Jinx @+PsyMaster @+MrJinks +xx @+stoic
+>> :irc.underworld.no 353 jones = #beer :@feron ChanStat @retsamyar
+>> :irc.underworld.no 353 jones = #rfd :Raptors Aerith_Gx clrscrn Snuupy RSSBot`
+>> :irc.underworld.no 353 jones = #government :techtruth @+caesar vgl emode2 okidoki
+>> :irc.underworld.no 353 jones = #ticalcs-dev :debroux_ CVBot ldebroux_
+>> :irc.underworld.no 353 jones = #83pse-dev :debroux_ ldebroux_
+>> :irc.underworld.no 353 jones = #tifreakware :debroux_ ldebroux_
+>> :irc.underworld.no 353 jones = #random :nikkybot tev @FireBot @fire|tl h|tl @h_ @_9pfs]
+>> :irc.underworld.no 353 jones = #nspire-lua :faux debroux_ Patrick-D ldebroux_
+>> :irc.underworld.no 353 jones = #archlinux :@ottoseer
+>> :irc.underworld.no 353 jones = #StaffBr :Zoldax @campari @order ChanStat
+>> :irc.underworld.no 353 jones = #objx :kossy nujabes sasha
+>> :irc.underworld.no 353 jones = #gods :Retarded @+chaos @+bobafet @+fckd
+>> :irc.underworld.no 353 jones = #italo-disco :@Xenon- @Mauro @ItaloCarl
+>> :irc.underworld.no 353 jones = #eurodance4ump3 :@Xenon- @Mauro @ItaloCarl
+>> :irc.underworld.no 353 jones = #depechemode :depeche- madox gopo m1ke Notoriou- @VanDam @shakal @BiKeRBoY @depecher @shman @exciter @Craiova
+>> :irc.underworld.no 353 jones = #┏(°.°)┛ :felon
+>> :irc.underworld.no 353 jones = #ircbar-trivia :tony- @Maharaja @+tony skymi
+>> :irc.underworld.no 353 jones = #spoofed :@feron
+>> :irc.underworld.no 353 jones = #irc.efnet.org :m1ke @+feron +exciter
+>> :irc.underworld.no 353 jones = #hillary :|werejag|
+>> :irc.underworld.no 353 jones = #androidirc :Hacker___ barnito shield mDRealTng c0ded theef dewdude
+>> :irc.underworld.no 353 jones = #gaypeople :r0bby
+>> :irc.underworld.no 353 jones = #Paranormal :PrfsrLove +Spaceship xorAxAx wa5p
+>> :irc.underworld.no 353 jones = #origons :JSG
+>> :irc.underworld.no 353 jones = #flood2 :Jonimus DoorsCS`
+>> :irc.underworld.no 353 jones = #1k1ng :chabs trancese_
+>> :irc.underworld.no 353 jones = #cablehack :LkBurn__ LkBurn
+>> :irc.underworld.no 353 jones = #jsmess :DFJustin fcser__ @logchfo_1 Lord_Nigh datajerk
+>> :irc.underworld.no 353 jones = #feed-the-goats :anthis anthis_
+>> :irc.underworld.no 353 jones = #reflected :jima
+>> :irc.underworld.no 353 jones = #248 :skroll_
+>> :irc.underworld.no 353 jones = ##Bible :@Pleroma` Flexray` @Fountain @Berean @Herbs @Virtues @Thronja
+>> :irc.underworld.no 353 jones = #policeRadio :smash cyco grns3
+>> :irc.underworld.no 353 jones = #montreal :@cyco @tabb @Cequel
+>> :irc.underworld.no 353 jones = #ircnow :SiZogaL AriesBoy @UrPrince h|tl thegreatB FireMan SplinTer ThunderIR @Yonle @PsyMaster @UrMajesty skymi
+>> :irc.underworld.no 353 jones = #Walz :\subline
+>> :irc.underworld.no 353 jones = #bantown :@ozzzo @ozzzo_hom @Darn
+>> :irc.underworld.no 353 jones = #progressive :Pythayr
+>> :irc.underworld.no 353 jones = #wowclassic :@dialed5G
+>> :irc.underworld.no 353 jones = #PlayTrivia :mm mz @xx
+>> :irc.underworld.no 353 jones = #PlayUNO :mm mz @xx
+>> :irc.underworld.no 353 jones = #StR :Om mm mz @xx
+>> :irc.underworld.no 353 jones = #Ubud :mm mz @xx
+>> :irc.underworld.no 353 jones = #VirtualWorld :mm mz @xx
+>> :irc.underworld.no 353 jones = #bogor :Om mm mz @xx
+>> :irc.underworld.no 353 jones = #netgate :Om mm mz @xx
+>> :irc.underworld.no 353 jones = #tiwu :Titann
+>> :irc.underworld.no 353 jones = #jz :@MrRobot
+>> :irc.underworld.no 353 jones = #JWH :@JBT0002
+>> :irc.underworld.no 353 jones = #MOB :@MrRobot
+>> :irc.underworld.no 353 jones = #mrdirty :@_Forbin @MrRobot
+>> :irc.underworld.no 353 jones = #chillville :@MrRobot
+>> :irc.underworld.no 353 jones = #irc-operators :vegar_
+>> :irc.underworld.no 353 jones = #devel :anthis smash
+>> :irc.underworld.no 353 jones = #cloudnet :Lexeiwa
+>> :irc.underworld.no 353 jones = #dell :anthis smash
+>> :irc.underworld.no 353 jones = #gxg :@CablDeViL @dninja @tulpn @ShadoX1
+>> :irc.underworld.no 353 jones = #russia :zxrom jonny @dexa| Picaso dexa-
+>> :irc.underworld.no 353 jones = #downbeat :@CoMBo @madness
+>> :irc.underworld.no 353 jones = #ajuda :@InterIRC Murduk @Tigrinho @Zoldax @campari
+>> :irc.underworld.no 353 jones = #utp :unicron dive
+>> :irc.underworld.no 353 jones = #iEF :sniff- Penny
+>> :irc.underworld.no 353 jones = #netsec :tipper
+>> :irc.underworld.no 353 jones = #tircd :Olen
+>> :irc.underworld.no 353 jones = #Jesus :Adiemus Berean Herbs
+>> :irc.underworld.no 353 jones = #os2world :@valerius
+>> :irc.underworld.no 353 jones = #killah-p :[R] [R0] rasta-h
+>> :irc.underworld.no 353 jones = #shitbots :tubman__ pimp
+>> :irc.underworld.no 353 jones = #transformers2 :LuGgz
+>> :irc.underworld.no 353 jones = #dkuug :donax
+>> :irc.underworld.no 353 jones = #reptiles :@Gecko666 @Gecko
+>> :irc.underworld.no 353 jones = #ozzzo :@ozzzo @ozzzo_hom
+>> :irc.underworld.no 353 jones = #phontech :jenkins-b
+>> :irc.underworld.no 353 jones = #drftpd.de :H0ax_ douzi
+>> :irc.underworld.no 353 jones = #dotbnc :nax- untZ VanDam Haxxlolz paiN Quwk gosu FBl FBI f0zk blaze @root Sicarius Fritzl @nisse nax_ @_nax
+>> :irc.underworld.no 353 jones = #project-zs-ng :Hujer
+>> :irc.underworld.no 353 jones = #prq :daz
+>> :irc.underworld.no 353 jones = #/ :nax- untZ Haxxlolz paiN slim Quwk gosu FBl FBI f0zk c0ke blaze root Fritzl nax_ @_nax
+>> :irc.underworld.no 353 jones = #pi :zG-
+>> :irc.underworld.no 353 jones = ##efnet :explodes depecher
+>> :irc.underworld.no 353 jones = #netpimps :@interd0me
+>> :irc.underworld.no 353 jones = #201337 :@+dnsk @+interd0me dOm3r
+>> :irc.underworld.no 353 jones = #$ :fstd
+>> :irc.underworld.no 353 jones = ### :@+interd0me +dOm3r
+>> :irc.underworld.no 353 jones = #wuhan :tdaddy62
+>> :irc.underworld.no 353 jones = #oslogangstaz :@trygveaa
+>> :irc.underworld.no 353 jones = #talk :fstd
+>> :irc.underworld.no 353 jones = #copyleft :@plan9
+>> :irc.underworld.no 353 jones = #nexthop :Takapa plan9
+>> :irc.underworld.no 353 jones = #norscan :IRCNO Takapa norscan
+>> :irc.underworld.no 353 jones = #1972 :kai_ +kai
+>> :irc.underworld.no 353 jones = #fffff :_trukjee
+>> :irc.underworld.no 353 jones = #irc40 :@interd0me @Darn @spoke +dOm3r
+>> :irc.underworld.no 353 jones = #artbell :Kirovski schilling @flyer
+>> :irc.underworld.no 353 jones = #Pakistan :fstd RoyMercer cheetes ultimate-
+>> :irc.underworld.no 353 jones = #pond :jbz
+>> :irc.underworld.no 353 jones = #trut64 :jbz
+>> :irc.underworld.no 353 jones = #ftabins :LkBurn
+>> :irc.underworld.no 353 jones = #sci-fi :@Gecko666 @Gecko
+>> :irc.underworld.no 353 jones = #ira :Lions
+>> :irc.underworld.no 353 jones = #radiowars :Lions
+>> :irc.underworld.no 353 jones = #cdrinfo :@dninja
+>> :irc.underworld.no 353 jones = #binarywizards :@dninja
+>> :irc.underworld.no 353 jones = #︻┳テ=一 :@pannkaka @trash @panndora @pankakes @boo @pancakkes @dedbundy @e @pankakkes @princess @queen @doomsday @Time-L0rd
+>> :irc.underworld.no 353 jones = #sharewarez :@CrazyBonz
+>> :irc.underworld.no 353 jones = #tragic :@mu @cz_
+>> :irc.underworld.no 353 jones = #shadowlamb :darkBLACK Lamb3
+>> :irc.underworld.no 353 jones = #themyst :Collyk
+>> :irc.underworld.no 353 jones = #madrid :@koko
+>> :irc.underworld.no 353 jones = #krema.inc :@|NiGhT| @koko
+>> :irc.underworld.no 353 jones = #krema :@koko
+>> :irc.underworld.no 353 jones = #raptors :Raptors whiteking Ticket RSSBot`
+>> :irc.underworld.no 353 jones = #sack :iks neoman
+>> :irc.underworld.no 353 jones = #darkworld :@Suntop
+>> :irc.underworld.no 353 jones = #kamala :loller_ @Neff @lockie
+>> :irc.underworld.no 353 jones = #madness :@+urtext @+drange
+>> :irc.underworld.no 353 jones = #spain :koko
+>> :irc.underworld.no 353 jones = #janet :@G0dB0t
+>> :irc.underworld.no 353 jones = #cfl :whiteking grateful RSSBot` bish0p goals statsy
+>> :irc.underworld.no 353 jones = #Atari :barnito mDRealTng nemox DrToshiba fC5 @phigan Snail @phigcloud @phigtoo @biowipe CrazyBonz
+>> :irc.underworld.no 353 jones = #matematikk :tat
+>> :irc.underworld.no 353 jones = #trump2024 :@+fuckbiden @+fuckputin
+>> :irc.underworld.no 353 jones = #Harris :+fleerbap +latte1 @Jinx +Jinx-Pi2W +\subline +Neff
+>> :irc.underworld.no 353 jones = #BidenIsNotMyPresident :+we +me @+dexa- @+fuckbiden @+fuckputin
+>> :irc.underworld.no 353 jones = #JewTunnel :@milkness @lulzy @krzx_ @gay4pay f_19_usa @CoMBo @LRH @xboner @koko @pluto
+>> :irc.underworld.no 353 jones = #hyperboria :murmur deafboy_ Mayonaise opie4624 maylay alexbst
+>> :irc.underworld.no 353 jones = #safespace :+urlinfo @fred
+>> :irc.underworld.no 353 jones = #germany :@+perplexa +[AMiGO] +mex +urlinfo +AsToN @+perp1exa +junker @+fred
+>> :irc.underworld.no 353 jones = #camping :+Sora @+Aerith_Gx +firewyre +wa5p
+>> :irc.underworld.no 353 jones = #30plus :+_eye_ +AlfaRomeo @+`packy +artmodelm +`seeker @+Devs +Drkmirror +pack +Jungleman
+>> :irc.underworld.no 353 jones = #ps2-japan :MrCarter Nano des^48812 HelsAngel JimKi Fant0m poorboy
+>> :irc.underworld.no 353 jones = #Python :sixbits_ mrasmus anthis DrToshiba Angelz xihr_ smash InteRmezO Hobbyboy anthis_ webdawg pocketpro
+>> :irc.underworld.no 353 jones = #canada :flyback lex_ Goddess1 +Danny +wa5p @nes0r @whats0ns @cyco @gh0st0 @n0ne` @feron +winston @tabb @tydel +ducks @burn0ut @Cequel @fckd @mits`
+>> :irc.underworld.no 353 jones = #atheism :firewyre cow_2001 webdawg
+>> :irc.underworld.no 353 jones = #DGN :Phat_Judg
+>> :irc.underworld.no 353 jones = #DGNcrew :Phat_Judg
+>> :irc.underworld.no 353 jones = #kirenet :whats0ns Linuxs
+>> :irc.underworld.no 353 jones = #warez3d :laSh
+>> :irc.underworld.no 353 jones = #defi :fleerbap FE16 blastoshi Scaleb vb anthis smash anthis_ zacie
+>> :irc.underworld.no 353 jones = #StarWars :latte1 @Zuberlan nohit__ @nR ChanStat
+>> :irc.underworld.no 353 jones = #warez+ :@+G0dB0t @+eNforcer +DrToshiba +tbone
+>> :irc.underworld.no 353 jones = #hardball :_Forbin oqmecr bingbong whiteking palyboy THANEW jimmychef spinsane mortl deathr0w BerkKAT32 Dman4Life
+>> :irc.underworld.no 353 jones = #NY :@dexa| @dexa-
+>> :irc.underworld.no 353 jones = #blcknd :@dnsk dOm3r
+>> :irc.underworld.no 353 jones = #bakrommet :Spear Speario
+>> :irc.underworld.no 353 jones = #gcdev :@DarukBot @Extrems @DarukBNC leonardus Dragoon @phigan webhdx @phigcloud @phigtoo
+>> :irc.underworld.no 353 jones = #mac.se :[k]cloud Tugboat TheeDude
+>> :irc.underworld.no 353 jones = #Tones.be :RealFlub
+>> :irc.underworld.no 353 jones = #spamalot :irie spidy @wiesel
+>> :irc.underworld.no 353 jones = #LinuxSkolen :@BN-VPS090 @BN-VPS105 @BN-VPS089 @BN-VPS009
+>> :irc.underworld.no 353 jones = #0x539 :@pyjiin
+>> :irc.underworld.no 353 jones = #irc4fun :Ti-Ti Quo-fan
+>> :irc.underworld.no 353 jones = #tvtorrents :Anubis169
+>> :irc.underworld.no 353 jones = #nocen :@BN-VPS090 @BN-VPS105 @BN-VPS089
+>> :irc.underworld.no 353 jones = #fredrikstad :vertz ViD
+>> :irc.underworld.no 353 jones = #woot :v|g|LanT_ v|g|LanT-
+>> :irc.underworld.no 353 jones = #god :@Dat @jrra_ +trub0rt @e_tea @peaches +panndora @zyme @irie +ChanStat @+ragnarok @LuGgz
+>> :irc.underworld.no 353 jones = #Losangeles :v|g|LanT_ v|g|LanT-
+>> :irc.underworld.no 353 jones = #alias.no :@pyjiin
+>> :irc.underworld.no 353 jones = #Thailand :@leisrlch- @leisrich- @chip @+leisrich` @+leisrich @leisrich_ @lelsrich
+>> :irc.underworld.no 353 jones = #online :haarek
+>> :irc.underworld.no 353 jones = #shittalk :Nick @nR runit
+>> :irc.underworld.no 353 jones = #anxiety :nom1 InvalidUs bfft heeki_ badman linuxyo monq emode2 @doomsday l23456 dive
+>> :irc.underworld.no 353 jones = #dnbarena :JSG CyraX666 GuntherDW DexLV
+>> :irc.underworld.no 353 jones = #Palestine :skaeleen df @stratum_ bagol
+>> :irc.underworld.no 353 jones = #traps :@stratum_
+>> :irc.underworld.no 353 jones = #dinosaurs :gummysale baka nits_77
+>> :irc.underworld.no 353 jones = #prankcallradio :@dexa| nR @dh_ @RedHead dexa-
+>> :irc.underworld.no 353 jones = #UFOs :leisrich linuxyo cooey
+>> :irc.underworld.no 353 jones = #astro :@+Mailman_ @+sillybaby @+Mailman
+>> :irc.underworld.no 353 jones = #weechat :whats0ns @TriiiX pocketpro
+>> :irc.underworld.no 353 jones = #southpark :int0x47 @dexa| @dexa-
+>> :irc.underworld.no 353 jones = #elonmusk :int0x47 hiding +hawer cna_ fauxpride @corsehock +Picaso gosu FBl f0zk +irv +xtor +aura__ MZx90- +_OverLord +JFoX +beatdown| +runit
+>> :irc.underworld.no 353 jones = #fallout2 :Aerith_Gx Yama phyber
+>> :irc.underworld.no 353 jones = #metal :efsenable VerthNeel Cashlin erf Feline pill COVIDIOT dpirate clrscrn nordaxe roastx anthis raah Retarded nordac anthis_ @elf @fckd bobafet
+>> :irc.underworld.no 353 jones = #test :latte1
+>> :irc.underworld.no 353 jones = #trivia :aborazmeh +r3d firewyre Yogi oldtopman Matt| shoes Baloo +thomsloan kuato min +Pio +tbone @+Jallenbo +Phil21
+>> :irc.underworld.no 353 jones = #realnews :+mDRealTng @Plan_IX
+>> :irc.underworld.no 353 jones = #bitcoin :Aerith_Gx TrbleClef loller_ tdaddy62 hyrkvljer tuxedo jonny cna_ victori FE16 FE Picaso @vb constanti hamzzzz [1]KEYGEN gay4pay aWX-[i] thufir feld @disc inhiding eth0p1 anthis bish0p Dan- jpsr MZx90- NiKaN_ badman JFoX linuxyo @FE4 anthis_ beatdown| ionizer xboner Briere windex okidoki tr4x zacie redlegion fckd latez astro gusto pontifex
+>> :irc.underworld.no 353 jones = #PiRATES :explodes \subline laSh
+>> :irc.underworld.no 353 jones = #ganja :Kev vgl CoronaBot sYN4P515_ zG-
+>> :irc.underworld.no 353 jones = #bonghit :+treesee +H3RB42O @+`packy +Dat +`seeker @+DJ_AA @+dnsk @+Jungleman @+raah @+imageek
+>> :irc.underworld.no 353 jones = #irc4life :EqUaTe DJ_AA skymi Minnen
+>> :irc.underworld.no 353 jones = #Cannabis :+firewyre +joako +byte_me @Danny @whats0ns @OwnerNB @tabb +qubitor @grns3 @Cequel
+>> :irc.underworld.no 353 jones = #medan :+AriesBoy +Om +mm +mz @+PsyMaster @+MrJinks +reborn +xx @+bagol @+stoic
+>> :irc.underworld.no 353 jones = #bleach :+loller_ flyback +aether @+krzx_ @f_19_usa sYN4P515_ @LIERO @ads
+>> :irc.underworld.no 353 jones = #lily :Kev nemox nes0r @KeyzrSoze @Mafalda nemox1 @fckd @barbs lala @alt @ducks @ifrit
+>> :irc.underworld.no 353 jones = #nerds :+firewyre +fauxpride LifeForm xtor Mete-_ @+nR beatdown| +tydel spoke
+>> :irc.underworld.no 353 jones = #dupecheck :caesar ZarTek aox laSh
+>> :irc.underworld.no 353 jones = #phonelosers :loller_ nom1 +lucidphre +heeki_ +gh0st0 @bison +dboard2 @newline +wasted @cactus2 @cactus3 +webdawg +pluto +redlegion
+>> :irc.underworld.no 353 jones = #rathole :@Dat @Digerati @jonathan` @pugfantus @heeki_ @r0bby @raah @stratum_ @Sepesepe
+>> :irc.underworld.no 353 jones = #triviacafe :Matt| hgc +Phil21
+>> :irc.underworld.no 353 jones = #fights :+Aarons__ +loller_ +FE16 +THANEW +cowboy +FE4 +nerdk0re +latez @+MarkyP +tisk
+>> :irc.underworld.no 353 jones = #dreamcast :cplater_ kof673
+>> :irc.underworld.no 353 jones = #headshop :lol0gram Nick heeki_ octopus @cooey
+>> :irc.underworld.no 353 jones = #dxm :@cooey
+>> :irc.underworld.no 353 jones = #ontario :cooldude wa5p heeki_ \subline winston @cooey
+>> :irc.underworld.no 353 jones = #pol :@tubman__ loller_ GunUrra FieryGT Atlas poccri Fan Sophia Child FieryUSA Cosmos Plasmoid @dociday LRH @ReggieH Artemis Tesla @+armeni okidoki
+>> :irc.underworld.no 353 jones = #jakarta :@+sdx +Om +mm +mz +ningkelle @+PsyMaster @+MrJinks +reborn +xx @bagol @+stoic
+>> :irc.underworld.no 353 jones = #bandung :+Om +mm +mz @+PsyMaster @+MrJinks +reborn +xx +vR @+bagol @+stoic
+>> :irc.underworld.no 353 jones = #Indonesia :+AriesBoy +Om +mm +mz @+PsyMaster @+MrJinks +reborn +xx +kk @+bagol @+stoic
+>> :irc.underworld.no 353 jones = #roms-isos :+suv_10 @Folken +Aerith_Gx @Portland +COINTELPR @Joystick LifeForm @Toad @Blazers @Jinx +NotSinR @Jinx-Pi2W @Kohr-Ah ris2z DrToshiba @GalaxyJ3 @Zangief @Odroid @GalaxyS5 @orkim alt|away +Fant0m Nardic +ChanStat @Amiga poorboy
+>> :irc.underworld.no 353 jones = #anime :Bart1337_ Aarons__ whiteking Dragofix @Aerith_Gx flyback hibiscus @Zuberlan Sunblade @Yama bsdbandit Mio EmmanuelC Rein jimmychef Kohr-Ah ris2z @thaddeus beatdown| runit ChanStat Jinnai astro
+>> :irc.underworld.no 353 jones = #bball :+Aarons__ +_Forbin +corker_ +whiteking +firewyre +sinslight +kanodogg- +Robby +fusQueezy +cryptic +aaearon +OhioState +FE16 @+spleef +THANEW +FE +hackteck +reflux +RickiTan +grateful @+makaveli- +Ticket @eNforcer +clear` +spitz @+tupac +spinsane +cowboy +mortl +BerkKAT32 @+spliff-og +FE32 +FE4 +beatdown| @+Towner +goals +statsy +NaiWiste +silenz +croc @+latez +nerdk0re @+tisk
+>> :irc.underworld.no 353 jones = #own3d :+Kev +gachikuku +rootkit +spam +buffer +cracker +tembak +heap +knox @+vgl +linuxbot +tulpn @+cyco @fckd @+panndora @+pankakes @+ensane @+barbs @+elf @+spoke @+bobafet
+>> :irc.underworld.no 353 jones = #ircgeeks :fstd the_JinX sushisush
+>> :irc.underworld.no 353 jones = #BozRadio :@Slaygon
+>> :irc.underworld.no 353 jones = #centos :mDRealTng Freak` DJ_AA
+>> :irc.underworld.no 353 jones = #efnetnews :+lol0gram +centie +midnight +lulzy +kossy +latte1 +shart +l0de +semen +poccri +EGH +[1]KEYGEN +pannkaka +hgw +funkpumpr +Nick +hextasy +monokrome +heeki_ +eth0p1 +vgl +astro +HardDisk +MZx90- +Retarded +n0ne` +panndora +pankakes +LRH +irie +ACID +zebra +sludg +beatdown| +Echoz +suruh +CURiOUSKC +runit +stratum_ +chode +pymake +datajerk @doomsday +shrew +jewbird +fckd +MarkyP +blarf
+>> :irc.underworld.no 353 jones = #rarbg :Juest barnito gay4pay @linuxyo smashgrab cooey poorboy
+>> :irc.underworld.no 353 jones = #football :+Raptors +Aarons__ +_Forbin +corker_ +Aerith_Gx +LnkStern0 +leo_ +devz3ro +firewyre +Kanodogg +sinslight +sushisan +runatrain +kanodogg- +cna_ +sonkulp2 +|darc|_ +fusQueezy +cryptic +aaearon +OhioState +Broncos7 +FE16 +k3vin @+spleef +THANEW +n0b0dy +FE +hackteck +reflux +babool +theLand +RickiTan +Scaleb +big_juice +fcser__ +grateful +|darc| @+makaveli- +Nick +jimmychef +EZ2 +anthis @eNforcer +tkimball +clear` +ammo +spitz @+leddy @+tupac +bish0p +CoronaBot
+>> :irc.underworld.no 353 jones = #football :+meingtsla +sn00p +Syntex +cowboy +mortl +n0ne` +panndora +pankakes +BerkKAT32 @+spliff-og +FE4 +sYN4P515_ +anthis_ +beatdown| +suruh @+Towner +xboner +afl +goals +statsy +cma3585 +lockie +nerdk0re +Dman4Life +NaiWiste +gig +DDensity +zacie +tinystorm +latez @+tisk +samorost
+>> :irc.underworld.no 353 jones = #insomnia :diNGo Picaso @+caesar runit
+>> :irc.underworld.no 353 jones = #jeopardy :@jeeves
+>> :irc.underworld.no 353 jones = #iphone :+Uni +VladPutin @+spleef +hackteck +kamui +SnooPac +vb @+makaveli- +bfft @eNforcer @+tupac +LazyHog +MZx90- +[k]cloud +scutage +olus +ling0n @+spliff-og +phigan +xboner +phigtoo +PSU +okidoki +zacie +latez
+>> :irc.underworld.no 353 jones = #phat :rena fauxpride @Spear df @snugglo @Dan- @Ratler @[k]cloud @whats0ns @tabb @Speario
+>> :irc.underworld.no 353 jones = #MMA :ar- kanodogg- VladPutin Dalkarl eth0p1 peaches ChanStat +ircuser06 termite latez
+>> :irc.underworld.no 353 jones = #birdnest :corker_ whiteking tubman__ +loller_ +nom1 +lol0gram midnight gachikuku @+kossy @diNGo +VerthNeel Cashlin @shart @aimilf jogmaster +nance +c0ded +alyosha @semen Picaso jonathan` katia gay4pay +funkpumpr @bex +cynic @+sylar zetta +heeki_ +space +octopus @nes0r +CoMBo +DrToshiba @b-rex @Retarded +panndora +pankakes +leisrich +linuxyo @+bopadoo @irie +dave +zebra @sludg @chode +xboner @shrew @jewbird +Darn +ragnarok +Lions @octo +pluto +hgc @+spoke +croc
+>> :irc.underworld.no 353 jones = #birdnest :+redlegion +fckd +adct @+blarf
+>> :irc.underworld.no 353 jones = #retrodatorer :AiO Dalkarl C00re
+>> :irc.underworld.no 353 jones = #computers :Bart1337_ ispookan _Forbin dakudos corker_ fstd whiteking luldangs Aerith_Gx niv tubman__ loller_ gachikuku nom1 Spookan fleerbap idlerman BDoug Juest zxrom centie firewyre tdaddy62 scratch joako efsenable barnito sinslight hawer goodtimes bbbunni Cashlin byte_me jonny latte1 cna_ sonkulp2 fauxpride k3vin l0de micronn LifeForm bsdbandit clrscrn edmund FarAway babool theLand poccri Picaso Angus dninja fcser__ yarg [1]KEYGEN leisrich- chip chicken_m Sicarius
+>> :irc.underworld.no 353 jones = #computers :Coniass xtor Super_BQ bfft jimmychef astra octopus anthis CoMBo crackfu wallacer e_tea carver smash MZx90- tjr__ Death lucabtz kuato jeru2 Pixi pankakes leisrich twila linuxyo winston Jigsaw larsinio leisrich_ dave dboard2 teaspoon youri arenite beatdown| p0p-dog Echoz Collyk znuf4276 runit sskras lich edenist xboner emode2 LIERO lockie gturner lelsrich l23456 Darn ragnarok doomsday gothsrpnt zacie jewbird boxette arseloch fckd astro cooey pocketpro
+>> :irc.underworld.no 353 jones = #chanfix :@Diabolic @perplexa @perp1exa @blaxthos @PsyMaster @McKoro @stevoo
+>> :irc.underworld.no 353 jones = #aol :+pimp` +midnight +krzx_ +cartman +spitz @+feron +mEX-tits @+pimp +mEX-lsd +LuGgz +retsamyar
+>> :irc.underworld.no 353 jones = #dmsetup :efnetbot` Takapa
+>> :irc.underworld.no 353 jones = #hockey :+Raptors +LnkStern0 +firewyre +sinslight +kanodogg- +Lemieux +lex_ +k3vin @+spleef +reflux +RickiTan +big_juice +grateful +countrfit @+makaveli- +jimmychef +heeki_ +astra @eNforcer @+tupac +bish0p +\subline +Plan_IX +raah +deathr0w +BerkKAT32 @+spliff-og +Fresco +beatdown| +WFeather @+Towner +sebito91 +goals +statsy +cma3585 +lockie +sn00p +gluten +stats +c|oneman +latez +astro @+tisk
+>> :irc.underworld.no 353 jones = #stocks :+pathway27 +tass +hyrkvljer +joako +mDRealTng +kanodogg- +cryptic +lex1 @+spleef +babool +RickiTan +kneeL +big_juice +vb +funkpumpr @+makaveli- +xtor +comrade +airbag +feld +hams +anthis @eNforcer @+tupac +sillybaby +smash +MZx90- @+spliff-og +beatdown| @+Towner +statsy +alexbst
+>> :irc.underworld.no 353 jones = #math :Sora fleerbap firewyre tdaddy62 jackal^ flamingsp phaeton jogmaster monochrom unicron jonathan` DarwinElf [1]KEYGEN chicken_m sek @suj disc Jinx-Pi2W astra meingtsla _sol_____ Fant0m absentia crystal
+>> :irc.underworld.no 353 jones = #🚽 :us tubman__ loller_ nom1 we efsenable sonkulp2 abum fartballz me CoMBo luldangs crackfu leisrich LRH Darn arseloch cooey
+>> :irc.underworld.no 353 jones = #titandemo :r0ptr |_ocke3 pepmate arvenius immibis sprouts GTP rptr vLK huLksTA_ nerv wysiwtf icedragon OlaHughso cslag ryerf nemox muiop_ Tazorus JoC jaezu linuxgmni lizard @haliphax3 comrade illu deadmarsh haskal2 badahead fz kniffy mRmiSta x_ beo zokum Lord_Nigh bUd^oo panzeroce @sexrobot @crispr @poro|uly fred @caleb @disc0rd aox nemox1 TAFKAMP_ zoot2 useretail greaser|q @PoroCYon @pb TAF68k @bOhEmE @Medo42 @iks @dstar zoot @fumk @neoman
+>> :irc.underworld.no 353 jones = #mp3scene :t0ubab0k0 thatguy ElfGx elkayhhv ring0 beo JBst koko pork poorboy
+>> :irc.underworld.no 353 jones = #psxdev :fgsfds satoshi NRGDEAD kof673 kniffy dociday TAL useretail greaser|q Surkow astro
+>> :irc.underworld.no 353 jones = #happiness :+howiemnt1 @+_Forbin +corker_ @+satoshi +loller_ +nom1 +zxrom +firewyre @+urtext +efsenable @+milkness @+flyback +diNGo +goodtimes +byte_me +latte1 @+bj0rn @+kuksatan +agentmx_ +LifeForm +clrscrn +abum @+Cracki_ +gay4pay @+Dalkarl +heeki_ @+b-rex +tjr__ @+Neff +l0dey +zebra +sskras +ionizer @xboner emode2 @+drange @+sn00p +Darn @+Crono +cooey
+>> :irc.underworld.no 353 jones = #2600 :J-Hex niv toxik nikon CageyBee lol0gram pepmate GunUrra @[maj] @infro flyback gachikuku artmodelm +Mimmie victori rptr +APic eliza fcser__ [1]KEYGEN vgl pannkaka aWX-[i] explodes xtor @+hextasy alahzad cynic brkk heeki_ trash eth0p1 @knox crackfu HIBPBot tipper ephemer0l Death skope @Jungleman __ebx_ jeru2 Plan_IX +cyco fC5 @Retarded @fckd @panndora +pankakes zyme entrex +spliff-og pancakkes dave @maj princess queen ensane ACID anthis_ beatdown| xboner pymake
+>> :irc.underworld.no 353 jones = #2600 :+phigcloud MINNIE18 BasharTeg tydel koko @doomsday +octo +tbone +tr4x @spoke +redlegion +shrew +ajb @jewbird @bobafet +astro +gDm @thalion +hfam
+>> :irc.underworld.no 353 jones = #fightclub :@lulzy kossy Retarded @LRH @stratum_
+>> :irc.underworld.no 353 jones = #videogames :Bart1337_ COBOL firewyre barnito mDRealTng kanodogg- Cashlin Mimmie @SolidBoss @Zuberlan FE16 CraiZE bsdbandit lowtrucks cooldude vegar_ ghost64 [1]KEYGEN roastx Kohr-Ah raah orkim MZx90- olus @bVork Berserker Pixi twila @nR beatdown| TGS Fant0m Nardic xboner ChanStat ragnarok @Dman4Life croc @nerdk0re cooey
+>> :irc.underworld.no 353 jones = #political :+us Aarons__ +coldsoup +|werejag| whiteking +luldangs +int0x47 +niv Picaso +tubman__ +loller_ nom1 +fleerbap +we +GunUrra +prizzly +tdaddy62 +joako +flyback +kossy +diNGo +dTal +Mimmie +latte1 +victori +eekie +aether +k3vin +l0de agentmx_ +gravitaz +LifeForm @politburo +abum +efnetbot` +poccri +HAARP +fcser__ +pyre +X-Scale +neuralnet +me +aWX-[i] +thufir @PsyMaster @McKoro +CoMBo +vgl +wallacer +dociday +fChanX +sillybaby +HardDisk +peaches MindJedi +olus
+>> :irc.underworld.no 353 jones = #political :+badman +Neff +Pixi +Retarded +panndora +pankakes +LRH +gravitaz2 +winston +ReggieH +vlad +fred +stratum_ +zacie +xboner +Death_Syn +emode2 pymake +armeni +lockie +sn00p +gturner +Darn +bagol +doomsday +pluto @stoic +lostbits +redlegion +skymi +arseloch +astro
+>> :irc.underworld.no 353 jones = #pcgames :Aerith_Gx COBOL +Altema BDoug firewyre +[maj] +infro sinslight hawer +kanodogg- +byte_me +FE16 +Sunblade +k3vin +LifeForm +blastoshi +lowtrucks @vb +vegar_ +ghost64 +yarg +[1]KEYGEN +aWX-[i] +thufir +ten +jimmychef +eth0p1 +roastx +anthis +NaMcO +DrToshiba +ammo @vb_ @+scutage +Berserker +raah +zyme +linuxyo +larsinio +maj +Hobbyboy +anthis_ +lich +xboner +drange +sn00p @+Necrosand +elf +gothsrpnt +LuGgz +croc +nerdk0re +Boku
+>> :irc.underworld.no 353 jones = #mircart :+lulzy @+kossy +Cashlin +nance +l0de +pankakes +funkpumpr +PumpSlut +dboard2 +ragnarok +Lions +redlegion
+>> :irc.underworld.no 353 jones = #mirc :jackal^ [AMiGO] gopo ialokin skill ElfGx cooldude NinJak Kollektiv Angelz [R] catalase Dwight7e NiKaN_ shman Wollino Hobbyboy sactown __PsyCh0 poorboy
+>> :irc.underworld.no 353 jones = #efnet.net :+Slippern @+ledyt +Mauro +Spear @+perp1exa @+catatonic +olus +lucabtz +TriiiX +w3stside +zebra +Mathias @+haarek @+blackroot @+tydel @+Speario
+>> :irc.underworld.no 353 jones = #IRC30 :+ar- +nikon +hiding +CoLoN +ledyt +BDoug +fstrelok +eyeh4t3 +joako +milkness +gachikuku +lulzy hawer Dat h|tl +goodtimes +DarthOreo +eefer_ +nance +k3vin +LifeForm +alyosha +politburo +bsdbandit +abum +guk +urlinfo +efnetbot` Picaso +vb +fcser__ +papaskin +fckd +gay4pay +Spike @+perp1exa +hgw +funkpumpr +makaveli- +xtor @+PsyMaster +ten +hextasy +Hooloovoo +inhiding +ambo +jimmychef +heeki_ +space @+snugglo @+McKoro +astra +knox +anthis +luldangs +vgl +dNk
+>> :irc.underworld.no 353 jones = #IRC30 :+spinsane +aura__ +smash +Death +farmr @+olus +felon +Jungleman +tulpn @+stevoo +ramses +jeru2 +Retarded +booo[0] +gh0st0 +panndora +pankakes +zyme @+feron +spliff-og +crime +winston +pancakkes +FE4 +ensane +tabb +anthis_ +beatdown| +suruh +fred +lich +xboner +Death_Syn +zenik +phigtoo +datajerk +MINNIE18 +Darn +lala +tydel +bagol +pb +doomsday @mits` +spoke +zacie +redlegion +shrew +ajb +boxette +arseloch +bobafet +Speario
+>> :irc.underworld.no 353 jones = #chases :bingbong whiteking @luldangs int0x47 nom1 +nXt +GunUrra +tdaddy62 +eyeh4t3 +techtruth +milkness @+flyback +sinslight +dwhess @goodtimes +SuchWow +sonkulp2 +eefer_ nax- +aimilf +aether @+corsehock @+k3vin djnaff +COVIDIOT +LifeForm guk +kali @+poccri +Matt| @Scaleb +gay4pay untZ Haxxlolz paiN Quwk gosu f0zk c0ke blaze root +thufir +GoChris +defec7ed +darkmage @prerak @jimmychef +heeki_ +nes0r @CoMBo +Mete-_ spinsane carver @+kongfuzi draq +smash +farmr @+Jungleman
+>> :irc.underworld.no 353 jones = #chases :+Plan_IX +Retarded @panndora @+pankakes +l0dey +winston @+FE4 +pancakkes @larsinio @+irie +fyst +insamniac +beatdown| +Fasa @WFeather +runit +lich +pymake +ionizer @xboner @+lockie +bagol +ragnarok +VisigothX @+doomsday +stoic +tbone +LuGgz @+spoke @zacie +tinystorm @jewbird @arseloch +fckd @twatbot poorboy @moeSizlak
+>> :irc.underworld.no 353 jones = #SpaceX :+trask +CageyBee +loller_ +tdaddy62 @Robby +SolidBoss @Zuberlan +k3vin +m1ke @+Matt| @+cajuncook +thufir +cynic @+L0jik @+McKoro +astra +anthis @+luldangs +CitizenX +depecher @+ramses +l0dey @+winston +lurk3r @+NaiWiste +x- +superkuh +arseloch @Minnen
+>> :irc.underworld.no 353 jones = #lrh :+luldangs jimmy BigRa dakudos corker_ +ar- +niv +tubman__ +nikon +megadark +pankakes +idlerman +shimmer +LeeColi16 +zxrom +fstrelok +eyeh4t3 +joako +efsenable +aeon-x +sayjau +techtruth +s0k1t +milkness +flyback +gachikuku +lulzy +hawer +diNGo +abum +nameless +JustinCre +retali8 +SuchWow +DarthOreo +Cashlin +skaeleen +sonkulp2 +victori +szass_tam +immibis +bj0rn +fauxpride +kuksatan +jogmaster +nance +aether +jordan_0 @l0de +c0ded +LifeForm +murmur +alyosha
+>> :irc.underworld.no 353 jones = #lrh :+FarAway +InvalidUs +poccri +jonathan` +h0tline +caesar +fcser__ +Pyrrhic +pyre +tulpa +gay4pay +pannkaka +neuralnet +FBl +FBI +jrra_ +perp1exa +hgw +funkpumpr +ten +ripclap +hextasy +ultimate- +monokrome +cynic +zetta +dbaxter +t420 +darkmage +heeki_ @L0jik +space +shusky @DemiMobil +octopus +CoMBo +crackfu +windsok +abigor +bysin +e_tea +dNk +CitizenX +b-rex +carver +Dude_ +fChanX +sillybaby +catalase +peaches +m0ngk +dnsk @anjii +piespy +Retarded +booo[0] +mits`
+>> :irc.underworld.no 353 jones = #lrh :+ABlaze +shaye +gh0st0 +n0ne` +panndora +zyme +ottoseer +eskimo +twila +moon +linuxyo @dieforirc @LRH @l0dey +monq @crime +Jigsaw +pancakkes +irie +dboard2 +pinchy +ACID +zebra +agatha +beatdown| +suruh +spidy +PositiveC +fred +runit @+stratum_ +ionizer +xboner +zfk +drange +LIERO +lockie +interd0me +MINNIE18 +Darn +zenik +lala +tydel +Alga +doomsday +Lions +monx +octo +DCheney +pluto +sam` +tbone +arseloch +lostbits +okidoki +dio +hgc @spoke +shrew +jewbird
+>> :irc.underworld.no 353 jones = #lrh :+boxette +bobafet +fckd +l23456 +cooey +adct +dewdude
+>> :irc.underworld.no 353 jones = #altcoins :whiteking fleerbap [maj] infro goodtimes fr33d0g THANEW FE RickiTan blastoshi @vb hamzzzz aWX-[i] thufir defec7ed inhiding jimmychef bish0p vb_ olus @FE4 +larsinio +maj chandler1 Towner +Necrosand +elf +NaiWiste pontifex +Niska
+>> :irc.underworld.no 353 jones = #irchelp :EmleyXMPP @jackal^ +h|tl +H0ax_ +v|g|LanT- @b|c +vegar_ +Angelz @[k]cloud +Zoldax +campari @phyber @MrBlc +softie +tydel
+>> :irc.underworld.no 353 jones = #politics :+Sora +BigRa +fstd +whiteking +Picaso +COBOL +Altema +fleerbap +pilgrimm +IamKing +techtruth +panini_ +Kanodogg +panini +diNGo +dTal +Ikon +latte1 +cna_ +aether +abum +Trel +X-Scale +neuralnet +andr01d +Lexeiwa +ripclap +hams +heeki_ +jpsr +sillybaby +HardDisk +[k]cloud +badman +kuato +JFoX +ozzzo_hom +Pixi @Ekko +ottoseer +twila +typhon +fred +ionizer +emode2 +armeni +sushisush +Darn +DCheney @Omkeh +zacie +redlegion +latez +astro +poorboy
+>> :irc.underworld.no 353 jones = #irc.is.boring :kylefoth @ar- loller_ efsenable @vb @spitz spliff-og @maj newline bison ChanStat +skope Darn @nck @chaos
+>> :irc.underworld.no 353 jones = #port80 :+rena +maxinux +h|tl +sonkulp2 +nax- @+felon` +zphinx +untZ +Haxxlolz +paiN +Quwk +gosu +FBl +FBI +f0zk +blaze +root +Sicarius @+perp1exa @+PsyMaster +Fritzl @+snugglo @+McKoro +astra +Angelz @+[k]cloud @+stevoo +Zoldax +linuxyo +tabb +blackroot +tydel +bagol +dstar
+>> :irc.underworld.no 353 jones = #irccloud :+l0de +murmur @perp1exa @PsyMaster +b0b @[k]cloud @stevoo +bopadoo +l0dey tydel +bagol
+>> :irc.underworld.no 353 jones = #ghetto :+int0x47 @+[maj] +Kev +infro @+Dat +kossy @+nyet +DarthOreo +Cashlin @+Mimmie +Weather @+nance +k3vin +l0de +InvalidUs @+jonathan` @+Matt| +dninja +zzzeyez +Spike +hextasy +cletus +bfft +astra +vgl @+II +aura__ +smash +[k]cloud @+Death @+Jungleman +booo[0] +gh0st0 +n0ne` @+panndora @+pankakes @+feron +linuxyo +LRH +l0dey +FE4 +pancakkes +irie @+maj +Echoz +suruh +ionizer +xboner @+Death_Syn +lurk3r +ChanStat @+MINNIE18 +lala +pb +LuGgz +spoke +vect0rx +ajb +fckd
+>> :irc.underworld.no 353 jones = #ghetto :@+Minnen +cooey @+mits`
+>> :irc.underworld.no 353 jones = #efnet :sdx rena ledyt Ritche jiggawatt k3vin Robby Weather @perplexa zed +politburo KiSsEr h_ daniel3 Spear @perp1exa @PsyMaster @disc PumpSlut @McKoro dnsk FE4 catatonik @[k]cloud catatonic olus @stevoo +ramses whats0ns InteRmezO panndora pankakes +l0dey spliff-og winston w3stside blc MrBlc haarek ionizer @Death_Syn lurk3r Nando TriiiX +tydel bagol pb doomsday tomaw +shrew +Visor +goog +Speario
+>> :irc.underworld.no 353 jones = #I_TAKE_IRC_SERIOUSLY :+explodes +heeki_ +astra +cartman Zoldax @feron +ionizer @+ifrit
+>> :irc.underworld.no 353 jones = #high :centie Nick heeki_ @cooey
+>> :irc.underworld.no 353 jones = #Dennis :+sinned +darkirc +L3m0n +nax- +SmokeMode +FireMan +DareDeviL +breakdown +rick_ +dd_ +Target +WarLord +synope +hanna +untZ +Haxxlolz +gosu +FBl +FBI +f0zk +blaze +root +Sicarius +Fritzl @+Suntop @+Quo-fun @+Quo-fan
+>> :irc.underworld.no 353 jones = #Bali :+AriesBoy +Om +mm +mz @+PsyMaster @+MrJinks +reborn +xx +vR @bagol @+stoic
+>> :irc.underworld.no 353 jones = #sortland :Slippern
+>> :irc.underworld.no 353 jones = #sex :mm mz heeki_ reborn xx bagol
+>> :irc.underworld.no 353 jones = #revit :clrscrn WFeather
+>> :irc.underworld.no 353 jones = #retrogamers :Bart1337_ firewyre CraiZE bsdbandit Trel heeki_ zyme @cooey
+>> :irc.underworld.no 353 jones = #shroomery :aether @cooey
+>> :irc.underworld.no 353 jones = #raccoon :cooldude vegar_ peaches @cooey
+>> :irc.underworld.no 353 jones = #dex :@cooey
+>> :irc.underworld.no 353 jones = #zsnes :heeki_ @cooey
+>> :irc.underworld.no 353 jones = #surabaya :+Om +mm +mz @PsyMaster @MrJinks +reborn +xx +vR @bagol @+stoic
+>> :irc.underworld.no 353 jones = #cxndiflip :@cooey
+>> :irc.underworld.no 353 jones = #bikerbar :@`packy @`seeker +Dalkarl
+>> :irc.underworld.no 353 jones = #wyyzrds-tower :whiteking @loller_ @idlerman +kossy @bj0rn @l0de @c0ded +murmur @InvalidUs +krzx_ @caesar @gay4pay @hgw +hextasy +f_19_usa +heeki_ @L0jik +nes0r @abigor @b-rex @peaches @anjii @l0dey @irie @agatha +gecko_x2 +runit @stratum_ @xboner @dewdude @+ragnarok @+Lions @pluto @+jewbird
+>> :irc.underworld.no 353 jones = #312 :whiteking beekor abum @bex @CerealBot b0b farmr tim @m1k[3y] @orb Templar tbone @dongbot
+>> :irc.underworld.no 353 jones * * :ryeng Norvald JayC LarsE6 jabr adamcik Tord mavrik macmaN_ scrap steves5 svchfoo1 slagg maxxx lorf marly darks bhelx |CF| swebb cf ferus Hogie Toad3r deadeye- Soulflare RufusT krzr0 RapStar W4rpath Rancho Sharparam __builtin fizi flip bestdesig cna__ t3kk3n evilroots scottr_ pcp_ roniez Summalaj1 Aaerox_ tester123 dots wasabi gmcharlt_ v0rtex JoshHuman ftc Panic unaatis vispillo CockSlime kainam booboy- piele t0mac0_ daveDEAD ChinnoDog buzzhump niccosn Botsen 
+>> :irc.underworld.no 353 jones * * :kirill micky SixSixSix mjoras HYPNZ Obiwantje SpartaN TheBOSS alberthro Plugh Sthebig Alamais warre_ Fiction FiXeroN LordDrag- n0ize44 sevy Dark-Nes- trainwrec PD2RVK_ dma omp ozymandia shibu mindjob hash- |Bandit| morf pastika don- t3st dazler dmt Maker kamel aussiedan turdlet Zeeee Kaslai deafalcon falcon0 nettling7 TiLTED kronoz always obscure Cork ircbot001 madesc inxs Blaze420 dextro563 Odb718 iFull jcgter777 _detaf_ tek ozzy border zurfa- icantdec_ Toris_ 
+>> :irc.underworld.no 353 jones * * :Idefix- collector ste Cobra r0lfes robb_678 Sinusoid Posy Sp00kY Desimat0r Crawdad Mongo ShaunX Stotch agent0 HDx2k19 elcid Kotori rotkiv rivalg Gearloose auri Suzuki tsukasa z|ytw| stahl ElPapa m00nRiD3r sed engine9_ PrimusBot hbw mattole acDC- kulj EpicKitty EE un i- malevolen ZOP CemetecUT J4G0 Obi-Wan I93 agrajag inode EvilDrago soylent Dunhill _Diablo thataltai hk ww Jon canseco2 marauder longrun drama _gero_ haavard Spydabyte rr oi Zal rick ElementW h3v 
+>> :irc.underworld.no 353 jones * * :juanete krzywix snadge bobster pumpan pvalenta Aly0sha theobject JoJo gooly Arcing MBezzle NULL Paddy7 pthree cabbage admin obc Zeroko_ Monk obw ircbot carm_ EuroBeat Xen0 PatriotM l23456` coder mewster__ yuitimoth JoFi shady KRAKEN lexani Lightning kf gnarlypig jets_____ d7s1 fanfare_ z812 deriamis Synt4xErr Mattie olli23 ork art d00dm4n trevor_s as42579 tfx_ Steph wpMLJvVSE keeper- SurfeR|aw m0qui beggarman flotwig ratcontrl s\\ bacs FalconK Unity x3sphere_ 
+>> :irc.underworld.no 353 jones * * :shred00 DoofyMC DoctorGCP fckd_ emilio2 Dirac xanax netgirlie miguel simple Argh scrdcow adoy duracrisi Zhusei Churten andrew_f srussell1 SplasPood oahee Namikaze georgegr1 swi ScrewDriv nathan bigua Neccros dd Neil scruffyfu orson a500 zerowizar randomd pille enki peaces_ srsstix cornfeed SpkLeader nullspace obskyr haileris clavo pzlate peaces Wicked- Mediaicon Venom Kusau snappy corecode h4x0r3d phreak_ Crocodill rbm1 exotica lulzyboy HijoDelSo robn Fusl_ bonox 
+>> :irc.underworld.no 353 jones * * :UnchatMat tydelMTL Przt pKx Silent-X Dingus punker_ Larsenv6 core Conjuro jerikka zncadmin liam SimoH_ LJ-Space_ mokomull fogleaf termina zncphone cgull Fusl ekleog BitEvil Montana appservic lwb thorre maxfan8_ Peter echarlie hunter26 Ori_B Habbie Skunky dumdi mhfixxxer shygoo artless elcaset sdgathman nolageek_ pl0rk shifty BitEvil_ fmneto_ test02 endah coldsoup1 Tatsujin HaTaX madox- Corinna palooka cybergeek Ad0 DemonaL tel Hisarq Jaglag jhave hansJohn1 qtpi 
+>> :irc.underworld.no 353 jones * * :dildo Alexandre kennyzr neoblaze maxdark kirk |scoop|- melC Gerry misentry n00n3 h3x Bot_tom effe charity Ressy PARAMOUNT isso_tm xbow1 Test2 Schoentoo onoflalks esran sec^nd ntc Snetry Akagami- jbernard Sciuro _0x5eb_ catatoniq pimpff Ammler remy profi200 DJZOOi SnoozeThs _0x5eb_- meepmeep admin1 Player51 Ursegor HiSPeed cna Monstje SeId3r Cisco backpacke ryal [pURiTY] testje badger Freak Tearing bkr transient Zer0byte waleid tekk w Shambles ][wikka][ flummer 
+>> :irc.underworld.no 353 jones * * :lastrada nstr indrora h|znc P_T jordan34 assink_ CyberMew teknomunk somewon DrSchusch Baquette rhe0 Jameps Nikau MrRandom m5zs7k v0rn tcm-slp Demon5 Parf deffn schestowi km darkdog_ Cueball Stephie |alfi|_ oL Diesel tyzoidBak Rue smoogy Miah99 lostyouki w00dsman icewall Glottis svekolka newtrawn ByteHunte hippie2K rtnewsfd sil Cabbit-sa Galaxy_S1 ferz bspina mahead Nircer mikael_ barada Loraas Sn00zeThs 
+>> :irc.underworld.no 366 jones * :End of /NAMES list.
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< NICK smash
+>> :irc.underworld.no 433 jones smash :Nickname is already in use.
+<< NICK longnickname
+>> :jones!~apresas@193.190.79.188.dynamic.jazztel.es NICK :longnickn
+<< NICK longnickname2ye
+<< NICK 2yes2man
+>> :irc.underworld.no 432 longnickn 2yes2man :Erroneous Nickname
+<< NICK apresas
+>> :longnickn!~apresas@193.190.79.188.dynamic.jazztel.es NICK :apresas
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< USER
+>> :irc.underworld.no 462 apresas :You may not reregister
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+>> :irc.underworld.no PONG irc.underworld.no :irc.underworld.no
+--> lag pong
+<< PING irc.underworld.no
+<< QUIT :leaving
