@@ -24,9 +24,7 @@ typedef struct s_message
 	std::string command;
 	std::vector<std::string> params;
 	int sender_client_fd; // fd of the client that sent the message
-	int target_client_fd; // fd of the client that is the target of the message
 	std::set<int> target_client_fds; // fd of the clients that are the targets of the message // NEW
-	std::vector<Channel *>	target_channels;
 	// apresas-: More info might be needed here later
 }				t_message;
 
@@ -92,7 +90,7 @@ class Server
 		void getClientData( int i );
 		void sendData( const char *message );
 		void setNonBlock( int & socketFd );
-		void cleanClose( void );
+		void cleanClose( bool );
 		void removeClient( int fd );
 
 		void parseData( const std::string & message, int client_fd );
@@ -134,6 +132,7 @@ class Server
 		bool	hasCRLF( const std::string ) const;
 		std::string	stringToUpper( std::string src );
 		std::string getTimestamp( time_t time );
+		void	addChannelToReply( t_message &, Channel * );
 
 		// DEBUG
 		void	printTmessage( t_message message ) const;

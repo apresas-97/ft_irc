@@ -22,12 +22,7 @@ Server::Server( const std::string & port, const std::string & password ) : _port
 
 Server::~Server( void ) 
 {
-	if (_serverFd != -1) 
-	{
-		std::cout << "Server destructor called" << std::endl;
-		if (_poll_fds.size() > 0 && close(_serverFd) == -1)
-			closeFailureLog("serverFd", this->_serverFd);
-	}
+	cleanClose(false);
 }
 
 void Server::signalHandler( int signal ) 
@@ -35,12 +30,12 @@ void Server::signalHandler( int signal )
 	if (signal == SIGINT) 
 	{
 		if (instance)
-			instance->cleanClose();
+			instance->cleanClose(true);
 		exit(EXIT_SUCCESS);
 	}
 }
 
-void Server::cleanClose( void ) 
+void Server::cleanClose( bool flag ) 
 {
 	for (std::vector<struct pollfd>::iterator it = _poll_fds.begin(); it != _poll_fds.end(); ++it)
 	{
@@ -53,6 +48,8 @@ void Server::cleanClose( void )
 		}
 	}
 	_poll_fds.erase(_poll_fds.begin(), _poll_fds.end());
+	if (flag)
+		this->~Server();
 }
 
 void Server::removeClient( int fd )
