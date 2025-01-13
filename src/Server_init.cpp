@@ -48,13 +48,13 @@ void Server::setNonBlock(int & socketFd)
 	int	flags = fcntl( socketFd, F_GETFL, 0 );
 	if (flags < 0)
 	{
-		cleanClose();
+		cleanClose(false);
 		throw std::runtime_error("fcntl failed to get socket flags");
 	}
 	flags |= O_NONBLOCK;
 	if (fcntl(socketFd, F_SETFL, flags) == -1 )
 	{
-		cleanClose();
+		cleanClose(false);
 		throw std::runtime_error("fcntl failed to set socket flags");
 	}
 }
