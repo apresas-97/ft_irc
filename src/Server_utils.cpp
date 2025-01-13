@@ -5,7 +5,11 @@ bool Server::isUserInServer( const std::string & nickname )
 {
 	Client * client = findClient(nickname);
 	if (client)
+	{
+		delete client; // ffornes- : I guess this is mandatory
 		return true;
+	}
+	delete client;
 	return false;
 }
 
@@ -28,8 +32,12 @@ Client * Server::findClient( const std::string & nickname )
 bool Server::isChannelInServer( const std::string & name ) 
 {
 	Channel * channel = findChannel(name);
-	if (channel)
+	if (channel) 
+	{
+		delete channel; // ffornes- : I guess this is mandatory
 		return true;
+	}
+	delete channel; // 
 	return false;
 }
 
@@ -73,7 +81,21 @@ void	Server::printTmessage( t_message message ) const
 	for (size_t i = 0; i < message.params.size(); i++)
 		std::cout << "[" << message.params[i] << "] ";
 	std::cout << std::endl;
-	std::cout << "Sender: " << message.sender_client_fd << std::endl;
-	std::cout << "Target: " << message.target_client_fd << std::endl;
+	std::cout << "Sender: [ " << message.sender_client_fd << " ]" << std::endl;
+	std::cout << "Targets: ";
+	for (std::set<int>::iterator it = message.target_client_fds.begin(); it != message.target_client_fds.end(); it++)
+	{
+		std::cout << "[ " << *it << " ]";
+	}
 	std::cout << std::endl;
+	std::cout << std::endl;
+}
+
+void	Server::addChannelToReply( t_message & reply, Channel * channel )
+{
+	std::map<std::string, Client*>	users = channel->getTrueUsers();
+	for ( std::map<std::string, Client*>::iterator it = users.begin(); it != users.end(); it++ )
+	{
+		reply.target_client_fds.insert(it->second->getSocket());
+	}
 }
