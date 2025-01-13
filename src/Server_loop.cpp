@@ -59,7 +59,7 @@ void Server::newClient( void )
 		if (close(clientFd) == -1)
 		{
 			closeFailureLog("clientFd", clientFd);
-			cleanClose();
+			cleanClose(false);
 		}
 		return;
 	}
@@ -152,23 +152,14 @@ static void	sendReplies( t_message reply )
 	// std::cout << "Sending replies..." << std::endl;
 	std::string	output = formatReply(reply);
 
-	if (reply.target_channels.size() > 0)
+	for (std::set<int>::iterator it = reply.target_client_fds.begin(); it != reply.target_client_fds.end(); ++it)
 	{
-		std::cout << "Target is 1 or more channels..." << std::endl;
-		// sendToChannel(reply);
-	}
-	else
-	{
-		for (std::set<int>::iterator it = reply.target_client_fds.begin(); it != reply.target_client_fds.end(); ++it)
-		{
-			std::cout << "Reply target fd: " << *it << std::endl;
-			send(*it, output.c_str(), output.size(), 0);
-		}
+		std::cout << "Reply target fd: " << *it << std::endl;
+		send(*it, output.c_str(), output.size(), 0);
 	}
 }
 
 /// apresas-: WIP
-// ffornes- this does too much I swear I'm gonna change it some day
 void Server::parseData( const std::string & raw_message, int client_fd )
 {
 	// std::cout << "parseData function called..." << std::endl;
@@ -177,7 +168,6 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 	this->_current_client = &this->_clients[client_fd];
 	t_message	message = prepareMessage(raw_message);
 	message.sender_client_fd = client_fd;
-	message.target_client_fd = -1;
 
 	if (message.command.empty())
 	{
@@ -185,12 +175,12 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 		return ;
 	}
 
-	printTmessage(message);
+	printTmessage(message); // DEBUG
 
 	std::vector<t_message> replies = runCommand(message);
 	for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
 	{
-		printTmessage(*it);
+		printTmessage(*it); // DEBUG
 		sendReplies(*it);
 	}
 }
@@ -259,7 +249,8 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::vector<t_message> replies;
 	std::string	command = stringToUpper(message.command);
 
-	printTmessage(message);
+	printTmessage(message); // DEBUG
+
 	if (this->_current_client->isTerminate())
 	{
 		// Close the connection here, send the ERROR message and close the connection with the client
