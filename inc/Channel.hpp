@@ -38,11 +38,11 @@ class Channel
 		size_t					getUserLimit( void ) const;
 		size_t					getUserCount( void ) const;
 
-		std::vector<std::string>	getUsers( void ) const;
+		std::vector<std::string>		getUsers( void ) const;
 		std::map<std::string, Client*>	getTrueUsers( void ) const;
-		std::vector<std::string>	getOperators( void ) const;
+		std::vector<std::string>		getOperators( void ) const;
 		std::map<std::string, Client*>	getTrueOperators( void ) const;
-		std::vector<std::string>	getInvitedUsers( void ) const;
+		std::vector<std::string>		getInvitedUsers( void ) const;
 		std::map<std::string, Client*>	getTrueInvitedUsers( void ) const;
 
 		std::vector<int>			getFds(std::string key) const;
