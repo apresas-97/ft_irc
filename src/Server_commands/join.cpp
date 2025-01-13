@@ -114,11 +114,6 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				replies.push_back(reply);	
 				return replies;
 			}
-			//	TODO:Do we implement the masks?
-			// if (!_validcurrentChannel(currentChannel)) {
-			// 	replies.push_back(createReply(ERR_BADCHANMASK, ERR_BADCHANMASK_STR, currentChannel));
-			// 	return replies;
-			// }
 
 			Channel newChannel(currentChannel);
 			newChannel.addUser(*client, true);
@@ -143,8 +138,6 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
         joinMessage.sender_client_fd = client->getSocket();
 		joinMessage.target_client_fds.insert(message.sender_client_fd);
 		addChannelToReply(joinMessage, channel);
-		// We have to add the sendMessage
-        // sendMessageToChannel(client, channel, joinMessage);
 
         if (channel->getTopic() != "")
 		{

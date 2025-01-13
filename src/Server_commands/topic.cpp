@@ -18,7 +18,10 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 	if (this->_channels.find(channelName) == this->_channels.end()) 
 	{
-//		reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, {client->getNickname(), channelName}); // incorrect call
+		std::vector<std::string> params;
+		params.push_back(client->getNickname());
+		params.push_back(channelName);
+		reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, params);
 		replies.push_back(reply);
 		return replies;
 	}
@@ -27,7 +30,10 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 	if (!channel->isUserInChannel(client->getNickname())) 
 	{
-//		reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, {client->getNickname(), channelName}); // incorrect call
+		std::vector<std::string> params;
+		params.push_back(client->getNickname());
+		params.push_back(channelName);
+		reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, params);
 		replies.push_back(reply);
 		return replies;
 	}
@@ -36,12 +42,19 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 	{
 		if (channel->getTopic().empty()) 
 		{
-//			reply = createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, {client->getNickname(), channelName}); // incorrect call
+			std::vector<std::string> params;
+			params.push_back(client->getNickname());
+			params.push_back(channelName);
+			reply = createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, params);
 			replies.push_back(reply);
 		} 
 		else 
 		{
-//			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()}); // incorrect call
+			std::vector<std::string> params;
+			params.push_back(client->getNickname());
+			params.push_back(channelName);
+			params.push_back(channel->getTopic());
+			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
 			replies.push_back(reply);
 		}
 	} 
@@ -55,7 +68,10 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 		if (channel->getMode('t') && !channel->isUserOperator(client->getNickname())) 
 		{
-//			reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, {client->getNickname(), channelName}); // incorrect call
+			std::vector<std::string> params;
+			params.push_back(client->getNickname());
+			params.push_back(channelName);
+			reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, params);
 			replies.push_back(reply);
 			return replies;
 		}
@@ -74,11 +90,14 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		topicMessage.command = "TOPIC";
 		topicMessage.params.push_back(channelName);
 		topicMessage.params.push_back(channel->getTopic());
-		// topicMessage.sender_client_fd = client->getFd();
+		topicMessage.sender_client_fd = client->getSocket();
 		addChannelToReply(topicMessage, channel);
-		// channel.broadcastMessage(topicMessage, client->getNickname());
 
-//		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()}); // incorrect call
+		std::vector<std::string> params;
+		params.push_back(client->getNickname());
+		params.push_back(channelName);
+		params.push_back(channel->getTopic());
+		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
 		replies.push_back(reply);
 	}
 

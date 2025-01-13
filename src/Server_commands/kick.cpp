@@ -116,6 +116,7 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
         kickNotice.params.push_back(chName);
         kickNotice.params.push_back(targets[i]);
         kickNotice.params.push_back(kickMsg);
+        // addChannelToReply addChannelToReply addChannelToReply addChannelToReply addChannelToReply addChannelToReply 
         // kickNotice.target_channels.push_back(findChannel(chName));
         replies.push_back(kickNotice);
 
