@@ -10,8 +10,6 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 	if (message.params.size() < 1) 
 	{
 		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR);
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -21,8 +19,6 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 	if (this->_channels.find(channelName) == this->_channels.end()) 
 	{
 //		reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, {client->getNickname(), channelName}); // incorrect call
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -32,8 +28,6 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 	if (!channel->isUserInChannel(client->getNickname())) 
 	{
 //		reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, {client->getNickname(), channelName}); // incorrect call
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -43,13 +37,11 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		if (channel->getTopic().empty()) 
 		{
 //			reply = createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, {client->getNickname(), channelName}); // incorrect call
-//			TODO set target_client_fd and sender_client_fd
 			replies.push_back(reply);
 		} 
 		else 
 		{
 //			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()}); // incorrect call
-//			TODO set target_client_fd and sender_client_fd
 			replies.push_back(reply);
 		}
 	} 
@@ -64,8 +56,6 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		if (channel->getMode('t') && !channel->isUserOperator(client->getNickname())) 
 		{
 //			reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, {client->getNickname(), channelName}); // incorrect call
-			reply.target_client_fd = message.sender_client_fd;
-			reply.sender_client_fd = _serverFd;
 			replies.push_back(reply);
 			return replies;
 		}
@@ -85,11 +75,10 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		topicMessage.params.push_back(channelName);
 		topicMessage.params.push_back(channel->getTopic());
 		// topicMessage.sender_client_fd = client->getFd();
-		topicMessage.target_channels.push_back(channel);
+		addChannelToReply(topicMessage, channel);
 		// channel.broadcastMessage(topicMessage, client->getNickname());
 
 //		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()}); // incorrect call
-//		TODO set target_client_fd and sender_client_fd
 		replies.push_back(reply);
 	}
 

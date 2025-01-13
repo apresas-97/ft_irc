@@ -15,8 +15,6 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 	if (message.params.size() < 1) 
 	{
 		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client->getNickname());
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -26,8 +24,6 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 		if (isUserInServer(message.params[0]) == true) // TODO
 		{
 			reply = createReply(ERR_USERSDONTMATCH, ERR_USERSDONTMATCH_STR);
-			reply.target_client_fd = message.sender_client_fd;
-			reply.sender_client_fd = _serverFd;
 			replies.push_back(reply);
 		}
 		else if (isChannelInServer(message.params[0]) == true)// TODO
@@ -35,8 +31,6 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 		else
 		{
 			reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, message.params[0]);
-			reply.target_client_fd = message.sender_client_fd;
-			reply.sender_client_fd = _serverFd;
 			replies.push_back(reply);
 		}
 		return replies;
@@ -45,7 +39,6 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 	if (message.params.size() == 1) 
 	{
 		reply = createReply(RPL_UMODEIS, RPL_UMODEIS_STR, client->getModeString()); // TODO
-		// TODO set target_client_fd and sender_client_fd
 		replies.push_back(reply);
 		return replies;
 	}
@@ -83,8 +76,6 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 				if (unknown_flag_set == false) 
 				{
 //					reply = createReply(ERR_UMODEUNKNOWNFLAG, ERR_UMODEUNKNOWNFLAG_STR, {}); // incorrect call
-					reply.target_client_fd = message.sender_client_fd;
-					reply.sender_client_fd = _serverFd;
 					replies.push_back(reply);
 					unknown_flag_set = true;
 				}
@@ -131,7 +122,6 @@ std::vector<t_message> Server::cmdMode( t_message & message )
 	if (has_effect)
 	{
 		reply = createReply(message, correct_param, client->getNickname());
-		// TODO set target_client_fd and sender_client_fd
 		replies.push_back(reply);
 	}
 	return replies;

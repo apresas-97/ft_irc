@@ -44,8 +44,6 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 	if (message.params.size() < 2)
 	{
 //		reply = createReply(ERR_NORECIPIENT, ERR_NORECIPIENT_STR, {client->getNickname(), "PRIVMSG"}); // incorrect call
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -57,8 +55,6 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 	if (message.params.size() < 2)
 	{
 		reply = createReply(ERR_NOTEXTTOSEND, ERR_NOTEXTTOSEND_STR, client->getNickname());
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -83,8 +79,6 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 				if (!channel->isUserInChannel(client->getNickname())) 
 				{
  //					reply = createReply(ERR_CANNOTSENDTOCHAN, ERR_CANNOTSENDTOCHAN_STR, {client->getNickname(), target}); // incorrect call
-					reply.target_client_fd = message.sender_client_fd;
-					reply.sender_client_fd = _serverFd;
 					replies.push_back(reply);
 					continue;
 				}
@@ -96,15 +90,13 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 				channelMessage.params.push_back(target);
 				channelMessage.params.push_back(textToSend);
 				channelMessage.sender_client_fd = client->getSocket();
-				channelMessage.target_channels.push_back(channel);
+				addChannelToReply(channelMessage, channel);
 				// Add channel to my replies and remember to add the channel I want to send the message to into the vector inside t_message called target_channels;
 				// channel.messageToChannel(channelMessage, client->getNickname());
 			}
 			else
 			{
 //				reply = createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, {client->getNickname(), target}); // incorrect call
-				reply.target_client_fd = message.sender_client_fd;
-				reply.sender_client_fd = _serverFd;
 				replies.push_back(reply);
 			}
 		} 
@@ -116,7 +108,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 			privateMessage.command = "PRIVMSG";
 			privateMessage.params.push_back(target);
 			privateMessage.params.push_back(textToSend);
-			privateMessage.target_client_fd = targetClient->getSocket();
+			reply.target_client_fds.insert(targetClient->getSocket());
 			// Scrape target user and find it's fd using find client or something
 			// Set target fd of the message into that target fd and use the function sendMessage located in server_loop? maybe
 			// targetClient->sendMessage(privateMessage);
@@ -124,8 +116,6 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 		else 
 		{
 //			reply = createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, {client->getNickname(), target}); // incorrect call
-			reply.target_client_fd = message.sender_client_fd;
-			reply.sender_client_fd = _serverFd;
 			replies.push_back(reply);
 		}
 	}

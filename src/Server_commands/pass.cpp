@@ -19,16 +19,12 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 	if (message.params.size() < 1)
 	{
 		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client->getNickname());
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
 	if (client->isAuthorised())
 	{
 		reply = createReply(ERR_ALREADYREGISTRED, ERR_ALREADYREGISTRED_STR, client->getNickname());
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -41,8 +37,6 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 	// else
 	// {
 	// 	reply = createReply(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_STR);
-	// 	reply.target_client_fd = message.sender_client_fd;
-	// 	reply.sender_client_fd = _serverFd;
 	// 	replies.push_back(reply);
 	// }
 	return replies;
@@ -68,3 +62,4 @@ it seems that:
 
 	TODO: Discuss this behavior and implement it
 */
+

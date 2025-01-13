@@ -10,7 +10,6 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	if (message.params.size() < 2) 
 	{
 		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client->getNickname());
-		// TODO set reply target fd and sender fd
 		replies.push_back(reply);
 		return replies;
 	}
@@ -21,7 +20,6 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	if (this->_channels.find(channelName) == this->_channels.end()) 
 	{
 		reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, channelName);
-		// TODO set reply target fd and sender fd
 		replies.push_back(reply);
 		return replies;
 	}
@@ -31,7 +29,6 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	if (!channel->isUserInChannel(client->getNickname())) 
 	{
 		reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, channelName);
-		// TODO set reply target fd and sender fd	
 		replies.push_back(reply);
 		return replies;
 	}
@@ -45,7 +42,6 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	if (!channel->isUserOperator(client->getNickname())) 
 	{
 		reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, channelName);
-		// TODO set reply target fd and sender fd
 		replies.push_back(reply);
 		return replies;
 	}
@@ -54,7 +50,6 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	if (!targetClient) 
 	{
 		reply = createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, targetNickname);
-		// TODO set reply target fd and sender fd
 		replies.push_back(reply);
 		return replies;
 	}
@@ -76,7 +71,6 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	// replies.push_back(createReply(RPL_INVITING, RPL_INVITING_STR, targetNickname, channelName));
 
 	reply = createReply(RPL_INVITING, RPL_INVITING_STR, args);
-	// TODO set reply target fd and sender fd
 	replies.push_back(reply);
 	return replies;
 }

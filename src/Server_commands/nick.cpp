@@ -17,8 +17,6 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	if (client->isAuthorised() == false) 
 	{
 		reply = createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR);
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -27,8 +25,6 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	if (client->getMode('r') == true) 
 	{
 		reply = createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR);
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -37,8 +33,6 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	if (message.params.size() < 1) 
 	{
 		reply = createReply(ERR_NONICKNAMEGIVEN, ERR_NONICKNAMEGIVEN_STR);
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -48,8 +42,6 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	if (irc_isValidNickname(nickname) == false) 
 	{
 		reply = createReply(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_STR, nickname);
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
@@ -63,8 +55,6 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	if (it != this->_taken_nicknames.end()) 
 	{
 		reply = createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname);
-		reply.target_client_fd = message.sender_client_fd;
-		reply.sender_client_fd = _serverFd;
 		replies.push_back(reply);
 		return replies;
 	}
