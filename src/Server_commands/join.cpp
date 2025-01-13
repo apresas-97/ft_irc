@@ -48,7 +48,10 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	if (message.params.size() < 2) 
 	{
-//		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, {client->getNickname(), "JOIN"}); // This call is incorrect
+		std::vector<std::string>	params;
+		params.push_back(client->getNickname());
+		params.push_back("JOIN");
+		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, params);
 		replies.push_back(reply);
 		return replies;
 	}
@@ -145,7 +148,11 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
         if (channel->getTopic() != "")
 		{
-//			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), currentChannel, channel.getTopic()}); // This call is incorrect
+			std::vector<std::string>	params;
+			params.push_back(client->getNickname());
+			params.push_back(currentChannel);
+			params.push_back(channel->getTopic());
+			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
 			replies.push_back(reply);
         }
 
