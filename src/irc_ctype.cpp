@@ -121,3 +121,8 @@ bool	irc_isValidNickname( const std::string & nickname )
 	}
 	return true;
 }
+
+bool	irc_isChannelPrefix( const char c )
+{
+	return (c == '#' || c == '&' || c == '+' || c == '!');
+}
