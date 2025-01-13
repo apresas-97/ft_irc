@@ -56,7 +56,10 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
 
     if (message.params.size() < 2)
     {
-        replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, {nick, "KICK"}));
+		std::vector<std::string>	params;
+		params.push_back(nick);
+		params.push_back("KICK");
+        replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, params));
         return replies;
     }
 
@@ -78,7 +81,7 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
 
     if (message.params.size() >= 4)
     {
-        for (int i = 3; i < message.params.size(); i++)
+        for (size_t i = 3; i < message.params.size(); i++)
         {
             kickMsg += message.params[i];
             if (i < message.params.size() - 1)
@@ -91,7 +94,7 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
     }
 
     std::vector<std::string> targets = parseMessage(message.params[2], ',');
-    for (int i = 0; i < targets.size(); i++)
+    for (size_t i = 0; i < targets.size(); i++)
     {
         if (!findClient(targets[i]))
         {
@@ -100,7 +103,10 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
         }
         if (!findChannel(chName)->isUserInChannel(targets[i]))
         {
-            replies.push_back(createReply(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_STR, {targets[i], chName}));
+			std::vector<std::string>	params;
+			params.push_back(targets[i]);
+			params.push_back(chName);
+            replies.push_back(createReply(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_STR, params));
             continue;
         }
 
