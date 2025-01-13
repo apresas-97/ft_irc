@@ -281,3 +281,8 @@ bool Channel::isUserInvited(const std::string& userName)
 {
     return _invited_users.find(userName) != _invited_users.end();
 }
+
+bool Channel::isEmpty(void) const
+{
+    return _users.empty() && _operators.empty();
+}

@@ -109,7 +109,7 @@ class Server
 		// Commands
 		std::vector<t_message> cmdInvite( t_message & message );
 		std::vector<t_message> cmdJoin( t_message & message );
-		// std::vector<t_message> cmdKick( t_message & message );
+		std::vector<t_message> cmdKick( t_message & message );
 		std::vector<t_message> cmdMode( t_message & message );
 		std::vector<t_message> cmdNick( t_message & message );
 		std::vector<t_message> cmdPass( t_message & message );

@@ -60,6 +60,8 @@ class Channel
 		bool	isUserOperator( const std::string & userName );
 		bool	isUserInvited( const std::string & userName );
 
+		bool	isEmpty( void ) const;
+
 	private:
 		std::string						_name;
 		std::string						_topic;

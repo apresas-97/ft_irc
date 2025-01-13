@@ -42,6 +42,10 @@
 #define RPL_TIME 391
 #define RPL_TIME_STR "<server> :<string showing server's local time>"
 
+// Channel removed
+#define RPL_CHANNELREMOVED 901
+#define RPL_CHANNELREMOVED_STR "<channel> :Channel has been removed due to no active users"
+
 // ERR_:
 #define ERR_NOSUCHSERVER 402
 #define ERR_NOSUCHSERVER_STR "<server name> :No such server"
@@ -103,7 +107,8 @@
 #define ERR_NORECIPIENT_STR ":No recipient given (<command>)"
 #define ERR_NOTEXTTOSEND 412
 #define ERR_NOTEXTTOSEND_STR ":No text to send"
-
+#define ERR_USERNOTINCHANNEL 441
+#define ERR_USERNOTINCHANNEL_STR "<nickname> <channel> :They aren't on that channel"
 
 
 #endif // REPLY_CODES_HPP
