@@ -4,8 +4,8 @@ DONE	- PASS <password>
 DONE	- PRIVMSG <msgtarget> <text to be sent>
 DONE	- QUIT [ <quit message> ]
 DONE	- TOPIC <channel> [ <topic> ]
-
-WIP	AAE	- JOIN ( <channel> *("," <channel> ) [ <key> *("," <key>) ] ) / "0"
+DONE	- JOIN ( <channel> *("," <channel> ) [ <key> *("," <key>) ] ) / "0"
+DONE	- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
 
 WIP	APR	- MODE <nickname> *( ( "+" / "-" ) *( "i" / "w" / "o" / "O" / "r" ) )
 WIP	APR	- MODE <channel> *( ("-"/"+") *<modes> *<modeparams> )
@@ -14,10 +14,6 @@ WIP	APR	- USER <username> <mode> * <realname>
 WIP	APR	- NOTICE <msgtarget> <text to be sent>
 WIP	APR	- VERSION [ <target> ]
 WIP	APR	- TIME [ <target> ]
-
-NS		- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
-
-
 
 - PART <channel> *("," <channel> ) [ <part message> ]
 - NAMES [ <channel> *("," <channel> ) [ <target> ] ]
