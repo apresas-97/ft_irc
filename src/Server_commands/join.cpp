@@ -84,13 +84,13 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				replies.push_back(reply);
 				continue;
 			}
-			// Mode -o (Operator privileges required)
-			if (channel->getMode('o') && !channel->isUserOperator(client->getUsername())) 
+			// Mode -o (Operator privileges required) and Mode -t (Operator privileges required)
+			if ((channel->getMode('o') || channel->getMode('t')) && !channel->isUserOperator(client->getUsername())) 
 			{
 				std::vector<std::string> params;
 				params.push_back(client->getNickname());
 				params.push_back(currentChannel);
-				reply = createReply(ERR_NEEDCHANOP, ERR_NEEDCHANOP_STR, params);
+				reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, params);
 				replies.push_back(reply);
 				continue;
 			}

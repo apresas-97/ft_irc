@@ -50,9 +50,9 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
 	std::cout << "KICK command called..." << std::endl;
     std::vector<t_message> replies;
 
-    Client *main = findClient(message.sender_client_fd);
-    std::string nick = main->getNickname();
-    std::string kickMsg = "";
+    Client *client = findClient(message.sender_client_fd);
+    std::string nick = client->getNickname();
+    std::string mainMsg = "";
 
     if (message.params.size() < 2)
     {
@@ -63,19 +63,19 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
         return replies;
     }
 
-    std::string chName = message.params[1];
-    if (!findChannel(chName))
+    std::string channel = message.params[1];
+    if (!findChannel(channel))
     {
-        replies.push_back(createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, chName));
+        replies.push_back(createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, channel));
         return replies;
     }
-    if (!findChannel(chName)->isUserInChannel(nick))
+    if (!findChannel(channel)->isUserInChannel(nick))
     {
-        replies.push_back(createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, chName));
+        replies.push_back(createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, channel));
         return replies;
     }
-    if (!findChannel(chName)->isUserOperator(nick)){
-        replies.push_back(createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, chName));
+    if (!findChannel(channel)->isUserOperator(nick)){
+        replies.push_back(createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, channel));
         return replies;
     }
 
@@ -83,14 +83,14 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
     {
         for (size_t i = 3; i < message.params.size(); i++)
         {
-            kickMsg += message.params[i];
+            mainMsg += message.params[i];
             if (i < message.params.size() - 1)
-                kickMsg += " ";
+                mainMsg += " ";
         }
     }
     else
     {
-        kickMsg = nick + " has kicked user from channel"; // ??
+        mainMsg = nick + " has kicked user from channel"; // ??
     }
 
     std::vector<std::string> targets = parseMessage(message.params[2], ',');
@@ -101,33 +101,33 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
             replies.push_back(createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, targets[i]));
             continue;
         }
-        if (!findChannel(chName)->isUserInChannel(targets[i]))
+        if (!findChannel(channel)->isUserInChannel(targets[i]))
         {
 			std::vector<std::string>	params;
 			params.push_back(targets[i]);
-			params.push_back(chName);
+			params.push_back(channel);
             replies.push_back(createReply(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_STR, params));
             continue;
         }
 
-        t_message kickNotice;
-        kickNotice.prefix = main->getUserPrefix();
-        kickNotice.command = "KICK";
-        kickNotice.params.push_back(chName);
-        kickNotice.params.push_back(targets[i]);
-        kickNotice.params.push_back(kickMsg);
-        // addChannelToReply addChannelToReply addChannelToReply addChannelToReply addChannelToReply addChannelToReply 
-        // kickNotice.target_channels.push_back(findChannel(chName));
-        replies.push_back(kickNotice);
+        t_message kickMessage;
+        kickMessage.prefix = client->getUserPrefix();
+        kickMessage.command = "KICK";
+        kickMessage.params.push_back(channel);
+        kickMessage.params.push_back(targets[i]);
+        kickMessage.params.push_back(mainMsg);
+        kickMessage.sender_client_fd = client->getSocket();
+		kickMessage.target_client_fds.insert(message.sender_client_fd);
+        addChannelToReply(kickMessage, findChannel(channel));
 
-        findChannel(chName)->kickUser(targets[i]);
-        findChannel(chName)->uninviteUser(targets[i]);
+        findChannel(channel)->kickUser(targets[i]);
+        findChannel(channel)->uninviteUser(targets[i]);
         removeClient(findClient(targets[i])->getSocket());
     }
-    if (findChannel(chName)->isEmpty())
+    if (findChannel(channel)->isEmpty())
     {
-        replies.push_back(createReply(RPL_CHANNELREMOVED, RPL_CHANNELREMOVED_STR, chName));
-        this->_channels.erase(chName);
+        replies.push_back(createReply(RPL_CHANNELREMOVED, RPL_CHANNELREMOVED_STR, channel));
+        this->_channels.erase(channel);
     }
 
     return replies;
