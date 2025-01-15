@@ -70,27 +70,31 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 		if (isChannelInServer(currentChannel))
 		{
-			// Mode i (Invite-only channel)
+			// Mode -i (Invite-only channel)
 			if (channel->getMode('i') && !channel->isUserInvited(client->getUsername()))
 			{
 				reply = createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, currentChannel);
 				replies.push_back(reply);
 				continue;
 			}
-			// Mode l (Channel limit)
+			// Mode -l (Channel limit)
 			if (channel->getMode('l') && channel->getUserCount() >= channel->getUserLimit())
 			{
 				reply = createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, currentChannel);
 				replies.push_back(reply);
 				continue;
 			}
-			if (client->getChannelCount() >= client->getChannelLimit())
+			// Mode -o (Operator privileges required)
+			if (channel->getMode('o') && !channel->isUserOperator(client->getUsername())) 
 			{
-				reply = createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel);
+				std::vector<std::string> params;
+				params.push_back(client->getNickname());
+				params.push_back(currentChannel);
+				reply = createReply(ERR_NEEDCHANOP, ERR_NEEDCHANOP_STR, params);
 				replies.push_back(reply);
 				continue;
 			}
-			// Mode k (Channel key)
+			// Mode -k (Channel key)
 			if (channel->getMode('k'))
 			{
 				if (!are_keys || i >= keys.size() - 1 || keys[i] != channel->getKey()) 
@@ -99,6 +103,12 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 					replies.push_back(reply);
 					continue;
 				}
+			}
+			if (client->getChannelCount() >= client->getChannelLimit())
+			{
+				reply = createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel);
+				replies.push_back(reply);
+				continue;
 			}
 			// Add to the current channel
 			channel->addUser(*client, false);

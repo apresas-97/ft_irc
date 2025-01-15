@@ -109,7 +109,8 @@
 #define ERR_NOTEXTTOSEND_STR ":No text to send"
 #define ERR_USERNOTINCHANNEL 441
 #define ERR_USERNOTINCHANNEL_STR "<nickname> <channel> :They aren't on that channel"
-
+#define ERR_NEEDCHANOP 490
+#define ERR_NEEDCHANOP_STR "<nickname> <channel> :You need operator privileges to perform this action (mode -o)"
 
 #endif // REPLY_CODES_HPP
 
