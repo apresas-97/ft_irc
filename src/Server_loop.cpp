@@ -114,23 +114,29 @@ void	Server::getClientData( int i )
 	{
 		if (hasNULL(buffer, bytes_received))
 			return ;
-
 		buffer[bytes_received] = '\0';
 
-		std::string message(buffer);
+		Client	& current_client = this->_clients[this->_poll_fds[i].fd];
+		std::string	message;
+		// Check if the clients buffer contains something...
+		if (current_client.getBuffer().size() > 0)
+		{
+			message = current_client.getBuffer();
+			current_client.clearBuffer();
+		}
+		message += buffer;
 
-		// Original method
-		// parseData(message, this->_poll_fds[i].fd);
-
-		// apresas- WIP new method
-		// split the message with CRLF as delimiter
 		std::vector<std::string> messages = splitMessage(message);
+
+		if (messages.size() > 0)
+			std::cout << "After message split, size: " << messages[0].size() << std::endl;
+		else // I have to save content in the clients buffer then
+			if (current_client.fillBuffer(buffer)) // Then buffer is filled to the brim and needs to be sent
+				messages.push_back(current_client.getBuffer());
 
 		// Iterate over the split messages and parse them
 		for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end(); ++it)
 			parseData(*it, this->_poll_fds[i].fd);
-
-		//	sendData(buffer); // ffornes- we do not send data here we send it with the replies
 	}
 }
 
@@ -154,7 +160,7 @@ static void	sendReplies( t_message reply )
 
 	for (std::set<int>::iterator it = reply.target_client_fds.begin(); it != reply.target_client_fds.end(); ++it)
 	{
-		std::cout << "Reply target fd: " << *it << std::endl;
+		std::cout << "Reply target fd: " << *it << std::endl; // DEBUG
 		send(*it, output.c_str(), output.size(), 0);
 	}
 }
@@ -162,8 +168,8 @@ static void	sendReplies( t_message reply )
 /// apresas-: WIP
 void Server::parseData( const std::string & raw_message, int client_fd )
 {
-	// std::cout << "parseData function called..." << std::endl;
-	// std::cout << "MESSAGE RECEIVED: \"" << raw_message << "\"" << std::endl;
+	std::cout << "parseData function called..." << std::endl; // DEBUG
+	std::cout << "MESSAGE RECEIVED: \"" << raw_message << "\"" << std::endl; //  DEBUG
 
 	this->_current_client = &this->_clients[client_fd];
 	t_message	message = prepareMessage(raw_message);
@@ -249,7 +255,7 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::vector<t_message> replies;
 	std::string	command = stringToUpper(message.command);
 
-	printTmessage(message); // DEBUG
+	std::cout << "runCommand function called..." << std::endl;
 
 	if (this->_current_client->isTerminate())
 	{
@@ -276,58 +282,6 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 			this->_current_client->setTerminate(true);
 		return replies;
 	}
-	// else if (command == "CAP" && !this->_current_client->isAuthorised()) // ffornes- :: TODO............
-	// {
-	// 	// Must handle the CAP LS that irssi client sends when connecting...
-	// 	std::vector<std::string>::iterator it = message.params.begin();
-	// 	t_message	msg; // Remember to add info about sender and target
-	// 	msg.command = message.command;
-	// 	msg.sender_client_fd = this->_serverFd;
-	// 	msg.target_client_fd = message.sender_client_fd;
-	// 	while (stringToUpper(*it) != "NICK" && it != message.params.end())
-	// 	{
-	// 		msg.params.push_back(*it);
-	// 		std::advance(it, 1);
-	// 	}
-	// 	replies.push_back(msg); // Respond with CAP * LS
-	// 	// Advance the message until you find the next command NICK, adapt it with the correct params
-	// 	//	and call runCommand again, saving the reply in this replies.
-	// 	if (it != message.params.end())
-	// 	{
-	// 		t_message	msg_nick; // Remember to add info about sender and target
-	// 		msg_nick.command = *it;
-	// 		msg_nick.sender_client_fd = this->_serverFd;
-	// 		msg_nick.target_client_fd = message.sender_client_fd;
-	// 		std::advance(it, 1);
-	// 		while (stringToUpper(*it) != "USER" && it != message.params.end())
-	// 		{
-	// 			msg_nick.params.push_back(*it);
-	// 			std::advance(it, 1);
-	// 		}
-	// 		replies.push_back(msg_nick);
-	// 	}
-	// 	// Advance the message until you find the next command USER, adapt it with the correct params
-	// 	//	and call runCommand again, saving the reply in this replies.
-	// 	if (it != message.params.end())
-	// 	{
-	// 		t_message	msg_user; // Remember to add info about sender and target
-	// 		msg_user.command = *it;
-	// 		msg_user.sender_client_fd = this->_serverFd;
-	// 		msg_user.target_client_fd = message.sender_client_fd;
-	// 		std::advance(it, 1);
-	// 		while (it != message.params.end())
-	// 		{
-	// 			msg_user.params.push_back(*it);
-	// 			std::advance(it, 1);
-	// 		}
-	// 		replies.push_back(msg_user);
-	// 	}
-	// 	// Send reply number 900 asking for password...
-
-	// 	replies.push_back(createReply(900, this->_current_client->getNickname()));
-
-	// 	return replies;
-	// }
 	else if (command == "CAP" && !this->_current_client->isAuthorised())
 	{
 		// Our server will have no extensions, so we will silently ignore the opening CAP command
