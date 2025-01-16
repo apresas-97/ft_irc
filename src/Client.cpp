@@ -1,5 +1,6 @@
 #include "Client.hpp"
 #include <cstring>
+#include <algorithm>
 
 // Constructors and Destructor
 Client::Client(void)
@@ -263,4 +264,35 @@ std::string Client::hostnameLookup( void )
     setHostname("placeholder.42.fr");
     std::cout << this->_hostname << std::endl;
     return std::string(":*** Couldn't resolve your hostname; using a placeholder instead");
+}
+
+bool	Client::fillBuffer( std::string	src )
+{
+	std::string	str = this->_buffer;
+	bool		flag = false;
+
+	str += src;
+	if (str.size() > BUFFER_SIZE - 3)
+	{
+		str.insert(1021, "\r\n");
+		flag = true;
+    }
+
+	size_t	size = str.size();
+	if (size > BUFFER_SIZE - 1)
+		size = BUFFER_SIZE - 1;
+
+	std::copy(str.c_str(), str.c_str() + size, _buffer);
+	return flag;
+}
+
+void	Client::clearBuffer( void )
+{
+	std::fill(this->_buffer, _buffer + BUFFER_SIZE, 0);
+}
+
+std::string	Client::getBuffer( void ) const
+{
+	std::string str = this->_buffer;
+	return str;
 }
