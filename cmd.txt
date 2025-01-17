@@ -1,0 +1,1 @@
+/connect -rawlog ~/Desktop/ft_irc/server_logs/ejempl.txt 10.12.12.6 6667 pepe

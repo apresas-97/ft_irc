@@ -46,7 +46,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	bool are_keys = message.params.size() > 2 ? true : false;
 
-	if (message.params.size() < 2) 
+	if (message.params.size() < 1) 
 	{
 		std::vector<std::string>	params;
 		params.push_back(client->getNickname());
@@ -111,7 +111,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				continue;
 			}
 			// Add to the current channel
-			channel->addUser(*client, false);
+			channel->addUser(client, false);
 			client->addChannel(*channel, currentChannel);
 			fds = channel->getFds("users");
 		}
@@ -124,20 +124,18 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				replies.push_back(reply);	
 				return replies;
 			}
-
 			Channel newChannel(currentChannel);
-			newChannel.addUser(*client, true);
-
 			if (are_keys && i < keys.size())
 			{
 				newChannel.setKey(keys[i]);
 				newChannel.setMode('k', true);
 			}
-
-			this->_channels[currentChannel] = &newChannel;
+			std::cout << "ESTOYENJOIN" << std::endl;
 			client->addChannel(newChannel, currentChannel);
+			newChannel.addUser(client, false);
 			fds = newChannel.getFds("users");
 			channel = &newChannel;
+			addChannel(*channel, currentChannel);
 		}
 		
 		// Enviar mensajes de bienvenida al canal

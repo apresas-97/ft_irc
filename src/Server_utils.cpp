@@ -29,15 +29,43 @@ Client * Server::findClient( const std::string & nickname )
 	return findClient(it->second);
 }
 
+void Server::addChannel(Channel &channel, std::string &name)
+{
+    _channels[name] = &channel;
+}
+
+bool Server::channelFound(const std::string& chanName)
+{
+    for (std::map<std::string, Channel*>::const_iterator it = _channels.begin(); it != _channels.end(); ++it)
+    {
+        if (it->first == chanName)
+            return true;
+    }
+    return false;
+}
+
+Channel * Server::channelGet( const std::string & name ) 
+{
+    for (std::map<std::string, Channel*>::const_iterator it = _channels.begin(); it != _channels.end(); ++it)
+    {
+        if (it->first == name) {
+            return it->second;
+        }
+    }
+	return (NULL);
+}
+
 bool Server::isChannelInServer( const std::string & name ) 
 {
+
 	Channel * channel = findChannel(name);
-	if (channel) 
+
+	if (channel)
 	{
-		delete channel; // ffornes- : I guess this is mandatory
+		// delete channel; // ffornes- : I guess this is mandatory
 		return true;
 	}
-	delete channel; // 
+	// delete channel; // 
 	return false;
 }
 

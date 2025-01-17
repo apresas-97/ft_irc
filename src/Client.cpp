@@ -9,11 +9,13 @@ Client::Client(void)
     _registered = false;
     _terminate = false;
     _chan_limit = 0;
+    _chan_count = -1;
 }
 
 Client::Client(int socket) : _socket(socket), _authorised(false), _registered(false), _chan_limit(0)
 {
     memset(_buffer, 0, BUFFER_SIZE);
+    _chan_count = -1;
 }
 
 Client::~Client(void) {}
@@ -180,7 +182,8 @@ t_mode Client::getModes(void) const
 
 int Client::getChannelCount(void) const
 {
-    return static_cast<int>(this->_channels.size());
+    // return static_cast<int>(this->_channels.size());
+    return this->_chan_count;
 }
 
 int Client::getChannelLimit(void) const

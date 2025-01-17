@@ -48,7 +48,7 @@ class Channel
 		std::vector<int>			getFds(std::string key) const;
 
 		// User Management
-		void	addUser( Client & user, bool is_operator );
+		void	addUser( Client * user, bool is_operator );
 		void	kickUser( const std::string & );
 		void	promoteUser( const std::string & userName );	// Turn user to operator
 		void	demoteUser( const std::string & userName );	// Turn operator to user

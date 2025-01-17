@@ -1,0 +1,4 @@
+<< CAP LS
+<< NICK aaespino
+<< USER aaespino aaespino 10.11.6.4 :"Clark"
+>> :ft_irc.42.fr 484 * :Your connection is restricted!

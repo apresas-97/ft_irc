@@ -87,6 +87,7 @@ class Client
 
 		std::map<std::string, Channel*>	_channels;
 		int 		_chan_limit;
+		int 		_chan_count;
 
 		char 		_buffer[BUFFER_SIZE]; // Idk what this does
 };
