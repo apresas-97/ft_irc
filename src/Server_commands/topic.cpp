@@ -29,15 +29,15 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 	Channel * channel = channelGet(channelName);
 
 	// Se mete el nombre del topic como un USER mas y no consigo saber porque TODO
-	// if (!channel->isUserInChannel(client->getUsername())) 
-	// {
-	// 	std::vector<std::string> params;
-	// 	params.push_back(client->getUsername());
-	// 	params.push_back(channelName);
-	// 	reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, params);
-	// 	replies.push_back(reply);
-	// 	return replies;
-	// }
+	if (!channel->isUserInChannel(client->getUsername())) 
+	{
+		std::vector<std::string> params;
+		params.push_back(client->getUsername());
+		params.push_back(channelName);
+		reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, params);
+		replies.push_back(reply);
+		return replies;
+	}
 
 	std::cout << message.params.size() << std::endl;
 	if (message.params.size() == 2) 

@@ -372,3 +372,85 @@
 << PING ft_irc.42.fr
 >> :ft_irc.42.fr 421 aaespino PING :Unknown command
 << TOPIC #hola :temaa
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.12.6 :"Clark"
+>> :ft_irc.42.fr 433 * aaespino :Nickname is already in use
+<< NICK aaespino_
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.12.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Fri, Jan 17 2025 at 18:17:39 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+>> :aaespino MODE aaespino +i
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr 421 aaespino PING :Unknown command
+<< JOIN #hehe
+<< PRIVMSG #hehe :hola
+<< TOPIC #hehe :hola
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.12.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Fri, Jan 17 2025 at 18:18:17 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+>> :aaespino MODE aaespino +i
+<< JOIN #j
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr 421 aaespino PING :Unknown command
+<< PRIVMSG #j :hola
+<< TOPIC #j :TEMA
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.12.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Fri, Jan 17 2025 at 18:31:51 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr 421 aaespino PING :Unknown command
+<< JOIN #canal
+<< PRIVMSG #canal :hola
+<< PRIVMSG #canal :hola
+<< TOPIC #canal :tema
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.12.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Fri, Jan 17 2025 at 18:32:51 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+>> :aaespino MODE aaespino +i
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr 421 aaespino PING :Unknown command
+<< JOIN #canal
+<< PRIVMSG #canal :hola
+<< PRIVMSG #canal :topic hola
+<< TOPIC #canal :hola
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.12.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Fri, Jan 17 2025 at 18:33:22 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+>> :aaespino MODE aaespino +i
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr 421 aaespino PING :Unknown command
+<< JOIN #canal
+<< PRIVMSG #canal :hola
+<< TOPIC #canal :hola

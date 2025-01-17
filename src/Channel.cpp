@@ -272,9 +272,9 @@ bool Channel::isUserInChannel(const std::string& userName)
 {
     for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
     {
-        // std::cout << it->first << std::endl;
+        std::cout << it->first << std::endl;
         // std::cout << it->second << std::endl;
-        // std::cout << userName << std::endl;
+        std::cout << userName << std::endl;
         if (it->first == userName) {
             std::cout << userName << std::endl;
             // std::cout << "SEGUIMOS LLEGANDO?" << std::endl;
