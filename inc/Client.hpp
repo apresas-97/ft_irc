@@ -72,6 +72,11 @@ class Client
 		// Hostname Management
 		std::string	hostnameLookup( void );
 
+		// Buffer Management
+		bool	fillBuffer( std::string );
+		void	clearBuffer( void );
+		std::string	getBuffer() const;
+
 	private:
 
 		int						_socket;
