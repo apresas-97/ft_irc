@@ -47,6 +47,8 @@
 #define ERR_NOSUCHSERVER_STR "<server name> :No such server"
 #define ERR_NOSUCHCHANNEL 403
 #define ERR_NOSUCHCHANNEL_STR "<channel> :No such channel"
+#define ERR_NOORIGIN 409
+#define ERR_NOORIGIN_STR ":No origin specified"
 #define ERR_UNKNOWNCOMMAND 421
 #define ERR_UNKNOWNCOMMAND_STR "<command> :Unknown command"
 #define ERR_NONICKNAMEGIVEN 431
