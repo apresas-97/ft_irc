@@ -49,6 +49,7 @@ class Channel
 		std::map<std::string, Client*>	getTrueInvitedUsers( void ) const;
 
 		std::vector<int>			getFds(std::string key) const;
+		std::set<int>				getFdsSet(std::string key) const;
 
 		// User Management
 		void	addUser( Client & user, bool is_operator );

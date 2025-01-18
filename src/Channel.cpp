@@ -235,6 +235,16 @@ std::vector<int> Channel::getFds(std::string key) const
     return fds;
 }
 
+std::set<int>   Channel::getFdsSet( std::string key ) const
+{
+    std::vector<int> fdsVector = this->getFds(key);
+    std::set<int> fds;
+
+    for (std::vector<int>::const_iterator it = fdsVector.begin(); it != fdsVector.end(); ++it)
+        fds.insert(*it);
+    return fds;
+}
+
 // User Management
 void Channel::addUser(Client& user, bool is_operator)
 {
