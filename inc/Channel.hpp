@@ -6,6 +6,7 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
 
 #include "Client.hpp"
 
@@ -35,6 +36,8 @@ class Channel
         std::string				getKey( void ) const;
 		bool					getMode( char mode ) const;
 		std::vector<char>		getModes( void ) const;
+		std::string				getModesString( void ) const;
+		std::string				getModesParameters( void ) const;
 		size_t					getUserLimit( void ) const;
 		size_t					getUserCount( void ) const;
 
