@@ -24,49 +24,31 @@
 */
 
 /* nospcrlfcl = Any octet except '\0', \r', '\n', ' ', and ':' */
-bool	irc_isNospcrlfcl( char c ) 
+bool	isNospcrlfcl( char c )
 {
 	return (c != '\0' && c != '\r' && c != '\n' && c != ' ' && c != ':');
 }
 
-// Equivalent to isalpha()
-bool	irc_isLetter( char c )
-{
-	return (c >= 'A' && c <= 'Z') || (c >= 'a' && c <= 'z');
-}
-
-// Equivalent to isdigit()
-bool	irc_isDigit( char c )
-{
-	return (c >= '0' && c <= '9');
-}
-
 // hexdigit = 0-9 || A-F
-bool	irc_isHexdigit( char c )
+bool	isHexdigit( char c )
 {
-	return (irc_isDigit(c) || (c >= 'A' && c <= 'F'));
+	return (isdigit(c) || (c >= 'A' && c <= 'F'));
 }
 
 // special = '[' - '_' || '{' - '}'
-bool	irc_isSpecial( char c ) 
+bool	isSpecial( char c )
 {
 	return (c >= 91 && c <= 96) || (c >= 123 && c <= 125);
 }
 
 // uppercase = A-Z || "[]\~"
-bool	irc_isUpper( char c ) 
+bool	isUpper( char c )
 {
 	return ((c >= 'A' && c <= ']') || c == '~');
 }
 
-// TODO: This function should probably be part of the Channel class
-bool	irc_isChanPrefix( char c )
-{
-	return (c == '#' || c == '&' || c == '+');
-}
-
 // lowercase = a-z || "{}|^"
-bool	irc_islower( char c ) 
+bool	isLower( char c )
 {
 	return (c >= 'a' && c <= '}');
 }
@@ -91,38 +73,33 @@ bool	isKeyValid( const std::string & key )
 	return true;
 }
 
-// TODO: This function should probably be part of the Channel class
-bool	isChannelNameValid( const std::string & channel_name )
-{
-	if (channel_name.size() < 1 || channel_name.size() > 50) // Use MAX CHANNEL NAME LENGTH macro here when this is integrated into the channel class
-		return false;
-	if (!irc_isChanPrefix(channel_name[0]))
-		return false;
-	for (size_t i = 0; i < channel_name.size(); i++) 
-	{
-		if (channel_name[i] == '\0' || channel_name[i] == '\6' || channel_name[i] == '\r' || channel_name[i] == '\n' || channel_name[i] == ' ' || channel_name[i] == ',' || channel_name[i] == ':')
-			return false;
-	}
-	return true;
-}
-
 // TODO: This function should probably be part of the Client class
-bool	irc_isValidNickname( const std::string & nickname ) 
+bool	isValidNickname( const std::string & nickname )
 {
 	if (nickname.size() < 1 || nickname.size() > 9)
 		return false;
-	if (!irc_isLetter(nickname[0]) && !irc_isSpecial(nickname[0]))
+	if (!isalpha(nickname[0]) && !isSpecial(nickname[0]))
 		return false;
-	for (size_t i = 1; i < nickname.size(); i++) 
+	for (size_t i = 1; i < nickname.size(); i++)
 	{
 		// If this returns false it must attempt to change the nickname anyway but ignoring all the chars past this one
-		if (!irc_isLetter(nickname[i]) && !irc_isDigit(nickname[i]) && nickname[i] != '_' && nickname[i] != '-') // ffornes- Removed isspecial from here since irssi don't accept them
+		if (!isalnum(nickname[i]) && nickname[i] != '_' && nickname[i] != '-') // ffornes- Removed isspecial from here since irssi don't accept them
 			return false;
 	}
 	return true;
 }
 
-bool	irc_isChannelPrefix( const char c )
+// TODO: This function should probably be part of the Channel class
+bool	isValidChannelName( const std::string & channel_name )
 {
-	return (c == '#' || c == '&' || c == '+' || c == '!');
+	if (channel_name.size() < 1 || channel_name.size() > MAX_CHANNEL_NAME_LENGTH)
+		return false;
+	if (std::strchr(CHANNEL_PREFIXES, channel_name[0]) == NULL)
+		return false;
+	for (size_t i = 0; i < channel_name.size(); i++)
+	{
+		if (std::strchr(CHANNEL_NAME_FORBIDDEN_CHARS, channel_name[i]) != NULL)
+			return false;
+	}
+	return true;
 }
