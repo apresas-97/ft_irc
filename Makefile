@@ -29,6 +29,7 @@ SRC_FILES =	main.cpp \
 			Client.cpp \
 			Channel.cpp \
 			irc_ctype.cpp \
+			utils.cpp \
 			numeric_replies.cpp 
 
 SRC = $(addprefix $(SRC_DIR)/,$(SRC_FILES))
