@@ -14,6 +14,7 @@ WIP	APR	- USER <username> <mode> * <realname>
 WIP	APR	- NOTICE <msgtarget> <text to be sent>
 WIP	APR	- VERSION [ <target> ]
 WIP	APR	- TIME [ <target> ]
+WIP APR - PONG <server> [ <server2> ]
 
 NS		- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
 
