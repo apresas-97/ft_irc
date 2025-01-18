@@ -11,6 +11,7 @@
 #include <sys/poll.h> // struct pollfd
 
 #include "ft_irc.hpp"
+#include "utils.hpp"
 #include "irc_ctype.hpp"
 #include "Client.hpp"
 #include "Channel.hpp"

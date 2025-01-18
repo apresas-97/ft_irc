@@ -9,6 +9,7 @@
 #include <set>
 
 #include "Client.hpp"
+#include "utils.hpp"
 
 class Client;
 

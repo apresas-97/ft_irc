@@ -22,7 +22,7 @@
 #define RPL_UMODEIS_STR "<user_modes>"
 
 #define RPL_CHANNELMODEIS 324
-#define RPL_CHANNELMODEIS_STR "<channel> <mode> <mode_params>"
+#define RPL_CHANNELMODEIS_STR "<channel> +<mode> <mode_params>"
 
 #define RPL_INVITING 341
 #define RPL_INVITING_STR "<channel> <nick>"
