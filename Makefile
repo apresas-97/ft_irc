@@ -25,6 +25,7 @@ SRC_FILES =	main.cpp \
 			Server_commands/notice.cpp \
 			Server_commands/version.cpp \
 			Server_commands/time.cpp \
+			Server_commands/pong.cpp \
 			Server_utils.cpp \
 			Client.cpp \
 			Channel.cpp \
