@@ -84,6 +84,8 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	// Set the new nickname
 	client->setNickname(nickname);
 	this->_taken_nicknames.push_back(nickname);
+	this->_clients_fd_map.erase(old_nickname);
+	this->_clients_fd_map[nickname] = client->getSocket();
 	// If it's the first time the user sets its nickname, there is no need to acknowledge the change
 	if (old_nickname.empty() == true)
 		return replies;
