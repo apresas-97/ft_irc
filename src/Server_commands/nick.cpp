@@ -45,7 +45,7 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 
 	// Check if the nickname follows the valid nickname format
 	std::string nickname = message.params[0];
-	if (irc_isValidNickname(nickname) == false) 
+	if (isValidNickname(nickname) == false)
 	{
 		reply = createReply(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_STR, nickname);
 		reply.target_client_fd = message.sender_client_fd;
