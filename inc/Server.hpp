@@ -141,6 +141,7 @@ class Server
 		std::string	stringToUpper( std::string src );
 		std::string getTimestamp( time_t time );
 		void	addChannelToReply( t_message &, Channel * );
+		void	addChannelToReplyExcept( t_message &, Channel * );
 
 		// DEBUG
 		void	printTmessage( t_message message ) const;
