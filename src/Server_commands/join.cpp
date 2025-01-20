@@ -64,17 +64,20 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 	}
 
 	channels = parseMessage(message.params[0], ',');
-	// int channels_n = channels.size();
     if (are_keys)
-	{
         keys = parseMessage(message.params[1], ',');
-	}
 
 	for (size_t i = 0; i < channels.size(); i++)
 	{
 		std::cout << "LOOPING" << std::endl;
 		std::string currentChannel = channels[i];
 
+		if (!isValidChannelName(currentChannel))
+		{
+			reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, currentChannel);
+			replies.push_back(reply);
+			continue;
+		}
 		if (isChannelInServer(currentChannel))
 		{
 			channel = findChannel(currentChannel);
@@ -119,6 +122,11 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				continue;
 			}
 			// Add to the current channel
+			if (channel->isUserInChannel(client->getNickname()))
+			{
+				// Ignore if user is already in the channel
+				continue;
+			}
 			channel->addUser(client, false);
 			client->addChannel(*channel, currentChannel);
 			fds = channel->getFds("users");
