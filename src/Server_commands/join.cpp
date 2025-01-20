@@ -117,6 +117,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		}
 		else
 		{
+			std::cout << "Attempting to create new channel..." << std::endl; // DEBUG
 			// Create new channel
 			if (client->getChannelCount() >= client->getChannelLimit()) 
 			{
@@ -130,7 +131,6 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				newChannel.setKey(keys[i]);
 				newChannel.setMode('k', true);
 			}
-			std::cout << "ESTOYENJOIN" << std::endl;
 			client->addChannel(newChannel, currentChannel);
 			newChannel.addUser(client, false);
 			fds = newChannel.getFds("users");
@@ -146,6 +146,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
         joinMessage.sender_client_fd = client->getSocket();
 		joinMessage.target_client_fds.insert(message.sender_client_fd);
 		addChannelToReply(joinMessage, channel);
+		replies.push_back(joinMessage);
 
         if (channel->getTopic() != "")
 		{
