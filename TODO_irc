@@ -32,3 +32,7 @@
 
 	// TODO::	commands.cpp	cmdChanMode() ... do the whole function. it's not defined
 	//				Function exists at the bottom of commands.cpp
+
+	// TODO::	Agree on the exact method to remove a client from the server. QUIT removes the client, but we also have
+	//			a client boolean to determine if its connection should be terminated in the server loop
+	//			An ERROR command should be sent to the client to notify them of the termination

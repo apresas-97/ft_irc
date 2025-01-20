@@ -4,6 +4,8 @@ DONE	- PASS <password>
 DONE	- PRIVMSG <msgtarget> <text to be sent>
 DONE	- QUIT [ <quit message> ]
 DONE	- TOPIC <channel> [ <topic> ]
+DONE	- PING <server1> [ <server2> ]
+DONE	- PONG <server1> [ <server2> ]
 
 WIP	AAE	- JOIN ( <channel> *("," <channel> ) [ <key> *("," <key>) ] ) / "0"
 
@@ -14,7 +16,6 @@ WIP	APR	- USER <username> <mode> * <realname>
 WIP	APR	- NOTICE <msgtarget> <text to be sent>
 WIP	APR	- VERSION [ <target> ]
 WIP	APR	- TIME [ <target> ]
-WIP APR - PONG <server> [ <server2> ]
 
 NS		- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
 

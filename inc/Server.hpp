@@ -124,6 +124,7 @@ class Server
 		std::vector<t_message> cmdError( std::string & error_message );
 		std::vector<t_message> cmdVersion( t_message & message );
 		std::vector<t_message> cmdTime( t_message & message );
+		std::vector<t_message> cmdPing( t_message & message );
 		std::vector<t_message> cmdPong( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
