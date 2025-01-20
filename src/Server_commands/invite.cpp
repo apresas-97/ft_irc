@@ -7,15 +7,15 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	t_message				reply;
 	Client *client = this->_current_client;
 
-	if (message.params.size() < 2) 
+	if (message.params.size() < 1) 
 	{
 		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client->getNickname());
 		replies.push_back(reply);
 		return replies;
 	}
 
-	std::string targetNickname = message.params[0];
-	std::string channelName = message.params[1];
+	std::string & targetNickname = message.params[0];
+	std::string & channelName = message.params[1];
 
 	if (this->_channels.find(channelName) == this->_channels.end()) 
 	{
@@ -26,12 +26,13 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 
 	Channel * channel = this->_channels[channelName];
 
-	if (!channel->isUserInChannel(client->getNickname())) 
+	if (!channel->isUserInChannel(client->getUsername())) 
 	{
 		reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, channelName);
 		replies.push_back(reply);
 		return replies;
 	}
+	// return replies;
 	// Check how this works and why its different from the past condition
 	// if (channel.isMember(targetNickname)) 
 	//{
@@ -39,7 +40,7 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	//	 return replies;
 	// }
 
-	if (!channel->isUserOperator(client->getNickname())) 
+	if (!channel->isUserOperator(client->getUsername())) 
 	{
 		reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, channelName);
 		replies.push_back(reply);
@@ -54,7 +55,7 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 		return replies;
 	}
 
-	channel->addUser(*client, 0);
+	channel->addUser(client, 0);
 	t_message inviteMessage;
 	inviteMessage.prefix = client->getUserPrefix();
 	inviteMessage.command = "INVITE";

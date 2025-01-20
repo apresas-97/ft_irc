@@ -1,9 +1,9 @@
 #include "Channel.hpp"
 
-Channel::Channel(void) : _user_limit(0), _has_user_limit(false)
+Channel::Channel(void) : _user_limit(-1), _has_user_limit(false)
 {}
 
-Channel::Channel(const std::string& name) : _name(name), _user_limit(0), _has_user_limit(false)
+Channel::Channel(const std::string& name) : _name(name), _user_limit(-1), _has_user_limit(false)
 {}
 
 Channel::~Channel(void)
@@ -246,20 +246,21 @@ std::set<int>   Channel::getFdsSet( std::string key ) const
 }
 
 // User Management
-void Channel::addUser(Client& user, bool is_operator)
+void Channel::addUser(Client * user, bool is_operator)
 {
     if (_has_user_limit && _users.size() >= this->_user_limit)
     {
         throw std::runtime_error("Channel is full");
     }
 
-    this->_users[user.getNickname()] = &user;
+    std::cout << getName() << std::endl;
+    this->_users[user->getUsername()] = user;
 
     if (is_operator)
     {
-        if (_operators.find(user.getNickname()) == _operators.end())
+        if (_operators.find(user->getUsername()) == _operators.end())
         {
-            _operators[user.getNickname()] = &user;
+            _operators[user->getUsername()] = user;
         }
     }
 }
@@ -317,23 +318,54 @@ void Channel::uninviteUser(const std::string& userName)
     }
 }
 
+#include <iostream>
+#include <map>
+#include <string>
 // User Localizers
 bool Channel::isUserInChannel(const std::string& userName)
 {
-    return _users.find(userName) != _users.end();
+    for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
+    {
+        if (it != _users.end())  // Verificación de rango
+        {
+            if (it->first.empty() || it->second == NULL) continue;  // Verificación adicional para evitar datos nulos o vacíos
+            RED_TEXT(it->first);      // Nombre del usuario
+            RED_TEXT(it->second);     // Cliente asociado
+            RED_TEXT(userName);       // Nombre del usuario buscado
+        }
+        else {
+            std::cout << "Iterador fuera de rango" << std::endl;
+        }
+        // if (it->first == userName) {
+        //     std::cout << "SEGUIMOS LLEGANDO?" << std::endl;
+        //     return true;
+        // }
+        return false;
+    }
+    return false;
 }
 
 bool Channel::isUserOperator(const std::string& userName)
 {
-    return _operators.find(userName) != _operators.end();
+    for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it)
+    {
+        if (it->first == userName)
+            return true;
+    }
+    return false;
 }
 
 bool Channel::isUserInvited(const std::string& userName)
 {
-    return _invited_users.find(userName) != _invited_users.end();
+    for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it)
+    {
+        if (it->first == userName)
+            return true;
+    }
+    return false;
 }
 
 bool Channel::isEmpty(void) const
 {
-    return _users.empty() && _operators.empty();
+    return _users.empty();
 }

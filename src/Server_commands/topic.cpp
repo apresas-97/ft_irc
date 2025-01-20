@@ -16,32 +16,47 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 	std::string channelName = message.params[0];
 
-	if (this->_channels.find(channelName) == this->_channels.end()) 
+	if (!channelFound(channelName)) 
 	{
-//		reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, {client->getNickname(), channelName}); // incorrect call
+		std::vector<std::string> params;
+		params.push_back(client->getUsername());
+		params.push_back(channelName);
+		reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, params);
 		replies.push_back(reply);
 		return replies;
 	}
 
-	Channel * channel = this->_channels[channelName];
+	Channel * channel = channelGet(channelName);
 
-	if (!channel->isUserInChannel(client->getNickname())) 
+	// Se mete el nombre del topic como un USER mas y no consigo saber porque TODO
+	if (!channel->isUserInChannel(client->getUsername())) 
 	{
-//		reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, {client->getNickname(), channelName}); // incorrect call
+		std::vector<std::string> params;
+		params.push_back(client->getUsername());
+		params.push_back(channelName);
+		reply = createReply(ERR_NOTONCHANNEL, ERR_NOTONCHANNEL_STR, params);
 		replies.push_back(reply);
 		return replies;
 	}
 
-	if (message.params.size() == 1) 
+	std::cout << message.params.size() << std::endl;
+	if (message.params.size() == 2) 
 	{
 		if (channel->getTopic().empty()) 
 		{
-//			reply = createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, {client->getNickname(), channelName}); // incorrect call
+			std::vector<std::string> params;
+			params.push_back(client->getUsername());
+			params.push_back(channelName);
+			reply = createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, params);
 			replies.push_back(reply);
 		} 
-		else 
+		else
 		{
-//			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()}); // incorrect call
+			std::vector<std::string> params;
+			params.push_back(client->getUsername());
+			params.push_back(channelName);
+			params.push_back(channel->getTopic());
+			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
 			replies.push_back(reply);
 		}
 	} 
@@ -53,9 +68,12 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 			newTopic += " " + message.params[i];
 		}
 
-		if (channel->getMode('t') && !channel->isUserOperator(client->getNickname())) 
+		if (channel->getMode('t') && !channel->isUserOperator(client->getUsername())) 
 		{
-//			reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, {client->getNickname(), channelName}); // incorrect call
+			std::vector<std::string> params;
+			params.push_back(client->getUsername());
+			params.push_back(channelName);
+			reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, params);
 			replies.push_back(reply);
 			return replies;
 		}
@@ -74,11 +92,14 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		topicMessage.command = "TOPIC";
 		topicMessage.params.push_back(channelName);
 		topicMessage.params.push_back(channel->getTopic());
-		// topicMessage.sender_client_fd = client->getFd();
+		topicMessage.sender_client_fd = client->getSocket();
 		addChannelToReply(topicMessage, channel);
-		// channel.broadcastMessage(topicMessage, client->getNickname());
 
-//		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, {client->getNickname(), channelName, channel.getTopic()}); // incorrect call
+		std::vector<std::string> params;
+		params.push_back(client->getUsername());
+		params.push_back(channelName);
+		params.push_back(channel->getTopic());
+		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
 		replies.push_back(reply);
 	}
 

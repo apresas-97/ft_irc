@@ -1,0 +1,14 @@
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.9.3 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Wed, Jan 15 2025 at 19:09:13 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr 421 aaespino PING :Unknown command
+<< JOIN #XDXDXDDDD
+>> :ft_irc.42.fr 405 aaespino #XDXDXDDDD :You have joined too many channels
+<< QUIT :Lost terminal

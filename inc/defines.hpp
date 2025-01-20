@@ -11,3 +11,4 @@
 
 #define USER_MODES "aiwroOs"
 #define CHANNEL_MODES "itkol"
+#define RED_TEXT(msg) std::cout << "\033[31m" << msg << "\033[0m" << std::endl;

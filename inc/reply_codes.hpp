@@ -115,4 +115,3 @@
 #define ERR_NOTEXTTOSEND_STR ":No text to send"
 
 #endif // REPLY_CODES_HPP
-

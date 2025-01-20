@@ -76,6 +76,9 @@ class Server
 		void setStartTime( void );
 		std::string getStartTimeStr( void );
 
+		Channel * channelGet( const std::string & name );
+		void addChannel(Channel &channel, std::string &name);
+		bool channelFound(const std::string& chanName);
 		bool isUserInServer( const std::string & nickname );
 		bool isChannelInServer( const std::string & channel );
 

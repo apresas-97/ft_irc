@@ -46,7 +46,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	bool are_keys = message.params.size() > 2 ? true : false;
 
-	if (message.params.size() < 2) 
+	if (message.params.size() < 1) 
 	{
 		std::vector<std::string>	params;
 		params.push_back(client->getNickname());
@@ -70,27 +70,31 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 		if (isChannelInServer(currentChannel))
 		{
-			// Mode i (Invite-only channel)
+			// Mode -i (Invite-only channel)
 			if (channel->getMode('i') && !channel->isUserInvited(client->getUsername()))
 			{
 				reply = createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, currentChannel);
 				replies.push_back(reply);
 				continue;
 			}
-			// Mode l (Channel limit)
+			// Mode -l (Channel limit)
 			if (channel->getMode('l') && channel->getUserCount() >= channel->getUserLimit())
 			{
 				reply = createReply(ERR_CHANNELISFULL, ERR_CHANNELISFULL_STR, currentChannel);
 				replies.push_back(reply);
 				continue;
 			}
-			if (client->getChannelCount() >= client->getChannelLimit())
+			// Mode -o (Operator privileges required) and Mode -t (Operator privileges required)
+			if ((channel->getMode('o') || channel->getMode('t')) && !channel->isUserOperator(client->getUsername())) 
 			{
-				reply = createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel);
+				std::vector<std::string> params;
+				params.push_back(client->getNickname());
+				params.push_back(currentChannel);
+				reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, params);
 				replies.push_back(reply);
 				continue;
 			}
-			// Mode k (Channel key)
+			// Mode -k (Channel key)
 			if (channel->getMode('k'))
 			{
 				if (!are_keys || i >= keys.size() - 1 || keys[i] != channel->getKey()) 
@@ -100,8 +104,14 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 					continue;
 				}
 			}
+			if (client->getChannelCount() >= client->getChannelLimit())
+			{
+				reply = createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel);
+				replies.push_back(reply);
+				continue;
+			}
 			// Add to the current channel
-			channel->addUser(*client, false);
+			channel->addUser(client, false);
 			client->addChannel(*channel, currentChannel);
 			fds = channel->getFds("users");
 		}
@@ -114,25 +124,18 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				replies.push_back(reply);	
 				return replies;
 			}
-			//	TODO:Do we implement the masks?
-			// if (!_validcurrentChannel(currentChannel)) {
-			// 	replies.push_back(createReply(ERR_BADCHANMASK, ERR_BADCHANMASK_STR, currentChannel));
-			// 	return replies;
-			// }
-
 			Channel newChannel(currentChannel);
-			newChannel.addUser(*client, true);
-
 			if (are_keys && i < keys.size())
 			{
 				newChannel.setKey(keys[i]);
 				newChannel.setMode('k', true);
 			}
-
-			this->_channels[currentChannel] = &newChannel;
+			std::cout << "ESTOYENJOIN" << std::endl;
 			client->addChannel(newChannel, currentChannel);
+			newChannel.addUser(client, false);
 			fds = newChannel.getFds("users");
 			channel = &newChannel;
+			addChannel(*channel, currentChannel);
 		}
 		
 		// Enviar mensajes de bienvenida al canal
@@ -143,8 +146,6 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
         joinMessage.sender_client_fd = client->getSocket();
 		joinMessage.target_client_fds.insert(message.sender_client_fd);
 		addChannelToReply(joinMessage, channel);
-		// We have to add the sendMessage
-        // sendMessageToChannel(client, channel, joinMessage);
 
         if (channel->getTopic() != "")
 		{
