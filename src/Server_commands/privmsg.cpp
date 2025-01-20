@@ -73,7 +73,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
     // Process each target (recipient) in the message
     for (size_t i = 0; i < targets.size(); i++)
     {
-        std::string &target = targets[i];
+        std::string & target = targets[i];
         
         // Handle channel messages (targets starting with # or &)
         if (target[0] == '#' || target[0] == '&')
@@ -81,7 +81,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
             // Check if channel exists
             if (_channels.find(target) != _channels.end())
             {
-                Channel * channel = _channels[target];
+                Channel * channel = this->findChannel(target);
                 // Check if sender is in the channel
                 if (!channel->isUserInChannel(client->getNickname()))
                 {

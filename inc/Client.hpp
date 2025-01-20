@@ -65,7 +65,7 @@ class Client
 		// Channel Management
 		void	addChannel(Channel &channel, std::string& name);
 		void	removeChannel(Channel &channel, std::string& name);
-		std::vector<Channel *>	getChannelsVector( void ) const;
+		std::vector<Channel>	getChannelsVector( void ) const;
 
 		// Mode Management
 		bool	hasMode(char mode) const;
@@ -93,7 +93,7 @@ class Client
 		bool					_hostname_looked_up; // Has the hostname lookup been done?
 		t_mode					_mode;
 
-		std::map<std::string, Channel*>	_channels;
+		std::map<std::string, Channel>	_channels;
 		int 		_chan_limit;
 		int 		_chan_count;
 

@@ -204,9 +204,9 @@ int Client::getChannelLimit(void) const
 }
 
 // Channel Management
-void Client::addChannel(Channel &channel, std::string &name)
+void Client::addChannel( Channel & channel, std::string & name )
 {
-    _channels[name] = &channel;
+    this->_channels.insert(std::pair<std::string, Channel>(name, channel));
 }
 
 void Client::removeChannel(Channel &channel, std::string &name)
@@ -243,11 +243,11 @@ const std::string Client::getModeString(void) const
     return str;
 }
 
-std::vector<Channel *>	Client::getChannelsVector( void ) const
+std::vector<Channel>	Client::getChannelsVector( void ) const
 {
-	std::vector<Channel *>	channels;
+	std::vector<Channel>	channels;
 
-	for (std::map<std::string, Channel *>::const_iterator it = this->_channels.begin(); it != this->_channels.end(); ++it)
+	for (std::map<std::string, Channel>::const_iterator it = this->_channels.begin(); it != this->_channels.end(); ++it)
 		channels.push_back(it->second);
 	return channels;
 }

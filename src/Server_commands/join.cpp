@@ -38,7 +38,8 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 	std::vector<t_message>	replies;
 	t_message				reply;
 
-	Client *client = this->_current_client;
+	Client * client = this->_current_client;
+	Channel * channel = NULL;
 
 	std::vector<std::string> 	channels;
     std::vector<std::string> 	keys;
@@ -71,11 +72,12 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	for (size_t i = 0; i < channels.size(); i++)
 	{
+		std::cout << "LOOPING" << std::endl;
 		std::string currentChannel = channels[i];
-		Channel * channel = _channels[currentChannel];
 
 		if (isChannelInServer(currentChannel))
 		{
+			channel = findChannel(currentChannel);
 			// Mode -i (Invite-only channel)
 			if (channel->getMode('i') && !channel->isUserInvited(client->getUsername()))
 			{
@@ -140,8 +142,8 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			client->addChannel(newChannel, currentChannel);
 			newChannel.addUser(client, false);
 			fds = newChannel.getFds("users");
-			channel = &newChannel;
-			addChannel(*channel, currentChannel);
+			addChannel(newChannel, currentChannel);
+			channel = findChannel(currentChannel);
 		}
 		
 		// Enviar mensajes de bienvenida al canal

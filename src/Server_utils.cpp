@@ -5,12 +5,7 @@ bool Server::isUserInServer( const std::string & nickname )
 {
 	Client * client = findClient(nickname);
 	if (client)
-	{
-		// delete client; // ffornes- : I guess this is mandatory
-		// apresas-: we should talk about this
 		return true;
-	}
-	// delete client;
 	return false;
 }
 
@@ -30,14 +25,14 @@ Client * Server::findClient( const std::string & nickname )
 	return findClient(it->second);
 }
 
-void Server::addChannel(Channel &channel, std::string &name)
+void Server::addChannel( Channel & channel, std::string & name )
 {
-    _channels[name] = &channel;
+    this->_channels.insert(std::pair<std::string, Channel>(name, channel));
 }
 
 bool Server::channelFound(const std::string& chanName)
 {
-    for (std::map<std::string, Channel*>::const_iterator it = _channels.begin(); it != _channels.end(); ++it)
+    for (std::map<std::string, Channel>::const_iterator it = _channels.begin(); it != _channels.end(); ++it)
     {
         if (it->first == chanName)
             return true;
@@ -47,37 +42,28 @@ bool Server::channelFound(const std::string& chanName)
 
 Channel * Server::channelGet( const std::string & name ) 
 {
-    for (std::map<std::string, Channel*>::const_iterator it = _channels.begin(); it != _channels.end(); ++it)
+    for (std::map<std::string, Channel>::iterator it = _channels.begin(); it != _channels.end(); ++it)
     {
-        if (it->first == name) {
-            return it->second;
-        }
+        if (it->first == name)
+            return &it->second;
     }
 	return (NULL);
 }
 
 bool Server::isChannelInServer( const std::string & name ) 
 {
-
 	Channel * channel = findChannel(name);
-
 	if (channel)
-	{
-		// delete channel; // ffornes- : I guess this is mandatory
-		// apresas-: we should talk about this
-		// delete channel; // ffornes- : I guess this is mandatory
 		return true;
-	}
-	// delete channel;
 	return false;
 }
 
 Channel * Server::findChannel( const std::string & name ) 
 {
-	std::map<std::string, Channel *>::iterator it = this->_channels.find(name);
+	std::map<std::string, Channel>::iterator it = this->_channels.find(name);
 	if (it == this->_channels.end())
 		return (NULL);
-	return it->second;
+	return &it->second;
 }
 
 bool	Server::hasNULL( const char * buffer, int bytes_received ) const
