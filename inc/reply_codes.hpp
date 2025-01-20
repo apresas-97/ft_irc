@@ -22,7 +22,7 @@
 #define RPL_UMODEIS_STR "<user_modes>"
 
 #define RPL_CHANNELMODEIS 324
-#define RPL_CHANNELMODEIS_STR "<channel> <mode> <mode_params>"
+#define RPL_CHANNELMODEIS_STR "<channel> +<mode> <mode_params>"
 
 #define RPL_INVITING 341
 #define RPL_INVITING_STR "<channel> <nick>"
@@ -51,6 +51,8 @@
 #define ERR_NOSUCHSERVER_STR "<server name> :No such server"
 #define ERR_NOSUCHCHANNEL 403
 #define ERR_NOSUCHCHANNEL_STR "<channel> :No such channel"
+#define ERR_NOORIGIN 409
+#define ERR_NOORIGIN_STR ":No origin specified"
 #define ERR_UNKNOWNCOMMAND 421
 #define ERR_UNKNOWNCOMMAND_STR "<command> :Unknown command"
 #define ERR_NONICKNAMEGIVEN 431
@@ -61,14 +63,18 @@
 #define ERR_NICKNAMEINUSE_STR "<nickname> :Nickname is already in use"
 #define ERR_UNAVAILRESOURCE 437
 #define ERR_UNAVAILRESOURCE_STR "<nickname/channel> :Nick/channel is temporarily unavailable"
+#define ERR_USERNOTINCHANNEL 441
+#define ERR_USERNOTINCHANNEL_STR "<nick> <channel> :They aren't on that channel"
 #define ERR_NOTREGISTERED 451
 #define ERR_NOTREGISTERED_STR ":You have not registered"
 #define ERR_NEEDMOREPARAMS 461
-#define ERR_NEEDMOREPARAMS_STR "<nickname> :Not enough parameters"
+#define ERR_NEEDMOREPARAMS_STR "<command> :Not enough parameters"
 #define ERR_ALREADYREGISTRED 462
 #define ERR_ALREADYREGISTRED_STR ":Unauthorized command (already registered)"
 #define ERR_PASSWDMISMATCH 464
 #define ERR_PASSWDMISMATCH_STR ":Password incorrect"
+#define ERR_KEYSET 467
+#define ERR_KEYSET_STR "<channel> :Channel key already set"
 #define ERR_UNKNOWNMODE 472
 #define ERR_UNKNOWNMODE_STR "<char> :is unknown mode char to me for <channel>"
 #define ERR_NOCHANMODES 477
@@ -111,4 +117,3 @@
 #define ERR_USERNOTINCHANNEL_STR "<nickname> <channel> :They aren't on that channel"
 
 #endif // REPLY_CODES_HPP
-

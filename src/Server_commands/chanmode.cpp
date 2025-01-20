@@ -1,10 +1,11 @@
 #include "Server.hpp"
 
+/*
 std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes ) 
 {
 	std::cout << "CHANMODE command called..." << std::endl;
 	std::vector<t_message> replies;
-/*
+
 	std::cout << "Channel mode part, not implemented yet" << std::endl;
 	// Some modes take extra parameters, like +k <key> or +l <limit>
 	// Note that there is a maximum limit of 3 changes per command for modes that require parameters
@@ -20,9 +21,8 @@ std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes )
 		replies.push_back(reply(RPL_CHANNELMODEIS, RPL_CHANNELMODEIS_STR, { message.params[0], get_mode_string(modes), //get_mode_params_string(modes) })); // TODO 
 		return replies;
 	}
-*/
 	//////////////////////////////////////////////// BEGGINING OF COMMENT //////////////////////////////////////////////////////////////
-	/*
+	/ *
 	Replies:
 		ERR_KEYSET
 			If the channel already has a key and the user tries to set it again
@@ -35,10 +35,9 @@ std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes )
 			If the mode is either invalid or not supported by the channel in some way
 			i.e. +k <key>, on a channel that doesn't support keys
 			or +X, since it's not a valid mode period
-	*/
+	* /
 ///////////////////////////////////////// ENDOF COMMENT //////////////////////////////////////////////////////////////////////////////////////
 	// Provisional: 
-	/*
 	std::vector<char> valid_modes;
 	std::string correct_param;
 	bool has_effect = false;
@@ -114,9 +113,8 @@ std::vector<t_message> Server::cmdChanMode( t_message & message, t_mode modes )
 	}
 	if (has_effect)
 		replies.push_back(reply(message, correct_param, client_nickname));
-	*/
 	return replies;
 	(void)message;
 	(void)modes;
 }
-
+*/

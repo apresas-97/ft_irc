@@ -2,13 +2,23 @@
 #define IRC_CTYPE_HPP
 
 #include <cctype>
+#include <cstring>
 #include <string>
 
-bool	irc_isspecial( char c );
-bool	irc_isupper( char c );
-bool	irc_islower( char c );
+#define SPECIAL_CHARACTERS "[\\]`_^{|}"
 
-bool	irc_isValidNickname( const std::string & nickname );
+#define MAX_CHANNEL_NAME_LENGTH 50
+#define CHANNEL_PREFIXES "#&+"
+#define CHANNEL_NAME_FORBIDDEN_CHARS "\0\6\r\n ,:"
+
+bool	isNospcrlfcl( char c );
+bool	isHexdigit( char c );
+bool	isUpper( char c );
+bool	isLower( char c );
+bool	isSpecial( char c );
+
+bool	isValidNickname( const std::string & nickname );
+bool	isValidChannelName( const std::string & channel_name ); // Move this maybe
 
 #endif //IRC_CTYPE_HPP
 

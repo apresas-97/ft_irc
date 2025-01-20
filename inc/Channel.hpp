@@ -6,8 +6,10 @@
 #include <string>
 #include <vector>
 #include <map>
+#include <set>
 
 #include "Client.hpp"
+#include "utils.hpp"
 
 class Client;
 
@@ -35,6 +37,8 @@ class Channel
         std::string				getKey( void ) const;
 		bool					getMode( char mode ) const;
 		std::vector<char>		getModes( void ) const;
+		std::string				getModesString( void ) const;
+		std::string				getModesParameters( void ) const;
 		size_t					getUserLimit( void ) const;
 		size_t					getUserCount( void ) const;
 
@@ -46,6 +50,7 @@ class Channel
 		std::map<std::string, Client*>	getTrueInvitedUsers( void ) const;
 
 		std::vector<int>			getFds(std::string key) const;
+		std::set<int>				getFdsSet(std::string key) const;
 
 		// User Management
 		void	addUser( Client * user, bool is_operator );
