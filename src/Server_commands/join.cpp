@@ -166,8 +166,8 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			replies.push_back(reply);
         }
 
-        replies.push_back(replyList(client, channel, fds));
-        fds.clear();
+//		replies.push_back(replyList(client, channel, fds));
+//		fds.clear();
 	}
 
     return replies;
