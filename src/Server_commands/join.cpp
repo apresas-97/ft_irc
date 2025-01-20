@@ -46,6 +46,12 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	bool are_keys = message.params.size() > 2 ? true : false;
 
+	if (client->isRegistered() == false)
+	{
+		replies.push_back(createReply(ERR_NOTREGISTERED, ERR_NOTREGISTERED_STR));
+		return replies;
+	}
+
 	if (message.params.size() < 1) 
 	{
 		std::vector<std::string>	params;
