@@ -60,7 +60,7 @@ class Server
 		std::map<std::string, int> _clients_fd_map; // To get the fd of a client by its nickname (not implemented)
 		Client * _current_client; // apresas-: Added this, maybe provisionally, for the client that is currently relevant
 
-		std::map<std::string, Channel *> _channels;
+		std::map<std::string, Channel> _channels;
 		Channel * _current_channel; // apresas-: Added this, maybe provisionally, for the channel that is currently relevant
 
 		std::vector<std::string>	_taken_nicknames;
@@ -129,6 +129,7 @@ class Server
 		std::vector<t_message> cmdTime( t_message & message );
 		std::vector<t_message> cmdPing( t_message & message );
 		std::vector<t_message> cmdPong( t_message & message );
+		std::vector<t_message> cmdCap( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
 

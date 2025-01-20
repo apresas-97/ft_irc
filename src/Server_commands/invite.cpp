@@ -17,14 +17,14 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	std::string & targetNickname = message.params[0];
 	std::string & channelName = message.params[1];
 
-	if (this->_channels.find(channelName) == this->_channels.end()) 
+	if (this->isChannelInServer(channelName) == false) 
 	{
 		reply = createReply(ERR_NOSUCHCHANNEL, ERR_NOSUCHCHANNEL_STR, channelName);
 		replies.push_back(reply);
 		return replies;
 	}
 
-	Channel * channel = this->_channels[channelName];
+	Channel * channel = this->findChannel(channelName);
 
 	if (!channel->isUserInChannel(client->getUsername())) 
 	{
@@ -34,7 +34,7 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	}
 	// return replies;
 	// Check how this works and why its different from the past condition
-	// if (channel.isMember(targetNickname)) 
+	// if (channel->isMember(targetNickname)) 
 	//{
 	//	 replies.push_back(createReply(ERR_USERONCHANNEL, ERR_USERONCHANNEL_STR, targetNickname, channelName));
 	//	 return replies;

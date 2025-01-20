@@ -27,6 +27,7 @@ SRC_FILES =	main.cpp \
 			Server_commands/time.cpp \
 			Server_commands/ping.cpp \
 			Server_commands/pong.cpp \
+			Server_commands/cap.cpp \
 			Server_utils.cpp \
 			Client.cpp \
 			Channel.cpp \

@@ -262,14 +262,14 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		// Close the connection here, send the ERROR message and close the connection with the client
 	}
 	if (command == "PASS")
-		return this->cmdPass(message);
+		replies = cmdPass(message);
 	else if (command == "NICK")
 	{
 		/*
 			Expected response:
 
 		*/
-		return this->cmdNick(message);
+		replies = cmdNick(message);
 	}
 	else if (command == "USER")
 	{
@@ -280,18 +280,45 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		replies = this->cmdUser(message);
 		if (this->_current_client->isAuthorised() == false)
 			this->_current_client->setTerminate(true);
-		return replies;
 	}
 	else if (command == "CAP" && !this->_current_client->isAuthorised())
+		replies = this->cmdCap(message);
+	else if (command == "MODE")
+		replies = cmdMode(message);
+	else if (command == "JOIN")
+		replies = cmdJoin(message);
+	else if (command == "QUIT")
+		replies = cmdQuit(message);
+	else if (command == "ERROR")
+		return replies; // Silently ignore the ERROR command from a client
+	else if (command == "NOTICE")
+		replies = cmdNotice(message);
+	else if (command == "VERSION")
+		replies = cmdVersion(message);
+	else if (command == "TIME")
+		replies = cmdTime(message);
+	else if (command == "PRIVMSG")
+		replies = cmdPrivMsg(message);
+	else if (command == "INVITE")
+		replies = cmdInvite(message);
+	else if (command == "TOPIC")
+		replies = cmdTopic(message);
+	else if (command == "PING")
+		replies = cmdPing(message);
+	else if (command == "PONG")
+		replies = cmdPong(message);
+	else if (command == "TOPIC")
+		replies = cmdTopic(message);
+	else if (command == "PRIVMSG")
+		replies = cmdPrivMsg(message);
+	else if (command == "INVITE")
+		replies = cmdInvite(message);
+	else if (command == "KICK")
+		replies = cmdKick(message);
+	else
+		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
+	if (!this->_current_client->isHostnameLookedUp())
 	{
-		// Our server will have no extensions, so we will silently ignore the opening CAP command
-		return replies;
-	}
-	else if (command == "JOIN" && !this->_current_client->isRegistered())
-	{
-		// For the message JOIN : that irssi sends right after CAP
-		// From what I've seen, here is where most servers lookup the hostname of the client and notify them with a NOTICE
-		// TODO: We can make this use the cmdNotice function when we have it
 		t_message notice_lookup;
 		notice_lookup.prefix = ":" + this->getName();
 		std::cout << "notice_lookup.prefix: \"" << notice_lookup.prefix << "\"" << std::endl;
@@ -309,39 +336,7 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		notice_results.params.push_back(this->_current_client->hostnameLookup());
 		replies.push_back(notice_results);
 
-		replies.push_back(createReply(ERR_NOTREGISTERED, ERR_NOTREGISTERED_STR));
+		this->_current_client->setHostnameLookedUp(true);
 	}
-	// else if (!this->_current_client->isAuthorised())
-	// {
-	// 	// Maybe is too drastic to kick the client?
-	// 	std::cout << "REMOVING CLIENT IN RUNCOMMAND FUNCTION" << std::endl;
-	// 	removeClient(message.sender_client_fd);
-	// }
-	else if (command == "MODE")
-		return this->cmdMode(message);
-	else if (command == "JOIN")
-		return this->cmdJoin(message);
-	else if (command == "QUIT")
-		return this->cmdQuit(message);
-	else if (command == "ERROR")
-		return replies; // Silently ignore the ERROR command from a client
-	else if (command == "NOTICE")
-		return this->cmdNotice(message);
-	else if (command == "VERSION")
-		return this->cmdVersion(message);
-	else if (command == "TIME")
-		return this->cmdTime(message);
-	else if (command == "PRIVMSG")
-		return this->cmdPrivMsg(message);
-	else if (command == "INVITE")
-		return this->cmdInvite(message);
-	else if (command == "TOPIC")
-		return this->cmdTopic(message);
-	else if (command == "PING")
-		return this->cmdPing(message);
-	else if (command == "PONG")
-		return this->cmdPong(message);
-	else
-		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
 	return replies;
 }

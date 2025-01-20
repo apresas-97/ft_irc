@@ -9,11 +9,12 @@ Client::Client(void)
     _authorised = false;
     _registered = false;
     _terminate = false;
+    _hostname_looked_up = false;
     _chan_limit = 0;
     _chan_count = -1;
 }
 
-Client::Client(int socket) : _socket(socket), _authorised(false), _registered(false), _chan_limit(0)
+Client::Client(int socket) : _socket(socket), _authorised(false), _registered(false), _terminate(false), _hostname_looked_up(false), _chan_limit(0)
 {
     memset(_buffer, 0, BUFFER_SIZE);
     _chan_count = -1;
@@ -65,6 +66,11 @@ void Client::setRegistered(bool value)
 void Client::setTerminate( bool value )
 {
     this->_terminate = value;
+}
+
+void Client::setHostnameLookedUp( bool value )
+{
+    this->_hostname_looked_up = value;
 }
 
 void Client::setMode(char mode, bool value)
@@ -145,6 +151,11 @@ bool Client::isTerminate( void ) const
     return this->_terminate;
 }
 
+bool Client::isHostnameLookedUp( void ) const
+{
+    return this->_hostname_looked_up;
+}
+
 bool Client::getMode(char mode) const
 {
     switch (mode)
@@ -193,9 +204,9 @@ int Client::getChannelLimit(void) const
 }
 
 // Channel Management
-void Client::addChannel(Channel &channel, std::string &name)
+void Client::addChannel( Channel & channel, std::string & name )
 {
-    _channels[name] = &channel;
+    this->_channels.insert(std::pair<std::string, Channel>(name, channel));
 }
 
 void Client::removeChannel(Channel &channel, std::string &name)
@@ -232,11 +243,11 @@ const std::string Client::getModeString(void) const
     return str;
 }
 
-std::vector<Channel *>	Client::getChannelsVector( void ) const
+std::vector<Channel>	Client::getChannelsVector( void ) const
 {
-	std::vector<Channel *>	channels;
+	std::vector<Channel>	channels;
 
-	for (std::map<std::string, Channel *>::const_iterator it = this->_channels.begin(); it != this->_channels.end(); ++it)
+	for (std::map<std::string, Channel>::const_iterator it = this->_channels.begin(); it != this->_channels.end(); ++it)
 		channels.push_back(it->second);
 	return channels;
 }
