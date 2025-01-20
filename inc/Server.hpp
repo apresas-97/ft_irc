@@ -11,6 +11,7 @@
 #include <sys/poll.h> // struct pollfd
 
 #include "ft_irc.hpp"
+#include "utils.hpp"
 #include "irc_ctype.hpp"
 #include "Client.hpp"
 #include "Channel.hpp"
@@ -111,6 +112,8 @@ class Server
 		std::vector<t_message> cmdJoin( t_message & message );
 		std::vector<t_message> cmdKick( t_message & message );
 		std::vector<t_message> cmdMode( t_message & message );
+		std::vector<t_message> cmdModeUser( t_message & message );
+		std::vector<t_message> cmdModeChannel( t_message & message );
 		std::vector<t_message> cmdNick( t_message & message );
 		std::vector<t_message> cmdPass( t_message & message );
 		std::vector<t_message> cmdPrivMsg( t_message & message );
@@ -118,10 +121,10 @@ class Server
 		std::vector<t_message> cmdQuit( t_message & message );
 		std::vector<t_message> cmdTopic( t_message & message );
 		std::vector<t_message> cmdUser( t_message & message );
-		std::vector<t_message> cmdChanMode( t_message & message, t_mode modes );
 		std::vector<t_message> cmdError( std::string & error_message );
 		std::vector<t_message> cmdVersion( t_message & message );
 		std::vector<t_message> cmdTime( t_message & message );
+		std::vector<t_message> cmdPong( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
 

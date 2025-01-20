@@ -6,10 +6,11 @@ bool Server::isUserInServer( const std::string & nickname )
 	Client * client = findClient(nickname);
 	if (client)
 	{
-		delete client; // ffornes- : I guess this is mandatory
+		// delete client; // ffornes- : I guess this is mandatory
+		// apresas-: we should talk about this
 		return true;
 	}
-	delete client;
+	// delete client;
 	return false;
 }
 
@@ -34,10 +35,11 @@ bool Server::isChannelInServer( const std::string & name )
 	Channel * channel = findChannel(name);
 	if (channel) 
 	{
-		delete channel; // ffornes- : I guess this is mandatory
+		// delete channel; // ffornes- : I guess this is mandatory
+		// apresas-: we should talk about this
 		return true;
 	}
-	delete channel; // 
+	// delete channel;
 	return false;
 }
 

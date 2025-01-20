@@ -101,6 +101,47 @@ std::vector<char>	Channel::getModes( void ) const
 	return this->_modes;
 }
 
+std::string Channel::getModesString( void ) const // Tests pending
+{
+    std::string modes;
+    for (size_t i = 0; i < _modes.size(); i++)
+    {
+        modes += _modes[i];
+    }
+    return modes;
+}
+
+std::string Channel::getModesParameters( void ) const // Tests pending
+{
+    // Alphabetic order of parametered modes, for reference: k l
+    std::string key = _key;
+    std::string limit = uLongToString(_user_limit);
+
+    bool k_set = this->getMode('k');
+    bool l_set = this->getMode('l');
+    size_t k_index = 0;
+    size_t l_index = 0;
+    for (size_t i = 0; i < _modes.size(); i++)
+    {
+        if (_modes[i] == 'k')
+            k_index = i;
+        else if (_modes[i] == 'l')
+            l_index = i;
+    }
+    if (k_set && l_set)
+    {
+        if (k_index < l_index)
+            return key + " " + limit;
+        else
+            return limit + " " + key;
+    }
+    else if (k_set)
+        return key;
+    else if (l_set)
+        return limit;
+    return "";
+}
+
 size_t Channel::getUserLimit() const
 {
     return this->_user_limit;
@@ -191,6 +232,16 @@ std::vector<int> Channel::getFds(std::string key) const
         }
     }
 
+    return fds;
+}
+
+std::set<int>   Channel::getFdsSet( std::string key ) const
+{
+    std::vector<int> fdsVector = this->getFds(key);
+    std::set<int> fds;
+
+    for (std::vector<int>::const_iterator it = fdsVector.begin(); it != fdsVector.end(); ++it)
+        fds.insert(*it);
     return fds;
 }
 
