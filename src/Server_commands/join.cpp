@@ -22,14 +22,14 @@
 
 static std::vector<std::string> parseMessage(const std::string &message, char delimiter) 
 {
-    std::vector<std::string> tokens;
-    std::string token;
-    std::istringstream tokenStream(message);
+	std::vector<std::string> tokens;
+	std::string token;
+	std::istringstream tokenStream(message);
 
-    while (std::getline(tokenStream, token, delimiter))
-        tokens.push_back(token);
+	while (std::getline(tokenStream, token, delimiter))
+		tokens.push_back(token);
 
-    return tokens;
+	return tokens;
 }
 
 std::vector<t_message>	Server::cmdJoin( t_message & message )
@@ -42,8 +42,8 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 	Channel * channel = NULL;
 
 	std::vector<std::string> 	channels;
-    std::vector<std::string> 	keys;
-    std::vector<int> 			fds;
+	std::vector<std::string> 	keys;
+	std::vector<int> 			fds;
 
 	bool are_keys = message.params.size() > 2 ? true : false;
 
@@ -65,9 +65,9 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	channels = parseMessage(message.params[0], ',');
 	// int channels_n = channels.size();
-    if (are_keys)
+	if (are_keys)
 	{
-        keys = parseMessage(message.params[1], ',');
+		keys = parseMessage(message.params[1], ',');
 	}
 
 	for (size_t i = 0; i < channels.size(); i++)
@@ -147,16 +147,16 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		}
 		
 		// Enviar mensajes de bienvenida al canal
-        t_message joinMessage;
-        joinMessage.prefix = client->getUserPrefix();
-        joinMessage.command = "JOIN";
-        joinMessage.params.push_back(currentChannel);
-        joinMessage.sender_client_fd = client->getSocket();
+		t_message joinMessage;
+		joinMessage.prefix = client->getUserPrefix();
+		joinMessage.command = "JOIN";
+		joinMessage.params.push_back(currentChannel);
+		joinMessage.sender_client_fd = client->getSocket();
 		joinMessage.target_client_fds.insert(message.sender_client_fd);
 		addChannelToReply(joinMessage, channel);
 		replies.push_back(joinMessage);
 
-        if (channel->getTopic() != "")
+		if (channel->getTopic() != "")
 		{
 			std::vector<std::string>	params;
 			params.push_back(client->getNickname());
@@ -164,12 +164,12 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			params.push_back(channel->getTopic());
 			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
 			replies.push_back(reply);
-        }
+		}
 
 //		replies.push_back(replyList(client, channel, fds));
 //		fds.clear();
 	}
 
-    return replies;
+	return replies;
 }
 
