@@ -43,6 +43,7 @@ class Client
 		void	setAuthorised( bool value );
 		void	setRegistered( bool value );
 		void	setTerminate( bool value );
+		void	setHostnameLookedUp( bool value );
 		void	setMode( char mode, bool value );
 
 		// Getters
@@ -55,6 +56,7 @@ class Client
 		bool				isAuthorised( void ) const;
 		bool				isRegistered( void ) const;
 		bool				isTerminate( void ) const;
+		bool				isHostnameLookedUp( void ) const;
 		bool				getMode( char mode ) const;
 		t_mode				getModes( void ) const;
 		int					getChannelCount(void) const;
@@ -88,6 +90,7 @@ class Client
 		bool					_authorised; // Has the client provided the correct password? (PASS command)
 		bool					_registered; // Has the client properly registered as a user? (NICK and USER commands)
 		bool					_terminate; // Should the client's connection be terminated?
+		bool					_hostname_looked_up; // Has the hostname lookup been done?
 		t_mode					_mode;
 
 		std::map<std::string, Channel*>	_channels;
