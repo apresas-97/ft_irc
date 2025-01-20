@@ -254,34 +254,31 @@ void Channel::addUser(Client * user, bool is_operator)
     }
 
     std::cout << getName() << std::endl;
-    this->_users[user->getUsername()] = user;
+    this->_users.insert(std::pair<std::string, Client*>(user->getNickname(), user));
 
     if (is_operator)
     {
-        if (_operators.find(user->getUsername()) == _operators.end())
+        if (_operators.find(user->getNickname()) == _operators.end())
         {
-            _operators[user->getUsername()] = user;
+            _operators[user->getNickname()] = user;
         }
     }
 }
 
-void Channel::kickUser(const std::string& userName)
+void Channel::kickUser( const std::string & nickname )
 {
-    if (_users.erase(userName) == 0)
-    {
+    if (_users.erase(nickname ) == 0)
         throw std::runtime_error("User not found in channel");
-    }
-
-    if (_operators.erase(userName) == 0) {}
+    if (_operators.erase(nickname ) == 0) {}
 }
 
-void Channel::promoteUser(const std::string& userName)
+void Channel::promoteUser( const std::string & nickname )
 {
-    if (_users.find(userName) != _users.end())
+    if (_users.find(nickname) != _users.end())
     {
-        if (_operators.find(userName) == _operators.end())
+        if (_operators.find(nickname) == _operators.end())
         {
-            _operators[userName] = _users[userName];
+            _operators[nickname] = _users[nickname];
         }
     } 
     else
@@ -290,19 +287,19 @@ void Channel::promoteUser(const std::string& userName)
     }
 }
 
-void Channel::demoteUser(const std::string& userName)
+void Channel::demoteUser( const std::string & nickname )
 {
-    if (_operators.erase(userName) == 0)
+    if (_operators.erase(nickname) == 0)
     {
         throw std::runtime_error("User is not an operator");
     }
 }
 
-void Channel::inviteUser(const std::string& userName)
+void Channel::inviteUser( const std::string & nickname )
 {
-    if (_invited_users.find(userName) == _invited_users.end())
+    if (_invited_users.find(nickname) == _invited_users.end())
     {
-        _invited_users[userName] = _users[userName];
+        _invited_users[nickname] = _users[nickname];
     }
     else
     {
@@ -310,9 +307,9 @@ void Channel::inviteUser(const std::string& userName)
     }
 }
 
-void Channel::uninviteUser(const std::string& userName)
+void Channel::uninviteUser( const std::string & nickname )
 {
-    if (_invited_users.erase(userName) == 0)
+    if (_invited_users.erase(nickname) == 0)
     {
         throw std::runtime_error("User is not invited");
     }
@@ -322,7 +319,7 @@ void Channel::uninviteUser(const std::string& userName)
 #include <map>
 #include <string>
 // User Localizers
-bool Channel::isUserInChannel(const std::string& userName)
+bool Channel::isUserInChannel( const std::string & nickname )
 {
     for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
 	{
@@ -332,14 +329,14 @@ bool Channel::isUserInChannel(const std::string& userName)
             if (it->first.empty() || it->second == NULL) continue;  // Verificación adicional para evitar datos nulos o vacíos
             RED_TEXT(it->first);      // Nombre del usuario
             RED_TEXT(it->second);     // Cliente asociado
-            RED_TEXT(userName);       // Nombre del usuario buscado
+            RED_TEXT(nickname);       // Nickname del usuario buscado
         }
 		else 
 		{
             std::cout << "Iterador fuera de rango" << std::endl;
         }
 */
-        if (it->first == userName) 
+        if (it->first == nickname)
 		{
 			return true;
         }
@@ -347,21 +344,21 @@ bool Channel::isUserInChannel(const std::string& userName)
     return false;
 }
 
-bool Channel::isUserOperator(const std::string& userName)
+bool Channel::isUserOperator( const std::string & nickname )
 {
     for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it)
     {
-        if (it->first == userName)
+        if (it->first == nickname)
             return true;
     }
     return false;
 }
 
-bool Channel::isUserInvited(const std::string& userName)
+bool Channel::isUserInvited( const std::string & nickname )
 {
     for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it)
     {
-        if (it->first == userName)
+        if (it->first == nickname)
             return true;
     }
     return false;
