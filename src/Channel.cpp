@@ -341,7 +341,6 @@ bool Channel::isUserInChannel(const std::string& userName)
 */
         if (it->first == userName) 
 		{
-			std::cout << "SEGUIMOS LLEGANDO?" << std::endl;
 			return true;
         }
     }
