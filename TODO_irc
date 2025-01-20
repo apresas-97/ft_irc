@@ -43,10 +43,35 @@
 	// TODO::	Fix weird TOPIC bug
 
 	// TODO::	JOIN:
-	//			- Channel name must have valid prefix or else ERR_NOSUCHCHANNEL
-	//			- If user is already in the chanel, silently ignore
+	//			DONE - Channel name must have valid prefix or else ERR_NOSUCHCHANNEL
+	//			DONE?- If user is already in the chanel, silently ignore
 
-	// TODO::	TOPIC:
+	// DONE::	TOPIC:
 	//			- If a topic is set, do not reply with RPL_TOPIC, only with an acknowledgement like the broadcast message
 
 	// TODO::	PRIVMSG: Only use the right parameter as the message, not all the parameters
+
+	// TODO::	Check SEGFAULT when quitting:
+	//			runCommand function called...
+	//			PRIVMSG command called...
+	//			Poll timed out, no activity
+	//			Poll timed out, no activity
+	//			After message split, size: 13
+	//			parseData function called...
+	//			MESSAGE RECEIVED: "QUIT :leaving"
+	//			t_message: Prefix [] Command [QUIT] Params [:leaving] 
+	//			Sender: [ 4 ]
+	//			Targets: 
+
+	//			runCommand function called...
+	//			QUIT command called...
+	//			Client removed from _poll_fds...
+	//			Client removed client successfully
+	//			notice_lookup.prefix: ":ft_irc.42.fr"
+	//			Segmentation fault (core dumped)
+
+	//			This seems to happen with /quit from irssi
+
+	// TODO::	Handle when conections are lost and after a timeout, the server should remove the client
+
+	// TODO::	Channel users should be stored in the _users map with the NICKNAME as the key, NOT THE USERNAME
