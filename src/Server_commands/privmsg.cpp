@@ -65,10 +65,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 		return replies;
 	}
 
-	// Combine all parameters after the first into the complete message text
 	textToSend = message.params[1];
-	for (size_t i = 2; i < message.params.size(); i++)
-		textToSend += " " + message.params[i];
 
 	// Process each target (recipient) in the message
 	for (size_t i = 0; i < targets.size(); i++)
