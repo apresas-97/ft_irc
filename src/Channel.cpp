@@ -325,22 +325,25 @@ void Channel::uninviteUser(const std::string& userName)
 bool Channel::isUserInChannel(const std::string& userName)
 {
     for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
-    {
-        if (it != _users.end())  // Verificación de rango
+	{
+/*
+		if (it != _users.end())  // Verificación de rango
         {
             if (it->first.empty() || it->second == NULL) continue;  // Verificación adicional para evitar datos nulos o vacíos
             RED_TEXT(it->first);      // Nombre del usuario
             RED_TEXT(it->second);     // Cliente asociado
             RED_TEXT(userName);       // Nombre del usuario buscado
         }
-        else {
+		else 
+		{
             std::cout << "Iterador fuera de rango" << std::endl;
         }
-        // if (it->first == userName) {
-        //     std::cout << "SEGUIMOS LLEGANDO?" << std::endl;
-        //     return true;
-        // }
-        return false;
+*/
+        if (it->first == userName) 
+		{
+			std::cout << "SEGUIMOS LLEGANDO?" << std::endl;
+			return true;
+        }
     }
     return false;
 }
