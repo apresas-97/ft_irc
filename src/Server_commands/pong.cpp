@@ -2,35 +2,41 @@
 
 /*
 Command: PONG
-Parameters: <server> [ <server2> ]
+Parameters: <server1> [ <server2> ]
 
-PONG message is a reply to the PING message.
+PONG message is a reply to ping message. If parameter <server2> is
+given, this message MUST be forwarded to given target. The <server1>
+parameter is the name of the entity who has responded to PING message
+and generated this message.
 
-This is a quick implementation so the client doesn't disconnect.
-TODO: Implement the PONG message properly.
+Nowadays, the <server1> parameter is a token to echo back what was sent
+in the PING message as <server1> parameter.
+
+Since the PONG message is a reply to the PING message, users are allowed
+to send PONG messages, and the possible errors will be checked and
+replied accordingly, but the PONG message will not have any meaningful
+effect. If formatted properly, no errors should be triggered, but no
+answer will be sent back to the user.
+
+Numeric Replies:
+ERR_NOORIGIN : If no origin is specified (<server1> parameter)
+ERR_NOSUCHSERVER: If the <server2> parameter does not match a server in the network.
 */
 std::vector<t_message> Server::cmdPong( t_message & message ) 
 {
 	std::vector<t_message>	replies;
-	t_message				reply;
-	// Client * client = this->_current_client;
 
-	// Param count check
 	if (message.params.size() < 1) 
 	{
 		replies.push_back(createReply(ERR_NOORIGIN, ERR_NOORIGIN_STR));
 		return replies;
 	}
 
-	// PONG reply
-	reply.prefix = ":" + this->_name;
-	reply.command = "PONG";
-	reply.params.push_back(this->_name);
-	if (message.params.size() > 1)
-		reply.params.push_back(message.params[1]);
-	reply.target_client_fds.insert(message.sender_client_fd);
-	reply.sender_client_fd = _serverFd;
-	replies.push_back(reply);
+	if (message.params.size() > 1 && message.params[1] != this->getName())
+	{
+		replies.push_back(createReply(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_STR, message.params[1]));
+		return replies;
+	}
 
 	return replies;
 }

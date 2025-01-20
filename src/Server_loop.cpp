@@ -337,7 +337,9 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		return this->cmdInvite(message);
 	else if (command == "TOPIC")
 		return this->cmdTopic(message);
-	else if (command == "PING") // apresas-: WIP
+	else if (command == "PING")
+		return this->cmdPing(message);
+	else if (command == "PONG")
 		return this->cmdPong(message);
 	else
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));

@@ -2,6 +2,9 @@ DONE	- PASS <password>
 DONE	- PRIVMSG <msgtarget> <text to be sent>
 DONE	- QUIT [ <quit message> ]
 DONE	- JOIN ( <channel> *("," <channel> ) [ <key> *("," <key>) ] ) / "0"
+DONE	- TOPIC <channel> [ <topic> ]
+DONE	- PING <server1> [ <server2> ]
+DONE	- PONG <server1> [ <server2> ]
 
 TEST	- INVITE <nickname> <channel>
 			- Maybe only for modes that we care about in ft_irc
@@ -16,7 +19,6 @@ WIP	APR	- USER <username> <mode> * <realname>
 WIP	APR	- NOTICE <msgtarget> <text to be sent>
 WIP	APR	- VERSION [ <target> ]
 WIP	APR	- TIME [ <target> ]
-WIP APR - PONG <server> [ <server2> ]
 
 - PART <channel> *("," <channel> ) [ <part message> ]
 - NAMES [ <channel> *("," <channel> ) [ <target> ] ]
