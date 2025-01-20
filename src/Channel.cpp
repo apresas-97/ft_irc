@@ -254,13 +254,13 @@ void Channel::addUser(Client * user, bool is_operator)
     }
 
     std::cout << getName() << std::endl;
-    this->_users[user->getUsername()] = user;
+    this->_users[user->getNickname()] = user;
 
     if (is_operator)
     {
-        if (_operators.find(user->getUsername()) == _operators.end())
+        if (_operators.find(user->getNickname()) == _operators.end())
         {
-            _operators[user->getUsername()] = user;
+            _operators[user->getNickname()] = user;
         }
     }
 }
