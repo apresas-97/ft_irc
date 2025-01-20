@@ -89,15 +89,8 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		topicMessage.params.push_back(channelName);
 		topicMessage.params.push_back(channel->getTopic());
 		topicMessage.sender_client_fd = client->getSocket();
-		addChannelToReplyExcept(topicMessage, channel); // Adds all clients as targets except sender
+		addChannelToReply(topicMessage, channel);
 		replies.push_back(topicMessage);
-
-		std::vector<std::string> params;
-//		params.push_back(client->getUsername());
-		params.push_back(channelName);
-		params.push_back(channel->getTopic());
-		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
-		replies.push_back(reply);
 	}
 
 	return replies;
