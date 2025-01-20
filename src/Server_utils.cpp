@@ -116,3 +116,14 @@ void	Server::addChannelToReply( t_message & reply, Channel * channel )
 		reply.target_client_fds.insert(it->second->getSocket());
 	}
 }
+
+void	Server::addChannelToReplyExcept( t_message & reply, Channel * channel )
+{
+	std::map<std::string, Client*>	users = channel->getTrueUsers();
+	for ( std::map<std::string, Client*>::iterator it = users.begin(); it != users.end(); it++ )
+	{
+		if (it->second->getSocket() == this->_current_client->getSocket())
+			continue ;
+		reply.target_client_fds.insert(it->second->getSocket());
+	}
+}

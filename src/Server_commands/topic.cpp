@@ -39,13 +39,12 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		return replies;
 	}
 
-	std::cout << message.params.size() << std::endl;
-	if (message.params.size() == 2) 
+	if (message.params.size() < 2) 
 	{
 		if (channel->getTopic().empty()) 
 		{
 			std::vector<std::string> params;
-			params.push_back(client->getUsername());
+//			params.push_back(client->getUsername());
 			params.push_back(channelName);
 			reply = createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, params);
 			replies.push_back(reply);
@@ -53,7 +52,7 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		else
 		{
 			std::vector<std::string> params;
-			params.push_back(client->getUsername());
+//			params.push_back(client->getUsername());
 			params.push_back(channelName);
 			params.push_back(channel->getTopic());
 			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
@@ -70,10 +69,7 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 
 		if (channel->getMode('t') && !channel->isUserOperator(client->getUsername())) 
 		{
-			std::vector<std::string> params;
-			params.push_back(client->getUsername());
-			params.push_back(channelName);
-			reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, params);
+			reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, channelName);
 			replies.push_back(reply);
 			return replies;
 		}
@@ -94,13 +90,7 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 		topicMessage.params.push_back(channel->getTopic());
 		topicMessage.sender_client_fd = client->getSocket();
 		addChannelToReply(topicMessage, channel);
-
-		std::vector<std::string> params;
-		params.push_back(client->getUsername());
-		params.push_back(channelName);
-		params.push_back(channel->getTopic());
-		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
-		replies.push_back(reply);
+		replies.push_back(topicMessage);
 	}
 
 	return replies;
