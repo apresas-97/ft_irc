@@ -41,3 +41,12 @@
 	//			As in, handling CAP messages and their replies,
 
 	// TODO::	Fix weird TOPIC bug
+
+	// TODO::	JOIN:
+	//			- Channel name must have valid prefix or else ERR_NOSUCHCHANNEL
+	//			- If user is already in the chanel, silently ignore
+
+	// TODO::	TOPIC:
+	//			- If a topic is set, do not reply with RPL_TOPIC, only with an acknowledgement like the broadcast message
+
+	// TODO::	PRIVMSG: Only use the right parameter as the message, not all the parameters
