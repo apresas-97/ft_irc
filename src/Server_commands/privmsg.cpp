@@ -101,7 +101,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 				channelMessage.params.push_back(target);
 				channelMessage.params.push_back(textToSend);
 				channelMessage.sender_client_fd = client->getSocket();
-				addChannelToReply(channelMessage, channel);
+				addChannelToReplyExcept(channelMessage, channel);
 				replies.push_back(channelMessage);
 				return replies;
 			}
