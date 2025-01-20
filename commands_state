@@ -1,11 +1,13 @@
-DONE	- INVITE <nickname> <channel>
-			- Maybe only for modes that we care about in ft_irc
 DONE	- PASS <password>
 DONE	- PRIVMSG <msgtarget> <text to be sent>
 DONE	- QUIT [ <quit message> ]
-DONE	- TOPIC <channel> [ <topic> ]
 DONE	- JOIN ( <channel> *("," <channel> ) [ <key> *("," <key>) ] ) / "0"
-DONE	- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
+
+TEST	- INVITE <nickname> <channel>
+			- Maybe only for modes that we care about in ft_irc
+TEST	- KICK <channel> *("," <channel> ) <user> *("," <user> ) [ <comment> ]
+
+SOLV	- TOPIC <channel> [ <topic> ]
 
 WIP	APR	- MODE <nickname> *( ( "+" / "-" ) *( "i" / "w" / "o" / "O" / "r" ) )
 WIP	APR	- MODE <channel> *( ("-"/"+") *<modes> *<modeparams> )

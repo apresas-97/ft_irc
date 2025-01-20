@@ -454,3 +454,126 @@
 << JOIN #canal
 << PRIVMSG #canal :hola
 << TOPIC #canal :hola
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.10.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Mon, Jan 20 2025 at 14:59:32 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+>> :aaespino!aaespino@ MODE aaespino +i
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< JOIN #hehe
+<< TOPIC #hehe :hihi
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.10.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Mon, Jan 20 2025 at 15:02:25 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+>> :aaespino!aaespino@ MODE aaespino +i
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< JOIN #canal
+<< PRIVMSG #canal :hola
+<< TOPIC #canal :tema
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.10.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Mon, Jan 20 2025 at 15:05:33 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< JOIN #canal
+<< PRIVMSG #canal :hola
+<< PRIVMSG #canal :hola
+<< TOPIC #canal :TEMA
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.10.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Mon, Jan 20 2025 at 15:07:20 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< JOIN #canal
+<< PRIVMSG #canal :he
+<< PRIVMSG #canal :he
+<< TOPIC #canal :TEMA
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.10.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Mon, Jan 20 2025 at 15:09:50 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+>> :aaespino!aaespino@ MODE aaespino +i
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< JOIN #canal
+<< PRIVMSG #canal :he
+<< PRIVMSG #canal :he
+<< PRIVMSG #canal :he
+<< TOPIC #canal :TEMA
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.10.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Mon, Jan 20 2025 at 15:11:26 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< JOIN #canal
+<< TOPIC #canal :TEMA
+>> :ft_irc.42.fr 442 aaespino aaespino :You're not on that channel
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< CAP LS
+<< PASS pepe
+<< NICK aaespino
+<< USER aaespino aaespino 10.12.10.6 :"Clark"
+>> :ft_irc.42.fr 001 aaespino :Welcome to the Internet Relay Network aaespino!aaespino@
+<< MODE aaespino +i
+>> :ft_irc.42.fr 002 aaespino :Your host is ft_irc.42.fr, running version 1.0
+>> :ft_irc.42.fr 003 aaespino :This server was created Mon, Jan 20 2025 at 15:14:44 UTC
+>> :ft_irc.42.fr 004 aaespino ft_irc.42.fr 1.0 aiwroOs itkol
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong
+<< PING ft_irc.42.fr
+>> :ft_irc.42.fr PONG ft_irc.42.fr
+--> lag pong

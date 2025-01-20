@@ -44,16 +44,14 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 	{
 		if (channel->getTopic().empty()) 
 		{
-			// std::cout << "HOLA2" << std::endl;
 			std::vector<std::string> params;
 			params.push_back(client->getUsername());
 			params.push_back(channelName);
 			reply = createReply(RPL_NOTOPIC, RPL_NOTOPIC_STR, params);
 			replies.push_back(reply);
 		} 
-		else 
+		else
 		{
-			// std::cout << "HOLA3" << std::endl;
 			std::vector<std::string> params;
 			params.push_back(client->getUsername());
 			params.push_back(channelName);
@@ -64,7 +62,6 @@ std::vector<t_message> Server::cmdTopic(t_message &message)
 	} 
 	else 
 	{
-		// std::cout << "HOLA4" << std::endl;
 		std::string newTopic = message.params[1];
 		for (size_t i = 2; i < message.params.size(); i++) 
 		{

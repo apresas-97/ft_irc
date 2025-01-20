@@ -113,7 +113,5 @@
 #define ERR_NORECIPIENT_STR ":No recipient given (<command>)"
 #define ERR_NOTEXTTOSEND 412
 #define ERR_NOTEXTTOSEND_STR ":No text to send"
-#define ERR_USERNOTINCHANNEL 441
-#define ERR_USERNOTINCHANNEL_STR "<nickname> <channel> :They aren't on that channel"
 
 #endif // REPLY_CODES_HPP
