@@ -36,3 +36,8 @@
 	// TODO::	Agree on the exact method to remove a client from the server. QUIT removes the client, but we also have
 	//			a client boolean to determine if its connection should be terminated in the server loop
 	//			An ERROR command should be sent to the client to notify them of the termination
+
+	// TODO::	Make sure the initial messages and their order are all handled properly.
+	//			As in, handling CAP messages and their replies,
+
+	// TODO::	Fix weird TOPIC bug
