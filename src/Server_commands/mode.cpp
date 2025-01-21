@@ -296,8 +296,6 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 		return replies;
 	}
 
-	bool is_user_in_channel = channel->isUserInChannel(client->getNickname());
-
 	if (message.params.size() == 1)
 	{
 		// RPL_CHANNELMODEIS
@@ -308,7 +306,7 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 		// i.e. >> :prefix MODE #chan +itkl
 		// If the sender IS a channel member, the mode reply will show the parameters
 		// i.e. >> :prefix MODE #chan +itkl password 10
-		if (is_user_in_channel == false)
+		if (channel->isUserInChannel(client->getNickname()) == false)
 			params.push_back("");
 		else
 			params.push_back(channel->getModesParameters());
@@ -317,14 +315,14 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 		return replies;
 	}
 
-	if (is_user_in_channel == false)
-	{
-		std::vector<std::string> params;
-		params.push_back(client->getNickname());
-		params.push_back(channel->getName());
-		replies.push_back(createReply(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_STR, params));
-		return replies;
-	}
+	// if (channel->isUserInChannel(client->getNickname()) == false)
+	// {
+	// 	std::vector<std::string> params;
+	// 	params.push_back(client->getNickname());
+	// 	params.push_back(channel->getName());
+	// 	replies.push_back(createReply(ERR_USERNOTINCHANNEL, ERR_USERNOTINCHANNEL_STR, params));
+	// 	return replies;
+	// }
 
 	if (channel->isUserOperator(client->getNickname()) == false)
 	{
