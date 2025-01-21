@@ -55,18 +55,25 @@ void Channel::setKey( std::string key )
 
 void Channel::setMode( char mode, bool state )
 {
+	std::cout << "setMode called, mode = '" << mode << "', state = " << state << std::endl;
 	std::vector<char>::iterator it = std::find(this->_modes.begin(), this->_modes.end(), mode);
 	if (state)
 	{
 		// Si `mode` no está ya en `_modes`, lo agregamos
 		if (it == this->_modes.end())
+		{
+			std::cout << "Adding mode '" << mode << "'" << std::endl;
 			this->_modes.push_back(mode);
+		}
 	}
 	else
 	{
 		// Si `mode` está en `_modes`, lo eliminamos
 		if (it != this->_modes.end())
+		{
+			std::cout << "Removing mode '" << mode << "'" << std::endl;
 			this->_modes.erase(it);
+		}
 	}
 }
 
