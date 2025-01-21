@@ -150,7 +150,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				newChannel.setMode('k', true);
 			}
 			client->addChannel(newChannel, currentChannel);
-			newChannel.addUser(client, false);
+			newChannel.addUser(client, true);
 			fds = newChannel.getFds("users");
 			addChannel(newChannel, currentChannel);
 			channel = findChannel(currentChannel);
