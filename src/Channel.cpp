@@ -260,7 +260,7 @@ void Channel::addUser(Client * user, bool is_operator)
     {
         if (_operators.find(user->getNickname()) == _operators.end())
         {
-            _operators[user->getNickname()] = user;
+            this->_operators.insert(std::pair<std::string, Client *>(user->getNickname(), user));
         }
     }
 }
