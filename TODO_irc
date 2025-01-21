@@ -71,7 +71,30 @@
 	//			Segmentation fault (core dumped)
 
 	//			This seems to happen with /quit from irssi
+	// NOTE::	This might be fixed now?
 
 	// TODO::	Handle when conections are lost and after a timeout, the server should remove the client
 
 	// TODO::	Channel users should be stored in the _users map with the NICKNAME as the key, NOT THE USERNAME
+
+	// DONE?::	Apparently, sometimes, the server thinks that the given nickname of the first connection is already in use. Fix.
+	//			Actually, no, I don't think that's the issue.
+	//			The issue is that the way we reply to the CAP LS command from irssi is apparently wrong.
+	//			So, after a while, irssi tries to start a new connection I think???
+	//			And it uses the same nickname so the whole weird loop starts.
+
+	// TODO::	For some reason, when checking for inactivity, the server seems to end up removing an
+	//			extra client when only 1 client was connected in the first place.
+	//			When this happens, the for loop remains stuck. It seems that something fishy is happening
+	//			regarding the tmp and ++it iterators. They might skip the end somehow or delete the end
+	//			something like that. Hopefully it's just that.
+
+	// TODO::	When a client is removed from the server, it should be removed from every
+	//			channel, every user list, map, vector or whatever else it's in.
+	//			There should be no traces left of the client in the server.
+	//			And everything should be done cleanly.
+	//			We should check when a client is removed from the server, what happens exactly.
+	//			Do other users see a PART message? Do they see a QUIT message?
+	//			Also, it's very important that the channels they were in are updated properly, which
+	//			includes deleting the channel if it's empty after removing the client.
+	//			etc.
