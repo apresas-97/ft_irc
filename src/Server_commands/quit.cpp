@@ -48,7 +48,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	error_acknowledgement.prefix = this->getName();
 	error_acknowledgement.command = "ERROR";
 	error_acknowledgement.params.push_back(":Closing Link: " + client.getHostname() + " (Quit: " + quit_message + ")");
-	// error_acknowledgement.target_client_fd = ... // This is the TODO part (but this will only be for the sender)
+	error_acknowledgement.target_client_fds.insert(client.getSocket());
 
 	quit_broadcast.prefix = client.getUserPrefix();
 	quit_broadcast.command = "QUIT";
@@ -59,14 +59,16 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	replies.push_back(error_acknowledgement);
 	replies.push_back(quit_broadcast);
 	// Test...
-	for (std::vector<struct pollfd>::iterator it = _poll_fds.begin(); it != _poll_fds.end(); ++it)
-	{
-		if ((*it).fd == message.sender_client_fd)
-		{
-			removeClient(message.sender_client_fd);
-			break ;
-		}
-	}
+	// for (std::vector<struct pollfd>::iterator it = _poll_fds.begin(); it != _poll_fds.end(); ++it)
+	// {
+	// 	if ((*it).fd == message.sender_client_fd)
+	// 	{
+	// 		removeClient(message.sender_client_fd);
+	// 		break ;
+	// 	}
+	// }
+	// apresas-: I commented this, you can't close the connection without sending the acknowledgement
+	client.setTerminate(true);
 	return replies;
 }
 
