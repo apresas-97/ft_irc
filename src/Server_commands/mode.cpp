@@ -9,6 +9,7 @@ typedef struct s_flag
 	char	active_operator;
 	bool	requires_param;
 	bool	has_param;
+	size_t	param_index;
 	std::string	param;
 }				t_flag;
 
@@ -298,10 +299,12 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 
 	if (message.params.size() == 1)
 	{
+		std::cout << "No additional parameters given, RPL_CHANNELMODEIS" << std::endl;
 		// RPL_CHANNELMODEIS
 		std::vector<std::string> params;
 		params.push_back(channel->getName());
 		params.push_back(channel->getModesString());
+		std::cout << "Channel modes: \"" << channel->getModesString() << "\"" << std::endl;
 		// If the sender IS NOT a channel member, the mode reply will not show the parameters
 		// i.e. >> :prefix MODE #chan +itkl
 		// If the sender IS a channel member, the mode reply will show the parameters
@@ -332,8 +335,12 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 
 	std::string & parameter = message.params[1];
 	std::string corrected_mode_param;
+	std::vector<std::string> used_params;
 	t_first_appearances first_appearances = { true, true, true, true };
 	std::vector<t_flag> flags;
+	std::cout << "Before starting, message.params.size() = " << message.params.size() << std::endl;
+	std::cout << "Initialising t_flag vector" << std::endl;
+	size_t param_index = 2;
 	for (size_t i = 0; i < parameter.size(); ++i)
 	{
 		t_flag flag;
@@ -347,24 +354,40 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 		else 
 			flag.active_operator = flags.back().active_operator;
 		flag.requires_param = (flag.c == 'k' || flag.c == 'o' || (flag.c == 'l' && flag.active_operator == '+'));
-		// flag.param_index = flag.requires_param ? i + 1 : 0;
-		flag.has_param = message.params.size() > (flag.requires_param ? i + 1 : 0);
-		flag.param = flag.has_param ? message.params[(flag.requires_param ? i + 1 : 0)] : "";
+		std::cout << "Requires_param?" << flag.requires_param << std::endl;
+		flag.param_index = flag.requires_param ? param_index++ : 0;
+		std::cout << "Param_index = " << flag.param_index << std::endl;
+		flag.has_param = message.params.size() > flag.param_index;
+		std::cout << "Has_param? = " << flag.has_param << std::endl;
+		flag.param = flag.has_param ? message.params[flag.param_index] : "";
 		flags.push_back(flag);
 	}
+	std::cout << "----------------------------------------------------" << std::endl;
+	std::cout << "Going through each flag" << std::endl;
 	for (size_t i = 0; i < parameter.size(); ++i)
 	{
+		std::cout << "Checking flags[" << i << "] = \'" << flags[i].c << "\'" << std::endl;
 		if (flags[i].is_operator)
-			continue;
-		if (flags[i].requires_param && flags[i].has_param == false)
 		{
-			replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, message.command));
+			std::cout << "Is operator, continue;" << std::endl;
 			continue;
 		}
+		std::cout << "Requires parameters? " << flags[i].requires_param << std::endl;
+		std::cout << "Has parameter? " << flags[i].has_param << std::endl;
+		if (flags[i].requires_param && flags[i].has_param == false)
+		{
+			std::cout << "requires_param and does not have param" << std::endl;
+			if (flags[i].c == 'l') // I don't know, I don't like this but it is what it is
+				replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, message.command));
+			std::cout << "continue;" << std::endl;
+			continue;
+		}
+		std::cout << "Switch statement for \'" << flags[i].c << "\'" << std::endl;
 		switch (flags[i].c)
 		{
 			case 'i':
 			{
+				// std::cout << "case i" << std::endl;
 				if (first_appearances.i == false) continue;
 				first_appearances.i = false;
 				channel->setMode(flags[i].c, flags[i].active_operator == '+');
@@ -375,6 +398,7 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 			}
 			case 't':
 			{
+				// std::cout << "case t" << std::endl;
 				if (first_appearances.t == false) continue;
 				first_appearances.t = false;
 				channel->setMode(flags[i].c, flags[i].active_operator == '+');
@@ -385,26 +409,42 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 			}
 			case 'k':
 			{
+				// std::cout << "case k" << std::endl;
 				if (first_appearances.k == false) continue;
 				first_appearances.k = false;
+				std::cout << "First 'k' appearance" << std::endl;
+				std::cout << "Active operator = \'" << flags[i].active_operator << "\'" << std::endl;
 				if (flags[i].active_operator == '+')
 				{
 					if (channel->getMode('k') == true)
 					{
+						std::cout << "Channel already has a key, reply ERR_KEYSET" << std::endl;
 						replies.push_back(createReply(ERR_KEYSET, ERR_KEYSET_STR, channel->getName()));
 						continue;
 					}
-					if (isKeyValid(flags[i].param) == false) // TODO Maybe I should crop the parameter to fit 23 chars before checking this and only care about the valid characters
-						continue;
-					channel->setKey(flags[i].param);
+					std::string key = flags[i].param;
+					if (key.size() > 23)
+						key.resize(23); // TODO Use macro for MAX_CHANNEL_KEY_LENGTH or something maybe?
+					if (isKeyValid(key) == false) continue;
+					channel->setKey(key);
+					channel->setMode(flags[i].c, true);
+					used_params.push_back(key);
 					if (findLastOperator(corrected_mode_param) != flags[i].active_operator)
 						corrected_mode_param += flags[i].active_operator;
 					corrected_mode_param += "k";
 				}
-				else if (flags[i].active_operator == '-' && flags[i].param == channel->getKey())
+				else if (flags[i].active_operator == '-')
 				{
+					if (channel->getMode('k') == false)
+						continue;
+					std::string key = flags[i].param;
+					if (key.size() > 23)
+						key.resize(23);
+					if (key != channel->getKey())
+						continue;
 					channel->setKey("");
 					channel->setMode(flags[i].c, false);
+					used_params.push_back(key);
 					if (findLastOperator(corrected_mode_param) != flags[i].active_operator)
 						corrected_mode_param += flags[i].active_operator;
 					corrected_mode_param += "k";
@@ -413,6 +453,7 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 			}
 			case 'o':
 			{
+				// std::cout << "case o" << std::endl;
 				if (channel->isUserInChannel(flags[i].param) == false)
 				{
 					std::vector<std::string> params;
@@ -425,6 +466,7 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 					channel->promoteUser(flags[i].param);
 				else // '-'
 					channel->demoteUser(flags[i].param);
+				used_params.push_back(flags[i].param);
 				if (findLastOperator(corrected_mode_param) != flags[i].active_operator)
 					corrected_mode_param += flags[i].active_operator;
 				corrected_mode_param += "o";
@@ -432,12 +474,17 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 			}
 			case 'l':
 			{
-				// Active operator should be '+' at this point, I believe
+				// std::cout << "case l" << std::endl;
 				if (first_appearances.l == false) continue;
 				first_appearances.l = false;
-				long limit = getLimit(flags[i].param);
-				if (limit == -1)
-					continue;
+				long limit = 0;
+				if (flags[i].active_operator == '+')
+				{
+					limit = getLimit(flags[i].param);
+					if (limit == -1)
+						continue;
+					used_params.push_back(flags[i].param);
+				}
 				channel->setMode(flags[i].c, flags[i].active_operator == '+');
 				channel->setUserLimit(limit);
 				if (findLastOperator(corrected_mode_param) != flags[i].active_operator)
@@ -447,38 +494,42 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 			}
 			default:
 			{
+				// std::cout << "case default" << std::endl;
 				std::vector<std::string> params;
 				params.push_back(std::string(1, flags[i].c));
 				params.push_back(channel->getName());
 				replies.push_back(createReply(ERR_UNKNOWNMODE, ERR_UNKNOWNMODE_STR, params));
 			}
 		}
+		std::cout << "----------------------------------------------------" << std::endl;
 	}
 
 	std::cout << "Received mode param: " << parameter << std::endl;
 	std::cout << "Corrected mode param: " << corrected_mode_param << std::endl;
+
+	if (!corrected_mode_param.empty() && used_params.empty())
+		corrected_mode_param += " "; // To make it match exactly with the rawlogs of other IRC servers
+	if (corrected_mode_param.empty())
+		return replies;
 
 	t_message acknowldegement;
 	acknowldegement.prefix = ":" + client->getUserPrefix();
 	acknowldegement.command = "MODE";
 	acknowldegement.params.push_back(channel->getName());
 	acknowldegement.params.push_back(corrected_mode_param);
+	for (std::vector<std::string>::iterator it = used_params.begin(); it != used_params.end(); ++it)
+		acknowldegement.params.push_back(*it);
 	acknowldegement.target_client_fds.insert(client->getSocket());
 	replies.push_back(acknowldegement);
 
-	t_message broadcast_message;
-	broadcast_message.prefix = ":" + client->getUserPrefix();
-	broadcast_message.command = "MODE";
-	broadcast_message.params.push_back(channel->getName());
-	broadcast_message.params.push_back(corrected_mode_param);
-	broadcast_message.target_client_fds = channel->getFdsSet("users");
+	t_message broadcast_message = acknowldegement;
+	broadcast_message.target_client_fds.clear();
+	addChannelToReplyExcept(broadcast_message, channel);
 	replies.push_back(broadcast_message);
 
+	std::cout << "MODE CHANNEL FUNCTION OVER" << std::endl;
 	return replies;
 }
-
-
-
 
 // Previous Version, just in case
 // std::vector<t_message>	Server::cmdModeChannel( t_message & message )
