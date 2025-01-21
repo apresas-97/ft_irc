@@ -12,12 +12,14 @@ Client::Client(void)
     _hostname_looked_up = false;
     _chan_limit = 0;
     _chan_count = -1;
+    _last_activity = std::time(NULL);
 }
 
 Client::Client(int socket) : _socket(socket), _authorised(false), _registered(false), _terminate(false), _hostname_looked_up(false), _chan_limit(0)
 {
     memset(_buffer, 0, BUFFER_SIZE);
     _chan_count = -1;
+    _last_activity = std::time(NULL);
 }
 
 Client::~Client(void) {}
@@ -101,6 +103,11 @@ void Client::setMode(char mode, bool value)
     default:
         break;
     }
+}
+
+void Client::setLastActivity( void )
+{
+    this->_last_activity = std::time(NULL);
 }
 
 // Getters
@@ -201,6 +208,11 @@ int Client::getChannelCount(void) const
 int Client::getChannelLimit(void) const
 {
     return this->_chan_limit;
+}
+
+time_t Client::getLastActivity( void ) const
+{
+    return this->_last_activity;
 }
 
 // Channel Management

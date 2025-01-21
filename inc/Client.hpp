@@ -9,6 +9,7 @@
 #include <sys/poll.h> // struct pollfd
 #include <arpa/inet.h> // inet_ntoa
 #include <netdb.h> // gethostbyname
+#include <ctime>
 
 #include "defines.hpp"
 #include "Channel.hpp"
@@ -45,6 +46,7 @@ class Client
 		void	setTerminate( bool value );
 		void	setHostnameLookedUp( bool value );
 		void	setMode( char mode, bool value );
+		void	setLastActivity( void );
 
 		// Getters
 		int					getSocket( void );
@@ -61,6 +63,7 @@ class Client
 		t_mode				getModes( void ) const;
 		int					getChannelCount(void) const;
         int					getChannelLimit(void) const;
+		time_t				getLastActivity( void ) const;
 
 		// Channel Management
 		void	addChannel(Channel &channel, std::string& name);
@@ -92,6 +95,9 @@ class Client
 		bool					_terminate; // Should the client's connection be terminated?
 		bool					_hostname_looked_up; // Has the hostname lookup been done?
 		t_mode					_mode;
+
+		time_t					_last_activity;
+		// apresas-: I'm not sure if this is the best way to handle this
 
 		std::map<std::string, Channel>	_channels;
 		int 		_chan_limit;
