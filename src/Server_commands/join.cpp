@@ -158,7 +158,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		
 		// Enviar mensajes de bienvenida al canal
 		t_message joinMessage;
-		joinMessage.prefix = client->getUserPrefix();
+		joinMessage.prefix = ":" + client->getUserPrefix();
 		joinMessage.command = "JOIN";
 		joinMessage.params.push_back(currentChannel);
 		joinMessage.sender_client_fd = client->getSocket();
