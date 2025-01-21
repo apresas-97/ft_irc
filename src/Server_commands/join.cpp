@@ -65,7 +65,9 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 
 	channels = parseMessage(message.params[0], ',');
     if (are_keys)
-        keys = parseMessage(message.params[1], ',');
+	{
+        keys = parseMessage(message.params[1], ',');	
+	}
 
 	for (size_t i = 0; i < channels.size(); i++)
 	{
