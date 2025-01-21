@@ -5,6 +5,8 @@
 
 #define PORT 8080 // Port number to bind
 
+#define CLIENT_TIMEOUT_SECONDS 60 // Time in seconds before a client is considered inactive
+
 void Server::runServerLoop( void ) 
 {
 	struct pollfd	server;
@@ -26,6 +28,25 @@ void Server::runServerLoop( void )
 		else if (pollCount == 0)
 		{
         	std::cout << "Poll timed out, no activity" << std::endl; // Remove later...
+			// // Provisional:
+			// std::cout << "Checking for inactivity..." << std::endl;
+			// for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
+			// {
+			// 	if (it->second.getLastActivity() + CLIENT_TIMEOUT_SECONDS < std::time(NULL))
+			// 	{
+			// 		std::map<int, Client>::iterator tmp = it;
+			// 		++it;
+			// 		std::cout << "Client " << tmp->first << " timed out" << std::endl;
+			// 		std::cout << "Last activity: " << tmp->second.getLastActivity() << std::endl;
+			// 		std::cout << "Current time: " << std::time(NULL) << std::endl;
+			// 		// TODO: Make sure that this:
+			// 		// - removes the client from all channels.
+			// 		// - removes the client's nickname from the taken nicknames list.
+			// 		// - removes the client from the clients map.
+			// 		// - essentially leave no trace of the client.
+			// 		removeClient(tmp->first);
+			// 	}
+			// }
             continue;
         }
 		for (size_t i = 0; i < _poll_fds.size(); i++) 
@@ -183,12 +204,38 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 
 	printTmessage(message); // DEBUG
 
+	if (this->_current_client->isHostnameLookedUp() == false)
+	{
+		t_message notice_lookup;
+		notice_lookup.prefix = ":" + this->getName();
+		std::cout << "notice_lookup.prefix: \"" << notice_lookup.prefix << "\"" << std::endl;
+		notice_lookup.command = "NOTICE";
+		notice_lookup.target_client_fds.insert(this->_current_client->getSocket());
+		notice_lookup.params.push_back("AUTH"); // Or maybe "*" ?
+		notice_lookup.params.push_back(":*** Looking up your hostname");
+		sendReplies(notice_lookup);
+
+		t_message notice_results;
+		notice_results.prefix = ":" + this->getName();
+		notice_results.command = "NOTICE";
+		notice_results.target_client_fds.insert(this->_current_client->getSocket());
+		notice_results.params.push_back("AUTH"); // Or maybe "*" ?
+		notice_results.params.push_back(this->_current_client->hostnameLookup());
+		sendReplies(notice_results);
+		this->_current_client->setHostnameLookedUp(true);
+	}
+
 	std::vector<t_message> replies = runCommand(message);
 	for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
 	{
 		printTmessage(*it); // DEBUG
 		sendReplies(*it);
 	}
+	this->_current_client->setLastActivity();
+
+	// apresas-: New, testing
+	if (this->_current_client->isTerminate())
+		removeClient(client_fd);
 }
 
 /*
@@ -315,28 +362,12 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		replies = cmdInvite(message);
 	else if (command == "KICK")
 		replies = cmdKick(message);
+	else if (command == "ACT")
+	{
+		std::cout << "Last activity: " << this->_current_client->getLastActivity() << "s" << std::endl;
+		std::cout << "Current time: " << std::time(NULL) << "s" << std::endl;
+	}
 	else
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
-	if (!this->_current_client->isHostnameLookedUp())
-	{
-		t_message notice_lookup;
-		notice_lookup.prefix = ":" + this->getName();
-		std::cout << "notice_lookup.prefix: \"" << notice_lookup.prefix << "\"" << std::endl;
-		notice_lookup.command = "NOTICE";
-		notice_lookup.target_client_fds.insert(this->_current_client->getSocket());
-		notice_lookup.params.push_back("AUTH"); // Or maybe "*" ?
-		notice_lookup.params.push_back(":*** Looking up your hostname");
-		replies.push_back(notice_lookup);
-
-		t_message notice_results;
-		notice_results.prefix = ":" + this->getName();
-		notice_results.command = "NOTICE";
-		notice_results.target_client_fds.insert(this->_current_client->getSocket());
-		notice_results.params.push_back("AUTH"); // Or maybe "*" ?
-		notice_results.params.push_back(this->_current_client->hostnameLookup());
-		replies.push_back(notice_results);
-
-		this->_current_client->setHostnameLookedUp(true);
-	}
 	return replies;
 }
