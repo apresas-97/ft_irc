@@ -1,12 +1,12 @@
 #include "Channel.hpp"
 
-Channel::Channel(void) : _user_limit(-1), _has_user_limit(false)
+Channel::Channel( void ) : _user_limit(-1), _has_user_limit(false)
 {}
 
-Channel::Channel(const std::string& name) : _name(name), _user_limit(-1), _has_user_limit(false)
+Channel::Channel( const std::string& name ) : _name(name), _user_limit(-1), _has_user_limit(false)
 {}
 
-Channel::~Channel(void)
+Channel::~Channel( void )
 {}
 
 Channel & Channel::operator=( const Channel & src )
@@ -38,62 +38,63 @@ Channel::Channel( const Channel & src )
 }
 
 // Setters
-void Channel::setName(std::string name)
+void Channel::setName( std::string name )
 {
-    this->_name = name;
+	this->_name = name;
 }
 
-void Channel::setTopic(const std::string& topic)
+void Channel::setTopic( const std::string & topic )
 {
-    this->_topic = topic;
+	this->_topic = topic;
 }
 
-void Channel::setKey(std::string key)
+void Channel::setKey( std::string key )
 {
-    this->_key = key;
+	this->_key = key;
 }
 
-void Channel::setMode(char mode, bool state)
+void Channel::setMode( char mode, bool state )
 {
-    std::vector<char>::iterator it = std::find(_modes.begin(), _modes.end(), mode);
-    if (state)
-    {
-        // Si `mode` no está ya en `_modes`, lo agregamos
-        if (it == _modes.end())
-            _modes.push_back(mode);
-    }
-    else
-    {
-        // Si `mode` está en `_modes`, lo eliminamos
-        if (it != _modes.end())
-            _modes.erase(it);
-    }
+	std::vector<char>::iterator it = std::find(this->_modes.begin(), this->_modes.end(), mode);
+	if (state)
+	{
+		// Si `mode` no está ya en `_modes`, lo agregamos
+		if (it == this->_modes.end())
+			this->_modes.push_back(mode);
+	}
+	else
+	{
+		// Si `mode` está en `_modes`, lo eliminamos
+		if (it != this->_modes.end())
+			this->_modes.erase(it);
+	}
 }
-void Channel::setUserLimit(size_t limit)
+
+void Channel::setUserLimit( size_t limit )
 {
-    this->_user_limit = limit;
-    this->_has_user_limit = true;
+	this->_user_limit = limit;
+	this->_has_user_limit = true;
 }
 
 // Getters
-std::string Channel::getName(void) const
+std::string Channel::getName( void ) const
 {
-    return _name;
+	return this->_name;
 }
 
-std::string Channel::getTopic(void) const
+std::string Channel::getTopic( void ) const
 {
-    return _topic;
+	return this->_topic;
 }
 
-std::string Channel::getKey(void) const
+std::string Channel::getKey( void ) const
 {
-    return _key;
+	return this->_key;
 }
 
-bool Channel::getMode(char mode) const
+bool Channel::getMode( char mode ) const
 {
-    return std::find(_modes.begin(), _modes.end(), mode) != _modes.end();
+	return std::find(this->_modes.begin(), this->_modes.end(), mode) != this->_modes.end();
 }
 
 std::vector<char>	Channel::getModes( void ) const
@@ -103,216 +104,216 @@ std::vector<char>	Channel::getModes( void ) const
 
 std::string Channel::getModesString( void ) const // Tests pending
 {
-    std::string modes;
-    for (size_t i = 0; i < _modes.size(); i++)
-    {
-        modes += _modes[i];
-    }
-    return modes;
+	std::string modes;
+	for (size_t i = 0; i < this->_modes.size(); i++)
+	{
+		modes += this->_modes[i];
+	}
+	return modes;
 }
 
 std::string Channel::getModesParameters( void ) const // Tests pending
 {
-    // Alphabetic order of parametered modes, for reference: k l
-    std::string key = _key;
-    std::string limit = uLongToString(_user_limit);
+	// Alphabetic order of parametered modes, for reference: k l
+	std::string key = this->_key;
+	std::string limit = uLongToString(_user_limit);
 
-    bool k_set = this->getMode('k');
-    bool l_set = this->getMode('l');
-    size_t k_index = 0;
-    size_t l_index = 0;
-    for (size_t i = 0; i < _modes.size(); i++)
-    {
-        if (_modes[i] == 'k')
-            k_index = i;
-        else if (_modes[i] == 'l')
-            l_index = i;
-    }
-    if (k_set && l_set)
-    {
-        if (k_index < l_index)
-            return key + " " + limit;
-        else
-            return limit + " " + key;
-    }
-    else if (k_set)
-        return key;
-    else if (l_set)
-        return limit;
-    return "";
+	bool k_set = this->getMode('k');
+	bool l_set = this->getMode('l');
+	size_t k_index = 0;
+	size_t l_index = 0;
+	for (size_t i = 0; i < this->_modes.size(); i++)
+	{
+		if (this->_modes[i] == 'k')
+			k_index = i;
+		else if (this->_modes[i] == 'l')
+			l_index = i;
+	}
+	if (k_set && l_set)
+	{
+		if (k_index < l_index)
+			return key + " " + limit;
+		else
+			return limit + " " + key;
+	}
+	else if (k_set)
+		return key;
+	else if (l_set)
+		return limit;
+	return "";
 }
 
-size_t Channel::getUserLimit() const
+size_t Channel::getUserLimit( void ) const
 {
-    return this->_user_limit;
+	return this->_user_limit;
 }
 
-size_t Channel::getUserCount() const
+size_t Channel::getUserCount( void ) const
 {
-    return this->_users.size();
+	return this->_users.size();
 }
 
-std::vector<std::string> Channel::getUsers() const
+std::vector<std::string> Channel::getUsers( void ) const
 {
-    std::vector<std::string> users;
-    for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
-    {
-        users.push_back(it->first);
-    }
-    return users;
+	std::vector<std::string> users;
+	for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
+	{
+		users.push_back(it->first);
+	}
+	return users;
 }
 
-std::map<std::string, Client *>	Channel::getTrueUsers() const
+std::map<std::string, Client *>	Channel::getTrueUsers( void ) const
 {
 	return this->_users;
 }
 
-std::vector<std::string> Channel::getOperators() const
+std::vector<std::string> Channel::getOperators( void ) const
 {
-    std::vector<std::string> operators;
-    for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it)
-    {
-        operators.push_back(it->first);
-    }
-    return operators;
+	std::vector<std::string> operators;
+	for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it)
+	{
+		operators.push_back(it->first);
+	}
+	return operators;
 }
 
-std::map<std::string, Client *>	Channel::getTrueOperators() const
+std::map<std::string, Client *>	Channel::getTrueOperators( void ) const
 {
 	return this->_operators;
 }
 
-std::vector<std::string> Channel::getInvitedUsers() const
+std::vector<std::string> Channel::getInvitedUsers( void ) const
 {
-    std::vector<std::string> invitedUsers;
-    for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it)
-    {
-        invitedUsers.push_back(it->first);
-    }
-    return invitedUsers;
+	std::vector<std::string> invitedUsers;
+	for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it)
+	{
+		invitedUsers.push_back(it->first);
+	}
+	return invitedUsers;
 }
 
-std::map<std::string, Client *>	Channel::getTrueInvitedUsers() const
+std::map<std::string, Client *>	Channel::getTrueInvitedUsers( void ) const
 {
 	return this->_invited_users;
 }
 
-std::vector<int> Channel::getFds(std::string key) const 
+std::vector<int> Channel::getFds( std::string key ) const 
 {
-    std::vector<int> fds;
+	std::vector<int> fds;
 
-    if (key == "users") 
+	if (key == "users") 
 	{
-        for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it) 
+		for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it) 
 		{
-            int fd = it->second->getSocket();
-            if (fd != -1) {
-                fds.push_back(fd);
-            }
-        }
-    }
-    else if (key == "operators") 
+			int fd = it->second->getSocket();
+			if (fd != -1) {
+				fds.push_back(fd);
+			}
+		}
+	}
+	else if (key == "operators") 
 	{
-        for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it) 
+		for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it) 
 		{
-            int fd = it->second->getSocket();
-            if (fd != -1) {
-                fds.push_back(fd);
-            }
-        }
-    }
-    else if (key == "invited") 
+			int fd = it->second->getSocket();
+			if (fd != -1) {
+				fds.push_back(fd);
+			}
+		}
+	}
+	else if (key == "invited") 
 	{
-        for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it) 
+		for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it) 
 		{
-            int fd = it->second->getSocket();
-            if (fd != -1) {
-                fds.push_back(fd);
-            }
-        }
-    }
+			int fd = it->second->getSocket();
+			if (fd != -1) {
+				fds.push_back(fd);
+			}
+		}
+	}
 
-    return fds;
+	return fds;
 }
 
 std::set<int>   Channel::getFdsSet( std::string key ) const
 {
-    std::vector<int> fdsVector = this->getFds(key);
-    std::set<int> fds;
+	std::vector<int> fdsVector = this->getFds(key);
+	std::set<int> fds;
 
-    for (std::vector<int>::const_iterator it = fdsVector.begin(); it != fdsVector.end(); ++it)
-        fds.insert(*it);
-    return fds;
+	for (std::vector<int>::const_iterator it = fdsVector.begin(); it != fdsVector.end(); ++it)
+		fds.insert(*it);
+	return fds;
 }
 
 // User Management
-void Channel::addUser(Client * user, bool is_operator)
+void Channel::addUser( Client * user, bool is_operator )
 {
-    if (_has_user_limit && _users.size() >= this->_user_limit)
-    {
-        throw std::runtime_error("Channel is full");
-    }
+	if (_has_user_limit && _users.size() >= this->_user_limit)
+	{
+		throw std::runtime_error("Channel is full");
+	}
 
-    std::cout << getName() << std::endl;
-    this->_users.insert(std::pair<std::string, Client*>(user->getNickname(), user));
+	std::cout << getName() << std::endl;
+	this->_users.insert(std::pair<std::string, Client*>(user->getNickname(), user));
 
-    if (is_operator)
-    {
-        if (_operators.find(user->getNickname()) == _operators.end())
-        {
-            this->_operators.insert(std::pair<std::string, Client *>(user->getNickname(), user));
-        }
-    }
+	if (is_operator)
+	{
+		if (_operators.find(user->getNickname()) == _operators.end())
+		{
+			this->_operators.insert(std::pair<std::string, Client *>(user->getNickname(), user));
+		}
+	}
 }
 
 void Channel::kickUser( const std::string & nickname )
 {
-    if (_users.erase(nickname ) == 0)
-        throw std::runtime_error("User not found in channel");
-    if (_operators.erase(nickname ) == 0) {}
+	if (_users.erase(nickname ) == 0)
+		throw std::runtime_error("User not found in channel");
+	if (_operators.erase(nickname ) == 0) {}
 }
 
 void Channel::promoteUser( const std::string & nickname )
 {
-    if (_users.find(nickname) != _users.end())
-    {
-        if (_operators.find(nickname) == _operators.end())
-        {
-            _operators[nickname] = _users[nickname];
-        }
-    } 
-    else
-    {
-        throw std::runtime_error("User not found in channel");
-    }
+	if (_users.find(nickname) != _users.end())
+	{
+		if (_operators.find(nickname) == _operators.end())
+		{
+			_operators[nickname] = _users[nickname];
+		}
+	} 
+	else
+	{
+		throw std::runtime_error("User not found in channel");
+	}
 }
 
 void Channel::demoteUser( const std::string & nickname )
 {
-    if (_operators.erase(nickname) == 0)
-    {
-        throw std::runtime_error("User is not an operator");
-    }
+	if (_operators.erase(nickname) == 0)
+	{
+		throw std::runtime_error("User is not an operator");
+	}
 }
 
 void Channel::inviteUser( const std::string & nickname )
 {
-    if (_invited_users.find(nickname) == _invited_users.end())
-    {
-        _invited_users[nickname] = _users[nickname];
-    }
-    else
-    {
-        throw std::runtime_error("User is already invited");
-    }
+	if (_invited_users.find(nickname) == _invited_users.end())
+	{
+		_invited_users[nickname] = _users[nickname];
+	}
+	else
+	{
+		throw std::runtime_error("User is already invited");
+	}
 }
 
 void Channel::uninviteUser( const std::string & nickname )
 {
-    if (_invited_users.erase(nickname) == 0)
-    {
-        throw std::runtime_error("User is not invited");
-    }
+	if (_invited_users.erase(nickname) == 0)
+	{
+		throw std::runtime_error("User is not invited");
+	}
 }
 
 #include <iostream>
@@ -321,50 +322,50 @@ void Channel::uninviteUser( const std::string & nickname )
 // User Localizers
 bool Channel::isUserInChannel( const std::string & nickname )
 {
-    for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
+	for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
 	{
 /*
 		if (it != _users.end())  // Verificación de rango
-        {
-            if (it->first.empty() || it->second == NULL) continue;  // Verificación adicional para evitar datos nulos o vacíos
-            RED_TEXT(it->first);      // Nombre del usuario
-            RED_TEXT(it->second);     // Cliente asociado
-            RED_TEXT(nickname);       // Nickname del usuario buscado
-        }
+		{
+			if (it->first.empty() || it->second == NULL) continue;  // Verificación adicional para evitar datos nulos o vacíos
+			RED_TEXT(it->first);      // Nombre del usuario
+			RED_TEXT(it->second);     // Cliente asociado
+			RED_TEXT(nickname);       // Nickname del usuario buscado
+		}
 		else 
 		{
-            std::cout << "Iterador fuera de rango" << std::endl;
-        }
+			std::cout << "Iterador fuera de rango" << std::endl;
+		}
 */
-        if (it->first == nickname)
+		if (it->first == nickname)
 		{
 			return true;
-        }
-    }
-    return false;
+		}
+	}
+	return false;
 }
 
 bool Channel::isUserOperator( const std::string & nickname )
 {
-    for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it)
-    {
-        if (it->first == nickname)
-            return true;
-    }
-    return false;
+	for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it)
+	{
+		if (it->first == nickname)
+			return true;
+	}
+	return false;
 }
 
 bool Channel::isUserInvited( const std::string & nickname )
 {
-    for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it)
-    {
-        if (it->first == nickname)
-            return true;
-    }
-    return false;
+	for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it)
+	{
+		if (it->first == nickname)
+			return true;
+	}
+	return false;
 }
 
-bool Channel::isEmpty(void) const
+bool Channel::isEmpty( void ) const
 {
-    return _users.empty();
+	return _users.empty();
 }
