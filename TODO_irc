@@ -51,28 +51,6 @@
 
 	// TODO::	PRIVMSG: Only use the right parameter as the message, not all the parameters
 
-	// TODO::	Check SEGFAULT when quitting:
-	//			runCommand function called...
-	//			PRIVMSG command called...
-	//			Poll timed out, no activity
-	//			Poll timed out, no activity
-	//			After message split, size: 13
-	//			parseData function called...
-	//			MESSAGE RECEIVED: "QUIT :leaving"
-	//			t_message: Prefix [] Command [QUIT] Params [:leaving] 
-	//			Sender: [ 4 ]
-	//			Targets: 
-
-	//			runCommand function called...
-	//			QUIT command called...
-	//			Client removed from _poll_fds...
-	//			Client removed client successfully
-	//			notice_lookup.prefix: ":ft_irc.42.fr"
-	//			Segmentation fault (core dumped)
-
-	//			This seems to happen with /quit from irssi
-	// NOTE::	This might be fixed now?
-
 	// TODO::	Handle when conections are lost and after a timeout, the server should remove the client
 
 	// TODO::	Channel users should be stored in the _users map with the NICKNAME as the key, NOT THE USERNAME
@@ -114,5 +92,4 @@
 	//			Wait... maybe nobody should be promoted? Long story, too long to write it down, I hope
 	//			I will remember it all when I get back to it.
 
-	// TODO::	Apparently, when there is a ping timeout and the user is to be removed from the server,
-	//			the channels don't seem to be 
+	// TODO::	Make sure that JOIN command handles multiple channels at once. Also with keys maybe or not.

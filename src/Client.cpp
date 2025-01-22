@@ -240,9 +240,9 @@ bool Client::isExpectedPong( void ) const
 }
 
 // Channel Management
-void Client::addChannel( Channel & channel, std::string & name )
+void Client::addChannel( Channel * channel, std::string & name )
 {
-    this->_channels.insert(std::pair<std::string, Channel *>(name, &channel));
+    this->_channels.insert(std::pair<std::string, Channel *>(name, channel));
 }
 
 void Client::removeChannel(Channel &channel, std::string &name)
@@ -282,9 +282,15 @@ const std::string Client::getModeString(void) const
 std::vector<Channel *>	Client::getChannelsVector( void ) const
 {
 	std::vector<Channel *>	channels;
+    std::cout << "getChannelsVector" << std::endl;
 
+    std::cout << "this->_channels.size(): " << this->_channels.size() << std::endl;
 	for (std::map<std::string, Channel *>::const_iterator it = this->_channels.begin(); it != this->_channels.end(); ++it)
+    {
+        std::cout << "Channel name: " << it->first << std::endl;
+        std::cout << "channel->getName(): " << it->second->getName() << std::endl;
 		channels.push_back(it->second);
+    }
 	return channels;
 }
 

@@ -14,7 +14,7 @@ static void	sendReplies( t_message reply ); //
 // FOR NOW HERE
 void Server::checkInactivity( void )
 {
-	std::cout << "CHECK INACTIVITY FUNCTION" << std::endl;
+	// std::cout << "CHECK INACTIVITY FUNCTION" << std::endl;
 	// std::cout << "client count = " << this->_client_count << std::endl;
 	if (this->_client_count == 0)
 		return ;
@@ -49,7 +49,7 @@ void Server::checkInactivity( void )
 				t_message quit_message;
 				quit_message.prefix = ":" + client.getUserPrefix();
 				quit_message.command = "QUIT";
-				quit_message.params.push_back(":Ping timeout");
+				quit_message.params.push_back("Ping timeout");
 				std::vector<t_message> replies = this->cmdQuit(quit_message);
 				for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
 				{
@@ -74,7 +74,7 @@ void Server::checkInactivity( void )
 			}
 		}
 	}
-	std::cout << "CHECK INACTIVITY FUNCTION END" << std::endl;
+	// std::cout << "CHECK INACTIVITY FUNCTION END" << std::endl;
 }
 
 void Server::removeTerminatedClients( void )
@@ -82,10 +82,12 @@ void Server::removeTerminatedClients( void )
 	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION" << std::endl;
 	for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
 	{
-		Client & client = it->second;
-		if (client.isTerminate())
+		if (it->second.isTerminate())
 		{
 			removeClient(it->first);
+			if (this->_clients.size() == 0)
+				break;
+			it = this->_clients.begin();
 		}
 	}
 	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION END" << std::endl;

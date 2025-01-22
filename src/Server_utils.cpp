@@ -127,3 +127,13 @@ void	Server::addChannelToReplyExcept( t_message & reply, Channel * channel )
 		reply.target_client_fds.insert(it->second->getSocket());
 	}
 }
+
+void	Server::addUserToChannel( std::string channel_name, Client * client, bool as_operator )
+{
+	Channel * channel = findChannel(channel_name);
+	if (channel)
+	{
+		channel->addUser(client, as_operator);
+		client->addChannel(channel, channel_name);
+	}
+}

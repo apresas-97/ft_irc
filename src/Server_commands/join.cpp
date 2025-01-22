@@ -132,8 +132,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				// Ignore if user is already in the channel
 				continue;
 			}
-			channel->addUser(client, false);
-			client->addChannel(*channel, currentChannel);
+			this->addUserToChannel(currentChannel, client, false);
 			fds = channel->getFds("users");
 		}
 		else
@@ -152,10 +151,9 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				newChannel.setKey(keys[i]);
 				newChannel.setMode('k', true);
 			}
-			newChannel.addUser(client, true);
-			client->addChannel(newChannel, currentChannel);
+			this->addChannel(newChannel, currentChannel);
+			this->addUserToChannel(currentChannel, client, true);
 			fds = newChannel.getFds("users");
-			addChannel(newChannel, currentChannel);
 			channel = findChannel(currentChannel);
 		}
 		

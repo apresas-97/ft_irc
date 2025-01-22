@@ -70,7 +70,7 @@ class Client
 		bool				isExpectedPong( void ) const;
 
 		// Channel Management
-		void	addChannel(Channel &channel, std::string& name);
+		void	addChannel(Channel *channel, std::string& name);
 		void	removeChannel(Channel &channel, std::string& name);
 		std::vector<Channel *>	getChannelsVector( void ) const;
 

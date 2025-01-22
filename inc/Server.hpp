@@ -142,6 +142,7 @@ class Server
 		std::string getTimestamp( time_t time );
 		void	addChannelToReply( t_message &, Channel * );
 		void	addChannelToReplyExcept( t_message &, Channel * );
+		void	addUserToChannel( std::string channel_name, Client * client, bool as_operator );
 
 		// IDK
 		void	checkInactivity( void );
