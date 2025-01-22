@@ -13,6 +13,8 @@ Client::Client(void)
     _chan_limit = 0;
     _chan_count = -1;
     _last_activity = std::time(NULL);
+    _pong_timer = std::time(NULL);
+    _expected_pong = false;
 }
 
 Client::Client(int socket) : _socket(socket), _authorised(false), _registered(false), _terminate(false), _hostname_looked_up(false), _chan_limit(0)
@@ -20,6 +22,8 @@ Client::Client(int socket) : _socket(socket), _authorised(false), _registered(fa
     memset(_buffer, 0, BUFFER_SIZE);
     _chan_count = -1;
     _last_activity = std::time(NULL);
+    _pong_timer = std::time(NULL);
+    _expected_pong = false;
 }
 
 Client::~Client(void) {}
@@ -108,6 +112,16 @@ void Client::setMode(char mode, bool value)
 void Client::setLastActivity( void )
 {
     this->_last_activity = std::time(NULL);
+}
+
+void Client::setPongTimer( void )
+{
+    this->_pong_timer = std::time(NULL);
+}
+
+void Client::setExpectedPong( bool value )
+{
+    this->_expected_pong = value;
 }
 
 // Getters
@@ -215,10 +229,20 @@ time_t Client::getLastActivity( void ) const
     return this->_last_activity;
 }
 
+time_t Client::getPongTimer( void ) const
+{
+    return this->_pong_timer;
+}
+
+bool Client::isExpectedPong( void ) const
+{
+    return this->_expected_pong;
+}
+
 // Channel Management
 void Client::addChannel( Channel & channel, std::string & name )
 {
-    this->_channels.insert(std::pair<std::string, Channel>(name, channel));
+    this->_channels.insert(std::pair<std::string, Channel *>(name, &channel));
 }
 
 void Client::removeChannel(Channel &channel, std::string &name)
@@ -255,11 +279,11 @@ const std::string Client::getModeString(void) const
     return str;
 }
 
-std::vector<Channel>	Client::getChannelsVector( void ) const
+std::vector<Channel *>	Client::getChannelsVector( void ) const
 {
-	std::vector<Channel>	channels;
+	std::vector<Channel *>	channels;
 
-	for (std::map<std::string, Channel>::const_iterator it = this->_channels.begin(); it != this->_channels.end(); ++it)
+	for (std::map<std::string, Channel *>::const_iterator it = this->_channels.begin(); it != this->_channels.end(); ++it)
 		channels.push_back(it->second);
 	return channels;
 }

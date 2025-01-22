@@ -83,6 +83,8 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		if (isChannelInServer(currentChannel))
 		{
 			channel = findChannel(currentChannel);
+			if (!channel)
+				std::cout << "JOIN: Uh oh channel is NULL" << std::endl;
 			// Mode -i (Invite-only channel)
 			if (channel->getMode('i') && !channel->isUserInvited(client->getUsername()))
 			{
@@ -126,6 +128,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			// Add to the current channel
 			if (channel->isUserInChannel(client->getNickname()))
 			{
+				std::cout << client->getNickname() << " is already in " << currentChannel << std::endl;
 				// Ignore if user is already in the channel
 				continue;
 			}
@@ -149,8 +152,8 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				newChannel.setKey(keys[i]);
 				newChannel.setMode('k', true);
 			}
-			client->addChannel(newChannel, currentChannel);
 			newChannel.addUser(client, true);
+			client->addChannel(newChannel, currentChannel);
 			fds = newChannel.getFds("users");
 			addChannel(newChannel, currentChannel);
 			channel = findChannel(currentChannel);

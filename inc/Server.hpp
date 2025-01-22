@@ -143,6 +143,10 @@ class Server
 		void	addChannelToReply( t_message &, Channel * );
 		void	addChannelToReplyExcept( t_message &, Channel * );
 
+		// IDK
+		void	checkInactivity( void );
+		void	removeTerminatedClients( void );
+
 		// DEBUG
 		void	printTmessage( t_message message ) const;
 

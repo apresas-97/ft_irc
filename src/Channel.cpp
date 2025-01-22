@@ -256,13 +256,24 @@ std::set<int>   Channel::getFdsSet( std::string key ) const
 // User Management
 void Channel::addUser( Client * user, bool is_operator )
 {
+	std::cout << "Adding user \"" << user->getNickname() << "\" to channel \"" << this->_name << "\"" << std::endl;
+	std::cout << "User count before: " << _users.size() << std::endl;
 	if (_has_user_limit && _users.size() >= this->_user_limit)
 	{
+		// TODO PROBABLY DONT THROW AN EXCEPTION HERE
 		throw std::runtime_error("Channel is full");
 	}
 
 	std::cout << getName() << std::endl;
 	this->_users.insert(std::pair<std::string, Client*>(user->getNickname(), user));
+	std::cout << "User count after: " << _users.size() << std::endl;
+
+	std::cout << "Users in channel:" << std::endl;
+	for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
+	{
+		std::cout << it->first << std::endl;
+	}
+	std::cout << "User list end" << std::endl;
 
 	if (is_operator)
 	{
@@ -275,9 +286,9 @@ void Channel::addUser( Client * user, bool is_operator )
 
 void Channel::kickUser( const std::string & nickname )
 {
-	if (_users.erase(nickname ) == 0)
+	if (this->_users.erase(nickname) == 0)
 		throw std::runtime_error("User not found in channel");
-	if (_operators.erase(nickname ) == 0) {}
+	if (this->_operators.erase(nickname) == 0) {}
 }
 
 void Channel::promoteUser( const std::string & nickname )

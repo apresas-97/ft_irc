@@ -5,7 +5,91 @@
 
 #define PORT 8080 // Port number to bind
 
-#define CLIENT_TIMEOUT_SECONDS 60 // Time in seconds before a client is considered inactive
+// FOR NOW HERE
+#define CLIENT_TIMEOUT_SECONDS 12 // Seconds before a client should be sent a PING message to check if it's still alive
+#define CLIENT_PING_TIMEOUT_SECONDS 2 // Seconds before a connection is considered dead after no PONG reply is received
+#define CLIENT_REGISTRATION_TIMEOUT_SECONDS 10 // Seconds before a client is considered not registered and disconnected
+static void	sendReplies( t_message reply ); //
+
+// FOR NOW HERE
+void Server::checkInactivity( void )
+{
+	std::cout << "CHECK INACTIVITY FUNCTION" << std::endl;
+	// std::cout << "client count = " << this->_client_count << std::endl;
+	if (this->_client_count == 0)
+		return ;
+	// std::cout << "TIMEOUT loop start" << std::endl;
+	for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
+	{
+		Client & client = it->second;
+		if (client.isTerminate())
+			continue;
+		if (client.isRegistered())
+		{
+			if (!client.isExpectedPong() && client.getLastActivity() + CLIENT_TIMEOUT_SECONDS < std::time(NULL))
+			{
+				// std::cout << "CLIENT TIMEOUT DETECTED" << std::endl;
+				// std::cout << "Time now = " << std::time(NULL) << std::endl;
+				// std::cout << "client last activity = " << client.getLastActivity() << std::endl;
+				t_message ping_message;
+				ping_message.prefix = ":" + this->getName(); // I've seen servers not sending prefix for PING messages
+				ping_message.command = "PING";
+				ping_message.params.push_back(":" + this->getName());
+				ping_message.target_client_fds.insert(it->first);
+				sendReplies(ping_message);
+				client.setExpectedPong(true);
+				client.setPongTimer();
+			}
+			if (client.isExpectedPong() && client.getPongTimer() + CLIENT_PING_TIMEOUT_SECONDS < std::time(NULL))
+			{
+				// std::cout << "CLIENT PONG TIMEOUT DETECTED" << std::endl;
+				// std::cout << "Time now = " << std::time(NULL) << std::endl;
+				// std::cout << "client pong timer = " << client.getPongTimer() << std::endl;
+				this->_current_client = &client;
+				t_message quit_message;
+				quit_message.prefix = ":" + client.getUserPrefix();
+				quit_message.command = "QUIT";
+				quit_message.params.push_back(":Ping timeout");
+				std::vector<t_message> replies = this->cmdQuit(quit_message);
+				for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
+				{
+					printTmessage(*it); // DEBUG
+					sendReplies(*it);
+				}
+			}
+		}
+		else if (client.getLastActivity() + CLIENT_REGISTRATION_TIMEOUT_SECONDS < std::time(NULL))
+		{
+			this->_current_client = &client;
+			client.setHostname("0.0.0.0");
+			t_message quit_message;
+			quit_message.prefix = ":" + client.getUserPrefix();
+			quit_message.command = "QUIT";
+			quit_message.params.push_back("Ping timeout");
+			std::vector<t_message> replies = this->cmdQuit(quit_message);
+			for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
+			{
+				printTmessage(*it); // DEBUG
+				sendReplies(*it);
+			}
+		}
+	}
+	std::cout << "CHECK INACTIVITY FUNCTION END" << std::endl;
+}
+
+void Server::removeTerminatedClients( void )
+{
+	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION" << std::endl;
+	for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
+	{
+		Client & client = it->second;
+		if (client.isTerminate())
+		{
+			removeClient(it->first);
+		}
+	}
+	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION END" << std::endl;
+}
 
 void Server::runServerLoop( void ) 
 {
@@ -25,40 +109,25 @@ void Server::runServerLoop( void )
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
             break;
         }
-		else if (pollCount == 0)
+		if (pollCount == 0)
 		{
         	std::cout << "Poll timed out, no activity" << std::endl; // Remove later...
-			// // Provisional:
-			// std::cout << "Checking for inactivity..." << std::endl;
-			// for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
-			// {
-			// 	if (it->second.getLastActivity() + CLIENT_TIMEOUT_SECONDS < std::time(NULL))
-			// 	{
-			// 		std::map<int, Client>::iterator tmp = it;
-			// 		++it;
-			// 		std::cout << "Client " << tmp->first << " timed out" << std::endl;
-			// 		std::cout << "Last activity: " << tmp->second.getLastActivity() << std::endl;
-			// 		std::cout << "Current time: " << std::time(NULL) << std::endl;
-			// 		// TODO: Make sure that this:
-			// 		// - removes the client from all channels.
-			// 		// - removes the client's nickname from the taken nicknames list.
-			// 		// - removes the client from the clients map.
-			// 		// - essentially leave no trace of the client.
-			// 		removeClient(tmp->first);
-			// 	}
-			// }
-            continue;
         }
-		for (size_t i = 0; i < _poll_fds.size(); i++) 
+		else
 		{
-			if (this->_poll_fds[i].revents & POLLIN)
+			for (size_t i = 0; i < _poll_fds.size(); i++) 
 			{
-				if (this->_poll_fds[i].fd == this->_serverFd)
-					newClient();
-				else
-					getClientData(i);
+				if (this->_poll_fds[i].revents & POLLIN)
+				{
+					if (this->_poll_fds[i].fd == this->_serverFd)
+						newClient();
+					else
+						getClientData(i);
+				}
 			}
 		}
+		this->checkInactivity();
+		this->removeTerminatedClients();
     }
 }
 
@@ -234,8 +303,8 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 	this->_current_client->setLastActivity();
 
 	// apresas-: New, testing
-	if (this->_current_client->isTerminate())
-		removeClient(client_fd);
+	// if (this->_current_client->isTerminate())
+		// removeClient(client_fd);
 }
 
 /*
@@ -364,8 +433,14 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		replies = cmdKick(message);
 	else if (command == "ACT")
 	{
-		std::cout << "Last activity: " << this->_current_client->getLastActivity() << "s" << std::endl;
-		std::cout << "Current time: " << std::time(NULL) << "s" << std::endl;
+		// std::cout << "Last activity: " << this->_current_client->getLastActivity() << "s" << std::endl;
+		// std::cout << "Current time: " << std::time(NULL) << "s" << std::endl;
+		t_message ping_to_client;
+		// ping_to_client.prefix = ":" + this->getName();
+		ping_to_client.command = "PING";
+		ping_to_client.params.push_back(":" + this->getName());
+		ping_to_client.target_client_fds.insert(this->_current_client->getSocket());
+		replies.push_back(ping_to_client);
 	}
 	else
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));

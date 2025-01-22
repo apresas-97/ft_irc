@@ -98,3 +98,21 @@
 	//			Also, it's very important that the channels they were in are updated properly, which
 	//			includes deleting the channel if it's empty after removing the client.
 	//			etc.
+
+	// TODO::	A timeout for clients should be sent. If no activity is registered from a client in
+	//			X seconds, a PING message should be sent to the client.
+	//			If no response is received, the client should be removed from the server.
+	//			This seems to be the proper way to handle inactivity.
+
+	// TODO?:	When the operator of a channel leaves said channel, some other member should be
+	//			promoted to operator.
+	//			UNLESS there are other operators in the channel!!!
+	//			I'm sure there is a logical criteria for which member should be promoted.
+	//			I would guess that the member with the longest time in the channel should be promoted.
+	//			But we have to hurry up, so for now, we'll promote the first member that pops up
+	//			in the list of users in the channel.
+	//			Wait... maybe nobody should be promoted? Long story, too long to write it down, I hope
+	//			I will remember it all when I get back to it.
+
+	// TODO::	Apparently, when there is a ping timeout and the user is to be removed from the server,
+	//			the channels don't seem to be 

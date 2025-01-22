@@ -24,7 +24,9 @@ ERR_NOSUCHSERVER: If the <server2> parameter does not match a server in the netw
 */
 std::vector<t_message> Server::cmdPong( t_message & message ) 
 {
+	std::cout << "PONG MESSAGE RECEIVED" << std::endl;
 	std::vector<t_message>	replies;
+	Client * client = this->_current_client;
 
 	if (message.params.size() < 1) 
 	{
@@ -36,6 +38,15 @@ std::vector<t_message> Server::cmdPong( t_message & message )
 	{
 		replies.push_back(createReply(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_STR, message.params[1]));
 		return replies;
+	}
+
+	if (message.params[0] == ":" + this->getName())
+	{
+		std::cout << "PARAMETER TOKEN IS VALID" << std::endl;
+		std::cout << "set expected pong to false" << std::endl;
+		client->setExpectedPong(false);
+		client->setPongTimer();
+		client->setLastActivity();
 	}
 
 	return replies;

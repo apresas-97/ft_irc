@@ -47,6 +47,8 @@ class Client
 		void	setHostnameLookedUp( bool value );
 		void	setMode( char mode, bool value );
 		void	setLastActivity( void );
+		void	setPongTimer( void );
+		void	setExpectedPong( bool value );
 
 		// Getters
 		int					getSocket( void );
@@ -64,11 +66,13 @@ class Client
 		int					getChannelCount(void) const;
         int					getChannelLimit(void) const;
 		time_t				getLastActivity( void ) const;
+		time_t				getPongTimer( void ) const;
+		bool				isExpectedPong( void ) const;
 
 		// Channel Management
 		void	addChannel(Channel &channel, std::string& name);
 		void	removeChannel(Channel &channel, std::string& name);
-		std::vector<Channel>	getChannelsVector( void ) const;
+		std::vector<Channel *>	getChannelsVector( void ) const;
 
 		// Mode Management
 		bool	hasMode(char mode) const;
@@ -97,9 +101,11 @@ class Client
 		t_mode					_mode;
 
 		time_t					_last_activity;
+		time_t					_pong_timer;
+		bool					_expected_pong;
 		// apresas-: I'm not sure if this is the best way to handle this
 
-		std::map<std::string, Channel>	_channels;
+		std::map<std::string, Channel *>	_channels;
 		int 		_chan_limit;
 		int 		_chan_count;
 
