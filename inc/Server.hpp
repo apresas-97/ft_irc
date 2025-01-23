@@ -52,10 +52,6 @@ class Server
 
 		static Server		*instance;
 
-		// apresas-: This is a map of function pointers for command functions
-		// For now it's only an idea, it might be discarded
-		std::map<std::string, void (Server::*)(t_message &)>	_commandMap;
-
 		std::map<int, Client> _clients;
 		std::map<std::string, int> _clients_fd_map; // To get the fd of a client by its nickname (not implemented)
 		Client * _current_client; // apresas-: Added this, maybe provisionally, for the client that is currently relevant
