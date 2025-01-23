@@ -90,3 +90,4 @@ USER ffornes- ffornes- localhost :Ferran Fornes palaputa
 quit
 :ft_irc.42.fr ERROR :Closing Link: placeholder.42.fr (Ping timeout)
 
+	// TODO::	Handle client buffer to fill it when we receive a message that contains something after CRLF
