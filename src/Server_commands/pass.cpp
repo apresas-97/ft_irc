@@ -31,6 +31,7 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 	if (message.params[0] == this->_password)
 	{
 		std::cout << "Password correct... client is authorised" << std::endl;
+		std::cout << "Client authorised is: " << this->_current_client->getSocket() << std::endl;
 		client->setAuthorised(true);
 	}
 	// Commented this out because it's not part of the RFC
