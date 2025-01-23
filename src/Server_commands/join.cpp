@@ -41,9 +41,8 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 	Client * client = this->_current_client;
 	Channel * channel = NULL;
 
-	std::vector<std::string> 	channels;
+	std::vector<std::string> 	channel_names;
 	std::vector<std::string> 	keys;
-	std::vector<int> 			fds;
 
 	bool are_keys = message.params.size() > 2 ? true : false;
 
@@ -63,16 +62,15 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		return replies;
 	}
 
-	channels = parseMessage(message.params[0], ',');
+	channel_names = parseMessage(message.params[0], ',');
     if (are_keys)
 	{
-        keys = parseMessage(message.params[1], ',');	
+        keys = parseMessage(message.params[1], ',');
 	}
 
-	for (size_t i = 0; i < channels.size(); i++)
+	for (size_t i = 0; i < channel_names.size(); i++)
 	{
-		std::cout << "LOOPING" << std::endl;
-		std::string currentChannel = channels[i];
+		std::string currentChannel = channel_names[i];
 
 		if (!isValidChannelName(currentChannel))
 		{
@@ -133,7 +131,6 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				continue;
 			}
 			this->addUserToChannel(currentChannel, client, false);
-			fds = channel->getFds("users");
 		}
 		else
 		{
@@ -153,7 +150,6 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			}
 			this->addChannel(newChannel, currentChannel);
 			this->addUserToChannel(currentChannel, client, true);
-			fds = newChannel.getFds("users");
 			channel = findChannel(currentChannel);
 		}
 		
@@ -176,11 +172,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
 			replies.push_back(reply);
 		}
-
-//		replies.push_back(replyList(client, channel, fds));
-//		fds.clear();
 	}
-
 	return replies;
 }
 
