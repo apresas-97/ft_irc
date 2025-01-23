@@ -124,7 +124,10 @@ void Server::runServerLoop( void )
 					if (this->_poll_fds[i].fd == this->_serverFd)
 						newClient();
 					else
+					{
+						this->_current_client = this->findClient(this->_poll_fds[i].fd);
 						getClientData(i);
+					}
 				}
 			}
 		}
@@ -208,23 +211,22 @@ void	Server::getClientData( int i )
 			return ;
 		buffer[bytes_received] = '\0';
 
-		Client	& current_client = this->_clients[this->_poll_fds[i].fd];
 		std::string	message;
 		// Check if the clients buffer contains something...
-		if (current_client.getBuffer().size() > 0)
+		if (this->_current_client->getBuffer().size() > 0)
 		{
-			message = current_client.getBuffer();
-			current_client.clearBuffer();
+			std::cout << "Client buffer was not empty..." << std::endl;
+			message = this->_current_client->getBuffer();
+			this->_current_client->clearBuffer();
 		}
 		message += buffer;
 
 		std::vector<std::string> messages = splitMessage(message);
 
-		if (messages.size() > 0)
-			std::cout << "After message split, size: " << messages[0].size() << std::endl;
-		else // I have to save content in the clients buffer then
-			if (current_client.fillBuffer(buffer)) // Then buffer is filled to the brim and needs to be sent
-				messages.push_back(current_client.getBuffer());
+		// Client buffer handling...
+		if (messages.size() == 0)
+			if (this->_current_client->fillBuffer(buffer))
+				messages.push_back(this->_current_client->getBuffer());
 
 		// Iterate over the split messages and parse them
 		for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end(); ++it)
@@ -263,7 +265,6 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 	std::cout << "parseData function called..." << std::endl; // DEBUG
 	std::cout << "MESSAGE RECEIVED: \"" << raw_message << "\"" << std::endl; //  DEBUG
 
-	this->_current_client = &this->_clients[client_fd];
 	t_message	message = prepareMessage(raw_message);
 	message.sender_client_fd = client_fd;
 
