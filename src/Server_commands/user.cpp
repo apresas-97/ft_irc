@@ -125,3 +125,4 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 
 	return createWelcomeReplies(client);
 }
+
