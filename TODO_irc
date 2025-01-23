@@ -1,72 +1,33 @@
 
 	// TODO::	define port range in Server.cpp	parseInput()
 
-	// TODO::	Server.cpp	getClientData	...		buffer handling, message handling...
-	//				checks for NULL and CRLF have been implemented... CRLF is still work in progress
-
-	// TODO::	Server.cpp	parseData	...		parse data received from the client
-	//				Everything....
-	//		DONE::	Server.cpp	prepareMessage	...		since data is valid, transform into t_message....
-	//				Must handle replies into the whole channel. rn it's only replying to one user
-
-	// TODO::	Server.cpp	runCommand
-	//				Set a map of function pointers with all the different functions of the commands...
-
-	// TODO::	numeric_replies.cpp / testCmdMode ... falta el mode cuando le mandas un MODE sin argumentos
-	// TODO::	... Must fix all the error return values when using commands...
-	// TODO::	replies should be able to send the reply to 1 user only or to a vector of fds in order to send it to everyone needed...
-
-
-	// TODO::	revisar el irc_ctype.cpp irc_isValidNickname .... also check if it's included and if it's being called somewhere....
-
 	// TODO::	commands.cpp	cmdUser()
 	//				Parse username and realname ... maybe it's enough already but must check...
-	//				Reply welcome message....
-	
+
+	// TODO::	Welcome message
+	//				Specify what modes are usable?
 	// TODO::	CHECK USER MODES AND CHANNEL MODES, what are we going to implement?
+
 	// TODO::	commands.txt	CHECK WHICH COMMANDS are we going to implement....
-
-	// TODO::	server...
-	//				Save all users in a vector/stl container in the server as registered users blahblabhblah
-
 
 	// TODO::	commands.cpp	cmdChanMode() ... do the whole function. it's not defined
 	//				Function exists at the bottom of commands.cpp
 
-	// TODO::	Agree on the exact method to remove a client from the server. QUIT removes the client, but we also have
-	//			a client boolean to determine if its connection should be terminated in the server loop
-	//			An ERROR command should be sent to the client to notify them of the termination
-
-	// TODO::	Make sure the initial messages and their order are all handled properly.
+	// TODO::	Make sure the initial messages and their order are all handled properly... CHECK WITH NC
 	//			As in, handling CAP messages and their replies,
 
-	// TODO::	Fix weird TOPIC bug
-
 	// TODO::	JOIN:
-	//			DONE - Channel name must have valid prefix or else ERR_NOSUCHCHANNEL
-	//			DONE?- If user is already in the chanel, silently ignore
+	//			If user is already in the channel, silently ignore... Check the order of everything in the join, do the flags of the channel have priority over
+	//				if  the user is already in the channel?
 
-	// DONE::	TOPIC:
-	//			- If a topic is set, do not reply with RPL_TOPIC, only with an acknowledgement like the broadcast message
+	// TODO::	Check what should be done with the first ':' of the last argument of a message
 
-	// TODO::	PRIVMSG: Only use the right parameter as the message, not all the parameters
+	// TODO::	When server kicks you, there are some broken pipe issues if you attempt to send something?
 
-	// TODO::	Handle when conections are lost and after a timeout, the server should remove the client
+	// TODO::	Verify that all prefixes start with ':' everywhere
 
-	// TODO::	Channel users should be stored in the _users map with the NICKNAME as the key, NOT THE USERNAME
-
-	// DONE?::	Apparently, sometimes, the server thinks that the given nickname of the first connection is already in use. Fix.
-	//			Actually, no, I don't think that's the issue.
-	//			The issue is that the way we reply to the CAP LS command from irssi is apparently wrong.
-	//			So, after a while, irssi tries to start a new connection I think???
-	//			And it uses the same nickname so the whole weird loop starts.
-
-	// TODO::	For some reason, when checking for inactivity, the server seems to end up removing an
-	//			extra client when only 1 client was connected in the first place.
-	//			When this happens, the for loop remains stuck. It seems that something fishy is happening
-	//			regarding the tmp and ++it iterators. They might skip the end somehow or delete the end
-	//			something like that. Hopefully it's just that.
-
+	// TODO::	Handle reconnections?
+	
 	// TODO::	When a client is removed from the server, it should be removed from every
 	//			channel, every user list, map, vector or whatever else it's in.
 	//			There should be no traces left of the client in the server.
@@ -76,11 +37,6 @@
 	//			Also, it's very important that the channels they were in are updated properly, which
 	//			includes deleting the channel if it's empty after removing the client.
 	//			etc.
-
-	// TODO::	A timeout for clients should be sent. If no activity is registered from a client in
-	//			X seconds, a PING message should be sent to the client.
-	//			If no response is received, the client should be removed from the server.
-	//			This seems to be the proper way to handle inactivity.
 
 	// TODO?:	When the operator of a channel leaves said channel, some other member should be
 	//			promoted to operator.
@@ -92,4 +48,45 @@
 	//			Wait... maybe nobody should be promoted? Long story, too long to write it down, I hope
 	//			I will remember it all when I get back to it.
 
-	// TODO::	Make sure that JOIN command handles multiple channels at once. Also with keys maybe or not.
+	// TODO::	After connecting with irssi.... CAP Unknown command???
+
+	// TODO::	Convert char -> unsigned char in Real name check....
+
+	// TODO::	Fix registration command order mess apresas-
+	// Example below:
+	//	This error in registration occurs when PASS sets the client as authorised, sometimes works, sometimes it doesn't yikes
+
+ ~ $ nc -C localhost 6667
+CAP LS
+PASS jaja
+NICK ffornes
+USER ffornes- ffornes- localhost :Ferran Fornes palaputa
+:ft_irc.42.fr NOTICE AUTH :*** Looking up your hostname
+:ft_irc.42.fr NOTICE AUTH :*** Couldn't resolve your hostname; using a placeholder instead
+:ft_irc.42.fr CAP * LS :
+:ft_irc.42.fr 484 * :Your connection is restricted!
+:ft_irc.42.fr ERROR :Closing Link: 0.0.0.0 (Ping timeout)
+join #test
+nc: write failed (0/2): Broken pipe ///////////// This is an nc issue and must not be handled by us?
+
+	// TODO::	Solve this issue... When connecting to a server we sent a Quit command after receiving the PING from the server
+	//				it closed NC without needing to send a \n
+	//			The expected reply should contain (nickname) instead of (Ping timeout)
+	// Example below:
+
+ ~ $ nc -C localhost 6667
+CAP LS
+PASS jaja
+NICK ffornes
+USER ffornes- ffornes- localhost :Ferran Fornes palaputa
+:ft_irc.42.fr NOTICE AUTH :*** Looking up your hostname
+:ft_irc.42.fr NOTICE AUTH :*** Couldn't resolve your hostname; using a placeholder instead
+:ft_irc.42.fr CAP * LS :
+:ft_irc.42.fr 001 ffornes :Welcome to the Internet Relay Network ffornes!ffornes-@placeholder.42.fr
+:ft_irc.42.fr 002 ffornes :Your host is ft_irc.42.fr, running version 1.0
+:ft_irc.42.fr 003 ffornes :This server was created Thu, Jan 23 2025 at 16:46:56 UTC
+:ft_irc.42.fr 004 ffornes ft_irc.42.fr 1.0 aiwroOs itkol
+:ft_irc.42.fr PING :ft_irc.42.fr
+quit
+:ft_irc.42.fr ERROR :Closing Link: placeholder.42.fr (Ping timeout)
+
