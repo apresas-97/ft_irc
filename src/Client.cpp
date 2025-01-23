@@ -15,6 +15,7 @@ Client::Client(void)
     _last_activity = std::time(NULL);
     _pong_timer = std::time(NULL);
     _expected_pong = false;
+	this->clearBuffer();
 }
 
 Client::Client(int socket) : _socket(socket), _authorised(false), _registered(false), _terminate(false), _hostname_looked_up(false), _chan_limit(0)
