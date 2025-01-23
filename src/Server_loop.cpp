@@ -215,7 +215,6 @@ void	Server::getClientData( int i )
 		// Check if the clients buffer contains something...
 		if (this->_current_client->getBuffer().size() > 0)
 		{
-			std::cout << "Client buffer was not empty..." << std::endl;
 			message = this->_current_client->getBuffer();
 			this->_current_client->clearBuffer();
 		}
@@ -224,9 +223,15 @@ void	Server::getClientData( int i )
 		std::vector<std::string> messages = splitMessage(message);
 
 		// Client buffer handling...
+		// TODO Save all the content in the client buffer all messages that doesn't contain CRLF at the end
 		if (messages.size() == 0)
-			if (this->_current_client->fillBuffer(buffer))
+		{
+			if (this->_current_client->fillBuffer(message))
+			{
 				messages.push_back(this->_current_client->getBuffer());
+				this->_current_client->clearBuffer();
+			}
+		}
 
 		// Iterate over the split messages and parse them
 		for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end(); ++it)
