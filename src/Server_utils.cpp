@@ -137,3 +137,4 @@ void	Server::addUserToChannel( std::string channel_name, Client * client, bool a
 		client->addChannel(channel, channel_name);
 	}
 }
+

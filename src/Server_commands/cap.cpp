@@ -32,3 +32,4 @@ std::vector<t_message>	Server::cmdCap( t_message & message )
 
 	return replies;
 }
+
