@@ -314,7 +314,7 @@ std::string Client::hostnameLookup( void )
 {
     if (this->_addr->sa_family == AF_INET)
     {
-        // IPv4: We can work with this
+        // IPv4
         struct sockaddr_in *addr_in = (struct sockaddr_in *)this->_addr;
         std::string ip_address = inet_ntoa(addr_in->sin_addr);
 
@@ -323,19 +323,23 @@ std::string Client::hostnameLookup( void )
         if (host_entry && host_entry->h_name)
         {
             setHostname(std::string(host_entry->h_name));
-            return std::string(":*** Found your hostname:" + this->_hostname);
+            return std::string("*** Found your hostname, cached");
         }
         else
         {
             setHostname(ip_address);
-            return std::string(":*** Couldn't resolve your hostname; using your IP address instead");
+            return std::string("*** Couldn't resolve your hostname; using your IP address instead");
         }
     }
-    // else connection must be IPv6 (I think), TODO make sure
-    // IPv6: Our allowed C functions are limted, we can't do much here
-    setHostname("placeholder.42.fr");
-    std::cout << this->_hostname << std::endl;
-    return std::string(":*** Couldn't resolve your hostname; using a placeholder instead");
+    else if (this->_addr->sa_family == AF_INET6)
+    {
+        // IPv6
+        setHostname("IPv6.42.fr");
+        return std::string("*** IPv6 address detected; using a placeholder hostname");
+    }
+    // else, unknown family
+    setHostname("Unknown.42.fr");
+    return std::string("*** Unknown address family; couldn't resolve your hostname");
 }
 
 bool	Client::fillBuffer( std::string	src )
