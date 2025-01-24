@@ -111,7 +111,13 @@ std::vector<t_message>	Server::cmdTime( t_message & message )
 {
 	std::vector<t_message> replies;
 	std::vector<std::string> reply_params;
+	Client * client = this->_current_client;
 
+	if (client->isRegistered() == false)
+	{
+		replies.push_back(createReply(ERR_NOTREGISTERED, ERR_NOTREGISTERED_STR));
+		return replies;
+	}
 	if (message.params.size() > 0 && message.params[0] != this->getName())
 		replies.push_back(createReply(ERR_NOSUCHSERVER, ERR_NOSUCHSERVER_STR, message.params[0]));
 	else

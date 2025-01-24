@@ -7,6 +7,12 @@ std::vector<t_message> Server::cmdTopic( t_message &message )
 	t_message				reply;
 	Client * client = this->_current_client;
 
+	if (client->isRegistered() == false)
+	{
+		replies.push_back(createReply(ERR_NOTREGISTERED, ERR_NOTREGISTERED_STR));
+		return replies;
+	}
+
 	if (message.params.size() < 1) 
 	{
 		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR);

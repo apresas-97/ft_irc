@@ -41,6 +41,12 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 	std::vector<std::string> targets;
 	std::string textToSend;
 
+	if (client->isRegistered() == false)
+	{
+		replies.push_back(createReply(ERR_NOTREGISTERED, ERR_NOTREGISTERED_STR));
+		return replies;
+	}
+
 	// Check if there are any parameters (recipient) in the message
 	if (message.params.size() < 1)
 	{

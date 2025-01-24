@@ -28,6 +28,12 @@ std::vector<t_message>	Server::cmdPing( t_message & message )
 	std::vector<t_message> replies;
 	Client * client = this->_current_client;
 
+	if (client->isRegistered() == false)
+	{
+		replies.push_back(createReply(ERR_NOTREGISTERED, ERR_NOTREGISTERED_STR));
+		return replies;
+	}
+
 	if (message.params.size() < 1)
 	{
 		replies.push_back(createReply(ERR_NOORIGIN, ERR_NOORIGIN_STR));

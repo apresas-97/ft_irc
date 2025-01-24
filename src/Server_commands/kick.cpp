@@ -54,6 +54,12 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
     std::string nick = client->getNickname();
     std::string mainMsg = "";
 
+    if (client->isRegistered() == false)
+	{
+		replies.push_back(createReply(ERR_NOTREGISTERED, ERR_NOTREGISTERED_STR));
+		return replies;
+	}
+
     if (message.params.size() < 2)
     {
 		std::vector<std::string>	params;
