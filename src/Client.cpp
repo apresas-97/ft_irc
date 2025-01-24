@@ -2,6 +2,17 @@
 #include <cstring>
 #include <algorithm>
 
+void	Client::initModes( void )
+{
+	this->setMode('a', false);
+	this->setMode('i', false);
+	this->setMode('w', false);
+	this->setMode('r', false);
+	this->setMode('o', false);
+	this->setMode('O', false);
+	this->setMode('s', false);
+}
+
 // Constructors and Destructor
 Client::Client(void)
 {
@@ -15,6 +26,7 @@ Client::Client(void)
     _last_activity = std::time(NULL);
     _pong_timer = std::time(NULL);
     _expected_pong = false;
+	initModes();
 	this->clearBuffer();
 }
 
@@ -25,6 +37,7 @@ Client::Client(int socket) : _socket(socket), _authorised(false), _registered(fa
     _last_activity = std::time(NULL);
     _pong_timer = std::time(NULL);
     _expected_pong = false;
+	initModes();
 }
 
 Client::~Client(void) {}

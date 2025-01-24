@@ -34,6 +34,7 @@ class Client
 		Client( int socket );
 		~Client( void );
 
+		void	initModes( void );
 		// Setters
 		void	setSocket( const int & socket );
 		void	setSockaddr( const struct sockaddr *addr );
