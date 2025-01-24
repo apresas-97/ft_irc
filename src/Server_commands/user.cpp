@@ -81,13 +81,13 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 		return replies;
 	}
 
-	if (message.params.size() < 4) 
+	if (message.params.size() < 4)
 	{
 		replies.push_back(createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, this->_current_client->getNickname()));
 		return replies;
 	}
 
-	if (this->_current_client->getNickname().empty() == true) 
+	if (this->_current_client->getNickname().empty() == true)
 	{
 		/* I haven't been able to get a definitive answer on the order of the NICK and USER commands
 		But from what I've gathered, it really seems like the NICK command should come first
