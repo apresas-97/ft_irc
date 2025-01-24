@@ -70,6 +70,7 @@ class Client
 		time_t				getPongTimer( void ) const;
 		bool				isExpectedPong( void ) const;
 		bool				matchPassword( const std::string & match ) const;
+		bool				passwordGiven( void ) const;
 
 		// Channel Management
 		void	addChannel(Channel *channel, std::string& name);
