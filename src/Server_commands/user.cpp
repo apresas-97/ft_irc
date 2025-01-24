@@ -117,7 +117,13 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 		client->setAuthorised(true);
 
 	if (client->isAuthorised() == false)
+	{
+		t_message quit_message;
+		quit_message.command = "QUIT";
+		quit_message.params.push_back("You are not authorised to connect to this server");
+		replies = this->cmdQuit(quit_message);
 		return replies;
+	}
 
 	client->setRegistered(true);
 
