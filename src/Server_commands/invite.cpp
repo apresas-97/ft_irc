@@ -7,7 +7,7 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	t_message				reply;
 	Client *client = this->_current_client;
 
-	if (message.params.size() < 1) 
+	if (message.params.size() < 2)
 	{
 		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client->getNickname());
 		replies.push_back(reply);
