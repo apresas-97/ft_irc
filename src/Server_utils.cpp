@@ -138,6 +138,42 @@ void	Server::addUserToChannel( std::string channel_name, Client * client, bool a
 	}
 }
 
+bool	Server::isNicknameTaken( const std::string & nickname ) const
+{
+	std::vector<std::string>::const_iterator it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), nickname);
+	return (it != this->_taken_nicknames.end());
+}
+
+void	Server::removeTakenNickname( const std::string & nickname )
+{
+	std::vector<std::string>::iterator it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), nickname);
+	if (it != this->_taken_nicknames.end())
+		this->_taken_nicknames.erase(it);
+}
+
+void	Server::replaceTakenNickname( Client * client, const std::string & new_nickname )
+{
+	std::string old_nickname = client->getNickname();
+	std::vector<std::string>::iterator it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), old_nickname);
+	if (it != this->_taken_nicknames.end())
+		*it = new_nickname;
+	else
+		this->_taken_nicknames.push_back(new_nickname);
+}
+
+void	Server::updateClientNickname( Client * client, const std::string & new_nickname )
+{
+	std::string old_nickname = client->getNickname();
+	if (new_nickname.empty() == true)
+		return ;
+	if (old_nickname == new_nickname)
+		return ;
+	this->_clients_fd_map.erase(old_nickname);
+	this->_clients_fd_map.insert(std::pair<std::string, int>(new_nickname, client->getSocket()));
+	this->replaceTakenNickname(client, new_nickname);
+	client->setNickname(new_nickname);
+}
+
 t_message	Server::createNotice( Client * client, const std::string & message )
 {
 	t_message notice;

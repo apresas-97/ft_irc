@@ -141,6 +141,10 @@ class Server
 		void	addUserToChannel( std::string channel_name, Client * client, bool as_operator );
 		t_message	createNotice( Client * client, const std::string & message );
 		void	setupClientHostname( Client & client );
+		bool	isNicknameTaken( const std::string & nickname ) const;
+		void	removeTakenNickname( const std::string & nickname );
+		void	replaceTakenNickname( Client * client, const std::string & new_nickname );
+		void	updateClientNickname( Client * client, const std::string & new_nickname );
 
 		// IDK
 		void	checkInactivity( void );
