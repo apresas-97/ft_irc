@@ -22,7 +22,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	else
 		quit_message = message.params[0];
 
-	error_acknowledgement.prefix = ":" + this->getName();
+	// error_acknowledgement.prefix = ":" + this->getName();
 	error_acknowledgement.command = "ERROR";
 	error_acknowledgement.params.push_back(":Closing Link: " + client->getHostname() + " (" + quit_message + ")");
 	error_acknowledgement.target_client_fds.insert(client->getSocket());
