@@ -61,6 +61,24 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		replies.push_back(reply);
 		return replies;
 	}
+	else if (message.params.size() > 0 && message.params[0] == "0")
+	{
+		std::vector<Channel *>	_channels = this->_current_client->getChannelsVector();
+		size_t		commas = _channels.size() - 1;
+		std::string	params;
+		for (std::vector<Channel *>::iterator it = _channels.begin(); it != _channels.end(); ++it)
+		{
+			params += (*it)->getName();
+			if (commas--)
+				params += ",";
+		}
+		t_message	partCall;
+
+		partCall.command = "part";
+		partCall.params.push_back(params);
+		partCall.sender_client_fd = this->_current_client->getSocket();
+//		return (cmdPart(partCall); // TODO make this usable once cmdPart is implemented
+	}
 
 	channel_names = parseMessage(message.params[0], ',');
     if (are_keys)
@@ -83,6 +101,12 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			channel = findChannel(currentChannel);
 			if (!channel)
 				std::cout << "JOIN: Uh oh channel is NULL" << std::endl;
+			if (channel->isUserInChannel(client->getNickname()))
+			{
+				std::cout << client->getNickname() << " is already in " << currentChannel << std::endl;
+				// Ignore if user is already in the channel
+				continue;
+			}
 			// Mode -i (Invite-only channel)
 			if (channel->getMode('i') && !channel->isUserInvited(client->getUsername()))
 			{
@@ -121,13 +145,6 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			{
 				reply = createReply(ERR_TOOMANYCHANNELS, ERR_TOOMANYCHANNELS_STR, currentChannel);
 				replies.push_back(reply);
-				continue;
-			}
-			// Add to the current channel
-			if (channel->isUserInChannel(client->getNickname()))
-			{
-				std::cout << client->getNickname() << " is already in " << currentChannel << std::endl;
-				// Ignore if user is already in the channel
 				continue;
 			}
 			this->addUserToChannel(currentChannel, client, false);
