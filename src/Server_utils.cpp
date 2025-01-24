@@ -138,3 +138,17 @@ void	Server::addUserToChannel( std::string channel_name, Client * client, bool a
 	}
 }
 
+t_message	Server::createNotice( Client * client, const std::string & message )
+{
+	t_message notice;
+	std::string nickname;
+	notice.prefix = ":" + this->getName();
+	notice.command = "NOTICE";
+	notice.target_client_fds.insert(client->getSocket());
+	nickname = client->getNickname();
+	if (nickname.empty())
+		nickname = "*";
+	notice.params.push_back(nickname);
+	notice.params.push_back(":" + message);
+	return notice;
+}
