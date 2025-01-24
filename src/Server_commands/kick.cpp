@@ -117,7 +117,7 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
         }
 
         t_message kickMessage;
-        kickMessage.prefix = client->getUserPrefix();
+        kickMessage.prefix = ":" + client->getUserPrefix();
         kickMessage.command = "KICK";
         kickMessage.params.push_back(channel);
         kickMessage.params.push_back(targets[i]);
@@ -130,10 +130,29 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
         findChannel(channel)->uninviteUser(targets[i]);
         removeClient(findClient(targets[i])->getSocket());
     }
+
     if (findChannel(channel)->isEmpty())
     {
         replies.push_back(createReply(RPL_CHANNELREMOVED, RPL_CHANNELREMOVED_STR, channel));
-        this->_channels.erase(channel);
+		removeChannel(channel);
+    }
+
+    // Send updated user list to the channel
+    std::vector<std::string> clientList = findChannel(channel)->getUsers();
+    if (!clientList.empty())
+    {
+        std::vector<std::string> paramsName = clientList;
+        paramsName.push_back(channel);
+        t_message nameReply = createReply(RPL_NAMREPLY, RPL_NAMREPLY_STR, paramsName);
+        addChannelToReply(nameReply, findChannel(channel));
+        replies.push_back(nameReply);
+
+        std::vector<std::string> paramsEnd = clientList;
+        paramsEnd.push_back(client->getNickname());
+        paramsEnd.push_back(channel);
+        t_message endOfNames = createReply(RPL_ENDOFNAMES, RPL_ENDOFNAMES_STR, paramsEnd);
+        addChannelToReply(endOfNames, findChannel(channel));
+        replies.push_back(endOfNames);
     }
 
     return replies;

@@ -188,3 +188,15 @@ t_message	Server::createNotice( Client * client, const std::string & message )
 	notice.params.push_back(":" + message);
 	return notice;
 }
+
+void Server::removeChannel(const std::string &name)
+{
+    std::map<std::string, Channel>::iterator it = this->_channels.find(name);
+    if (it == this->_channels.end())
+    {
+        std::cerr << "Error: Channel \"" << name << "\" not found." << std::endl;
+        return;
+    }
+    this->_channels.erase(it);
+    std::cout << "Channel \"" << name << "\" has been removed successfully." << std::endl;
+}

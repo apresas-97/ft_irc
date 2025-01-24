@@ -402,6 +402,8 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		replies = cmdPong(message);
 	else if (command == "KICK")
 		replies = cmdKick(message);
+	else if (command == "PART")
+		replies = cmdPart(message);
 	else if (this->_current_client->isRegistered() == true)
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
 	return replies;

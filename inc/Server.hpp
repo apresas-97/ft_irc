@@ -78,6 +78,8 @@ class Server
 		bool isUserInServer( const std::string & nickname );
 		bool isChannelInServer( const std::string & channel );
 
+		void removeChannel( const std::string &name );
+
 		Client * findClient( int fd );
 		Client * findClient( const std::string & nickname );
 		Channel * findChannel( const std::string & name );
@@ -126,6 +128,7 @@ class Server
 		std::vector<t_message> cmdPing( t_message & message );
 		std::vector<t_message> cmdPong( t_message & message );
 		std::vector<t_message> cmdCap( t_message & message );
+		std::vector<t_message> cmdPart( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
 

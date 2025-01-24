@@ -42,6 +42,9 @@
 #define RPL_TIME 391
 #define RPL_TIME_STR "<server> :<string showing server's local time>"
 
+#define RPL_ENDOFNAMES 366
+#define RPL_ENDOFNAMES_STR "<channel> :End of /NAMES list"
+
 // Channel removed
 #define RPL_CHANNELREMOVED 901
 #define RPL_CHANNELREMOVED_STR "<channel> :Channel has been removed due to no active users"
