@@ -223,7 +223,7 @@ void	Server::getClientData( int i )
 		std::vector<std::string> messages = splitMessage(message);
 
 		// Client buffer handling...
-		if (messages.size() == 0)
+		if (messages.size() == 0 || message.size() > 0) // If we didn't find CRLF in the message OR if there is something after the CRLF
 		{
 			if (this->_current_client->fillBuffer(message))
 			{
@@ -231,7 +231,7 @@ void	Server::getClientData( int i )
 				this->_current_client->clearBuffer();
 			}
 		}
-
+		
 		// Iterate over the split messages and parse them
 		for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end(); ++it)
 			parseData(*it, this->_poll_fds[i].fd);
