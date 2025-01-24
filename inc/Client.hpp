@@ -113,7 +113,3 @@ class Client
 };
 
 #endif // CLIENT_HPP
-
-/*
-	cc->isAdmin(channel)
-*/
