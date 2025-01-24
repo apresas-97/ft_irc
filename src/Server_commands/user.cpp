@@ -94,24 +94,21 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 		return replies;
 	}
 
-	// NOTICE reply for invalid username or realname syntax
-	t_message notice_reply;
-	notice_reply.prefix = this->getName();
-	notice_reply.command = "NOTICE";
-	notice_reply.target_client_fds.insert(client->getSocket());
-
+	bool valid_input = true;
 	if (irc_isValidUsername(message.params[0]) == false)
 	{
-		notice_reply.params.push_back(client->getNickname() + " :Invalid username syntax (only printable ASCII and must be between 1 and 15 characters)");
-		replies.push_back(notice_reply);
-		return replies;
+		valid_input = false;
+		t_message invalid_username_notice = this->createNotice(client, "Invalid username syntax (only printable ASCII and must be between 1 and 15 characters)");
+		replies.push_back(invalid_username_notice);
 	}
 	if (irc_isValidRealname(message.params[3]) == false)
 	{
-		notice_reply.params.push_back(client->getNickname() + " :Invalid realname syntax (only printable ASCII and must be between 1 and 50 characters)");
-		replies.push_back(notice_reply);
-		return replies;
+		valid_input = false;
+		t_message invalid_realname_notice = this->createNotice(client, "Invalid realname syntax (only printable ASCII and must be between 1 and 50 characters)");
+		replies.push_back(invalid_realname_notice);
 	}
+	if (valid_input == false)
+		return replies;
 
 	client->setUsername(message.params[0]);
 	client->setRealname(message.params[3]);
