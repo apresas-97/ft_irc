@@ -32,17 +32,6 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 		replies.push_back(reply);
 		return replies;
 	}
-	if (message.params[0] == this->_password)
-	{
-		std::cout << "Password correct... client is authorised" << std::endl;
-		std::cout << "Client authorised is: " << this->_current_client->getSocket() << std::endl;
-		client->setAuthorised(true);
-	}
-	// Commented this out because it's not part of the RFC
-	// else
-	// {
-	// 	reply = createReply(ERR_PASSWDMISMATCH, ERR_PASSWDMISMATCH_STR);
-	// 	replies.push_back(reply);
-	// }
+	client->setPassword(message.params[0]);
 	return replies;
 }
