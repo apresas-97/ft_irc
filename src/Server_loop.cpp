@@ -369,45 +369,26 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::string	command = stringToUpper(message.command);
 
 	std::cout << "runCommand function called..." << std::endl;
-
-	if (this->_current_client->isTerminate())
-	{
-		// Close the connection here, send the ERROR message and close the connection with the client
-	}
-	if (command == "PASS")
+	if (command == "CAP" && !this->_current_client->isAuthorised())
+		replies = this->cmdCap(message);
+	else if (command == "PASS")
 		replies = cmdPass(message);
 	else if (command == "NICK")
-	{
-		/*
-			Expected response:
-
-		*/
 		replies = cmdNick(message);
-	}
 	else if (command == "USER")
-	{
-		/*
-			After the USER command, we should check if the client is authorised.
-			If it's NOT, we should set its terminate flag to true
-		*/
 		replies = this->cmdUser(message);
-		if (this->_current_client->isAuthorised() == false)
-			this->_current_client->setTerminate(true);
-	}
-	else if (command == "CAP" && !this->_current_client->isAuthorised())
-		replies = this->cmdCap(message);
+	else if (command == "QUIT")
+		replies = cmdQuit(message);
+	else if (command == "VERSION")
+		replies = cmdVersion(message);
+	else if (command == "ERROR")
+		return replies; // Silently ignore the ERROR command from a client
 	else if (command == "MODE")
 		replies = cmdMode(message);
 	else if (command == "JOIN")
 		replies = cmdJoin(message);
-	else if (command == "QUIT")
-		replies = cmdQuit(message);
-	else if (command == "ERROR")
-		return replies; // Silently ignore the ERROR command from a client
 	else if (command == "NOTICE")
 		replies = cmdNotice(message);
-	else if (command == "VERSION")
-		replies = cmdVersion(message);
 	else if (command == "TIME")
 		replies = cmdTime(message);
 	else if (command == "PRIVMSG")
@@ -420,26 +401,9 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		replies = cmdPing(message);
 	else if (command == "PONG")
 		replies = cmdPong(message);
-	else if (command == "TOPIC")
-		replies = cmdTopic(message);
-	else if (command == "PRIVMSG")
-		replies = cmdPrivMsg(message);
-	else if (command == "INVITE")
-		replies = cmdInvite(message);
 	else if (command == "KICK")
 		replies = cmdKick(message);
-	else if (command == "ACT")
-	{
-		// std::cout << "Last activity: " << this->_current_client->getLastActivity() << "s" << std::endl;
-		// std::cout << "Current time: " << std::time(NULL) << "s" << std::endl;
-		t_message ping_to_client;
-		// ping_to_client.prefix = ":" + this->getName();
-		ping_to_client.command = "PING";
-		ping_to_client.params.push_back(":" + this->getName());
-		ping_to_client.target_client_fds.insert(this->_current_client->getSocket());
-		replies.push_back(ping_to_client);
-	}
-	else
+	else if (this->_current_client->isRegistered() == true)
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
 	return replies;
 }
