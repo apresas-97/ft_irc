@@ -223,7 +223,6 @@ void	Server::getClientData( int i )
 		std::vector<std::string> messages = splitMessage(message);
 
 		// Client buffer handling...
-		// TODO Save all the content in the client buffer all messages that doesn't contain CRLF at the end
 		if (messages.size() == 0)
 		{
 			if (this->_current_client->fillBuffer(message))
@@ -231,6 +230,12 @@ void	Server::getClientData( int i )
 				messages.push_back(this->_current_client->getBuffer());
 				this->_current_client->clearBuffer();
 			}
+		}
+		else	// If message doesn't contain CRLF, save to client buffer...
+		{
+			for (std::vector<std::string>::iterator it = messages.begin(); it != messages.end(); ++it)
+				if (!hasCRLF(*it))
+					this->_current_client->fillBuffer(*it);
 		}
 
 		// Iterate over the split messages and parse them
