@@ -247,7 +247,7 @@ bool Client::isExpectedPong( void ) const
 
 bool Client::matchPassword( const std::string & match ) const
 {
-    return (this->_given_password == match);
+    return this->_given_password == match;
 }
 
 bool Client::passwordGiven( void ) const
