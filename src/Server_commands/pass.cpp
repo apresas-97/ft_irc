@@ -46,24 +46,3 @@ std::vector<t_message> Server::cmdPass( t_message & message )
 	// }
 	return replies;
 }
-
-/*
-Notes:
-
-From the little information and references I found on this command's behavior,
-it seems that:
-	If the password provided is INCORRECT, the server should still accept
-	the client's NICK and USER messages.
-	Then, the servers should send the appropriate numeric reply errors that may
-	have been triggered by the NICK and USER messages.
-	After that, the server should send an ERROR message to the client to notify
-	that the connection will be terminated.
-
-	The first idea that comes to my mind would be to have the ERROR message
-	be sent whenever the connection is about to be terminated.
-	We might need a boolean flag in the client for that, and maybe check it
-	at the beginning of the run_command function.
-	But this is just an idea, we should discuss it.
-
-	TODO: Discuss this behavior and implement it
-*/
