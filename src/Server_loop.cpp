@@ -168,8 +168,18 @@ void Server::newClient( void )
 	_poll_fds.push_back(tmp);
 	Client client(clientFd);
 	client.setSockaddr((struct sockaddr *)&clientAddress);
+	setupClientHostname(client);
+	client.hostnameLookup();
 	this->_clients.insert(std::pair<int, Client>(clientFd, client));
 	this->_client_count++;
+}
+
+void Server::setupClientHostname( Client & client )
+{
+	t_message	hostname_lookup_notice = this->createNotice(&client, "*** Looking up your hostname...");
+	sendReplies(hostname_lookup_notice);
+	t_message	hostname_lookup_results_notice = this->createNotice(&client, client.hostnameLookup());
+	sendReplies(hostname_lookup_results_notice);
 }
 
 /// PROVISIONAL
@@ -280,27 +290,6 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 	}
 
 	printTmessage(message); // DEBUG
-
-	if (this->_current_client->isHostnameLookedUp() == false)
-	{
-		t_message notice_lookup;
-		notice_lookup.prefix = ":" + this->getName();
-		std::cout << "notice_lookup.prefix: \"" << notice_lookup.prefix << "\"" << std::endl;
-		notice_lookup.command = "NOTICE";
-		notice_lookup.target_client_fds.insert(this->_current_client->getSocket());
-		notice_lookup.params.push_back("AUTH"); // Or maybe "*" ?
-		notice_lookup.params.push_back(":*** Looking up your hostname");
-		sendReplies(notice_lookup);
-
-		t_message notice_results;
-		notice_results.prefix = ":" + this->getName();
-		notice_results.command = "NOTICE";
-		notice_results.target_client_fds.insert(this->_current_client->getSocket());
-		notice_results.params.push_back("AUTH"); // Or maybe "*" ?
-		notice_results.params.push_back(this->_current_client->hostnameLookup());
-		sendReplies(notice_results);
-		this->_current_client->setHostnameLookedUp(true);
-	}
 
 	std::vector<t_message> replies = runCommand(message);
 	for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)

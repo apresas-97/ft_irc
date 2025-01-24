@@ -140,6 +140,7 @@ class Server
 		void	addChannelToReplyExcept( t_message &, Channel * );
 		void	addUserToChannel( std::string channel_name, Client * client, bool as_operator );
 		t_message	createNotice( Client * client, const std::string & message );
+		void	setupClientHostname( Client & client );
 
 		// IDK
 		void	checkInactivity( void );
