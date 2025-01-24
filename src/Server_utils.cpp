@@ -138,3 +138,14 @@ void	Server::addUserToChannel( std::string channel_name, Client * client, bool a
 	}
 }
 
+void Server::removeChannel(const std::string &name)
+{
+    std::map<std::string, Channel>::iterator it = this->_channels.find(name);
+    if (it == this->_channels.end())
+    {
+        std::cerr << "Error: Channel \"" << name << "\" not found." << std::endl;
+        return;
+    }
+    this->_channels.erase(it);
+    std::cout << "Channel \"" << name << "\" has been removed successfully." << std::endl;
+}
