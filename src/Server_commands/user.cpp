@@ -89,9 +89,8 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 
 	if (this->_current_client->getNickname().empty() == true)
 	{
-		/* I haven't been able to get a definitive answer on the order of the NICK and USER commands
-		But from what I've gathered, it really seems like the NICK command should come first
-		For this reason, if the USER message is sent first, the server will silently ignore it */
+		t_message invalid_order_notice = this->createNotice(client, "USER command sent before NICK command, ignoring...");
+		replies.push_back(invalid_order_notice);
 		return replies;
 	}
 
