@@ -70,11 +70,9 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	nick_broadcast.prefix = ":" + old_prefix;
 	nick_broadcast.command = "NICK";
 	nick_broadcast.params.push_back(":" + nickname);
-
 	std::vector<Channel *> channels = client->getChannelsVector();
 	for (std::vector<Channel *>::iterator it = channels.begin(); it != channels.end(); ++it) 
 		addChannelToReplyExcept(nick_broadcast, *it);
-
 	replies.push_back(nick_broadcast);
 
 	return replies;
