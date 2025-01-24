@@ -13,16 +13,8 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	std::vector<t_message>	replies;
 	t_message				reply;
 
-	// Check if the client is authorised and registered
-	if (client->isAuthorised() == false) 
-	{
-		reply = createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR);
-		replies.push_back(reply);
-		return replies;
-	}
-
-	// Check if the client is in restricted mode ( we'll see what we do with this )
-	if (client->getMode('r') == true) 
+	// Check if the client is restricted
+	if (client->getMode('r') == true)
 	{
 		reply = createReply(ERR_RESTRICTED, ERR_RESTRICTED_STR);
 		replies.push_back(reply);
