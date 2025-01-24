@@ -44,7 +44,6 @@ class Client
 		void	setAuthorised( bool value );
 		void	setRegistered( bool value );
 		void	setTerminate( bool value );
-		void	setHostnameLookedUp( bool value );
 		void	setMode( char mode, bool value );
 		void	setLastActivity( void );
 		void	setPongTimer( void );
@@ -61,7 +60,6 @@ class Client
 		bool				isAuthorised( void ) const;
 		bool				isRegistered( void ) const;
 		bool				isTerminate( void ) const;
-		bool				isHostnameLookedUp( void ) const;
 		bool				getMode( char mode ) const;
 		t_mode				getModes( void ) const;
 		int					getChannelCount(void) const;

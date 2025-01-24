@@ -75,11 +75,6 @@ void Client::setTerminate( bool value )
     this->_terminate = value;
 }
 
-void Client::setHostnameLookedUp( bool value )
-{
-    this->_hostname_looked_up = value;
-}
-
 void Client::setMode(char mode, bool value)
 {
     switch (mode)
@@ -176,11 +171,6 @@ bool Client::isRegistered(void) const
 bool Client::isTerminate( void ) const
 {
     return this->_terminate;
-}
-
-bool Client::isHostnameLookedUp( void ) const
-{
-    return this->_hostname_looked_up;
 }
 
 bool Client::getMode(char mode) const
