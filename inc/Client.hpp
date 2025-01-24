@@ -54,7 +54,7 @@ class Client
 		int					getSocket( void );
 		const std::string &	getNickname( void ) const;
 		const std::string &	getUsername( void ) const;
-		const std::string &	getHostname( void ) const;
+		const std::string	getHostname( void ) const;
 		const std::string &	getRealname( void ) const;
 		const std::string	getUserPrefix(void) const;
 		bool				isAuthorised( void ) const;

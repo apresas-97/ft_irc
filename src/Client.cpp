@@ -141,8 +141,10 @@ const std::string &Client::getUsername(void) const
     return this->_username;
 }
 
-const std::string &Client::getHostname(void) const
+const std::string Client::getHostname(void) const
 {
+    if (this->isRegistered() == false)
+        return "0.0.0.0";
     return this->_hostname;
 }
 
