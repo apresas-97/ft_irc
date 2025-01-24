@@ -8,6 +8,10 @@ The PASS command is used to set a 'connection password'.
 The optional password can and MUST be set before any attempt to register
 the connection is made. This requires that user send a PASS command before
 sending the NICK/USER combination.
+
+Numeric Replies:
+- ERR_NEEDMOREPARAMS: If no parameters are given
+- ERR_ALREADYREGISTRED: If the user has already registered
 */
 std::vector<t_message> Server::cmdPass( t_message & message )
 {
