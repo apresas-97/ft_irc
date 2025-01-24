@@ -125,6 +125,11 @@ void Client::setExpectedPong( bool value )
     this->_expected_pong = value;
 }
 
+void Client::setPassword( const std::string & password )
+{
+    this->_given_password = password;
+}
+
 // Getters
 int Client::getSocket(void)
 {
@@ -238,6 +243,11 @@ time_t Client::getPongTimer( void ) const
 bool Client::isExpectedPong( void ) const
 {
     return this->_expected_pong;
+}
+
+bool Client::matchPassword( const std::string & match ) const
+{
+    return (this->_given_password == match);
 }
 
 // Channel Management

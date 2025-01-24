@@ -49,6 +49,7 @@ class Client
 		void	setLastActivity( void );
 		void	setPongTimer( void );
 		void	setExpectedPong( bool value );
+		void	setPassword( const std::string & password );
 
 		// Getters
 		int					getSocket( void );
@@ -68,6 +69,7 @@ class Client
 		time_t				getLastActivity( void ) const;
 		time_t				getPongTimer( void ) const;
 		bool				isExpectedPong( void ) const;
+		bool				matchPassword( const std::string & match ) const;
 
 		// Channel Management
 		void	addChannel(Channel *channel, std::string& name);
@@ -99,6 +101,8 @@ class Client
 		bool					_terminate; // Should the client's connection be terminated?
 		bool					_hostname_looked_up; // Has the hostname lookup been done?
 		t_mode					_mode;
+
+		std::string				_given_password;
 
 		time_t					_last_activity;
 		time_t					_pong_timer;
