@@ -7,6 +7,12 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	t_message				reply;
 	Client *client = this->_current_client;
 
+	if (client->isRegistered() == false)
+	{
+		replies.push_back(createReply(ERR_NOTREGISTERED, ERR_NOTREGISTERED_STR));
+		return replies;
+	}
+
 	if (message.params.size() < 2)
 	{
 		reply = createReply(ERR_NEEDMOREPARAMS, ERR_NEEDMOREPARAMS_STR, client->getNickname());
@@ -47,31 +53,28 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 		return replies;
 	}
 
-	Client *targetClient = this->findClient(targetNickname);
-	if (!targetClient) 
+	if (!this->isUserInServer(targetNickname))
 	{
 		reply = createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, targetNickname);
 		replies.push_back(reply);
 		return replies;
 	}
 
+	Client * targetClient = this->findClient(targetNickname);
 	channel->addUser(client, 0);
 	t_message inviteMessage;
 	inviteMessage.prefix = client->getUserPrefix();
 	inviteMessage.command = "INVITE";
 	inviteMessage.params.push_back(targetNickname);
 	inviteMessage.params.push_back(channelName);
-	// targetClient->sendMessage(inviteMessage); I have to check where is this sent
+	inviteMessage.target_client_fds.insert(targetClient->getSocket());
+	// I've seen in some servers that the acknowledgement message is sent ALSO to the rest of
+	// operators of the channel. It's not our priority right now.
 
-	// OLD RESPONSE
-	std::vector<std::string>	args;
-	args.push_back(targetNickname);
-	args.push_back(channelName);
-
-	// NEW RESPONSE
-	// replies.push_back(createReply(RPL_INVITING, RPL_INVITING_STR, targetNickname, channelName));
-
-	reply = createReply(RPL_INVITING, RPL_INVITING_STR, args);
+	std::vector<std::string>	params;
+	params.push_back(channelName);
+	params.push_back(targetNickname);
+	reply = createReply(RPL_INVITING, RPL_INVITING_STR, params);
 	replies.push_back(reply);
 	return replies;
 }
