@@ -43,33 +43,19 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 		return replies;
 
 	// Nickname is already taken ?
-	std::vector<std::string>::iterator it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), nickname);
-	if (it != this->_taken_nicknames.end()) 
+	if (this->isNicknameTaken(nickname) == true)
 	{
 		reply = createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname);
 		replies.push_back(reply);
 		return replies;
 	}
 
-	// Store the user's prefix before changing the nickname, for later use
 	std::string old_prefix = client->getUserPrefix();
 
-	// Remove the old nickname from the taken nicknames list
-	std::string old_nickname = client->getNickname();
-	if (old_nickname.empty() == false) 
-	{
-		it = std::find(this->_taken_nicknames.begin(), this->_taken_nicknames.end(), old_nickname);
-		if (it != this->_taken_nicknames.end()) 
-			this->_taken_nicknames.erase(it);
-	}
+	this->updateClientNickname(client, nickname);
 
-	// Set the new nickname
-	client->setNickname(nickname);
-	this->_taken_nicknames.push_back(nickname);
-	this->_clients_fd_map.erase(old_nickname);
-	this->_clients_fd_map[nickname] = client->getSocket();
-	// If it's the first time the user sets its nickname, there is no need to acknowledge the change
-	if (old_nickname.empty() == true)
+	// If the client is not yet registered, no acknowledgement is needed
+	if (client->isRegistered() == false)
 		return replies;
 
 	t_message acknowledgement;
