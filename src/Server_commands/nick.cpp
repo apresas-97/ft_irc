@@ -94,13 +94,9 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	nick_broadcast.params.push_back(":" + nickname);
 
 	std::vector<Channel *> channels = client->getChannelsVector();
-
 	for (std::vector<Channel *>::iterator it = channels.begin(); it != channels.end(); ++it) 
-	{
-		std::vector<int> channel_users_fds = (*it)->getFds("users");
-		for (std::vector<int>::iterator it2 = channel_users_fds.begin(); it2 != channel_users_fds.end(); ++it2) 
-			nick_broadcast.target_client_fds.insert(*it2);
-	}
+		addChannelToReplyExcept(nick_broadcast, *it);
+
 	replies.push_back(nick_broadcast);
 
 	return replies;
