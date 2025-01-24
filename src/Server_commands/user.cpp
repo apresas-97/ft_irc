@@ -97,7 +97,7 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 
 	// NOTICE reply for invalid username or realname syntax
 	t_message notice_reply;
-	notice_reply.prefix = this->getName();
+	notice_reply.prefix = ":" + this->getName();
 	notice_reply.command = "NOTICE";
 	notice_reply.target_client_fds.insert(client->getSocket());
 

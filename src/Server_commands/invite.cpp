@@ -57,7 +57,7 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 
 	channel->addUser(client, 0);
 	t_message inviteMessage;
-	inviteMessage.prefix = client->getUserPrefix();
+	inviteMessage.prefix = ":" + client->getUserPrefix();
 	inviteMessage.command = "INVITE";
 	inviteMessage.params.push_back(targetNickname);
 	inviteMessage.params.push_back(channelName);

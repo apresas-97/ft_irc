@@ -74,7 +74,7 @@ std::vector<t_message> Server::cmdTopic( t_message &message )
 		}
 
 		t_message topicMessage;
-		topicMessage.prefix = client->getUserPrefix();
+		topicMessage.prefix = ":" + client->getUserPrefix();
 		topicMessage.command = "TOPIC";
 		topicMessage.params.push_back(channelName);
 		topicMessage.params.push_back(channel->getTopic());

@@ -93,7 +93,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 				}
 				// Create and send message to channel
 				t_message channelMessage;
-				channelMessage.prefix = client->getUserPrefix();
+				channelMessage.prefix = ":" + client->getUserPrefix();
 				channelMessage.command = "PRIVMSG";
 				channelMessage.params.push_back(target);
 				channelMessage.params.push_back(textToSend);
@@ -117,7 +117,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 		{
 			// Create and send private message
 			t_message privateMessage;
-			privateMessage.prefix = client->getUserPrefix();
+			privateMessage.prefix = ":" + client->getUserPrefix();
 			privateMessage.command = "PRIVMSG";
 			privateMessage.params.push_back(target);
 			privateMessage.params.push_back(textToSend);

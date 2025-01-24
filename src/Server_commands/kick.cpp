@@ -111,7 +111,7 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
         }
 
         t_message kickMessage;
-        kickMessage.prefix = client->getUserPrefix();
+        kickMessage.prefix = ":" + client->getUserPrefix();
         kickMessage.command = "KICK";
         kickMessage.params.push_back(channel);
         kickMessage.params.push_back(targets[i]);
