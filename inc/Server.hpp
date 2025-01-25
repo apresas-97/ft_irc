@@ -21,6 +21,7 @@
 
 typedef struct s_message 
 {
+	s_message() : prefix(""), command(""), sender_client_fd(-1) {}
 	std::string prefix;
 	std::string command;
 	std::vector<std::string> params;
