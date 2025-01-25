@@ -385,5 +385,6 @@ bool Channel::isUserInvited( const std::string & nickname )
 
 bool Channel::isEmpty( void ) const
 {
+	std::cout << _users.size() << std::endl;
 	return _users.empty();
 }

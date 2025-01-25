@@ -28,7 +28,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	error_acknowledgement.target_client_fds.insert(client->getSocket());
 	replies.push_back(error_acknowledgement);
 
-	quit_broadcast.prefix = ":" + client->getUserPrefix();
+	// quit_broadcast.prefix = ":" + client->getUserPrefix();
 	quit_broadcast.command = "QUIT";
 	quit_broadcast.params.push_back(quit_message);
 	std::vector<Channel *> channels = client->getChannelsVector();
@@ -50,6 +50,11 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 		
 		addChannelToReplyExcept(quit_broadcast, *it);
 		(*it)->kickUser(client->getNickname());
+
+		if ((*it)->isEmpty()) {
+			std::cout << "Channel " << (*it)->getName() << " is empty. Deleting channel." << std::endl;
+			this->removeChannel((*it)->getName());
+		}
 	}
 	replies.push_back(quit_broadcast);
 
