@@ -77,7 +77,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		partCall.command = "part";
 		partCall.params.push_back(params);
 		partCall.sender_client_fd = this->_current_client->getSocket();
-//		return (cmdPart(partCall); // TODO make this usable once cmdPart is implemented
+		return (cmdPart(partCall));
 	}
 
 	channel_names = parseMessage(message.params[0], ',');
