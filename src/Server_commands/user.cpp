@@ -16,14 +16,15 @@ static bool	irc_isValidUsername( const std::string & username )
 }
 
 // NOTE: The IRC protocol doesn't specify syntax rules for the username and realname
-static bool	irc_isValidRealname( const std::string & realname )
+static bool irc_isValidRealname( const std::string & realname )
 {
 	if (realname.size() < 1 || realname.size() > 50)
 		return false;
 	for (size_t i = 0; i < realname.size(); i++)
 	{
+		unsigned char c = static_cast<unsigned char>(realname[i]);
 		// Only allow printable ASCII characters
-		if (realname[i] < 32 || realname[i] > 126)
+		if (c < 32 || c > 126)
 			return false;
 	}
 	return true;
