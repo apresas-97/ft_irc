@@ -24,7 +24,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 
 	// error_acknowledgement.prefix = ":" + this->getName();
 	error_acknowledgement.command = "ERROR";
-	error_acknowledgement.params.push_back(":Closing Link: " + client->getHostname() + " (" + quit_message + ")");
+	error_acknowledgement.params.push_back("Closing Link: " + client->getHostname() + " (" + quit_message + ")");
 	error_acknowledgement.target_client_fds.insert(client->getSocket());
 	replies.push_back(error_acknowledgement);
 

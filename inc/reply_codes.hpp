@@ -42,6 +42,18 @@
 #define RPL_TIME 391
 #define RPL_TIME_STR "<server> :<string showing server's local time>"
 
+#define RPL_ENDOFNAMES 366
+#define RPL_ENDOFNAMES_STR "<channel> :End of /NAMES list"
+
+#define RPL_MOTDSTART 375
+#define RPL_MOTDSTART_STR ":- <server> Message of the day - "
+
+#define RPL_MOTD 372
+#define RPL_MOTD_STR ":- <text>"
+
+#define RPL_ENDOFMOTD 376
+#define RPL_ENDOFMOTD_STR ":End of MOTD command"
+
 // Channel removed
 #define RPL_CHANNELREMOVED 901
 #define RPL_CHANNELREMOVED_STR "<channel> :Channel has been removed due to no active users"
@@ -55,6 +67,8 @@
 #define ERR_NOORIGIN_STR ":No origin specified"
 #define ERR_UNKNOWNCOMMAND 421
 #define ERR_UNKNOWNCOMMAND_STR "<command> :Unknown command"
+#define ERR_NOMOTD 422
+#define ERR_NOMOTD_STR ":MOTD File is missing"
 #define ERR_NONICKNAMEGIVEN 431
 #define ERR_NONICKNAMEGIVEN_STR ":No nickname given"
 #define ERR_ERRONEUSNICKNAME 432
