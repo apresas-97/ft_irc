@@ -83,7 +83,7 @@ std::vector<t_message> Server::cmdPart(t_message &message)
 
 		// Remove the user from the channel
 		channel->kickUser(client->getNickname());
-
+		this->_current_client->removeChannel(currentChannel);
 		// Delete the channel if it is empty
 		if (channel->getUserCount() == 0)
 		{
