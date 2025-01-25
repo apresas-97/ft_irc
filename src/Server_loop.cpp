@@ -410,8 +410,6 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		replies = cmdPong(message);
 	else if (command == "KICK")
 		replies = cmdKick(message);
-	else if (command == "PART")
-		replies = cmdPart(message);
 	else if (command == "MOTD")
 		replies = cmdMotd(message);
 	else if (this->_current_client->isRegistered() == true)
