@@ -106,7 +106,6 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 				channelMessage.sender_client_fd = client->getSocket();
 				addChannelToReplyExcept(channelMessage, channel);
 				replies.push_back(channelMessage);
-				return replies;
 			}
 			else
 			{
@@ -119,7 +118,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 			}
 		}
 		// Handle private messages to users
-		else if (Client *targetClient = findClient(message.sender_client_fd))
+		else if (Client *targetClient = findClient(target))
 		{
 			// Create and send private message
 			t_message privateMessage;
@@ -127,7 +126,9 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 			privateMessage.command = "PRIVMSG";
 			privateMessage.params.push_back(target);
 			privateMessage.params.push_back(textToSend);
-			reply.target_client_fds.insert(targetClient->getSocket());
+			privateMessage.sender_client_fd = this->_current_client->getSocket();
+			privateMessage.target_client_fds.insert(targetClient->getSocket());
+			replies.push_back(privateMessage);
 		}
 		else
 		{
