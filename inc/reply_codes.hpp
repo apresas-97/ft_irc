@@ -14,6 +14,9 @@
 #define RPL_PASSWORD 900
 #define RPL_PASSWORD_STR "<nickname> :Please provide the password to continue"
 
+#define RPL_INFO 371
+#define RPL_INFO_STR "<lines>"
+
 // If server is full
 #define RPL_BOUNCE 5
 #define RPL_BOUNCE_STR "Try server <server name>, port <port number>"

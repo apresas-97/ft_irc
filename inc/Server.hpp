@@ -131,6 +131,7 @@ class Server
 		std::vector<t_message> cmdCap( t_message & message );
 		std::vector<t_message> cmdPart( t_message & message );
 		std::vector<t_message> cmdNames( t_message & message );
+		std::vector<t_message> cmdInfo( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
 
