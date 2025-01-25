@@ -266,11 +266,9 @@ void Client::addChannel( Channel * channel, std::string & name )
     this->_channels.insert(std::pair<std::string, Channel *>(name, channel));
 }
 
-void Client::removeChannel(Channel &channel, std::string &name)
+void Client::removeChannel(std::string & name)
 {
     _channels.erase(name);
-	// TODO soomething with &channel??
-	(void)channel;
 }
 
 bool Client::hasMode(char mode) const

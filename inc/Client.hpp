@@ -73,7 +73,7 @@ class Client
 
 		// Channel Management
 		void	addChannel(Channel *channel, std::string& name);
-		void	removeChannel(Channel &channel, std::string& name);
+		void	removeChannel(std::string& name);
 		std::vector<Channel *>	getChannelsVector( void ) const;
 
 		// Mode Management
