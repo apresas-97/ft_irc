@@ -256,7 +256,18 @@ static std::string	formatReply( t_message reply )
 		final_reply += reply.prefix + " ";
 	final_reply += reply.command;
 	for (std::vector<std::string>::iterator it = reply.params.begin(); it != reply.params.end(); ++it)
-		final_reply += " " + *it;
+	{
+		if (it + 1 == reply.params.end())
+		{
+			std::string last_param = *it;
+			if (last_param.find(' ') != std::string::npos)
+				final_reply += " :" + last_param;
+			else
+				final_reply += " " + last_param;
+		}
+		else
+			final_reply += " " + *it;
+	}
 	final_reply += "\r\n";
 	return final_reply;
 }
@@ -297,10 +308,6 @@ void Server::parseData( const std::string & raw_message, int client_fd )
 		sendReplies(*it);
 	}
 	this->_current_client->setLastActivity();
-
-	// apresas-: New, testing
-	// if (this->_current_client->isTerminate())
-		// removeClient(client_fd);
 }
 
 /*
@@ -342,6 +349,7 @@ t_message	Server::prepareMessage( std::string raw_message ) // ffornes- Where do
 			std::string rest;
 			std::getline(iss, rest);
 			word += rest;
+			word.erase(0, 1); // Remove the ':' character
 			message.params.push_back(word);
 			parameters++;
 			break;
@@ -404,6 +412,8 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		replies = cmdKick(message);
 	else if (command == "PART")
 		replies = cmdPart(message);
+	else if (command == "MOTD")
+		replies = cmdMotd(message);
 	else if (this->_current_client->isRegistered() == true)
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
 	return replies;

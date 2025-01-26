@@ -130,6 +130,7 @@ class Server
 		std::vector<t_message> cmdPong( t_message & message );
 		std::vector<t_message> cmdCap( t_message & message );
 		std::vector<t_message> cmdPart( t_message & message );
+		std::vector<t_message> cmdMotd( t_message & message );
 
 		t_message	prepareMessage( std::string rawMessage );
 
