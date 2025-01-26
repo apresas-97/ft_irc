@@ -410,6 +410,8 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 		replies = cmdInfo(message);
 	else if (command == "LIST")
 		replies = cmdList(message);
+	else if (command == "WHO")
+		replies = cmdWho(message);
 	else if (this->_current_client->isRegistered() == true)
 		replies.push_back(createReply(ERR_UNKNOWNCOMMAND, ERR_UNKNOWNCOMMAND_STR, message.command));
 	return replies;
