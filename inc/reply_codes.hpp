@@ -40,7 +40,7 @@
 #define RPL_VERSION_STR "<version>.<debuglevel> <server> :<comments>"
 
 #define RPL_NAMREPLY 353
-#define RPL_NAMREPLY_STR "= <channel> :<nick1> <nick2> <nick3> ..."
+#define RPL_NAMREPLY_STR "= <channel> :<nicks>"
 
 #define RPL_TIME 391
 #define RPL_TIME_STR "<server> :<string showing server's local time>"
