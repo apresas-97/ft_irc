@@ -31,6 +31,7 @@ SRC_FILES =	main.cpp \
 			Server_commands/part.cpp \
 			Server_commands/names.cpp \
 			Server_commands/info.cpp \
+			Server_commands/list.cpp \
 			Server_utils.cpp \
 			Client.cpp \
 			Channel.cpp \

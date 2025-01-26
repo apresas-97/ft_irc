@@ -48,6 +48,12 @@
 #define RPL_ENDOFNAMES 366
 #define RPL_ENDOFNAMES_STR "<channel> :End of /NAMES list"
 
+#define RPL_LIST 322
+#define RPL_LIST_STR "<channel> <#visible> :<topic>"
+
+#define RPL_LISTEND 323
+#define RPL_LISTEND_STR ":End of /LIST"
+
 // Channel removed
 #define RPL_CHANNELREMOVED 901
 #define RPL_CHANNELREMOVED_STR "<channel> :Channel has been removed due to no active users"
