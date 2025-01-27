@@ -67,6 +67,17 @@ t_message Server::createReply( int number, const std::string message, const std:
 	size_t end = msg.find('>');
 	if (start != std::string::npos && end != std::string::npos) 
 		msg.replace(start, end - start + 1, param);
+	// If a ':' is present, extract from there until the end and have that be the last param.
+	// Do not include the ':' in the last param.
+	// Get rid of, if present, the space that goes before the ':'
+	size_t colon = msg.find(':');
+	if (colon != std::string::npos)
+	{
+		// TODO
+		// WIP
+	}
+
+
 	reply.params.push_back(msg);
 	reply.target_client_fds.insert(this->_current_client->getSocket());
 	return reply;
