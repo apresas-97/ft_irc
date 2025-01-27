@@ -26,7 +26,7 @@ std::vector<t_message>	Server::cmdCap( t_message & message )
 		nickname = "*";
 	reply.params.push_back(nickname);
 	reply.params.push_back("LS");
-	reply.params.push_back(":"); // No capabilities
+	reply.params.push_back(""); // EVAL
 	reply.target_client_fds.insert(client->getSocket());
 	replies.push_back(reply);
 
