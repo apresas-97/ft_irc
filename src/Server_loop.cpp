@@ -79,7 +79,7 @@ void Server::checkInactivity( void )
 
 void Server::removeTerminatedClients( void )
 {
-	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION" << std::endl;
+//	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION" << std::endl;
 	for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
 	{
 		if (it->second.isTerminate())
@@ -90,7 +90,7 @@ void Server::removeTerminatedClients( void )
 			it = this->_clients.begin();
 		}
 	}
-	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION END" << std::endl;
+//	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION END" << std::endl;
 }
 
 void Server::runServerLoop( void ) 
@@ -268,7 +268,7 @@ static void	sendReplies( t_message reply )
 
 	for (std::set<int>::iterator it = reply.target_client_fds.begin(); it != reply.target_client_fds.end(); ++it)
 	{
-		std::cout << "Reply target fd: " << *it << std::endl; // DEBUG
+//		std::cout << "Reply target fd: " << *it << std::endl; // DEBUG
 		send(*it, output.c_str(), output.size(), 0);
 	}
 }
@@ -276,8 +276,8 @@ static void	sendReplies( t_message reply )
 /// apresas-: WIP
 void Server::parseData( const std::string & raw_message, int client_fd )
 {
-	std::cout << "parseData function called..." << std::endl; // DEBUG
-	std::cout << "MESSAGE RECEIVED: \"" << raw_message << "\"" << std::endl; //  DEBUG
+//	std::cout << "parseData function called..." << std::endl; // DEBUG
+//	std::cout << "MESSAGE RECEIVED: \"" << raw_message << "\"" << std::endl; //  DEBUG
 
 	t_message	message = prepareMessage(raw_message);
 	message.sender_client_fd = client_fd;
@@ -367,7 +367,6 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::vector<t_message> replies;
 	std::string	command = stringToUpper(message.command);
 
-	std::cout << "runCommand function called..." << std::endl;
 	if (command == "CAP" && !this->_current_client->isAuthorised())
 		replies = this->cmdCap(message);
 	else if (command == "PASS")
