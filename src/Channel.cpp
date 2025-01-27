@@ -160,6 +160,22 @@ size_t Channel::getUserCount( void ) const
 	return this->_users.size();
 }
 
+std::vector<std::string> Channel::getUsersOpClean( void ) const
+{
+	std::vector<std::string> users;
+	for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
+	{
+		if (isUserOperator(it->first))
+		{
+			users.push_back("@" + it->first);
+		}
+		else
+			users.push_back(it->first);
+	}
+	return users;
+}
+
+
 std::vector<std::string> Channel::getUsers( void ) const
 {
 	std::vector<std::string> users;
@@ -338,7 +354,7 @@ void Channel::uninviteUser( const std::string & nickname )
 #include <map>
 #include <string>
 // User Localizers
-bool Channel::isUserInChannel( const std::string & nickname )
+bool Channel::isUserInChannel( const std::string & nickname ) const
 {
 	for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
 	{
@@ -363,7 +379,7 @@ bool Channel::isUserInChannel( const std::string & nickname )
 	return false;
 }
 
-bool Channel::isUserOperator( const std::string & nickname )
+bool Channel::isUserOperator( const std::string & nickname ) const
 {
 	for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it)
 	{
@@ -373,7 +389,7 @@ bool Channel::isUserOperator( const std::string & nickname )
 	return false;
 }
 
-bool Channel::isUserInvited( const std::string & nickname )
+bool Channel::isUserInvited( const std::string & nickname ) const
 {
 	for (std::map<std::string, Client*>::const_iterator it = _invited_users.begin(); it != _invited_users.end(); ++it)
 	{

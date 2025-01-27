@@ -42,6 +42,7 @@ class Channel
 		size_t					getUserLimit( void ) const;
 		size_t					getUserCount( void ) const;
 
+		std::vector<std::string>		getUsersOpClean( void ) const;
 		std::vector<std::string>		getUsers( void ) const;
 		std::map<std::string, Client*>	getTrueUsers( void ) const;
 		std::vector<std::string>		getOperators( void ) const;
@@ -61,9 +62,9 @@ class Channel
 		void	uninviteUser( const std::string & userName );	// Uninvite user
 
 		// User Characteristics
-		bool	isUserInChannel( const std::string & userName );
-		bool	isUserOperator( const std::string & userName );
-		bool	isUserInvited( const std::string & userName );
+		bool	isUserInChannel( const std::string & userName ) const;
+		bool	isUserOperator( const std::string & userName ) const;
+		bool	isUserInvited( const std::string & userName ) const;
 
 		bool	isEmpty( void ) const;
 

@@ -30,6 +30,10 @@ SRC_FILES =	main.cpp \
 			Server_commands/cap.cpp \
 			Server_commands/part.cpp \
 			Server_commands/motd.cpp \
+			Server_commands/names.cpp \
+			Server_commands/info.cpp \
+			Server_commands/list.cpp \
+			Server_commands/who.cpp \
 			Server_utils.cpp \
 			Client.cpp \
 			Channel.cpp \

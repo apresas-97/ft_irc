@@ -14,6 +14,9 @@
 #define RPL_PASSWORD 900
 #define RPL_PASSWORD_STR "<nickname> :Please provide the password to continue"
 
+#define RPL_INFO 371
+#define RPL_INFO_STR "<lines>"
+
 // If server is full
 #define RPL_BOUNCE 5
 #define RPL_BOUNCE_STR "Try server <server name>, port <port number>"
@@ -36,8 +39,20 @@
 #define RPL_VERSION 351
 #define RPL_VERSION_STR "<version>.<debuglevel> <server> :<comments>"
 
+#define RPL_WHOREPLY 352
+#define RPL_WHOREPLY_STR "<channel> <user> <host> <server> <nick> <hopcount> <real name>"
+
+#define RPL_ENDOFWHO 315
+#define RPL_ENDOFWHO_STR "<name> :End of WHO list"
+
+#define RPL_LIST 322
+#define RPL_LIST_STR "<channel> <#visible> :<topic>"
+
+#define RPL_LISTEND 323
+#define RPL_LISTEND_STR ":End of /LIST"
+
 #define RPL_NAMREPLY 353
-#define RPL_NAMREPLY_STR "= <channel> :<nick1> <nick2> <nick3> ..."
+#define RPL_NAMREPLY_STR "= <channel> :<nicks>"
 
 #define RPL_TIME 391
 #define RPL_TIME_STR "<server> :<string showing server's local time>"

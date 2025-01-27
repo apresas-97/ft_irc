@@ -189,6 +189,30 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
 			replies.push_back(reply);
 		}
+		
+		std::vector<std::string>	params;
+		params.push_back(client->getNickname());
+		params.push_back(currentChannel);
+		params.push_back(channel->getTopic());
+		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
+		replies.push_back(reply);
+
+		std::vector<std::string> clientList = channel->getUsersOpClean();
+        if (!clientList.empty())
+		{
+			std::vector<std::string> paramsName;
+			paramsName.push_back(currentChannel); // Channel name
+			// Generate reply with the list of visible users
+			std::string names;
+			for (size_t i = 0; i < clientList.size(); ++i)
+			{
+				names += clientList[i] + " ";
+			}
+			paramsName.push_back(names);
+			t_message nameReply = createReply(RPL_NAMREPLY, RPL_NAMREPLY_STR, paramsName);
+			addChannelToReply(nameReply, channel);
+			replies.push_back(nameReply);
+		}
 	}
 	return replies;
 }
