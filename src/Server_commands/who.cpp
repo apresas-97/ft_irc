@@ -100,7 +100,7 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 		}
 	}
 	// TODO Control amount of replies and truncate message if amount is too large...
-	replies.push_back(createReply(315, RPL_ENDOFWHO_STR, this->_current_client->getNickname()));
+	replies.push_back(createReply(315, RPL_ENDOFWHO_STR, name));
 	return replies;
 }
 
