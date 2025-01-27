@@ -39,6 +39,12 @@
 #define RPL_VERSION 351
 #define RPL_VERSION_STR "<version>.<debuglevel> <server> :<comments>"
 
+#define RPL_WHOREPLY 352
+#define RPL_WHOREPLY_STR "<channel> <user> <host> <server> <nick> <hopcount> <real name>"
+
+#define RPL_ENDOFWHO 315
+#define RPL_ENDOFWHO_STR "<name> :End of WHO list"
+
 #define RPL_NAMREPLY 353
 #define RPL_NAMREPLY_STR "= <channel> :<nicks>"
 
