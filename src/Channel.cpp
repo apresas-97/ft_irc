@@ -330,11 +330,11 @@ void Channel::demoteUser( const std::string & nickname )
 	}
 }
 
-void Channel::inviteUser( const std::string & nickname )
+void Channel::inviteUser( const std::string & nickname, Client * client )
 {
 	if (_invited_users.find(nickname) == _invited_users.end())
 	{
-		_invited_users[nickname] = _users[nickname];
+		_invited_users[nickname] = client;
 	}
 	else
 	{
@@ -344,10 +344,7 @@ void Channel::inviteUser( const std::string & nickname )
 
 void Channel::uninviteUser( const std::string & nickname )
 {
-	if (_invited_users.erase(nickname) == 0)
-	{
-		throw std::runtime_error("User is not invited");
-	}
+	_invited_users.erase(nickname);
 }
 
 void Channel::updateNickname( const std::string oldname, const std::string newname )
@@ -412,7 +409,10 @@ bool Channel::isUserOperator( const std::string & nickname ) const
 	for (std::map<std::string, Client*>::const_iterator it = _operators.begin(); it != _operators.end(); ++it)
 	{
 		if (it->first == nickname)
+		{
 			return true;
+			break ;
+		}
 	}
 	return false;
 }
