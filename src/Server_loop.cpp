@@ -34,7 +34,7 @@ void Server::checkInactivity( void )
 				t_message ping_message;
 				ping_message.prefix = ":" + this->getName(); // I've seen servers not sending prefix for PING messages
 				ping_message.command = "PING";
-				ping_message.params.push_back(":" + this->getName());
+				ping_message.params.push_back(this->getName());
 				ping_message.target_client_fds.insert(it->first);
 				sendReplies(ping_message);
 				client.setExpectedPong(true);
