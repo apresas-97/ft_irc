@@ -257,7 +257,7 @@ static std::string	formatReply( t_message reply )
 	final_reply += reply.command;
 	for (std::vector<std::string>::iterator it = reply.params.begin(); it != reply.params.end(); ++it)
 	{
-		if (it + 1 == reply.params.end())
+		if (!std::isdigit(reply.command[0]) && (it + 1 == reply.params.end()))
 		{
 			std::string last_param = *it;
 			if (last_param.find(' ') != std::string::npos)
@@ -375,8 +375,8 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::vector<t_message> replies;
 	std::string	command = stringToUpper(message.command);
 
-	if (command == "CAP" && !this->_current_client->isAuthorised())
-		replies = this->cmdCap(message);
+	if (command == "CAP")
+		return replies;
 	else if (command == "PASS")
 		replies = cmdPass(message);
 	else if (command == "NICK")
