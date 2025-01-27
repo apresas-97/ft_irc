@@ -350,6 +350,34 @@ void Channel::uninviteUser( const std::string & nickname )
 	}
 }
 
+void Channel::updateNickname( const std::string oldname, const std::string newname )
+{
+	std::map<std::string, Client*>::iterator	it;
+	Client	*	client;
+
+	it = _users.find(oldname);
+	if (it != _users.end())
+	{
+		client = it->second;
+		_users.erase(it);
+		_users[newname] = client;
+	}
+	it = _invited_users.find(oldname);
+	if (it != _invited_users.end())
+	{
+		client = it->second;
+		_invited_users.erase(it);
+		_invited_users[newname] = client;
+	}
+	it = _operators.find(oldname);
+	if (it != _operators.end())
+	{
+		client = it->second;
+		_operators.erase(it);
+		_operators[newname] = client;
+	}
+}
+
 #include <iostream>
 #include <map>
 #include <string>

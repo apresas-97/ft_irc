@@ -60,6 +60,7 @@ class Channel
 		void	demoteUser( const std::string & userName );	// Turn operator to user
 		void	inviteUser( const std::string & userName );	// Invite user
 		void	uninviteUser( const std::string & userName );	// Uninvite user
+		void	updateNickname( const std::string, const std::string );
 
 		// User Characteristics
 		bool	isUserInChannel( const std::string & userName ) const;

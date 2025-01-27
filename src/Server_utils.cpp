@@ -172,6 +172,9 @@ void	Server::updateClientNickname( Client * client, const std::string & new_nick
 	this->_clients_fd_map.insert(std::pair<std::string, int>(new_nickname, client->getSocket()));
 	this->replaceTakenNickname(client, new_nickname);
 	client->setNickname(new_nickname);
+	std::vector<Channel *>	channels = client->getChannelsVector();
+	for (std::vector<Channel *>::iterator it = channels.begin(); it != channels.end(); ++it)
+		(*it)->updateNickname(old_nickname, new_nickname);
 }
 
 t_message	Server::createNotice( Client * client, const std::string & message )
