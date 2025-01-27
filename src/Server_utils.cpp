@@ -188,7 +188,7 @@ t_message	Server::createNotice( Client * client, const std::string & message )
 	if (nickname.empty())
 		nickname = "*";
 	notice.params.push_back(nickname);
-	notice.params.push_back(":" + message);
+	notice.params.push_back(message);
 	return notice;
 }
 
