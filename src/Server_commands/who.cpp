@@ -45,9 +45,55 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 	bool	is_wildcard = (name.empty() || name == "0" || name == "*");
 	bool	is_channel = (!name.empty() && (name[0] == '#' || name[0] == '&'));
 
-	if (is_wildcard || name.find('*') != std::string::npos)
+	if (is_wildcard)
 	{
 		std::cout << "It is wildcard" << std::endl;
+		// Look for all the users that don't have mode +i
+
+		// Check if user is in any channel, prefix will be '*' if user is not in any channel, or the first channel name it's in
+
+		for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
+		{
+			Client	client = it->second;
+			if (client.getMode('i') && client.getSocket() != _current_client->getSocket())
+				continue;
+
+			std::vector<std::string>	user_info;
+
+			// Check if the user is in any channel
+			if (client.getChannelCount() > 0) // TODO Current function is not working
+			{
+				user_info.push_back("CHANNEL");
+				// Prefix will be the first channel name found
+			}
+			else
+			{
+				user_info.push_back("*");
+				// Prefix should be '*'
+			}
+			user_info.push_back(client.getNickname());
+			user_info.push_back(client.getUsername());
+			user_info.push_back(client.getHostname());
+			user_info.push_back(this->_name);
+			if (client.getMode('a'))
+			{
+				user_info.push_back("A");
+//				user_info.push_back(client.getAwayMessage()); // TODO
+			}
+			else
+				user_info.push_back("H");
+			user_info.push_back(":" + client.getRealname());
+
+			std::cout << "PRINTING USER INFO: " << std::endl;
+			for (std::vector<std::string>::iterator it = user_info.begin(); it != user_info.end(); ++it)
+				std::cout << *it << std::endl;
+			std::cout << "END OF PRINTING USER INFO " << std::endl;
+			//	<server> 352 <prefix> <user> <username> <hostname> <server> <status> <away> :<realname>
+		}
+	}
+	else if (name.find('*') != std::string::npos)
+	{
+		std::cout << "Wildcard contains some information to check" << std::endl;
 	}
 	else if (is_channel)
 	{
