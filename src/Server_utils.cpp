@@ -1,4 +1,3 @@
-#include "ft_irc.hpp"
 #include "Server.hpp"
 
 bool Server::isUserInServer( const std::string & nickname ) 

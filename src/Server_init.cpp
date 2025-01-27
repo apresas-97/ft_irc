@@ -1,8 +1,4 @@
-#include <cstring>
-#include "ft_irc.hpp"
 #include "Server.hpp"
-
-#define PORT 8080 // Port number to bind
 
 void Server::parseInput( void ) 
 {

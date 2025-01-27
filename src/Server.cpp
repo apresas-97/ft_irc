@@ -1,11 +1,7 @@
-#include <cstring>
 #include <ctime>
 #include <iomanip>
 
-#include "ft_irc.hpp"
 #include "Server.hpp"
-
-#define PORT 8080 // Port number to bind
 
 Server*	Server::instance = NULL;
 
@@ -33,65 +29,6 @@ void Server::signalHandler( int signal )
 			instance->cleanClose(true);
 		exit(EXIT_SUCCESS);
 	}
-}
-
-void Server::cleanClose( bool flag ) 
-{
-	for (std::vector<struct pollfd>::iterator it = _poll_fds.begin(); it != _poll_fds.end(); ++it)
-	{
-		if (close((*it).fd) == -1)
-		{
-			if ((*it).fd != this->_serverFd)
-				closeFailureLog("_poll_fds", (*it).fd, this->_serverFd);
-			else if ((*it).fd == this->_serverFd)
-				closeFailureLog("serverFd", this->_serverFd);
-		}
-	}
-	_poll_fds.erase(_poll_fds.begin(), _poll_fds.end());
-	if (flag)
-		this->~Server();
-}
-
-void Server::removeClient( int fd )
-{
-	std::cout << "Removing client..." << std::endl;
-	Client * client = this->findClient(fd);
-
-	if (!client)
-	{
-		std::cerr << "Client not found in client list" << std::endl;
-		return ;
-	}
-	// Remove client's name from _taken_nicknames ... std::vector<std::string>()
-	std::vector<std::string>::iterator taken_nickname_it = std::find(_taken_nicknames.begin(), _taken_nicknames.end(), client->getNickname());
-	if (taken_nickname_it != _taken_nicknames.end())
-		_taken_nicknames.erase(taken_nickname_it);
-	// Remove from _clients_fd_map ... std::map<std::string, int>()
-	if (_clients_fd_map.find(client->getNickname()) != _clients_fd_map.end()) // Check if it exists
-		_clients_fd_map.erase(client->getNickname());
-	else
-		std::cout << "Unable to find client in client fd map" << std::endl;
-	// Remove from _clients ... std::map<int, Client>()
-	if (_clients.find(fd) != _clients.end()) // Check if it exists
-		_clients.erase(fd);
-	else
-		std::cout << "Unable to find client in client list" << std::endl;
-	if (close(fd) == -1) // error handling...
-		closeFailureLog("_poll_fds", fd, this->_serverFd);
-	// Remove from _poll_fds .	std::vector<struct pollfd>()
-	for (std::vector<struct pollfd>::iterator it = _poll_fds.begin(); it != _poll_fds.end(); ++it)
-	{
-		if ((*it).fd == fd )
-		{
-			_poll_fds.erase(it);
-			std::cout << "Client removed from _poll_fds..." << std::endl;
-			break ;
-		}
-	}
-	std::cout << "Client count before removal: " << this->_client_count << std::endl;
-	this->_client_count -= 1;
-	std::cout << "Client count after removal: " << this->_client_count << std::endl;
-	std::cout << "Client removed client successfully" << std::endl;
 }
 
 void Server::sendData(const char *message) 
@@ -214,5 +151,22 @@ void Server::setStartTime( void )
 std::string Server::getStartTimeStr( void ) 
 {
 	return this->_start_time_str;
+}
+
+void Server::cleanClose( bool flag ) 
+{
+	for (std::vector<struct pollfd>::iterator it = _poll_fds.begin(); it != _poll_fds.end(); ++it)
+	{
+		if (close((*it).fd) == -1)
+		{
+			if ((*it).fd != this->_serverFd)
+				closeFailureLog("_poll_fds", (*it).fd, this->_serverFd);
+			else if ((*it).fd == this->_serverFd)
+				closeFailureLog("serverFd", this->_serverFd);
+		}
+	}
+	_poll_fds.erase(_poll_fds.begin(), _poll_fds.end());
+	if (flag)
+		this->~Server();
 }
 
