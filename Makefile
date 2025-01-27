@@ -12,8 +12,8 @@ SRC_FILES =	main.cpp \
 			Server_init.cpp \
 			Server_loop.cpp \
 			Server_new_client.cpp \
-			Server_handle_data.cpp \
-			Server_parse_data.cpp \
+			Server_data_handle.cpp \
+			Server_data_parse.cpp \
 			Server_replies.cpp \
 			Server_inactivity.cpp \
 			Server_commands/chanmode.cpp \
