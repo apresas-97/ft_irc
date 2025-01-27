@@ -99,7 +99,8 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
 	std::vector<std::string> targets = parseMessage(message.params[1], ',');
 	for (size_t i = 0; i < targets.size(); i++)
 	{
-		if (!findClient(targets[i]))
+		Client *	target_client = findClient(targets[i]);
+		if (!target_client)
 		{
 			replies.push_back(createReply(ERR_NOSUCHNICK, ERR_NOSUCHNICK_STR, targets[i]));
 			continue;
@@ -128,13 +129,15 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
 			kickMessage.params.push_back(targets[i]);
 			kickMessage.params.push_back(mainMsg);
 			kickMessage.sender_client_fd = client->getSocket();
-			kickMessage.target_client_fds.insert(findClient(targets[i])->getSocket());
+			kickMessage.target_client_fds.insert(target_client->getSocket());
 			addChannelToReply(kickMessage, channel);
 			replies.push_back(kickMessage);
 
 			channel->kickUser(targets[i]);
 			channel->uninviteUser(targets[i]);
-			// TODO client remove channels from channels vector
+
+			target_client->removeChannel(*it);
+			
 			if (channel->isEmpty())
 			{
 				replies.push_back(createReply(RPL_CHANNELREMOVED, RPL_CHANNELREMOVED_STR, *it));
