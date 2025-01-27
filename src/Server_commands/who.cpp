@@ -85,7 +85,7 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 		std::cout << "It is channel" << std::endl; /* DEBUG */
 		Channel *	channel = this->findChannel(name);
 
-		if (channel && channel->isUserInChannel(this->_current_client->getUsername()))
+		if (channel && channel->isUserInChannel(this->_current_client->getNickname()))
 		{
 			std::map<std::string, Client *>	users = channel->getTrueUsers();
 			for (std::map<std::string, Client *>::iterator it = users.begin(); it != users.end(); ++it)
