@@ -54,7 +54,7 @@ std::vector<t_message>	Server::cmdPing( t_message & message )
 	pong.prefix = ":" + this->getName();
 	pong.command = "PONG";
 	pong.params.push_back(this->getName());
-	pong.params.push_back(":" + token);
+	pong.params.push_back(token);
 	pong.target_client_fds.insert(client->getSocket());
 	pong.sender_client_fd = this->_serverFd;
 	replies.push_back(pong);

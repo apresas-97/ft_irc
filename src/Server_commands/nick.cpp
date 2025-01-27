@@ -61,7 +61,7 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	t_message acknowledgement;
 	acknowledgement.prefix = ":" + old_prefix;
 	acknowledgement.command = "NICK";
-	acknowledgement.params.push_back(":" + nickname);
+	acknowledgement.params.push_back(nickname);
 	acknowledgement.target_client_fds.insert(client->getSocket());
 	replies.push_back(acknowledgement);
 
@@ -69,7 +69,7 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	t_message nick_broadcast;
 	nick_broadcast.prefix = ":" + old_prefix;
 	nick_broadcast.command = "NICK";
-	nick_broadcast.params.push_back(":" + nickname);
+	nick_broadcast.params.push_back(nickname);
 	std::vector<Channel *> channels = client->getChannelsVector();
 	for (std::vector<Channel *>::iterator it = channels.begin(); it != channels.end(); ++it) 
 		addChannelToReplyExcept(nick_broadcast, *it);
