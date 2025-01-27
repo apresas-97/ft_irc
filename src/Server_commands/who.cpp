@@ -34,6 +34,49 @@
 
 #include "Server.hpp"
 
+static std::vector<std::string>	getUserInfo( Client client, std::string channel_name)
+{
+	std::vector<std::string>	user_info;
+
+	// Check if the user is in any channel
+	if (client.getChannelCount() > 0) // TODO Current function is not working
+	{
+		if (!channel_name.empty())
+			user_info.push_back(channel_name);
+		else
+		{
+			// TODO iterate through channels and add the name of the first one as prefix
+		}
+	}
+	else
+	{
+		user_info.push_back("*");
+	}
+	user_info.push_back(client.getNickname());
+	user_info.push_back(client.getUsername());
+	user_info.push_back(client.getHostname());
+	user_info.push_back(this->_name);
+	if (client.getMode('a'))
+	{
+		user_info.push_back("A");
+//		user_info.push_back(client.getAwayMessage()); // TODO
+	}
+	else
+		user_info.push_back("H");
+	user_info.push_back(":" + client.getRealname());
+
+/*											DEBUG													*/
+	std::cout << "PRINTING USER INFO: " << std::endl;		
+	for (std::vector<std::string>::iterator it = user_info.begin(); it != user_info.end(); ++it)
+		std::cout << *it << std::endl;						
+	std::cout << "END OF PRINTING USER INFO " << std::endl; 
+/*											ENDEBUG													*/
+
+	//	<server> 352 <prefix> <user> <username> <hostname> <server> <status> <away> :<realname>
+
+	return user_info;
+}
+
 std::vector<t_message> Server::cmdWho( t_message & message )
 {
 	std::vector<t_message>	replies;
@@ -47,10 +90,7 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 
 	if (is_wildcard)
 	{
-		std::cout << "It is wildcard" << std::endl;
-		// Look for all the users that don't have mode +i
-
-		// Check if user is in any channel, prefix will be '*' if user is not in any channel, or the first channel name it's in
+		std::cout << "It is wildcard" << std::endl;	/* DEBUG */
 
 		for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
 		{
@@ -58,46 +98,19 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 			if (client.getMode('i') && client.getSocket() != _current_client->getSocket())
 				continue;
 
-			std::vector<std::string>	user_info;
+			std::vector<std::string>	info = getUserInfo(client, "");
+			// TODO Create reply
 
-			// Check if the user is in any channel
-			if (client.getChannelCount() > 0) // TODO Current function is not working
-			{
-				user_info.push_back("CHANNEL");
-				// Prefix will be the first channel name found
-			}
-			else
-			{
-				user_info.push_back("*");
-				// Prefix should be '*'
-			}
-			user_info.push_back(client.getNickname());
-			user_info.push_back(client.getUsername());
-			user_info.push_back(client.getHostname());
-			user_info.push_back(this->_name);
-			if (client.getMode('a'))
-			{
-				user_info.push_back("A");
-//				user_info.push_back(client.getAwayMessage()); // TODO
-			}
-			else
-				user_info.push_back("H");
-			user_info.push_back(":" + client.getRealname());
-
-			std::cout << "PRINTING USER INFO: " << std::endl;
-			for (std::vector<std::string>::iterator it = user_info.begin(); it != user_info.end(); ++it)
-				std::cout << *it << std::endl;
-			std::cout << "END OF PRINTING USER INFO " << std::endl;
-			//	<server> 352 <prefix> <user> <username> <hostname> <server> <status> <away> :<realname>
+			// TODO Push to replies
 		}
 	}
-	else if (name.find('*') != std::string::npos)
+	else if (name.find('*') != std::string::npos) // Must print information of all users matching wildcard info...
 	{
-		std::cout << "Wildcard contains some information to check" << std::endl;
+		std::cout << "Wildcard contains some information to check" << std::endl; /* DEBUG */
 	}
-	else if (is_channel)
+	else if (is_channel) // Must print information of all users in the channel that are not invisible
 	{
-		std::cout << "It is channel" << std::endl;
+		std::cout << "It is channel" << std::endl; /* DEBUG */
 		Channel *	channel = this->findChannel(name);
 
 		if (channel && channel->isUserInChannel(this->_current_client->getUsername()))
@@ -105,18 +118,22 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 			std::map<std::string, Client *>	users = channel->getTrueUsers();
 			for (std::map<std::string, Client *>::iterator it = users.begin(); it != users.end(); ++it)
 			{
-				if (!it->second->getMode('i')) // Add user to who list...
-				{
-					std::cout << "Adding user: " << it->second->getNickname() << std::endl;
-				}
+				Client	client = it->second;
+				if (it->second->getMode('i'))
+					continue;
+
+				std::vector<std::string>	info = getUserInfo(client, chanel.getName());
+				// TODO Create reply
+
+				// TODO Push to replies
 			}
 		}
 		else // Channel not found or User not in channel
 		{
-			std::cout << "Unable to process who command" << std::endl;
+			// TODO Create reply
 		}
 	}
-	// Send end of who
+	// TODO Create reply end of who
 	return replies;
 }
 
