@@ -183,19 +183,11 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		if (channel->getTopic() != "")
 		{
 			std::vector<std::string>	params;
-			params.push_back(client->getNickname());
 			params.push_back(currentChannel);
 			params.push_back(channel->getTopic());
 			reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
 			replies.push_back(reply);
 		}
-		
-		std::vector<std::string>	params;
-		params.push_back(client->getNickname());
-		params.push_back(currentChannel);
-		params.push_back(channel->getTopic());
-		reply = createReply(RPL_TOPIC, RPL_TOPIC_STR, params);
-		replies.push_back(reply);
 
 		std::vector<std::string> clientList = channel->getUsersOpClean();
         if (!clientList.empty())
@@ -212,6 +204,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			t_message nameReply = createReply(RPL_NAMREPLY, RPL_NAMREPLY_STR, paramsName);
 			addChannelToReply(nameReply, channel);
 			replies.push_back(nameReply);
+			replies.push_back(createReply(RPL_ENDOFNAMES, RPL_ENDOFNAMES_STR, channel->getName()));
 		}
 	}
 	return replies;
