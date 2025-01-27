@@ -1,5 +1,19 @@
 #include "Server.hpp"
 #include <algorithm> // for std::find
+#include <cstdlib>
+
+static std::string generateRandomNickname( void )
+{
+	const std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+	const size_t charsSize = chars.size();
+	std::string randomString;
+
+	for (size_t i = 0; i < 8; ++i) {
+		randomString += chars[rand() % charsSize];
+	}
+
+	return randomString;
+}
 
 /*
 Command: NICK
@@ -47,6 +61,13 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	{
 		reply = createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname);
 		replies.push_back(reply);
+		replies.push_back(createNotice(client, "You have been assigned a provisional random nickname"));
+		while (true)
+		{
+			nickname = generateRandomNickname();
+			// TODO
+			// generate the random name in a loop until the resulting nickname is not taken then break and NOT RETURN REPLIES HERE
+		}
 		return replies;
 	}
 
