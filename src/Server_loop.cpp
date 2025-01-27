@@ -375,8 +375,8 @@ std::vector<t_message>	Server::runCommand( t_message & message )
 	std::vector<t_message> replies;
 	std::string	command = stringToUpper(message.command);
 
-	if (command == "CAP" && !this->_current_client->isAuthorised())
-		replies = this->cmdCap(message);
+	if (command == "CAP")
+		return replies;
 	else if (command == "PASS")
 		replies = cmdPass(message);
 	else if (command == "NICK")
