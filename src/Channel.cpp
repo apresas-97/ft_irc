@@ -77,10 +77,13 @@ void Channel::setMode( char mode, bool state )
 	}
 }
 
-void Channel::setUserLimit( size_t limit )
+void Channel::setUserLimit( long limit )
 {
 	this->_user_limit = limit;
-	this->_has_user_limit = true;
+	if (limit > 0)
+		this->_has_user_limit = true;
+	else
+		this->_has_user_limit = false;
 }
 
 // Getters
@@ -274,7 +277,7 @@ void Channel::addUser( Client * user, bool is_operator )
 {
 	std::cout << "Adding user \"" << user->getNickname() << "\" to channel \"" << this->_name << "\"" << std::endl;
 	std::cout << "User count before: " << _users.size() << std::endl;
-	if (_has_user_limit && _users.size() >= this->_user_limit)
+	if (_has_user_limit && static_cast<long>(_users.size()) >= this->_user_limit)
 	{
 		// TODO PROBABLY DONT THROW AN EXCEPTION HERE
 		throw std::runtime_error("Channel is full");

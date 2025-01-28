@@ -44,7 +44,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 	std::vector<std::string> 	channel_names;
 	std::vector<std::string> 	keys;
 
-	bool are_keys = message.params.size() > 2 ? true : false;
+	bool are_keys = message.params.size() > 1 ? true : false;
 
 	if (client->isRegistered() == false)
 	{
@@ -66,6 +66,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		std::vector<Channel *>	_channels = this->_current_client->getChannelsVector();
 		size_t		commas = _channels.size() - 1;
 		std::string	params;
+
 		for (std::vector<Channel *>::iterator it = _channels.begin(); it != _channels.end(); ++it)
 		{
 			params += (*it)->getName();
@@ -134,7 +135,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 			// Mode -k (Channel key)
 			if (channel->getMode('k'))
 			{
-				if (!are_keys || i >= keys.size() - 1 || keys[i] != channel->getKey()) 
+				if (!are_keys || i > keys.size() - 1 || keys[i] != channel->getKey()) 
 				{
 					reply = createReply(ERR_BADCHANNELKEY, ERR_BADCHANNELKEY_STR, currentChannel);
 					replies.push_back(reply);
