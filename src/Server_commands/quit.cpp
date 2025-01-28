@@ -18,7 +18,10 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 
 	std::string quit_message;
 	if (message.params.size() == 0)
-		quit_message = client->getNickname();
+	{
+		quit_message = "leaving";
+		//quit_message = client->getNickname();
+	}
 	else
 		quit_message = message.params[0];
 
@@ -28,7 +31,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	error_acknowledgement.target_client_fds.insert(client->getSocket());
 	replies.push_back(error_acknowledgement);
 
-	// quit_broadcast.prefix = ":" + client->getUserPrefix();
+	quit_broadcast.prefix = ":" + client->getUserPrefix();
 	quit_broadcast.command = "QUIT";
 	quit_broadcast.params.push_back(quit_message);
 	std::vector<Channel *> channels = client->getChannelsVector();
