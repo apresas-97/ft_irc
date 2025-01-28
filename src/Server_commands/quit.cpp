@@ -38,10 +38,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	std::cout << "vector of channels size: " << channels.size() << std::endl;
 	for (std::vector<Channel *>::iterator it = channels.begin(); it != channels.end(); ++it)
 	{
-		// Channel * channel = *it;
-		
-		// if (!channel)
-		// 	std::cout << "Uh oh, channel is NULL" << std::endl;
+		/*								DEBUG										*/
 		std::cout << "Removing user from channel: " << (*it)->getName() << std::endl;
 		std::cout << "Users in channel:" << std::endl;
 		std::vector<std::string> chan_users = (*it)->getUsers();
@@ -50,9 +47,9 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 			std::cout << *it << std::endl;
 		}
 		std::cout << "User list end" << std::endl;
-		
+		/*								ENDEBUG										*/
+
 		addChannelToReplyExcept(quit_broadcast, *it);
-		this->uninviteUser(client->getNickname());
 		(*it)->kickUser(client->getNickname());
 
 		if ((*it)->isEmpty()) {
@@ -60,6 +57,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 			this->removeChannel((*it)->getName());
 		}
 	}
+	this->uninviteUser(client->getNickname());
 	replies.push_back(quit_broadcast);
 
 	client->setTerminate(true);
