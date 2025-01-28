@@ -9,7 +9,7 @@
 	4. Prepare the text to send
 		Iterate over the text and add a space to each parameter of tmessage->params
 	5. Iterate over the targets
-		5.a. If # or & (Channels)
+		5.a. If # (Channels)
 			5.a.a. The channel exists
 			5.a.b. The channel does NOT exist
 		5.b. Bot
@@ -78,8 +78,8 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 	{
 		std::string & target = targets[i];
 		
-		// Handle channel messages (targets starting with # or &)
-		if (target[0] == '#' || target[0] == '&')
+		// Handle channel messages (targets starting with #)
+		if (isValidChannelName(target))
 		{
 			// Check if channel exists
 			if (_channels.find(target) != _channels.end())

@@ -1,4 +1,3 @@
-#include "ft_irc.hpp"
 #include "Server.hpp"
 
 bool Server::isUserInServer( const std::string & nickname ) 
@@ -122,6 +121,11 @@ void	Server::addChannelToReplyExcept( t_message & reply, Channel * channel )
 	std::map<std::string, Client*>	users = channel->getTrueUsers();
 	for ( std::map<std::string, Client*>::iterator it = users.begin(); it != users.end(); it++ )
 	{
+		if (!it->second)
+		{
+			std::cout << "Critical error" << "\tUser " << it->first << " pointer is NULL" << std::endl;
+			continue ;
+		}
 		if (it->second->getSocket() == this->_current_client->getSocket())
 			continue ;
 		reply.target_client_fds.insert(it->second->getSocket());
@@ -172,9 +176,12 @@ void	Server::updateClientNickname( Client * client, const std::string & new_nick
 	this->_clients_fd_map.insert(std::pair<std::string, int>(new_nickname, client->getSocket()));
 	this->replaceTakenNickname(client, new_nickname);
 	client->setNickname(new_nickname);
-	std::vector<Channel *>	channels = client->getChannelsVector();
-	for (std::vector<Channel *>::iterator it = channels.begin(); it != channels.end(); ++it)
-		(*it)->updateNickname(old_nickname, new_nickname);
+	std::map<std::string, Channel>	channels = this->_channels;
+	for (std::map<std::string, Channel>::iterator it = channels.begin(); it != channels.end(); ++it)
+	{
+		Channel *	chan = this->findChannel(it->first);
+		chan->updateNickname(old_nickname, new_nickname);
+	}
 }
 
 t_message	Server::createNotice( Client * client, const std::string & message )
@@ -203,3 +210,14 @@ void Server::removeChannel(const std::string &name)
     this->_channels.erase(it);
     std::cout << "Channel \"" << name << "\" has been removed successfully." << std::endl;
 }
+
+void Server::uninviteUser( std::string nickname )
+{
+	for (std::map<std::string, Channel>::iterator it = _channels.begin(); it != _channels.end(); ++it)
+	{
+		Channel *	channel = findChannel(it->first);
+
+		channel->uninviteUser(nickname);
+	}
+}
+

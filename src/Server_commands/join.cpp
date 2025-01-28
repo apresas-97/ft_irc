@@ -108,7 +108,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				continue;
 			}
 			// Mode -i (Invite-only channel)
-			if (channel->getMode('i') && !channel->isUserInvited(client->getUsername()))
+			if (channel->getMode('i') && !channel->isUserInvited(client->getNickname()))
 			{
 				reply = createReply(ERR_INVITEONLYCHAN, ERR_INVITEONLYCHAN_STR, currentChannel);
 				replies.push_back(reply);
@@ -122,7 +122,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				continue;
 			}
 			// Mode -o (Operator privileges required) and Mode -t (Operator privileges required)
-			if ((channel->getMode('o') || channel->getMode('t')) && !channel->isUserOperator(client->getUsername())) 
+			if ((channel->getMode('o') || channel->getMode('t')) && !channel->isUserOperator(client->getNickname())) 
 			{
 				std::vector<std::string> params;
 				params.push_back(client->getNickname());

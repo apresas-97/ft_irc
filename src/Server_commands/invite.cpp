@@ -38,13 +38,16 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 		replies.push_back(reply);
 		return replies;
 	}
-	// return replies;
-	// Check how this works and why its different from the past condition
-	// if (channel->isMember(targetNickname)) 
-	//{
-	//	 replies.push_back(createReply(ERR_USERONCHANNEL, ERR_USERONCHANNEL_STR, targetNickname, channelName));
-	//	 return replies;
-	// }
+	
+	if (channel->isUserInChannel(targetNickname))
+	{
+		std::vector<std::string>	params;
+
+		params.push_back(targetNickname);
+		params.push_back(channelName);
+		replies.push_back(createReply(ERR_USERONCHANNEL, ERR_USERONCHANNEL_STR, params));
+		return replies;
+	}
 
 	if (!channel->isUserOperator(client->getNickname()))
 	{
@@ -61,19 +64,25 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	}
 
 	Client * targetClient = this->findClient(targetNickname);
-	channel->addUser(client, 0);
+	if (!targetClient)
+	{
+		std::cout << "What the fuck" << std::endl;
+	}
+	channel->inviteUser(targetNickname, targetClient);
+
 	t_message inviteMessage;
 	inviteMessage.prefix = ":" + client->getUserPrefix();
 	inviteMessage.command = "INVITE";
 	inviteMessage.params.push_back(targetNickname);
 	inviteMessage.params.push_back(channelName);
 	inviteMessage.target_client_fds.insert(targetClient->getSocket());
+	replies.push_back(inviteMessage);
 	// I've seen in some servers that the acknowledgement message is sent ALSO to the rest of
 	// operators of the channel. It's not our priority right now.
 
 	std::vector<std::string>	params;
-	params.push_back(channelName);
 	params.push_back(targetNickname);
+	params.push_back(channelName);
 	reply = createReply(RPL_INVITING, RPL_INVITING_STR, params);
 	replies.push_back(reply);
 	return replies;

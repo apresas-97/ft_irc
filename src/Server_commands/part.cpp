@@ -91,24 +91,6 @@ std::vector<t_message> Server::cmdPart(t_message &message)
 			removeChannel(currentChannel);
 			continue;
 		}
-
-		// Send updated user list to the channel
-		std::vector<std::string> clientList = channel->getUsers();
-		if (!clientList.empty())
-		{
-            std::vector<std::string> paramsName = clientList;
-            paramsName.push_back(currentChannel);
-			t_message nameReply = createReply(RPL_NAMREPLY, RPL_NAMREPLY_STR, paramsName);
-			addChannelToReply(nameReply, channel);
-			replies.push_back(nameReply);
-
-            std::vector<std::string> paramsEnd = clientList;
-            paramsEnd.push_back(client->getNickname());
-            paramsEnd.push_back(currentChannel);
-			t_message endOfNames = createReply(RPL_ENDOFNAMES, RPL_ENDOFNAMES_STR, paramsEnd);
-			addChannelToReply(endOfNames, channel);
-			replies.push_back(endOfNames);
-		}
 	}
 
 	return replies;

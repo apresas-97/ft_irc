@@ -58,7 +58,7 @@ std::vector<t_message> Server::cmdList(t_message &message)
 			Channel &channel = it->second;
 
 			// Skip secret (+s) channels if the client is not a member
-			if (channel.getMode('s') && !channel.isUserInChannel(client->getUsername())) 
+			if (channel.getMode('s') && !channel.isUserInChannel(client->getNickname())) 
 				continue;
 
 			// Prepare the reply for the channel
@@ -89,7 +89,7 @@ std::vector<t_message> Server::cmdList(t_message &message)
 			Channel *channel = findChannel(channelName);
 
 			// Skip secret (+s) channels if the client is not a member
-			if (channel->getMode('s') && !channel->isUserInChannel(client->getUsername())) 
+			if (channel->getMode('s') && !channel->isUserInChannel(client->getNickname())) 
 				continue;
 
 			// Prepare the reply for the channel

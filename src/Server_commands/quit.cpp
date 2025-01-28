@@ -18,7 +18,10 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 
 	std::string quit_message;
 	if (message.params.size() == 0)
-		quit_message = client->getNickname();
+	{
+		quit_message = "leaving";
+		//quit_message = client->getNickname();
+	}
 	else
 		quit_message = message.params[0];
 
@@ -28,17 +31,14 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 	error_acknowledgement.target_client_fds.insert(client->getSocket());
 	replies.push_back(error_acknowledgement);
 
-	// quit_broadcast.prefix = ":" + client->getUserPrefix();
+	quit_broadcast.prefix = ":" + client->getUserPrefix();
 	quit_broadcast.command = "QUIT";
 	quit_broadcast.params.push_back(quit_message);
 	std::vector<Channel *> channels = client->getChannelsVector();
 	std::cout << "vector of channels size: " << channels.size() << std::endl;
 	for (std::vector<Channel *>::iterator it = channels.begin(); it != channels.end(); ++it)
 	{
-		// Channel * channel = *it;
-		
-		// if (!channel)
-		// 	std::cout << "Uh oh, channel is NULL" << std::endl;
+		/*								DEBUG										*/
 		std::cout << "Removing user from channel: " << (*it)->getName() << std::endl;
 		std::cout << "Users in channel:" << std::endl;
 		std::vector<std::string> chan_users = (*it)->getUsers();
@@ -47,7 +47,8 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 			std::cout << *it << std::endl;
 		}
 		std::cout << "User list end" << std::endl;
-		
+		/*								ENDEBUG										*/
+
 		addChannelToReplyExcept(quit_broadcast, *it);
 		(*it)->kickUser(client->getNickname());
 
@@ -56,6 +57,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 			this->removeChannel((*it)->getName());
 		}
 	}
+	this->uninviteUser(client->getNickname());
 	replies.push_back(quit_broadcast);
 
 	client->setTerminate(true);

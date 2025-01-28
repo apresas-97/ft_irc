@@ -8,7 +8,7 @@
 #define SPECIAL_CHARACTERS "[\\]`_^{|}"
 
 #define MAX_CHANNEL_NAME_LENGTH 50
-#define CHANNEL_PREFIXES "#&+"
+#define CHANNEL_PREFIXES "#"
 #define CHANNEL_NAME_FORBIDDEN_CHARS "\0\6\r\n ,:"
 
 bool	isNospcrlfcl( char c );

@@ -2,6 +2,7 @@
 #define SERVER_HPP
 
 #include <iostream>
+#include <cstring>
 #include <string>
 #include <list>
 #include <vector>
@@ -78,6 +79,7 @@ class Server
 		bool channelFound(const std::string& chanName);
 		bool isUserInServer( const std::string & nickname );
 		bool isChannelInServer( const std::string & channel );
+		void uninviteUser( std::string nickname );
 
 		void removeChannel( const std::string &name );
 
@@ -96,19 +98,12 @@ class Server
 		void cleanClose( bool );
 		void removeClient( int fd );
 
-		void parseData( const std::string & message, int client_fd );
-		std::vector<t_message> runCommand( t_message & message );
-
 		std::string	getName( void ) const;
 
-		t_message createReply( int number, const std::string message );
-		t_message createReply( int number, const std::string message, const std::string & param );
-		t_message createReply( int number, const std::string message, const std::vector<std::string> & param );
-		t_message createReply( t_message & message, std::string corrected_param, std::string nickname );
-		t_message replyList(Client *client, Channel *channel, std::vector<int>& fds);
+		// Data
+		t_message parseData( const std::string & raw_message, int client_fd );
 
-		std::vector<t_message>	createWelcomeReplies( Client * client );
-
+		std::vector<t_message> runCommand( t_message & message );
 		// Commands
 		std::vector<t_message> cmdInvite( t_message & message );
 		std::vector<t_message> cmdJoin( t_message & message );
@@ -135,11 +130,23 @@ class Server
 		std::vector<t_message> cmdInfo( t_message & message );
 		std::vector<t_message> cmdList( t_message & message );
 		std::vector<t_message> cmdWho( t_message & message );
-
+		
+		// Messages
 		t_message	prepareMessage( std::string rawMessage );
+		std::vector<std::string> splitMessage( std::string & message );
 
-		static void signalHandler( int signal );
-	
+		// Replies
+		void		sendReply( t_message reply );
+		std::string	formatReply( t_message reply );
+
+		t_message createReply( int number, const std::string message );
+		t_message createReply( int number, const std::string message, const std::string & param );
+		t_message createReply( int number, const std::string message, const std::vector<std::string> & param );
+		t_message createReply( t_message & message, std::string corrected_param, std::string nickname );
+		t_message replyList(Client *client, Channel *channel, std::vector<int>& fds);
+
+		std::vector<t_message>	createWelcomeReplies( Client * client );
+
 		// Utils
 		bool	hasNULL( const char * buffer, int bytes_received ) const;
 		bool	hasCRLF( const std::string ) const;
@@ -158,6 +165,7 @@ class Server
 		// IDK
 		void	checkInactivity( void );
 		void	removeTerminatedClients( void );
+		static void signalHandler( int signal );
 
 		// DEBUG
 		void	printTmessage( t_message message ) const;

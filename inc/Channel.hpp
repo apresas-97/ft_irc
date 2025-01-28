@@ -58,7 +58,7 @@ class Channel
 		void	kickUser( const std::string & );
 		void	promoteUser( const std::string & userName );	// Turn user to operator
 		void	demoteUser( const std::string & userName );	// Turn operator to user
-		void	inviteUser( const std::string & userName );	// Invite user
+		void	inviteUser( const std::string & userName, Client * );	// Invite user
 		void	uninviteUser( const std::string & userName );	// Uninvite user
 		void	updateNickname( const std::string, const std::string );
 

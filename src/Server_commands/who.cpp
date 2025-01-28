@@ -49,7 +49,6 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 		name = message.params[0];
 
 	bool	is_all = (name.empty() || name == "0" || name == "*");
-	bool	is_channel = (!name.empty() && (name[0] == '#' || name[0] == '&'));
 
 	if (is_all)
 	{
@@ -73,6 +72,10 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 		for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
 		{
 			Client	client = it->second;
+			
+			if (client.getMode('i') && client.getSocket() != _current_client->getSocket())
+				continue;
+
 			if (check_prefix(client, prefix, this->_name) && check_suffix(client, suffix, this->_name))
 			{
 				std::vector<std::string>	info = getUserInfo(client, this->_name,  "");
@@ -80,18 +83,19 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 			}
 		}
 	}
-	else if (is_channel) // Must print information of all users in the channel that are not invisible
+	else if (isValidChannelName(name)) // Must print information of all users in the channel that are not invisible
 	{
 		std::cout << "It is channel" << std::endl; /* DEBUG */
 		Channel *	channel = this->findChannel(name);
 
-		if (channel && channel->isUserInChannel(this->_current_client->getUsername()))
+		if (channel && channel->isUserInChannel(this->_current_client->getNickname()))
 		{
 			std::map<std::string, Client *>	users = channel->getTrueUsers();
 			for (std::map<std::string, Client *>::iterator it = users.begin(); it != users.end(); ++it)
 			{
 				Client	client = *(it->second);
-				if (it->second->getMode('i'))
+
+				if (client.getMode('i') && client.getSocket() != _current_client->getSocket())
 					continue;
 
 				std::vector<std::string>	info = getUserInfo(client, this->_name, channel->getName());

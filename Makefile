@@ -11,6 +11,11 @@ SRC_FILES =	main.cpp \
 			Server.cpp \
 			Server_init.cpp \
 			Server_loop.cpp \
+			Server_new_client.cpp \
+			Server_data_handle.cpp \
+			Server_data_parse.cpp \
+			Server_replies.cpp \
+			Server_inactivity.cpp \
 			Server_commands/chanmode.cpp \
 			Server_commands/invite.cpp \
 			Server_commands/join.cpp \

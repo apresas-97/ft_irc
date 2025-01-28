@@ -62,7 +62,7 @@ std::vector<t_message> Server::cmdTopic( t_message &message )
 			newTopic += " " + message.params[i];
 		}
 
-		if (channel->getMode('t') && !channel->isUserOperator(client->getUsername())) 
+		if (channel->getMode('t') && !channel->isUserOperator(client->getNickname())) 
 		{
 			reply = createReply(ERR_CHANOPRIVSNEEDED, ERR_CHANOPRIVSNEEDED_STR, channelName);
 			replies.push_back(reply);
