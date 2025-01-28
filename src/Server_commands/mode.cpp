@@ -483,7 +483,7 @@ std::vector<t_message>	Server::cmdModeChannel( t_message & message )
 				// std::cout << "case l" << std::endl;
 				if (first_appearances.l == false) continue;
 				first_appearances.l = false;
-				long limit = 0;
+				long limit = -1;
 				if (flags[i].active_operator == '+')
 				{
 					limit = getLimit(flags[i].param);

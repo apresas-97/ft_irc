@@ -29,7 +29,7 @@ class Channel
 		void	setTopic( const std::string & topic );
         void	setKey(std::string key);
 		void	setMode( char mode, bool state );
-		void	setUserLimit( size_t limit );
+		void	setUserLimit( long limit );
 
 		// Getters
         std::string				getName( void ) const;
@@ -78,7 +78,7 @@ class Channel
 		std::map<std::string, Client*>	_users;
 		std::map<std::string, Client*>	_invited_users;
 		std::map<std::string, Client*>	_operators;
-		size_t							_user_limit;
+		long							_user_limit;
 		bool							_has_user_limit;
 
 };
