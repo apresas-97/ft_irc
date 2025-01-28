@@ -51,12 +51,10 @@ void	Server::getClientData( int i )
 				std::cerr << "Empty command received, message will be silently ignored" << std::endl;
 				continue;
 			}
-			printTmessage(message); // DEBUG
 
 			std::vector<t_message> replies = runCommand(message);
 			for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
 			{
-				printTmessage(*it); // DEBUG
 				sendReply(*it);
 			}
 			this->_current_client->setLastActivity();

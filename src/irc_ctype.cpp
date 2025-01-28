@@ -58,11 +58,8 @@ bool	isLower( char c )
 		; A series of 1 to 23 octets
 		; can contain any 7-bit ASCII character, except NUL, ACK, HT, LF, VT, FF, CR, or SPACE 
 */
-// TODO: This function should probably be part of the Client class
 bool	isKeyValid( const std::string & key )
 {
-	// KEY_MIN_LEN = 1
-	// KEY_MAX_LEN = 23
 	if (key.size() < 1 || key.size() > 23)
 		return false;
 	for (size_t i = 0; i < key.size(); i++) 
@@ -73,7 +70,6 @@ bool	isKeyValid( const std::string & key )
 	return true;
 }
 
-// TODO: This function should probably be part of the Client class
 bool	isValidNickname( const std::string & nickname )
 {
 	if (nickname.size() < 1 || nickname.size() > 9)
@@ -82,14 +78,12 @@ bool	isValidNickname( const std::string & nickname )
 		return false;
 	for (size_t i = 1; i < nickname.size(); i++)
 	{
-		// If this returns false it must attempt to change the nickname anyway but ignoring all the chars past this one
-		if (!isalnum(nickname[i]) && nickname[i] != '_' && nickname[i] != '-') // ffornes- Removed isspecial from here since irssi don't accept them
+		if (!isalnum(nickname[i]) && nickname[i] != '_' && nickname[i] != '-')
 			return false;
 	}
 	return true;
 }
 
-// TODO: This function should probably be part of the Channel class
 bool	isValidChannelName( const std::string & channel_name )
 {
 	if (channel_name.size() < 1 || channel_name.size() > MAX_CHANNEL_NAME_LENGTH)

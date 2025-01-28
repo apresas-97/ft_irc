@@ -123,7 +123,7 @@ void	Server::addChannelToReplyExcept( t_message & reply, Channel * channel )
 	{
 		if (!it->second)
 		{
-			std::cout << "Critical error" << "\tUser " << it->first << " pointer is NULL" << std::endl;
+			RED_TEXT("Critical error :\tUser pointer is NULL");
 			continue ;
 		}
 		if (it->second->getSocket() == this->_current_client->getSocket())
@@ -208,7 +208,6 @@ void Server::removeChannel(const std::string &name)
         return;
     }
     this->_channels.erase(it);
-    std::cout << "Channel \"" << name << "\" has been removed successfully." << std::endl;
 }
 
 void Server::uninviteUser( std::string nickname )
