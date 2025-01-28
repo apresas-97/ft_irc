@@ -19,10 +19,7 @@ void Server::runServerLoop( void )
             std::cerr << "Poll error: " << strerror(errno) << std::endl;
             break;
         }
-		if (pollCount == 0)
-		{
-        	std::cout << "Poll timed out, no activity" << std::endl; // Remove later...
-        }
+		if (pollCount == 0) {}
 		else
 		{
 			for (size_t i = 0; i < _poll_fds.size(); i++) 
