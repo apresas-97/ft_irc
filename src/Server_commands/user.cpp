@@ -24,7 +24,7 @@ static bool irc_isValidRealname( const std::string & realname )
 	{
 		unsigned char c = static_cast<unsigned char>(realname[i]);
 		// Only allow printable ASCII characters
-		if (c < 32 || (c > 126 && c < 160) || c > 255)
+		if (c < 32 || (c > 126 && c < 160))
 			return false;
 	}
 	return true;
