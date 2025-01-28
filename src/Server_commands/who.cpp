@@ -73,6 +73,10 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 		for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
 		{
 			Client	client = it->second;
+			
+			if (client.getMode('i') && client.getSocket() != _current_client->getSocket())
+				continue;
+
 			if (check_prefix(client, prefix, this->_name) && check_suffix(client, suffix, this->_name))
 			{
 				std::vector<std::string>	info = getUserInfo(client, this->_name,  "");
@@ -91,7 +95,8 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 			for (std::map<std::string, Client *>::iterator it = users.begin(); it != users.end(); ++it)
 			{
 				Client	client = *(it->second);
-				if (it->second->getMode('i'))
+
+				if (client.getMode('i') && client.getSocket() != _current_client->getSocket())
 					continue;
 
 				std::vector<std::string>	info = getUserInfo(client, this->_name, channel->getName());
