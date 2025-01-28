@@ -52,7 +52,7 @@ std::vector<t_message> Server::cmdQuit( t_message & message )
 		std::cout << "User list end" << std::endl;
 		
 		addChannelToReplyExcept(quit_broadcast, *it);
-		(*it)->uninviteUser(client->getNickname());
+		this->uninviteUser(client->getNickname());
 		(*it)->kickUser(client->getNickname());
 
 		if ((*it)->isEmpty()) {
