@@ -29,8 +29,9 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 		return replies;
 	}
 
-	// Check if the nickname follows the valid nickname format
 	std::string nickname = message.params[0];
+
+	// Check if the nickname follows the valid nickname format
 	if (isValidNickname(nickname) == false)
 	{
 		reply = createReply(ERR_ERRONEUSNICKNAME, ERR_ERRONEUSNICKNAME_STR, nickname);
