@@ -46,7 +46,7 @@ std::vector<t_message> Server::cmdPong( t_message & message )
 		return replies;
 	}
 
-	if (message.params[0] == ":" + this->getName()) // EVAL
+	if (message.params[0] == this->getName())
 	{
 		std::cout << "PARAMETER TOKEN IS VALID" << std::endl;
 		std::cout << "set expected pong to false" << std::endl;
