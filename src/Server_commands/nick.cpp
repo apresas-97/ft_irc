@@ -1,19 +1,5 @@
 #include "Server.hpp"
 #include <algorithm> // for std::find
-#include <cstdlib>
-
-static std::string generateRandomNickname( void )
-{
-	const std::string chars = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
-	const size_t charsSize = chars.size();
-	std::string randomString;
-
-	for (size_t i = 0; i < 8; ++i) {
-		randomString += chars[rand() % charsSize];
-	}
-
-	return randomString;
-}
 
 /*
 Command: NICK
@@ -60,16 +46,20 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	// Nickname is already taken ?
 	if (this->isNicknameTaken(nickname) == true)
 	{
-		reply = createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname);
-		replies.push_back(reply);
-		replies.push_back(createNotice(client, "You have been assigned a provisional random nickname"));
-		while (true)
+		// reply = createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname);
+		replies.push_back(createNotice(client, "Nickname " + nickname + " is already in use."));
+		replies.push_back(createNotice(client, "You will be assigned a temporary unique nickname."));
+		nickname = this->generateUniqueNickname();
+		if (nickname == "***")
 		{
-			nickname = generateRandomNickname();
-			// TODO
-			// generate the random name in a loop until the resulting nickname is not taken then break and NOT RETURN REPLIES HERE
+			t_message quit_message;
+			quit_message.command = "QUIT";
+			quit_message.params.push_back("Nickname generation failed. Please try again later.");
+			std::vector<t_message> quit_replies = this->cmdQuit(quit_message);
+			replies.insert(replies.end(), quit_replies.begin(), quit_replies.end());
+			return replies;
 		}
-		return replies;
+		// return replies;
 	}
 
 	std::string old_prefix = client->getUserPrefix();

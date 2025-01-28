@@ -50,7 +50,7 @@ class Server
 		time_t				_start_time;
 		std::string			_start_time_str;
 
-		bool				_running; // apresas-: Maybe
+		size_t				_unique_id; // for unique nickname generation
 
 		static Server		*instance;
 
@@ -161,6 +161,7 @@ class Server
 		void	removeTakenNickname( const std::string & nickname );
 		void	replaceTakenNickname( Client * client, const std::string & new_nickname );
 		void	updateClientNickname( Client * client, const std::string & new_nickname );
+		std::string generateUniqueNickname( void );
 
 		// IDK
 		void	checkInactivity( void );

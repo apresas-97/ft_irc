@@ -75,6 +75,9 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 	Client *	client = this->_current_client;
 	std::vector<t_message>	replies;
 
+	if (client->isTerminate() == true)
+		return replies;
+
 	// Check if the client is already registered, this takes precedence over everything else
 	if (client->isRegistered() == true)
 	{

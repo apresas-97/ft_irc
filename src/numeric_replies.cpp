@@ -2,7 +2,7 @@
 #include <iomanip>
 
 /* returns a numeric reply number in its string format with 3 width and padding 0 */
-std::string formatNumber( int number ) 
+static std::string formatNumber( int number )
 {
 	std::ostringstream	oss;
 	oss << std::setw(3) << std::setfill('0') << number;
@@ -10,7 +10,7 @@ std::string formatNumber( int number )
 }
 
 // Currently unused
-std::string getTimestamp( void ) 
+static std::string getTimestamp( void )
 {
 	std::string timestamp = "@time=";
 	time_t t = time(0);
@@ -29,7 +29,7 @@ std::string getTimestamp( void )
 }
 
 // For replies that have no specific parameters like <channel>, <nickname>, etc.
-t_message Server::createReply( int number, const std::string message ) 
+t_message Server::createReply( int number, const std::string message )
 {
 	t_message reply;
 	// reply.timestamp = getTimestamp(); // optional
@@ -48,7 +48,7 @@ t_message Server::createReply( int number, const std::string message )
 For replies that have 1 parameter
 param will replace the placeholder in the message
 */
-t_message Server::createReply( int number, const std::string message, const std::string & param ) 
+t_message Server::createReply( int number, const std::string message, const std::string & param )
 {
 	t_message reply;
 	// std::string timestamp = getTimestamp(); // optional

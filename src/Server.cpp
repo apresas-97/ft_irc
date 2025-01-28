@@ -13,6 +13,7 @@ Server::Server( const std::string & port, const std::string & password ) : _port
 	setStartTime();
 	parseInput();
 	this->_client_count = 0;
+	this->_unique_id = 1174711139837; // Min 8 character long unique ID
 	initServer();
 }
 

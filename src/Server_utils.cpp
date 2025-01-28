@@ -221,3 +221,29 @@ void Server::uninviteUser( std::string nickname )
 	}
 }
 
+static std::string formatUniqueID( size_t number )
+{
+	std::string chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz_";
+	int chars_len = chars.length();
+	std::ostringstream oss;
+	while (number > 0)
+	{
+		oss << chars[number % chars_len];
+		number /= chars_len;
+	}
+	return oss.str();
+}
+
+std::string Server::generateUniqueNickname( void )
+{
+	std::string nickname;
+	do
+	{
+		nickname = formatUniqueID(this->_unique_id++);
+		if (this->_unique_id > 62259690411360)
+		{
+			nickname = "***";
+		}
+	} while (isNicknameTaken(nickname) == true);
+	return nickname;
+}
