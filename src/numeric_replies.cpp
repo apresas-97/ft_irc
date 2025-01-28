@@ -9,25 +9,6 @@ static std::string formatNumber( int number )
 	return oss.str();
 }
 
-// Currently unused
-static std::string getTimestamp( void )
-{
-	std::string timestamp = "@time=";
-	time_t t = time(0);
-	tm *now = localtime(&t);
-
-	std::ostringstream	oss;
-	oss << (now->tm_year + 1900) << '-'
-		<< std::setw(2) << std::setfill('0') << (now->tm_mon + 1) << '-'
-		<< std::setw(2) << std::setfill('0') << now->tm_mday << 'T'
-		<< std::setw(2) << std::setfill('0') << now->tm_hour << ':'
-		<< std::setw(2) << std::setfill('0') << now->tm_min << ':'
-		<< std::setw(2) << std::setfill('0') << now->tm_sec << "Z";
-
-	timestamp += oss.str();
-	return timestamp;
-}
-
 // For replies that have no specific parameters like <channel>, <nickname>, etc.
 t_message Server::createReply( int number, const std::string message )
 {
