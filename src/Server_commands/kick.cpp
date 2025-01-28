@@ -1,36 +1,4 @@
 #include "Server.hpp"
-/*
-
-	PSEUDO
-
-	1. Access the appropriate client (Executor)
-		- Get their nickname
-	2. Prepare the kick message
-
-	3. Error handling
-		- Not enough parameters
-		- Channel does not exist
-		- Client is not in the channel
-		- Client is not an operator: cannot kick anyone
-	4. If there are 4 or more parameters
-		- Assemble the kick message
-
-	5. Handle targets
-		- Errors
-			- Target nickname does not exist
-			- Target to be kicked is not in the channel
-		
-		- Send message
-		- Remove the client from all lists
-
-	6. Delete the channel if it has no more users
-
-	Format
-
-	KICK <channel> <user> [<reason>]
-	KICK <channel> <user1,user2,user3> [<reason>] 
-
-*/
 
 static std::vector<std::string> parseMessage(const std::string &message, char delimiter) 
 {
@@ -44,10 +12,8 @@ static std::vector<std::string> parseMessage(const std::string &message, char de
 	return tokens;
 }
 
-
 std::vector<t_message>	Server::cmdKick( t_message & message )
 {
-	std::cout << "KICK command called..." << std::endl;
 	std::vector<t_message> replies;
 
 	Client * client = findClient(message.sender_client_fd);
@@ -93,7 +59,7 @@ std::vector<t_message>	Server::cmdKick( t_message & message )
 	}
 	else
 	{
-		mainMsg = nick + " has kicked user from channel"; // ??
+		mainMsg = nick + " has kicked user from channel";
 	}
 
 	std::vector<std::string> targets = parseMessage(message.params[1], ',');

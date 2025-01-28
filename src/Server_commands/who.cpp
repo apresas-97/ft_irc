@@ -1,3 +1,11 @@
+#include "Server.hpp"
+
+static std::vector<std::string>	getUserInfo( Client client, std::string server_name, std::string channel_name);
+static bool	starts_with(std::string str, std::string prefix);
+static bool	ends_with(std::string str, std::string suffix);
+static bool	check_prefix(Client client, std::string prefix, std::string server_name);
+static bool	check_suffix(Client client, std::string suffix, std::string server_name);
+
 /*
 	Command: WHO
 	Parameters: [<name> [<o>]]
@@ -31,15 +39,6 @@
    WHO jto* o					  ; List all users with a match against
 								   "jto*" if they are an operator.
 */
-
-#include "Server.hpp"
-
-static std::vector<std::string>	getUserInfo( Client client, std::string server_name, std::string channel_name);
-static bool	starts_with(std::string str, std::string prefix);
-static bool	ends_with(std::string str, std::string suffix);
-static bool	check_prefix(Client client, std::string prefix, std::string server_name);
-static bool	check_suffix(Client client, std::string suffix, std::string server_name);
-
 std::vector<t_message> Server::cmdWho( t_message & message )
 {
 	std::vector<t_message>	replies;
@@ -52,7 +51,6 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 
 	if (is_all)
 	{
-		std::cout << "It is wildcard" << std::endl;	/* DEBUG */
 		for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
 		{
 			Client	client = it->second;
@@ -65,7 +63,6 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 	}
 	else if (name.find('*') != std::string::npos)
 	{
-		std::cout << "Wildcard contains some information to check" << std::endl; /* DEBUG */
 		std::string	prefix = name.substr(0, name.find('*'));
 		std::string	suffix = name.substr(name.find('*') + 1);
 
@@ -85,7 +82,6 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 	}
 	else if (isValidChannelName(name)) // Must print information of all users in the channel that are not invisible
 	{
-		std::cout << "It is channel" << std::endl; /* DEBUG */
 		Channel *	channel = this->findChannel(name);
 
 		if (channel && channel->isUserInChannel(this->_current_client->getNickname()))
@@ -103,7 +99,6 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 			}
 		}
 	}
-	// TODO Control amount of replies and truncate message if amount is too large...
 	replies.push_back(createReply(315, RPL_ENDOFWHO_STR, name));
 	return replies;
 }
@@ -138,7 +133,6 @@ static std::vector<std::string>	getUserInfo( Client client, std::string server_n
 	if (client.getMode('a'))
 	{
 		user_info.push_back("A");
-//		user_info.push_back(client.getAwayMessage()); // TODO
 	}
 	else
 		user_info.push_back("H");
@@ -174,8 +168,6 @@ static bool	ends_with(std::string str, std::string suffix)
 	// Compare the suffix with the end of the string
 	return std::strncmp(str.c_str() + str_len - suffix_len, suffix.c_str(), suffix_len) == 0;
 }
-
-	// COMPARE WITH host, server, realname and nickname
 
 static bool	check_prefix(Client client, std::string prefix, std::string server_name)
 {

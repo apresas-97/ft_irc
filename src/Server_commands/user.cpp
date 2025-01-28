@@ -1,21 +1,17 @@
 #include "Server.hpp"
 
-
-// NOTE: The IRC protocol doesn't specify syntax rules for the username and realname
 static bool	irc_isValidUsername( const std::string & username )
 {
 	if (username.size() < 1 || username.size() > 15)
 		return false;
 	for (size_t i = 0; i < username.size(); i++)
 	{
-		// Only allow printable ASCII characters, except spaces
 		if (username[i] < 33 || username[i] > 126)
 			return false;
 	}
 	return true;
 }
 
-// NOTE: The IRC protocol doesn't specify syntax rules for the username and realname
 static bool irc_isValidRealname( const std::string & realname )
 {
 	if (realname.size() < 1 || realname.size() > 50)
@@ -23,7 +19,6 @@ static bool irc_isValidRealname( const std::string & realname )
 	for (size_t i = 0; i < realname.size(); i++)
 	{
 		unsigned char c = static_cast<unsigned char>(realname[i]);
-		// Only allow printable ASCII characters
 		if (c < 32 || (c > 126 && c < 160))
 			return false;
 	}
@@ -47,9 +42,8 @@ std::vector<t_message>	Server::createWelcomeReplies( Client * client )
 	std::vector<std::string> myinfo_params;
 	myinfo_params.push_back(this->getName());
 	myinfo_params.push_back(this->getVersion());
-	// These are TODO because I don't know if those are the definitive modes or if this is how we'll handle it
-	myinfo_params.push_back(USER_MODES); // TODO: Here will go all of the available user modes
-	myinfo_params.push_back(CHANNEL_MODES); // TODO: Here will go all of the available channel modes
+	myinfo_params.push_back(USER_MODES);
+	myinfo_params.push_back(CHANNEL_MODES);
 
 	welcome_replies.push_back(createReply(RPL_MYINFO, RPL_MYINFO_STR, myinfo_params));
 
@@ -71,7 +65,6 @@ are irrelevant.
 */
 std::vector<t_message>	Server::cmdUser( t_message & message ) 
 {
-	std::cout << "USER command called..." << std::endl;
 	Client *	client = this->_current_client;
 	std::vector<t_message>	replies;
 
@@ -133,4 +126,3 @@ std::vector<t_message>	Server::cmdUser( t_message & message )
 
 	return createWelcomeReplies(client);
 }
-

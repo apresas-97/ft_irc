@@ -1,13 +1,5 @@
 #include "Server.hpp"
 
-/*
-	Command: PART
-	Parameters: <channel> *( "," <channel> ) [ <message> ]
-
-	The PART command allows a user to leave one or more channels. 
-	If the user successfully leaves a channel, a PART message is sent to the channel and to the client.
-*/
-
 static std::vector<std::string> parseMessage(const std::string &message, char delimiter) 
 {
 	std::vector<std::string> tokens;
@@ -20,9 +12,15 @@ static std::vector<std::string> parseMessage(const std::string &message, char de
 	return tokens;
 }
 
+/*
+	Command: PART
+	Parameters: <channel> *( "," <channel> ) [ <message> ]
+
+	The PART command allows a user to leave one or more channels. 
+	If the user successfully leaves a channel, a PART message is sent to the channel and to the client.
+*/
 std::vector<t_message> Server::cmdPart(t_message &message)
 {
-	std::cout << "PART command called..." << std::endl;
 	std::vector<t_message> replies;
 	t_message reply;
 
@@ -87,7 +85,6 @@ std::vector<t_message> Server::cmdPart(t_message &message)
 		// Delete the channel if it is empty
 		if (channel->getUserCount() == 0)
 		{
-			std::cout << "Channel " << currentChannel << " is now empty. Deleting..." << std::endl;
 			removeChannel(currentChannel);
 			continue;
 		}

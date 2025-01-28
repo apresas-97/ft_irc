@@ -24,7 +24,7 @@ std::vector<t_message>	Server::cmdError( std::string & error_message )
 
 	error.command = "ERROR";
 	error.params.push_back(error_message);
-	error.sender_client_fd = this->_serverFd; // TODO: We should check if this variable is necessary at all anymore
+	error.sender_client_fd = this->_serverFd;
 	error.target_client_fds.insert(client->getSocket());
 	replies.push_back(error);
 

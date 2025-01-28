@@ -13,7 +13,6 @@ eachother automatic replies.
 */
 std::vector<t_message>	Server::cmdNotice( t_message & message )
 {
-	// Possible implementation? I don't know if it will be so simple
 	std::vector<t_message> replies = cmdPrivMsg(message);
 	for (std::vector<t_message>::iterator it = replies.begin(); it != replies.end(); ++it)
 	{

@@ -15,7 +15,6 @@ Numeric Replies:
 */
 std::vector<t_message> Server::cmdPass( t_message & message )
 {
-	std::cout << "PASS command called..." << std::endl;
 	Client * client = this->_current_client;
 	std::vector<t_message>	replies;
 	t_message				reply;

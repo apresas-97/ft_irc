@@ -1,14 +1,10 @@
 #include "Server.hpp"
+
 /*
 	Command: JOIN
 	Parameters: ( <channel> *( "," <channel> ) [ <key> *( "," <key> ) ] ) / "0"
 
 	The JOIN command is used by a user to request to start listening to the specific channel.
-
-	//// This part I don't understand:
-	Servers must be able to parse arguments in the form of a list of target, but SHOULD NOT
-	use lists when sending JOIN messages to clients.
-	//// End of part ////
 
 	If a JOIN is succesful, the user receives a JOIN message as confirmation and it is then
 	sent the channel's topic using RPL_TOPIC and the list of users who are in the channel
@@ -19,8 +15,7 @@
 	The server will process this message as if the user had sent a PART command for each
 	channel he is a member of.
 */
-
-static std::vector<std::string> parseMessage(const std::string &message, char delimiter) 
+static std::vector<std::string> parseMessage( const std::string & message, char delimiter ) 
 {
 	std::vector<std::string> tokens;
 	std::string token;
@@ -34,7 +29,6 @@ static std::vector<std::string> parseMessage(const std::string &message, char de
 
 std::vector<t_message>	Server::cmdJoin( t_message & message )
 {
-	std::cout << "JOIN command called..." << std::endl;
 	std::vector<t_message>	replies;
 	t_message				reply;
 
@@ -82,9 +76,9 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 	}
 
 	channel_names = parseMessage(message.params[0], ',');
-    if (are_keys)
+	if (are_keys)
 	{
-        keys = parseMessage(message.params[1], ',');
+		keys = parseMessage(message.params[1], ',');
 	}
 
 	for (size_t i = 0; i < channel_names.size(); i++)
@@ -100,14 +94,8 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		if (isChannelInServer(currentChannel))
 		{
 			channel = findChannel(currentChannel);
-			if (!channel)
-				std::cout << "JOIN: Uh oh channel is NULL" << std::endl;
 			if (channel->isUserInChannel(client->getNickname()))
-			{
-				std::cout << client->getNickname() << " is already in " << currentChannel << std::endl;
-				// Ignore if user is already in the channel
 				continue;
-			}
 			// Mode -i (Invite-only channel)
 			if (channel->getMode('i') && !channel->isUserInvited(client->getNickname()))
 			{
@@ -152,7 +140,6 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		}
 		else
 		{
-			std::cout << "Attempting to create new channel..." << std::endl; // DEBUG
 			// Create new channel
 			if (client->getChannelCount() >= client->getChannelLimit()) 
 			{
@@ -191,16 +178,13 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 		}
 
 		std::vector<std::string> clientList = channel->getUsersOpClean();
-        if (!clientList.empty())
+		if (!clientList.empty())
 		{
 			std::vector<std::string> paramsName;
-			paramsName.push_back(currentChannel); // Channel name
-			// Generate reply with the list of visible users
+			paramsName.push_back(currentChannel);
 			std::string names;
 			for (size_t i = 0; i < clientList.size(); ++i)
-			{
 				names += clientList[i] + " ";
-			}
 			paramsName.push_back(names);
 			t_message nameReply = createReply(RPL_NAMREPLY, RPL_NAMREPLY_STR, paramsName);
 			addChannelToReply(nameReply, channel);
@@ -210,4 +194,3 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 	}
 	return replies;
 }
-

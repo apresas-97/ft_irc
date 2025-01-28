@@ -2,7 +2,6 @@
 
 std::vector<t_message> Server::cmdInvite(t_message &message) 
 {
-	std::cout << "INVITE command called..." << std::endl;
 	std::vector<t_message>	replies;
 	t_message				reply;
 	Client *client = this->_current_client;
@@ -77,8 +76,6 @@ std::vector<t_message> Server::cmdInvite(t_message &message)
 	inviteMessage.params.push_back(channelName);
 	inviteMessage.target_client_fds.insert(targetClient->getSocket());
 	replies.push_back(inviteMessage);
-	// I've seen in some servers that the acknowledgement message is sent ALSO to the rest of
-	// operators of the channel. It's not our priority right now.
 
 	std::vector<std::string>	params;
 	params.push_back(targetNickname);

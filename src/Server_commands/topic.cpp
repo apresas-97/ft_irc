@@ -2,7 +2,6 @@
 
 std::vector<t_message> Server::cmdTopic( t_message &message ) 
 {
-	std::cout << "TOPIC command called..." << std::endl;
 	std::vector<t_message>	replies;
 	t_message				reply;
 	Client * client = this->_current_client;

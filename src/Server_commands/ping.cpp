@@ -24,7 +24,6 @@ ERR_NOSUCHSERVER: If the <server2> parameter does not match a server in the netw
 */
 std::vector<t_message>	Server::cmdPing( t_message & message )
 {
-	std::cout << "PING MESSAGE RECEIVED" << std::endl;
 	std::vector<t_message> replies;
 	Client * client = this->_current_client;
 

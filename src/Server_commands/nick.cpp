@@ -8,7 +8,6 @@ NICK command is used to give user a nickname or change the existing one.
 */
 std::vector<t_message> Server::cmdNick( t_message & message ) 
 {
-	std::cout << "NICK command called..." << std::endl;
 	Client * client = this->_current_client;
 	std::vector<t_message>	replies;
 	t_message				reply;
@@ -46,7 +45,6 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 	// Nickname is already taken ?
 	if (this->isNicknameTaken(nickname) == true)
 	{
-		// reply = createReply(ERR_NICKNAMEINUSE, ERR_NICKNAMEINUSE_STR, nickname);
 		replies.push_back(createNotice(client, "Nickname " + nickname + " is already in use."));
 		replies.push_back(createNotice(client, "You will be assigned a temporary unique nickname."));
 		nickname = this->generateUniqueNickname();
@@ -59,7 +57,6 @@ std::vector<t_message> Server::cmdNick( t_message & message )
 			replies.insert(replies.end(), quit_replies.begin(), quit_replies.end());
 			return replies;
 		}
-		// return replies;
 	}
 
 	std::string old_prefix = client->getUserPrefix();

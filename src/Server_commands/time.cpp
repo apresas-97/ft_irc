@@ -2,18 +2,6 @@
 #include <ctime>
 #include <iomanip>
 
-/* TODO maybe:
-Once we have our clocks and timers working, (if we need them, which I think we do)
-We can make it so that once a minute, this function is called and the timestamp is updated
-This way, it won't matter if many people call the TIME command in close succession, it
-won't be a burden on the server.
-
-That said, we would lose the seconds in the timer, but DALnet doesn't show seconds in their TIME command either
-So I think it would be fine.
-
-If we don't have time to implement this, we can leave it as it is too
-*/
-
 static std::string cmdTimeTimestamp( void )
 {
 	time_t time = std::time(0);

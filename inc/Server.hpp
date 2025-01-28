@@ -123,7 +123,6 @@ class Server
 		std::vector<t_message> cmdTime( t_message & message );
 		std::vector<t_message> cmdPing( t_message & message );
 		std::vector<t_message> cmdPong( t_message & message );
-		std::vector<t_message> cmdCap( t_message & message );
 		std::vector<t_message> cmdPart( t_message & message );
 		std::vector<t_message> cmdMotd( t_message & message );
 		std::vector<t_message> cmdNames( t_message & message );

@@ -1,22 +1,4 @@
 #include "Server.hpp"
-/*
-
-	0. Management
-	1. Validation
-		Does it have a recipient? Args < 1
-		Does it have enough text? Args < 2
-	3. Extract targets
-	4. Prepare the text to send
-		Iterate over the text and add a space to each parameter of tmessage->params
-	5. Iterate over the targets
-		5.a. If # (Channels)
-			5.a.a. The channel exists
-			5.a.b. The channel does NOT exist
-		5.b. Bot
-		5.c. The target nickname exists
-			5.c.a. The nickname does not exist
-
-*/
 
 // Helper function that splits a string into tokens based on a delimiter
 // Returns a vector containing all the tokens
@@ -34,7 +16,6 @@ static std::vector<std::string> parseMessage(const std::string &message, char de
 // Returns a vector of replies to be sent back to clients
 std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 {
-	std::cout << "PRIVMSG command called..." << std::endl;
 	std::vector<t_message> replies;
 	t_message reply;
 	Client *client = _current_client;
@@ -89,7 +70,6 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 				if (!channel->isUserInChannel(client->getNickname()))
 				{
 					// If sender not in channel, send error reply
-					std::cout << "User is not in channel..." << std::endl;
 					std::vector<std::string> params;
 					params.push_back(client->getNickname());
 					params.push_back(target);
