@@ -1,11 +1,7 @@
 #include "Server.hpp"
 
-/// apresas-: WIP
 t_message Server::parseData( const std::string & raw_message, int client_fd )
 {
-//	std::cout << "parseData function called..." << std::endl; // DEBUG
-//	std::cout << "MESSAGE RECEIVED: \"" << raw_message << "\"" << std::endl; //  DEBUG
-
 	t_message	message = prepareMessage(raw_message);
 	message.sender_client_fd = client_fd;
 
@@ -15,9 +11,8 @@ t_message Server::parseData( const std::string & raw_message, int client_fd )
 /*
 	Gets the raw message and orders it into a t_message struct
 */
-t_message	Server::prepareMessage( std::string raw_message ) // ffornes- Where do we set the target??? 
+t_message	Server::prepareMessage( std::string raw_message )
 {
-	// std::cout << "prepareMessage function called..." << std::endl;
 	t_message message;
 	std::string word;
 	std::istringstream iss(raw_message);
@@ -62,7 +57,6 @@ t_message	Server::prepareMessage( std::string raw_message ) // ffornes- Where do
 	if (iss.bad()) 
 	{
 		std::cerr << "Error reading from the input stream." << std::endl;
-		// apresas-: Idek what we should do here or how this could happen exactly
 		return message;
 	}
 	return message;

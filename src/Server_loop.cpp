@@ -46,7 +46,6 @@ void Server::runServerLoop( void )
 
 void Server::removeTerminatedClients( void )
 {
-//	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION" << std::endl;
 	for (std::map<int, Client>::iterator it = this->_clients.begin(); it != this->_clients.end(); ++it)
 	{
 		if (it->second.isTerminate())
@@ -57,17 +56,14 @@ void Server::removeTerminatedClients( void )
 			it = this->_clients.begin();
 		}
 	}
-//	std::cout << "REMOVE TERMINATED CLIENTS FUNCTION END" << std::endl;
 }
 
 void Server::removeClient( int fd )
 {
-	std::cout << "Removing client..." << std::endl;
 	Client * client = this->findClient(fd);
 
 	if (!client)
 	{
-		std::cerr << "Client not found in client list" << std::endl;
 		return ;
 	}
 	// Remove client's name from _taken_nicknames ... std::vector<std::string>()
@@ -77,13 +73,9 @@ void Server::removeClient( int fd )
 	// Remove from _clients_fd_map ... std::map<std::string, int>()
 	if (_clients_fd_map.find(client->getNickname()) != _clients_fd_map.end()) // Check if it exists
 		_clients_fd_map.erase(client->getNickname());
-	else
-		std::cout << "Unable to find client in client fd map" << std::endl;
 	// Remove from _clients ... std::map<int, Client>()
 	if (_clients.find(fd) != _clients.end()) // Check if it exists
 		_clients.erase(fd);
-	else
-		std::cout << "Unable to find client in client list" << std::endl;
 	if (close(fd) == -1) // error handling...
 		closeFailureLog("_poll_fds", fd, this->_serverFd);
 	// Remove from _poll_fds .	std::vector<struct pollfd>()
@@ -92,13 +84,9 @@ void Server::removeClient( int fd )
 		if ((*it).fd == fd )
 		{
 			_poll_fds.erase(it);
-			std::cout << "Client removed from _poll_fds..." << std::endl;
 			break ;
 		}
 	}
-	std::cout << "Client count before removal: " << this->_client_count << std::endl;
 	this->_client_count -= 1;
-	std::cout << "Client count after removal: " << this->_client_count << std::endl;
-	std::cout << "Client removed client successfully" << std::endl;
 }
 

@@ -55,14 +55,12 @@ void Channel::setKey( std::string key )
 
 void Channel::setMode( char mode, bool state )
 {
-	std::cout << "setMode called, mode = '" << mode << "', state = " << state << std::endl;
 	std::vector<char>::iterator it = std::find(this->_modes.begin(), this->_modes.end(), mode);
 	if (state)
 	{
 		// Si `mode` no está ya en `_modes`, lo agregamos
 		if (it == this->_modes.end())
 		{
-			std::cout << "Adding mode '" << mode << "'" << std::endl;
 			this->_modes.push_back(mode);
 		}
 	}
@@ -71,7 +69,6 @@ void Channel::setMode( char mode, bool state )
 		// Si `mode` está en `_modes`, lo eliminamos
 		if (it != this->_modes.end())
 		{
-			std::cout << "Removing mode '" << mode << "'" << std::endl;
 			this->_modes.erase(it);
 		}
 	}
@@ -275,38 +272,20 @@ std::set<int>   Channel::getFdsSet( std::string key ) const
 // User Management
 void Channel::addUser( Client * user, bool is_operator )
 {
-	std::cout << "Adding user \"" << user->getNickname() << "\" to channel \"" << this->_name << "\"" << std::endl;
-	std::cout << "User count before: " << _users.size() << std::endl;
 	if (_has_user_limit && static_cast<long>(_users.size()) >= this->_user_limit)
-	{
-		// TODO PROBABLY DONT THROW AN EXCEPTION HERE
-		throw std::runtime_error("Channel is full");
-	}
+		RED_TEXT("AddUser failed: attempted to add a user past the limit.");
 
-	std::cout << getName() << std::endl;
 	this->_users.insert(std::pair<std::string, Client*>(user->getNickname(), user));
-	std::cout << "User count after: " << _users.size() << std::endl;
-
-	std::cout << "Users in channel:" << std::endl;
-	for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
-	{
-		std::cout << it->first << std::endl;
-	}
-	std::cout << "User list end" << std::endl;
 
 	if (is_operator)
-	{
 		if (_operators.find(user->getNickname()) == _operators.end())
-		{
 			this->_operators.insert(std::pair<std::string, Client *>(user->getNickname(), user));
-		}
-	}
 }
 
 void Channel::kickUser( const std::string & nickname )
 {
 	if (this->_users.erase(nickname) == 0)
-		throw std::runtime_error("User not found in channel");
+		RED_TEXT("Kick failed: user was not found.");
 	if (this->_operators.erase(nickname) == 0) {}
 }
 
@@ -315,13 +294,11 @@ void Channel::promoteUser( const std::string & nickname )
 	if (_users.find(nickname) != _users.end())
 	{
 		if (_operators.find(nickname) == _operators.end())
-		{
 			_operators[nickname] = _users[nickname];
-		}
 	} 
 	else
 	{
-		throw std::runtime_error("User not found in channel");
+		RED_TEXT("PromoteUser failed: User was not found.");
 	}
 }
 
@@ -329,7 +306,7 @@ void Channel::demoteUser( const std::string & nickname )
 {
 	if (_operators.erase(nickname) == 0)
 	{
-		throw std::runtime_error("User is not an operator");
+		RED_TEXT("DemoteUser failed: user is not an operator.");
 	}
 }
 
@@ -341,7 +318,7 @@ void Channel::inviteUser( const std::string & nickname, Client * client )
 	}
 	else
 	{
-		throw std::runtime_error("User is already invited");
+		RED_TEXT("InviteUser failed: User is already invited.");
 	}
 }
 
@@ -386,19 +363,6 @@ bool Channel::isUserInChannel( const std::string & nickname ) const
 {
 	for (std::map<std::string, Client*>::const_iterator it = _users.begin(); it != _users.end(); ++it)
 	{
-/*
-		if (it != _users.end())  // Verificación de rango
-		{
-			if (it->first.empty() || it->second == NULL) continue;  // Verificación adicional para evitar datos nulos o vacíos
-			RED_TEXT(it->first);      // Nombre del usuario
-			RED_TEXT(it->second);     // Cliente asociado
-			RED_TEXT(nickname);       // Nickname del usuario buscado
-		}
-		else 
-		{
-			std::cout << "Iterador fuera de rango" << std::endl;
-		}
-*/
 		if (it->first == nickname)
 		{
 			return true;

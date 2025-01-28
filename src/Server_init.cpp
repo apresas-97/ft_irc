@@ -8,7 +8,7 @@ void Server::parseInput( void )
 	iss >> port;
 	if (this->_port.empty() || iss.fail() || !iss.eof())
 		throw InvalidArgument("Invalid port input received", this->_port);
-	if (port < 1025 || port > 65535) // apresas-: ? Need to verify the port range
+	if (port < 1025 || port > 65535)
 		throw InvalidArgument("Port must be between 1024 and 49151", this->_port);
 }
 

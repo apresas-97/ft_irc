@@ -13,7 +13,6 @@ static std::string formatNumber( int number )
 t_message Server::createReply( int number, const std::string message )
 {
 	t_message reply;
-	// reply.timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
 	reply.command = formatNumber(number);
 	std::string	nickname = this->_current_client->getNickname();
@@ -32,7 +31,6 @@ param will replace the placeholder in the message
 t_message Server::createReply( int number, const std::string message, const std::string & param )
 {
 	t_message reply;
-	// std::string timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
 	reply.command = formatNumber(number);
 
@@ -60,7 +58,6 @@ Each member of the param vector will replace a placeholder in the message in ord
 t_message Server::createReply( int number, const std::string message, const std::vector<std::string> & params ) 
 {
 	t_message reply;
-	// std::string timestamp = getTimestamp(); // optional
 	reply.prefix = ":" + this->getName();
 	reply.command = formatNumber(number);
 	std::string	nickname = this->_current_client->getNickname();
@@ -90,11 +87,8 @@ t_message Server::createReply( t_message & message, std::string corrected_param,
 	t_message	reply;
 	reply.prefix = ":" + nickname;
 	reply.command = message.command;
-	// std::string	nickname = this->_current_client->getNickname();
-	// if (nickname.empty())
-		// nickname = "*"; // I don't know what to do in this case rn
 	reply.params.push_back(nickname);
-	std::string param = corrected_param; // TODO: Figure out the ":" part
+	std::string param = corrected_param;
 	reply.params.push_back(param);
 	reply.target_client_fds.insert(this->_current_client->getSocket());
 	return reply;
@@ -122,10 +116,6 @@ t_message Server::replyList(Client *client, Channel *channel, std::vector<int>& 
         }
     }
 
-	// Create the response with the list of users
-	// RPL_NAMREPLY is the IRC response code for the name list
-
-//    t_message reply = createReply(RPL_NAMREPLY, RPL_NAMREPLY_STR, {main, channel->getName(), userlist}); // TODO incorrect call
 	t_message	reply; // NEEDED IN ORDER TO AVOID PROGRAM SHITTING ITSELF BECAUSE PREVIOUS CALL IS WRONG
     return reply;
 }
