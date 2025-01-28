@@ -79,6 +79,7 @@ class Server
 		bool channelFound(const std::string& chanName);
 		bool isUserInServer( const std::string & nickname );
 		bool isChannelInServer( const std::string & channel );
+		void uninviteUser( std::string nickname );
 
 		void removeChannel( const std::string &name );
 

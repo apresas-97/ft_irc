@@ -210,3 +210,14 @@ void Server::removeChannel(const std::string &name)
     this->_channels.erase(it);
     std::cout << "Channel \"" << name << "\" has been removed successfully." << std::endl;
 }
+
+void Server::uninviteUser( std::string nickname )
+{
+	for (std::map<std::string, Channel>::iterator it = _channels.begin(); it != _channels.end(); ++it)
+	{
+		Channel *	channel = findChannel(it->first);
+
+		channel->uninviteUser(nickname);
+	}
+}
+
