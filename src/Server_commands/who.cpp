@@ -49,7 +49,6 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 		name = message.params[0];
 
 	bool	is_all = (name.empty() || name == "0" || name == "*");
-	bool	is_channel = (!name.empty() && (name[0] == '#' || name[0] == '&'));
 
 	if (is_all)
 	{
@@ -84,7 +83,7 @@ std::vector<t_message> Server::cmdWho( t_message & message )
 			}
 		}
 	}
-	else if (is_channel) // Must print information of all users in the channel that are not invisible
+	else if (isValidChannelName(name)) // Must print information of all users in the channel that are not invisible
 	{
 		std::cout << "It is channel" << std::endl; /* DEBUG */
 		Channel *	channel = this->findChannel(name);

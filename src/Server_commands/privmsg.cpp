@@ -79,7 +79,7 @@ std::vector<t_message> Server::cmdPrivMsg(t_message &message)
 		std::string & target = targets[i];
 		
 		// Handle channel messages (targets starting with # or &)
-		if (target[0] == '#' || target[0] == '&')
+		if (isValidChannelName(target))
 		{
 			// Check if channel exists
 			if (_channels.find(target) != _channels.end())
