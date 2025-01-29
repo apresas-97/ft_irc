@@ -111,7 +111,7 @@ std::vector<t_message>	Server::cmdJoin( t_message & message )
 				continue;
 			}
 			// Mode -o (Operator privileges required) and Mode -t (Operator privileges required)
-			if ((channel->getMode('o') && !channel->isUserOperator(client->getNickname())) 
+			if ((channel->getMode('o') && !channel->isUserOperator(client->getNickname())))
 			{
 				std::vector<std::string> params;
 				params.push_back(client->getNickname());
