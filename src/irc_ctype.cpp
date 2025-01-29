@@ -1,4 +1,4 @@
-#include <irc_ctype.hpp>
+#include "irc_ctype.hpp"
 
 /* Some syntax semantics for IRC, in BNF:
 

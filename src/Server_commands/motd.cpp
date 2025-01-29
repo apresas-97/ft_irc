@@ -32,7 +32,7 @@ std::vector<t_message> Server::cmdMotd( t_message & message )
 		return replies;
 	}
 
-	file.open("motd.txt");
+	file.open("motd.conf");
 	if (!file.is_open() || !file.good() || file.fail())
 	{
 		replies.push_back(createReply(ERR_NOMOTD, ERR_NOMOTD_STR));
